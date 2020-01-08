@@ -11,26 +11,8 @@
     "node": ">=8.9"
   },
   "scripts": {
-    "build": "lb-tsc",
-    "build:watch": "lb-tsc --watch",
-    "clean": "lb-clean dist *.tsbuildinfo",
-    "lint": "npm run prettier:check && npm run eslint",
-    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
-    "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
-    "prettier:check": "npm run prettier:cli -- -l",
-    "prettier:fix": "npm run prettier:cli -- --write",
-    "eslint": "lb-eslint --report-unused-disable-directives .",
-    "eslint:fix": "npm run eslint -- --fix",
-    "pretest": "npm run clean && npm run build",
-    "test": "lb-mocha --allow-console-logs \"dist/__tests__\"",
-    "posttest": "npm run lint",
-    "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
-    "docker:build": "docker build -t kello .",
-    "docker:run": "docker run -p 3000:3000 -d kello",
-    "migrate": "node ./dist/migrate",
-    "prestart": "npm run build",
-    "start": "node -r source-map-support/register .",
-    "prepublishOnly": "npm run test"
+    "start": "node ."
+
   },
   "repository": {
     "type": "git"
