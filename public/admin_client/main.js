@@ -339,7 +339,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var ActivationService = /** @class */ (function () {
     function ActivationService(http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:3000/activations";
+        this.baseUrl = "/activations";
         this.activationList = [];
     }
     ActivationService.prototype.findById = function (id) {
@@ -927,7 +927,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var CustomerService = /** @class */ (function () {
     function CustomerService(http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:3000/customers";
+        this.baseUrl = "/customers";
         this.customerList = [];
     }
     CustomerService.prototype.findById = function (id) {
@@ -2573,7 +2573,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var OfferService = /** @class */ (function () {
     function OfferService(http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:3000/offers";
+        this.baseUrl = "/offers";
         this.offerList = [];
     }
     OfferService.prototype.findById = function (id) {
@@ -3020,7 +3020,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var PartnerService = /** @class */ (function () {
     function PartnerService(http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:3000/partners";
+        this.baseUrl = "/partners";
         this.partnerList = [];
     }
     PartnerService.prototype.findById = function (id) {
@@ -3438,7 +3438,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var ProductService = /** @class */ (function () {
     function ProductService(http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:3000/products";
+        this.baseUrl = "/products";
         this.productList = [];
     }
     ProductService.prototype.findById = function (id) {
@@ -3837,7 +3837,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var RateplanService = /** @class */ (function () {
     function RateplanService(http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:3000/rateplans";
+        this.baseUrl = "/rateplans";
         this.rateplanList = [];
     }
     RateplanService.prototype.findById = function (id) {
@@ -4339,7 +4339,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var SupplyService = /** @class */ (function () {
     function SupplyService(http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:3000/supplies";
+        this.baseUrl = "/supplies";
         this.supplyList = [];
     }
     SupplyService.prototype.findById = function (id) {
