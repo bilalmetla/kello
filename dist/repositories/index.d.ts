@@ -14,3 +14,5 @@ export * from './feedback.repository';
 export * from './feedbacktypes.repository';
 export * from './stock.repository';
 export * from './supply.repository';
+export * from './rating-reasons.repository';
+export * from './order-ratings.repository';

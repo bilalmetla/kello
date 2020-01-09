@@ -15,3 +15,5 @@ export * from './feedback.model';
 export * from './feedbacktypes.model';
 export * from './stock.model';
 export * from './supply.model';
+export * from './order-ratings.model';
+export * from './rating-reasons.model';

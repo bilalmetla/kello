@@ -30,3 +30,8 @@ export * from './stock-units.controller';
 export * from './supply-partners.controller';
 export * from './supply-products.controller';
 export * from './supply-units.controller';
+export * from './order-ratings-rating-reasons.controller';
+export * from './order-ratings-orders.controller';
+export * from './order-ratings-customers.controller';
+export * from './rating-reasons.controller';
+export * from './order-ratings.controller';

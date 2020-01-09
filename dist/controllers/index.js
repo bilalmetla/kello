@@ -35,4 +35,9 @@ __export(require("./stock-units.controller"));
 __export(require("./supply-partners.controller"));
 __export(require("./supply-products.controller"));
 __export(require("./supply-units.controller"));
+__export(require("./order-ratings-rating-reasons.controller"));
+__export(require("./order-ratings-orders.controller"));
+__export(require("./order-ratings-customers.controller"));
+__export(require("./rating-reasons.controller"));
+__export(require("./order-ratings.controller"));
 //# sourceMappingURL=index.js.map

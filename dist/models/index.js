@@ -20,4 +20,6 @@ __export(require("./feedback.model"));
 __export(require("./feedbacktypes.model"));
 __export(require("./stock.model"));
 __export(require("./supply.model"));
+__export(require("./order-ratings.model"));
+__export(require("./rating-reasons.model"));
 //# sourceMappingURL=index.js.map

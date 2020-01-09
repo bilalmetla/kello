@@ -19,4 +19,6 @@ __export(require("./feedback.repository"));
 __export(require("./feedbacktypes.repository"));
 __export(require("./stock.repository"));
 __export(require("./supply.repository"));
+__export(require("./rating-reasons.repository"));
+__export(require("./order-ratings.repository"));
 //# sourceMappingURL=index.js.map
