@@ -76,7 +76,9 @@ let OrdersController = class OrdersController {
                 "isDelivered": true,
                 "orderStatus": "Completed",
             };
-            return yield this.ordersRepository.updateById(id, orders);
+            let orderUpdated = yield this.ordersRepository.updateById(id, orders);
+            console.log("orderUpdated: ", orderUpdated);
+            return id;
         });
     }
 };
@@ -181,7 +183,7 @@ __decorate([
 __decorate([
     rest_1.patch('/orders/{id}', {
         responses: {
-            '204': {
+            '200': {
                 description: 'Orders PATCH success',
             },
         },
@@ -226,11 +228,15 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "deleteById", null);
 __decorate([
-    rest_1.patch('/orders{id}/delevered', {
+    rest_1.patch('/orders/{id}/delevered', {
         responses: {
             '200': {
                 description: 'Orders PATCH success count',
-                content: { 'application/json': { schema: repository_1.CountSchema } },
+                content: {
+                    'application/json': {
+                        schema: { type: 'string' },
+                    },
+                },
             },
         },
     }),

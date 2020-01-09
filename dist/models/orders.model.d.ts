@@ -7,12 +7,12 @@ export declare class Orders extends Entity {
     id?: string;
     orderTime?: string;
     completionTime?: string;
-    orderStatus: string;
+    orderStatus?: string;
     totalBillAmount: number;
-    isDelivered: boolean;
+    isDelivered?: boolean;
     orderCategory?: string;
     items: object[];
-    location: OrderLocationObject;
+    location?: OrderLocationObject;
     orderstatusesId: string;
     customersId?: string;
     orderdetails: Orderdetails[];
