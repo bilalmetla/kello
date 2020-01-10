@@ -4,7 +4,7 @@ export declare class Supply extends Entity {
     referenceNo: string;
     productTitle: string;
     supplierName: string;
-    quentity: string;
+    quentity: number;
     quentityOnHand: number;
     supplyDate?: string;
     arrivedAt?: string;

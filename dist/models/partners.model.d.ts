@@ -11,6 +11,7 @@ export declare class Partners extends Entity {
     lastActive?: string;
     isActivated?: boolean;
     location?: any;
+    creationDate?: string;
     partnertypesId: string;
     [prop: string]: any;
     constructor(data?: Partial<Partners>);

@@ -49,10 +49,10 @@ __decorate([
 ], Supply.prototype, "supplierName", void 0);
 __decorate([
     repository_1.property({
-        type: 'string',
+        type: 'number',
         required: true,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], Supply.prototype, "quentity", void 0);
 __decorate([
     repository_1.property({
@@ -64,6 +64,7 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'date',
+        default: new Date()
     }),
     __metadata("design:type", String)
 ], Supply.prototype, "supplyDate", void 0);
