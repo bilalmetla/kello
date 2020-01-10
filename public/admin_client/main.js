@@ -629,7 +629,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var ActivationService = /** @class */ (function () {
     function ActivationService(http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:3000/activations";
+        this.baseUrl = "http://kello-dev.herokuapp.com/activations";
         this.activationList = [];
     }
     ActivationService.prototype.findById = function (id) {
@@ -1230,7 +1230,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var CustomerService = /** @class */ (function () {
     function CustomerService(http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:3000/customers";
+        this.baseUrl = "http://kello-dev.herokuapp.com/customers";
         this.customerList = [];
     }
     CustomerService.prototype.findById = function (id) {
@@ -2584,7 +2584,7 @@ var OrdersService = /** @class */ (function () {
     function OrdersService(http) {
         this.http = http;
         this.ordersList = [];
-        this.api = 'http://127.0.0.1:3000/orders';
+        this.api = 'http://kello-dev.herokuapp.com/orders';
     }
     OrdersService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -2986,7 +2986,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var PartnerService = /** @class */ (function () {
     function PartnerService(http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:3000/partners";
+        this.baseUrl = "http://kello-dev.herokuapp.com/partners";
         this.partnerList = [];
     }
     PartnerService.prototype.findById = function (id) {
@@ -3414,7 +3414,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var ProductService = /** @class */ (function () {
     function ProductService(http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:3000/products";
+        this.baseUrl = "http://kello-dev.herokuapp.com/products";
         this.productList = [];
     }
     ProductService.prototype.findById = function (id) {
@@ -3823,7 +3823,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var RateplanService = /** @class */ (function () {
     function RateplanService(http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:3000/rateplans";
+        this.baseUrl = "http://kello-dev.herokuapp.com/rateplans";
         this.rateplanList = [];
     }
     RateplanService.prototype.findById = function (id) {
@@ -4329,7 +4329,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var SupplyService = /** @class */ (function () {
     function SupplyService(http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:3000/supplies";
+        this.baseUrl = "http://kello-dev.herokuapp.com/supplies";
         this.supplyList = [];
     }
     SupplyService.prototype.findById = function (id) {
