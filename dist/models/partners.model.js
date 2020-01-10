@@ -47,7 +47,7 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'string',
-        required: true,
+        required: false,
     }),
     __metadata("design:type", String)
 ], Partners.prototype, "accessToken", void 0);
@@ -60,7 +60,7 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'boolean',
-        required: true,
+        required: false,
         default: false,
     }),
     __metadata("design:type", Boolean)

@@ -7,9 +7,9 @@ export declare class Partners extends Entity {
     name: string;
     phone: string;
     pin?: number;
-    accessToken: string;
+    accessToken?: string;
     lastActive?: string;
-    isActivated: boolean;
+    isActivated?: boolean;
     location?: any;
     partnertypesId: string;
     [prop: string]: any;
