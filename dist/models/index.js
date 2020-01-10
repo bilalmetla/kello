@@ -22,4 +22,5 @@ __export(require("./stock.model"));
 __export(require("./supply.model"));
 __export(require("./order-ratings.model"));
 __export(require("./rating-reasons.model"));
+__export(require("./error-response.model"));
 //# sourceMappingURL=index.js.map

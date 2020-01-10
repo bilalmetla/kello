@@ -69,6 +69,15 @@ let ProductsController = class ProductsController {
             yield this.productsRepository.deleteById(id);
         });
     }
+    findByProductTypeId(producttypesId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let filter = {
+                "where": { producttypesId },
+                "fields": {}
+            };
+            return this.productsRepository.find(filter);
+        });
+    }
 };
 __decorate([
     rest_1.post('/products', {
@@ -215,6 +224,27 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "deleteById", null);
+__decorate([
+    rest_1.get('/products/types/{producttypesId}', {
+        responses: {
+            '200': {
+                description: 'Array of Products model instances',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'array',
+                            items: rest_1.getModelSchemaRef(models_1.Products, { includeRelations: true }),
+                        },
+                    },
+                },
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('producttypesId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProductsController.prototype, "findByProductTypeId", null);
 ProductsController = __decorate([
     __param(0, repository_1.repository(repositories_1.ProductsRepository)),
     __metadata("design:paramtypes", [repositories_1.ProductsRepository])

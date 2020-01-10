@@ -25,6 +25,7 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const constants_1 = require("../constants");
 const uuid = require("uuid");
 let CustomersController = class CustomersController {
     constructor(customersRepository, activationsRepository) {
@@ -128,7 +129,10 @@ let CustomersController = class CustomersController {
             else {
                 //throw new HttpErrors.UnprocessableEntity('');
                 // this.response.status(401).send({message: "Activation Failed!"});
-                return {};
+                // let error = new ErrorResponse();
+                // error.message = "Activation Failed!";
+                //error.statusCode = "ER222"
+                return constants_1.CONSTANTS.ACTIVATION_FAILED;
             }
         });
     }

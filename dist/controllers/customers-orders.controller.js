@@ -25,6 +25,7 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const constants_1 = require("../constants");
 let CustomersOrdersController = class CustomersOrdersController {
     constructor(customersRepository, partnersRepository, productsRepository, orderdetailsRepository) {
         this.customersRepository = customersRepository;
@@ -64,7 +65,9 @@ let CustomersOrdersController = class CustomersOrdersController {
                 },
                 { $limit: 1 }
             ]).get();
-            if (!nearestPartner || nearestPartner.length === 0) { }
+            if (!nearestPartner || nearestPartner.length === 0) {
+                return constants_1.CONSTANTS.HAWKER_NOT_AVAILABLE;
+            }
             nearestPartner = nearestPartner[0];
             console.log('nearestPartner ..');
             console.log(JSON.stringify(nearestPartner));
@@ -75,7 +78,10 @@ let CustomersOrdersController = class CustomersOrdersController {
             let items = JSON.parse(JSON.stringify(orders.items));
             const createdOrder = yield this.customersRepository.orders(id).create(orders);
             let orderId;
-            if (createdOrder && createdOrder.id) {
+            if (!createdOrder) {
+                return constants_1.CONSTANTS.ORDER_NOT_PLACED;
+            }
+            if (createdOrder.id) {
                 orderId = createdOrder.id.toString();
             }
             let productIds = items.map((it) => {

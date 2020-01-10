@@ -29,7 +29,7 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'string',
-        required: true,
+        required: false,
     }),
     __metadata("design:type", String)
 ], Feedback.prototype, "email", void 0);

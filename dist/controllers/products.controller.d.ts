@@ -12,4 +12,5 @@ export declare class ProductsController {
     updateById(id: string, products: Products): Promise<void>;
     replaceById(id: string, products: Products): Promise<void>;
     deleteById(id: string): Promise<void>;
+    findByProductTypeId(producttypesId: string): Promise<Products[]>;
 }

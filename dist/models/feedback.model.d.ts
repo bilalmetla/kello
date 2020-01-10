@@ -1,7 +1,7 @@
 import { Entity } from '@loopback/repository';
 export declare class Feedback extends Entity {
     id?: string;
-    email: string;
+    email?: string;
     fullname: string;
     phone: string;
     message: string;

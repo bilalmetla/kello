@@ -17,3 +17,4 @@ export * from './stock.model';
 export * from './supply.model';
 export * from './order-ratings.model';
 export * from './rating-reasons.model';
+export * from './error-response.model';

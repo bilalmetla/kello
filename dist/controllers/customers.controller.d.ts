@@ -14,5 +14,5 @@ export declare class CustomersController {
     replaceById(id: string, customers: Customers): Promise<void>;
     deleteById(id: string): Promise<void>;
     authenticate(customers: Omit<Customers, 'id'>): Promise<Customers>;
-    activation(activations: Activations): Promise<any>;
+    activation(activations: Activations): Promise<Customers | any>;
 }

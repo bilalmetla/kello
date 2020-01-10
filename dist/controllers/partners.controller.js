@@ -25,9 +25,12 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const uuid = require("uuid");
+const constants_1 = require("../constants");
 let PartnersController = class PartnersController {
-    constructor(partnersRepository) {
+    constructor(partnersRepository, activationsRepository) {
         this.partnersRepository = partnersRepository;
+        this.activationsRepository = activationsRepository;
     }
     create(partners) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -67,6 +70,72 @@ let PartnersController = class PartnersController {
     deleteById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.partnersRepository.deleteById(id);
+        });
+    }
+    authenticate(partners) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let phone = partners.phone;
+            // let filter = getFilterSchemaFor(Customers);
+            let filter = {
+                "where": { phone },
+                "fields": {
+                    "id": true,
+                    "name": true,
+                    "phone": true,
+                }
+            };
+            let foundCust = yield this.partnersRepository.find(filter);
+            console.log(foundCust);
+            if (foundCust && foundCust.length === 0) {
+                partners.accessToken = uuid.v4();
+                partners.isActivated = false;
+                let today = new Date();
+                let tomorrow = new Date();
+                tomorrow.setDate(today.getDate() + 1);
+                yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
+                let createdPartner = yield this.partnersRepository.create(partners);
+                delete createdPartner.accessToken;
+                return createdPartner;
+                //throw new HttpErrors.Unauthorized('Please Activate via SMS CODE');    
+            }
+            else {
+                let today = new Date();
+                let tomorrow = new Date();
+                tomorrow.setDate(today.getDate() + 1);
+                yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
+                foundCust[0].isActivated = false;
+                foundCust[0].accessToken = uuid.v4();
+                yield this.partnersRepository.updateAll(foundCust[0], { phone });
+                return foundCust[0];
+            }
+        });
+    }
+    activation(activations) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let phone = activations.phone;
+            let smsCode = activations.smsCode;
+            let actRecord = yield this.activationsRepository.findOne({ "where": { phone, smsCode } });
+            console.log(actRecord);
+            if (actRecord) {
+                let customer = { phone, isActivated: true };
+                yield this.partnersRepository.updateAll(customer, { phone });
+                yield this.activationsRepository.deleteAll({ phone });
+                return yield this.partnersRepository.findOne({ "where": { phone } });
+            }
+            else {
+                return constants_1.CONSTANTS.ACTIVATION_FAILED;
+            }
+        });
+    }
+    updatePartnerLocation(id, long, lat) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let location;
+            location = {
+                type: "Point",
+                coordinates: [parseFloat(long), parseFloat(lat)]
+            };
+            yield this.partnersRepository.updateById(id, { location: location });
+            return { id };
         });
     }
 };
@@ -215,9 +284,73 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], PartnersController.prototype, "deleteById", null);
+__decorate([
+    rest_1.post('/partners/authenticate', {
+        responses: {
+            '200': {
+                description: 'Partners model instance',
+                content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Partners) } },
+            },
+        },
+    }),
+    __param(0, rest_1.requestBody({
+        content: {
+            'application/json': {
+                schema: rest_1.getModelSchemaRef(models_1.Partners, {
+                    title: 'NewPartners',
+                    exclude: ['id'],
+                }),
+            },
+        },
+    })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PartnersController.prototype, "authenticate", null);
+__decorate([
+    rest_1.post('/partners/activate', {
+        responses: {
+            '200': {
+                description: 'Partners model instance',
+                content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Partners) } },
+            },
+        },
+    }),
+    __param(0, rest_1.requestBody({
+        content: {
+            'application/json': {
+                schema: rest_1.getModelSchemaRef(models_1.Activations, {
+                    title: 'Activate Partner',
+                    exclude: ['id'],
+                }),
+            },
+        },
+    })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [models_1.Activations]),
+    __metadata("design:returntype", Promise)
+], PartnersController.prototype, "activation", null);
+__decorate([
+    rest_1.patch('/partners/{id}/location/{long}/{lat}', {
+        responses: {
+            '204': {
+                description: 'Partners Location Updated Success',
+                content: { 'application/json': { schema: { type: "object", properties: { id: { type: "string" } } } } },
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __param(1, rest_1.param.path.string('long')),
+    __param(2, rest_1.param.path.string('lat')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:returntype", Promise)
+], PartnersController.prototype, "updatePartnerLocation", null);
 PartnersController = __decorate([
     __param(0, repository_1.repository(repositories_1.PartnersRepository)),
-    __metadata("design:paramtypes", [repositories_1.PartnersRepository])
+    __param(1, repository_1.repository(repositories_1.ActivationsRepository)),
+    __metadata("design:paramtypes", [repositories_1.PartnersRepository,
+        repositories_1.ActivationsRepository])
 ], PartnersController);
 exports.PartnersController = PartnersController;
 //# sourceMappingURL=partners.controller.js.map

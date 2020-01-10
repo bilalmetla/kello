@@ -78,7 +78,7 @@ let OrdersController = class OrdersController {
             };
             let orderUpdated = yield this.ordersRepository.updateById(id, orders);
             console.log("orderUpdated: ", orderUpdated);
-            return id;
+            return { id };
         });
     }
 };
@@ -217,7 +217,7 @@ __decorate([
 __decorate([
     rest_1.del('/orders/{id}', {
         responses: {
-            '204': {
+            '200': {
                 description: 'Orders DELETE success',
             },
         },
@@ -231,10 +231,10 @@ __decorate([
     rest_1.patch('/orders/{id}/delevered', {
         responses: {
             '200': {
-                description: 'Orders PATCH success count',
+                description: 'Order Delivered',
                 content: {
                     'application/json': {
-                        schema: { type: 'string' },
+                        schema: { type: 'object', properties: { id: { type: "string" } } },
                     },
                 },
             },

@@ -1,6 +1,6 @@
 import { Entity } from '@loopback/repository';
 export interface PartnerLocationObject {
-    [key: string]: [];
+    [key: string]: any[];
 }
 export declare class Partners extends Entity {
     id?: string;
@@ -10,7 +10,7 @@ export declare class Partners extends Entity {
     accessToken: string;
     lastActive?: string;
     isActivated: boolean;
-    location?: PartnerLocationObject;
+    location?: any;
     partnertypesId: string;
     [prop: string]: any;
     constructor(data?: Partial<Partners>);
