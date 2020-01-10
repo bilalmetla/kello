@@ -1,5 +1,291 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/activation/activation-edit/activation-edit.component.html":
+/*!*****************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/activation/activation-edit/activation-edit.component.html ***!
+  \*****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n\n<div class=\"page-title-box\">\n        \n    <ol class=\"breadcrumb float-right\">\n                \n        <li class=\"breadcrumb-item\">\n            <a href=\"javascript:void(0);\">Project</a>\n        </li>\n                <li class=\"breadcrumb-item active\">Activations</li>\n            \n    </ol>\n        <h4 class=\"page-title\">Activations Detail</h4>\n    \n</div>\n<!-- End page title box -->\n\n<div class=\"row\">\n        \n    <div class=\"col-xl-12\">\n                \n        <div class=\"card-box\">\n                        <p *ngIf=\"errors\">{{ errors }}</p>\n                        \n            <form #activationForm=\"ngForm\" *ngIf=\"activation\" class=\"form-horizontal\">\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{activation.id || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"phone\">                                    Phone                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{activation.phone || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"smsCode\">                                    Sms Code                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{activation.smsCode || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"emailCode\">                                    Email Code                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{activation.emailCode || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"expiry\">                                    Expiry                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{activation.expiry || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                \n                <div class=\"row\">\n                                        \n                    <div class=\"col-sm-6 text-left\">\n                        <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"activationForm.invalid\">Save</button>\n                    </div>\n                                        \n                    <div class=\"col-sm-6 text-right\">\n                        <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n                    </div>\n                                    \n                </div>\n                            \n            </form>\n                    \n        </div>\n        <!-- end card-->\n            \n    </div>\n    <!-- end col -->\n    \n</div>\n<!-- end row -->\n\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/activation/activation-list/activation-list.component.html":
+/*!*****************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/activation/activation-list/activation-list.component.html ***!
+  \*****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Activations</li>\n  </ol>\n  <div class=\"card\">\n    <div class=\"header\">\n      <h2 class=\"title\">Activations List</h2>\n    </div>\n    <div class=\"content\">\n      <form #f=\"ngForm\">\n        \n        <div class=\"form-group\">\n          <label for=\"phone\">Phone:</label>\n          <input [(ngModel)]=\"filter.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n        </div>\n        \n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n        <a [routerLink]=\"['../activation', 'new' ]\" class=\"btn btn-default\">New</a>\n      </form>\n    </div>\n  </div>\n  \n  <div class=\"card\" *ngIf=\"activationList.length > 0\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"table-responsive\">\n      <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n        <thead>\n          <tr>\n            <th class=\"border-top-0\" scope=\"col\">Id</th>\n            <th class=\"border-top-0\" scope=\"col\">Phone</th>\n            <th class=\"border-top-0\" scope=\"col\">Sms Code</th>\n            <th class=\"border-top-0\" scope=\"col\">Email Code</th>\n            <th class=\"border-top-0\" scope=\"col\">Expiry</th>\n            <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of activationList\" [class.active]=\"item === selectedActivation\">\n          \n            <td>{{item.id}}</td>\n            <td>{{item.phone}}</td>\n            <td>{{item.smsCode}}</td>\n            <td>{{item.emailCode}}</td>\n            <td>{{item.expiry}}</td>\n            \n            <td style=\"white-space: nowrap\">\n              <a [routerLink]=\"['../activation', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n              <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  ");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html":
+/*!**************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrapper\">\n  <div class=\"sidebar\" data-background-color=\"white\" data-active-color=\"danger\">\n    <sidebar-cmp></sidebar-cmp>\n  </div>\n  <div class=\"main-panel\">\n    <navbar-cmp></navbar-cmp>\n    <div class=\"content\">\n\n      <router-outlet></router-outlet>\n\n      <router-outlet name=\"aux\"></router-outlet>\n\n    </div>\n\n\n  </div>\n</div>\n\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer/customer-edit/customer-edit.component.html":
+/*!***********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/customer/customer-edit/customer-edit.component.html ***!
+  \***********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n\n<div class=\"page-title-box\">\n        \n    <ol class=\"breadcrumb float-right\">\n                \n        <li class=\"breadcrumb-item\">\n            <a href=\"javascript:void(0);\">Project</a>\n        </li>\n                <li class=\"breadcrumb-item active\">Customers</li>\n            \n    </ol>\n        <h4 class=\"page-title\">Customers Detail</h4>\n    \n</div>\n<!-- End page title box -->\n\n<div class=\"row\">\n        \n    <div class=\"col-xl-12\">\n                \n        <div class=\"card-box\">\n                        <p *ngIf=\"errors\">{{ errors }}</p>\n                        \n            <form #customerForm=\"ngForm\" *ngIf=\"customer\" class=\"form-horizontal\">\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{customer.id || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"name\">\n                                                    Name <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"string\" required [(ngModel)]=\"customer.name\" name=\"name\" #name=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"phone\">\n                                                    Phone <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"tel\" required [(ngModel)]=\"customer.phone\" name=\"phone\" #phone=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"accessToken\">                                    AccessToken                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{customer.accessToken || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"isActivated\">                                    Is Activated                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{customer.isActivated || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                \n                <div class=\"row\">\n                                        \n                    <div class=\"col-sm-6 text-left\">\n                        <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"customerForm.invalid\">Save</button>\n                    </div>\n                                        \n                    <div class=\"col-sm-6 text-right\">\n                        <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n                    </div>\n                                    \n                </div>\n                            \n            </form>\n                    \n        </div>\n        <!-- end card-->\n            \n    </div>\n    <!-- end col -->\n    \n</div>\n<!-- end row -->\n\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer/customer-list/customer-list.component.html":
+/*!***********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/customer/customer-list/customer-list.component.html ***!
+  \***********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Customers</li>\n  </ol>\n  <div class=\"card\">\n    <div class=\"header\">\n      <h2 class=\"title\">Customers List</h2>\n    </div>\n    <div class=\"content\">\n      <form #f=\"ngForm\">\n        \n        <!-- <div class=\"form-group\">\n          <label for=\"phone\">Phone:</label>\n          <input [(ngModel)]=\"filter.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n        </div> -->\n        \n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n        <a [routerLink]=\"['../customer', 'new' ]\" class=\"btn btn-default\">New</a>\n      </form>\n    </div>\n  </div>\n  \n  <div class=\"card\" *ngIf=\"customerList.length > 0\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"table-responsive\">\n      <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n        <thead>\n          <tr>\n            <th class=\"border-top-0\" scope=\"col\">Id</th>\n            <th class=\"border-top-0\" scope=\"col\">Name</th>\n            <th class=\"border-top-0\" scope=\"col\">Phone</th>\n            <th class=\"border-top-0\" scope=\"col\">AccessToken</th>\n            <th class=\"border-top-0\" scope=\"col\">Is Activated</th>\n            <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of customerList\" [class.active]=\"item === selectedCustomer\">\n          \n            <td>{{item.id}}</td>\n                                    <td>{{item.name}}</td>\n                                    <td>{{item.phone}}</td>\n                                    <td>{{item.accessToken}}</td>\n                                    <td>{{item.isActivated}}</td>\n            \n            <td style=\"white-space: nowrap\">\n              <a [routerLink]=\"['../customer', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n              <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  ");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/flight/flight-edit/flight-edit.component.html":
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/flight/flight-edit/flight-edit.component.html ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Flight</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Flight Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"flight\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label for=\"id\">Id</label>\n        <input type=\"number\" [(ngModel)]=\"flight.id\" id=\"id\" name=\"id\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"from\">From</label>\n        <input [(ngModel)]=\"flight.from\" id=\"from\" name=\"from\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"to\">To</label>\n        <input [(ngModel)]=\"flight.to\" id=\"to\" name=\"to\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"date\">Date</label>\n        <input type=\"date\" [(ngModel)]=\"flight.date\" id=\"date\" name=\"date\" class=\"form-control\">\n      </div>\n    \n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/flight/flight-list/flight-list.component.html":
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/flight/flight-list/flight-list.component.html ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Flight</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Flight List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"from\">From:</label>\n        <input [(ngModel)]=\"filter.from\" id=\"from\" name=\"from\" class=\"form-control\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"to\">To:</label>\n        <input [(ngModel)]=\"filter.to\" id=\"to\" name=\"to\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../flights', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"flightList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">From</th>\n          <th class=\"border-top-0\" scope=\"col\">To</th>\n          <th class=\"border-top-0\" scope=\"col\">Date</th>\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of flightList\" [class.active]=\"item === selectedFlight\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.from}}</td>\n          <td>{{item.to}}</td>\n          <td>{{item.date | date}}</td>\n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../flights', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n            <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/home/home.component.html":
+/*!********************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/home/home.component.html ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\n  <div class=\"header\">\n    <h1 class=\"title\">Welcome {{userName}}</h1>\n  </div>\n  <div class=\"content\">\n\n    <div *ngIf=\"needsLogin\" class=\"alert alert-warning\">\n      You have been redirected to this page because you don't have the necessary\n      rights for the reqeusted action. Login with a respective user account!\n    </div>\n\n    <button (click)=\"login()\" class=\"btn btn-default\">Login</button>\n    <button (click)=\"logout()\" class=\"btn btn-default\">Logout</button>\n\n    <!--\n    <tabbed-pane [activeId]=\"0\">\n        <tab title=\"Booked\" [id]=\"0\">\n            This page could display all booked passengers ...\n        </tab>\n        <tab title=\"Checked in\" [id]=\"1\">\n            This page could display all checked in passengers ...\n        </tab>\n\n        <tab title=\"Boarded\" [id]=\"2\">\n            This page could display all boarded passengers ...\n        </tab>\n    </tabbed-pane>\n    -->\n  </div>\n\n</div>\n\n\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/hotel/hotel-edit/hotel-edit.component.html":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/hotel/hotel-edit/hotel-edit.component.html ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Hotel</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Hotel Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"hotel\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{hotel.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"name\">Name</label>\n        <input [(ngModel)]=\"hotel.name\" id=\"name\" name=\"name\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"city\">City</label>\n        <input [(ngModel)]=\"hotel.city\" id=\"city\" name=\"city\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"stars\">Stars</label>\n        <input [(ngModel)]=\"hotel.stars\" id=\"stars\" name=\"stars\" class=\"form-control\">\n      </div>\n    \n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/hotel/hotel-list/hotel-list.component.html":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/hotel/hotel-list/hotel-list.component.html ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Hotel</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Hotel List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"city\">City:</label>\n        <input [(ngModel)]=\"filter.city\" id=\"city\" name=\"city\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../hotels', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"hotelList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Name</th>\n          <th class=\"border-top-0\" scope=\"col\">City</th>\n          <th class=\"border-top-0\" scope=\"col\">Stars</th>\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of hotelList\" [class.active]=\"item === selectedHotel\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.name}}</td>\n          <td>{{item.city}}</td>\n          <td>{{item.stars}}</td>\n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../hotels', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n            <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/navbar/navbar.component.html":
+/*!************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/navbar/navbar.component.html ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" (click)=\"sidebarToggle()\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar bar1\"></span>\n        <span class=\"icon-bar bar2\"></span>\n        <span class=\"icon-bar bar3\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">Kello</a>\n    </div>\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n            <i class=\"ti-panel\"></i>\n            <p>Stats</p>\n          </a>\n        </li>\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n            <i class=\"ti-bell\"></i>\n            <p class=\"notification\">5</p>\n            <p>Notifications</p>\n            <b class=\"caret\"></b>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li><a href=\"#\">Notification 1</a></li>\n            <li><a href=\"#\">Notification 2</a></li>\n            <li><a href=\"#\">Notification 3</a></li>\n            <li><a href=\"#\">Notification 4</a></li>\n            <li><a href=\"#\">Another notification</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\">\n            <i class=\"ti-settings\"></i>\n            <p>Settings</p>\n          </a>\n        </li>\n      </ul>\n\n    </div>\n  </div>\n</nav>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/orders/orders-edit/orders-edit.component.html":
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/orders/orders-edit/orders-edit.component.html ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Orders</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Orders Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"orders\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{orders.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Order Time</label>\n        {{orders.orderTime || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Order Status</label>\n        {{orders.orderStatus || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Total Bill Amount</label>\n        {{orders.totalBillAmount || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Is Delivered</label>\n        {{orders.isDelivered || false}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Ordered By</label>\n        {{orders.orderCategory || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Customer Id</label>\n        {{orders.customersId || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Partner Id</label>\n        {{orders.partnersId || 'n/a'}} \n      </div>\n    \n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n              \n              <th class=\"border-top-0\" scope=\"col\">Product Title</th>\n              <th class=\"border-top-0\" scope=\"col\">Quentity</th>\n              <th class=\"border-top-0\" scope=\"col\">QuentityUnit</th>\n              \n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let product of orders.items\" [class.active]=\"product === selectedOrders\">\n            \n              <td>{{product.productTitle}}</td>\n              <td>{{product.quantity}}</td>\n              <td>{{product.quentityUnit}}</td>\n              \n            </tr>\n          </tbody>\n        </table>\n      </div>\n\n      <!-- <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button> -->\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/orders/orders-list/orders-list.component.html":
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/orders/orders-list/orders-list.component.html ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Orders</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Orders List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"orderStatus\">Order Status:</label>\n        <input [(ngModel)]=\"filter.orderStatus\" id=\"orderStatus\" name=\"orderStatus\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <!-- <a [routerLink]=\"['../orderses', 'new' ]\" class=\"btn btn-default\">New</a> -->\n    </form>\n  </div>\n</div>\n\n<div class=\"card\" *ngIf=\"ordersList.length > 0\">\n  <p *ngIf=\"errors\">{{ errors }}</p>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Order Time</th>\n          <th class=\"border-top-0\" scope=\"col\">Order Status</th>\n          <th class=\"border-top-0\" scope=\"col\">Is Delivered</th>\n          <th class=\"border-top-0\" scope=\"col\">Total Bill Amount</th>\n          <th class=\"border-top-0\" scope=\"col\">Ordered By</th>\n          \n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of ordersList\" [class.active]=\"item === selectedOrders\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.orderTime}}</td>\n          <td>{{item.orderStatus}}</td>\n          <td>{{item.isDelivered}}</td>\n          <td>{{item.totalBillAmount}}</td>\n          <td>{{item.orderCategory}}</td>\n          \n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../orderses', item.id ]\" class=\"btn btn-secondary\">View</a>&nbsp;\n            <!-- <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button> -->\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/partner/partner-edit/partner-edit.component.html":
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/partner/partner-edit/partner-edit.component.html ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n\n<div class=\"page-title-box\">\n        \n    <ol class=\"breadcrumb float-right\">\n                \n        <li class=\"breadcrumb-item\">\n            <a href=\"javascript:void(0);\">Project</a>\n        </li>\n                <li class=\"breadcrumb-item active\">Partners</li>\n            \n    </ol>\n        <h4 class=\"page-title\">Partners Detail</h4>\n    \n</div>\n<!-- End page title box -->\n\n<div class=\"row\">\n        \n    <div class=\"col-xl-12\">\n                \n        <div class=\"card-box\">\n                        <p *ngIf=\"errors\">{{ errors }}</p>\n                        \n            <form #partnerForm=\"ngForm\" *ngIf=\"partner\" class=\"form-horizontal\">\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{partner.id || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"name\">\n                                                    Name <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"string\" required [(ngModel)]=\"partner.name\" name=\"name\" #name=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"phone\">\n                                                    Phone <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"tel\" required [(ngModel)]=\"partner.phone\" name=\"phone\" #phone=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"accessToken\">                                    AccessToken                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{partner.accessToken || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"isActivated\">                                    Is Activated                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{partner.isActivated || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"pin\">                                    Pin                                </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                                                                                            <input type=\"number\" [(ngModel)]=\"partner.pin\" name=\"pin\" class=\"form-control\">                                                                                                                \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"lastActive\">                                    Last Active                                </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                                                                                            <input type=\"Date\" [(ngModel)]=\"partner.lastActive\" name=\"lastActive\" class=\"form-control\">                                                                                                                \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"creationDate\">                                    CreationDate                                </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                                                                                            <input type=\"Date\" [(ngModel)]=\"partner.creationDate\" name=\"creationDate\" class=\"form-control\">                                                                                                                \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"partnertypesId\">\n                                                    Partner Type <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select required [(ngModel)]=\"partner.partnertypesId\" name=\"partnertypesId\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of partnertypesId_list\" value=\"{{ c.id }}\">{{ c.typeName }}</option>\n                                                                 \n                        </select>\n                                                                                                                                                                                             \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"offersId\">                                    Offer                                </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                                                                                            \n                        <select [(ngModel)]=\"partner.offersId\" name=\"offersId\" class=\"form-control\">\n                                                                            <option *ngFor=\"let c of offersId_list\" value=\"{{ c.id }} \">{{ c.offerName }}</option>\n                                                                         \n                        </select>\n                                                                                                                                \n                    </div>\n                                        \n                </div>\n                                                \n                <div class=\"row\">\n                                        \n                    <div class=\"col-sm-6 text-left\">\n                        <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"partnerForm.invalid\">Save</button>\n                    </div>\n                                        \n                    <div class=\"col-sm-6 text-right\">\n                        <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n                    </div>\n                                    \n                </div>\n                            \n            </form>\n                    \n        </div>\n        <!-- end card-->\n            \n    </div>\n    <!-- end col -->\n    \n</div>\n<!-- end row -->\n\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/partner/partner-list/partner-list.component.html":
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/partner/partner-list/partner-list.component.html ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Partners</li>\n  </ol>\n  <div class=\"card\">\n    <div class=\"header\">\n      <h2 class=\"title\">Partners List</h2>\n    </div>\n    <div class=\"content\">\n      <form #f=\"ngForm\">\n        \n        <div class=\"form-group\">\n          <label for=\"phone\">Phone:</label>\n          <input [(ngModel)]=\"filter.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n        </div>\n        \n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n        <a [routerLink]=\"['../partner', 'new' ]\" class=\"btn btn-default\">New</a>\n      </form>\n    </div>\n  </div>\n  \n  <div class=\"card\" *ngIf=\"partnerList.length > 0\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"table-responsive\">\n      <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n        <thead>\n          <tr>\n            <th class=\"border-top-0\" scope=\"col\">Id</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Name</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Phone</th>\n                                          <th class=\"border-top-0\" scope=\"col\">AccessToken</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Is Activated</th>\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Pin</th> -->\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Last Active</th> -->\n                                          <th class=\"border-top-0\" scope=\"col\">CreationDate</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Partner Type</th>\n                                          \n                                          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of partnerList\" [class.active]=\"item === selectedPartner\">\n          \n            <td>{{item.id}}</td>\n                                    <td>{{item.name}}</td>\n                                    <td>{{item.phone}}</td>\n                                    <td>{{item.accessToken}}</td>\n                                    <td>{{item.isActivated}}</td>\n                                    <!-- <td>{{item.pin}}</td>\n                                    <td>{{item.lastActive}}</td> -->\n                                    <td>{{item.creationDate}}</td>\n                                    <td>{{item.partnertypesId}}</td>\n                                    \n            \n            <td style=\"white-space: nowrap\">\n              <a [routerLink]=\"['../partner', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n              <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  ");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/product/product-edit/product-edit.component.html":
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/product/product-edit/product-edit.component.html ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n\n<div class=\"page-title-box\">\n        \n    <ol class=\"breadcrumb float-right\">\n                \n        <li class=\"breadcrumb-item\">\n            <a href=\"javascript:void(0);\">Project</a>\n        </li>\n                <li class=\"breadcrumb-item active\">Products</li>\n            \n    </ol>\n        <h4 class=\"page-title\">Products Detail</h4>\n    \n</div>\n<!-- End page title box -->\n\n<div class=\"row\">\n        \n    <div class=\"col-xl-12\">\n                \n        <div class=\"card-box\">\n                        <p *ngIf=\"errors\">{{ errors }}</p>\n                        \n            <form #productForm=\"ngForm\" *ngIf=\"product\" class=\"form-horizontal\">\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{product.id || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"eng_title\">\n                                                    Eng Title <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"string\" required [(ngModel)]=\"product.eng_title\" name=\"eng_title\" #eng_title=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"urdu_title\">\n                                                    Urdu Title <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"string\" required [(ngModel)]=\"product.urdu_title\" name=\"urdu_title\" #urdu_title=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                        \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"quentityOnHand\">                            Quentity On Hand                         </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" readonly [(ngModel)]=\"product.quentityOnHand\" name=\"quentityOnHand\" #quentityOnHand=\"ngModel\" class=\"form-control\">                            \n                    </div>\n                                        \n                </div>\n                                                        \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Buying Price Unit                         </label>\n                                                \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select [(ngModel)]=\"product.buyingPriceUnitsId\" name=\"buyingPriceUnitsId\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                                                                 \n                        </select>\n                                                                                                \n                    </div>\n                                        \n                </div>\n                                    \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"buyingPrice\">                            Buying Price                         </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" [(ngModel)]=\"product.buyingPrice\" name=\"buyingPrice\" #buyingPrice=\"ngModel\" class=\"form-control\">                                                                                        \n                    </div>\n                                        \n                </div>\n                                                        \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Sale Price Unit                         </label>\n                                                \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select [(ngModel)]=\"product.salePriceUnitsId\" name=\"salePriceUnitsId\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                                                                 \n                        </select>\n                                                                                                \n                    </div>\n                                        \n                </div>\n                                                        \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"salePrice\">                            Sale Price                         </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" [(ngModel)]=\"product.salePrice\" name=\"buyingPrice\" #salePrice=\"ngModel\" class=\"form-control\">                                                                                        \n                    </div>\n                                        \n                </div>\n                                                        \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Retail Price Unit                         </label>\n                                                \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select [(ngModel)]=\"product.retailPiceUnitsId\" name=\"retailPiceUnitsId\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                                                                 \n                        </select>\n                                                                                                \n                    </div>\n                                        \n                </div>\n                                    \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"retailPrice\">                            Retail Price                         </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" [(ngModel)]=\"product.retailPrice\" name=\"buyingPrice\" #retailPrice=\"ngModel\" class=\"form-control\">                                                                                        \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"producttypesId\">\n                                                    Product Type <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select required [(ngModel)]=\"product.producttypesId\" name=\"producttypesId\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of producttypesId_list\" value=\"{{ c.id }}\">{{ c.typeName }}</option>\n                                                                 \n                        </select>\n                                                    \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">\n                                                    Image <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                    \n                    <div class=\"col-sm-10\">\n                                                                                <input type=\"file\" required accept=\"image/*\" (change)=\"changeImageListener($event)\">\n                                                                                      <img [src]=\"product.image\" style=\"width:100px; height:100px\"/>                                                                        \n                    </div>\n                                        \n                </div>\n                                                \n                <div class=\"row\">\n                                        \n                    <div class=\"col-sm-6 text-left\">\n                        <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"productForm.invalid\">Save</button>\n                    </div>\n                                        \n                    <div class=\"col-sm-6 text-right\">\n                        <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n                    </div>\n                                    \n                </div>\n                            \n            </form>\n                    \n        </div>\n        <!-- end card-->\n            \n    </div>\n    <!-- end col -->\n    \n</div>\n<!-- end row -->\n\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/product/product-list/product-list.component.html":
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/product/product-list/product-list.component.html ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Products</li>\n  </ol>\n  <div class=\"card\">\n    <div class=\"header\">\n      <h2 class=\"title\">Products List</h2>\n    </div>\n    <div class=\"content\">\n      <form #f=\"ngForm\">\n        \n        <div class=\"form-group\">\n          <label for=\"eng_title\">Eng Title:</label>\n          <input [(ngModel)]=\"filter.eng_title\" id=\"eng_title\" name=\"eng_title\" class=\"form-control\">\n        </div>\n        \n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n        <a [routerLink]=\"['../product', 'new' ]\" class=\"btn btn-default\">New</a>\n      </form>\n    </div>\n  </div>\n  \n  <div class=\"card\" *ngIf=\"productList.length > 0\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"table-responsive\">\n      <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n        <thead>\n          <tr>\n            <th class=\"border-top-0\" scope=\"col\">Id</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Eng Title</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Urdu Title</th>\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Product Type</th> -->\n                                          <th class=\"border-top-0\" scope=\"col\">Quentity On Hand</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Buying Price</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Sale Price</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Retail Price</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Image</th>\n                                          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of productList\" [class.active]=\"item === selectedProduct\">\n          \n            <td>{{item.id}}</td>\n                                    <td>{{item.eng_title}}</td>\n                                    <td>{{item.urdu_title}}</td>\n                                    <!-- <td>{{item.producttypesId}}</td> -->\n                                    <td>{{item.quentityOnHand}}</td>\n                                    <td>{{item.buyingPrice}}</td>\n                                    <td>{{item.salePrice}}</td>\n                                    <td>{{item.retailPrice}}</td>\n                                    <td>\n                                        <img [src]=\"item.image\" required style=\"width:50px; height:50px\"/>\n                                    </td>\n            \n            <td style=\"white-space: nowrap\">\n              <a [routerLink]=\"['../product', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n              <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  ");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/rateplan/rateplan-edit/rateplan-edit.component.html":
+/*!***********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/rateplan/rateplan-edit/rateplan-edit.component.html ***!
+  \***********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n\n<div class=\"page-title-box\">\n        \n    <ol class=\"breadcrumb float-right\">\n                \n        <li class=\"breadcrumb-item\">\n            <a href=\"javascript:void(0);\">Project</a>\n        </li>\n                <li class=\"breadcrumb-item active\">Rateplans</li>\n            \n    </ol>\n        <h4 class=\"page-title\">Rateplans Detail</h4>\n    \n</div>\n<!-- End page title box -->\n\n<div class=\"row\">\n        \n    <div class=\"col-xl-12\">\n                \n        <div class=\"card-box\">\n                        <p *ngIf=\"errors\">{{ errors }}</p>\n                        \n            <form #rateplanForm=\"ngForm\" *ngIf=\"rateplan\" class=\"form-horizontal\">\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{rateplan.id || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"ratePlanTitle\">\n                                                    Rate Plan Title <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"string\" required [(ngModel)]=\"rateplan.ratePlanTitle\" name=\"ratePlanTitle\" #ratePlanTitle=\"ngModel\" class=\"form-control\">                            \n                    </div>\n                                        \n                </div>\n                                    \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"saleMarkup\">\n                                                    Sale Markup <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" required [(ngModel)]=\"rateplan.saleMarkup\" name=\"saleMarkup\" #saleMarkup=\"ngModel\" class=\"form-control\">                            \n                    </div>\n                                        \n                </div>\n                                    \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"retailMarkup\">\n                                                    Retail Markup <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" required [(ngModel)]=\"rateplan.retailMarkup\" name=\"retailMarkup\" #retailMarkup=\"ngModel\" class=\"form-control\">                            \n                    </div>\n                                        \n                </div>\n                                                        \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"createdDate\">                                    Created Date                                </label>\n                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                <input type=\"date\" [(ngModel)]=\"rateplan.createdDate\" name=\"createdDate\" class=\"form-control\">                            \n                    </div>\n                                        \n                </div>\n                                                \n                <div class=\"row\">\n                                        \n                    <div class=\"col-sm-6 text-left\">\n                        <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"rateplanForm.invalid\">Save</button>\n                    </div>\n                                        \n                    <div class=\"col-sm-6 text-right\">\n                        <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n                    </div>\n                                    \n                </div>\n                            \n            </form>\n                    \n        </div>\n        <!-- end card-->\n            \n    </div>\n    <!-- end col -->\n    \n</div>\n<!-- end row -->\n\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/rateplan/rateplan-list/rateplan-list.component.html":
+/*!***********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/rateplan/rateplan-list/rateplan-list.component.html ***!
+  \***********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Rateplans</li>\n  </ol>\n  <div class=\"card\">\n    <div class=\"header\">\n      <h2 class=\"title\">Rateplans List</h2>\n    </div>\n    <div class=\"content\">\n      <form #f=\"ngForm\">\n        \n        <div class=\"form-group\">\n          <label for=\"ratePlanTitle\">Rate Plan Title:</label>\n          <input [(ngModel)]=\"filter.ratePlanTitle\" id=\"ratePlanTitle\" name=\"ratePlanTitle\" class=\"form-control\">\n        </div>\n        \n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n        <a [routerLink]=\"['../rateplan', 'new' ]\" class=\"btn btn-default\">New</a>\n      </form>\n    </div>\n  </div>\n  \n  <div class=\"card\" *ngIf=\"rateplanList.length > 0\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"table-responsive\">\n      <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n        <thead>\n          <tr>\n            <th class=\"border-top-0\" scope=\"col\">Id</th>\n            <th class=\"border-top-0\" scope=\"col\">Rate Plan Title</th>\n            <th class=\"border-top-0\" scope=\"col\">Created Date</th>\n            <th class=\"border-top-0\" scope=\"col\">Sale Markup</th>\n            <th class=\"border-top-0\" scope=\"col\">Retail Markup</th>\n            <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of rateplanList\" [class.active]=\"item === selectedRateplan\">\n          \n            <td>{{item.id}}</td>\n            <td>{{item.ratePlanTitle}}</td>\n            <td>{{item.createdDate | date}}</td>\n            <td>{{item.saleMarkup}}</td>\n            <td>{{item.retailMarkup}}</td>\n            \n            <td style=\"white-space: nowrap\">\n              <a [routerLink]=\"['../rateplan', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n              <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  ");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/sidebar/sidebar.component.html":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/sidebar/sidebar.component.html ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"sidebar-wrapper\">\n      \n    <div class=\"logo\">\n            \n        <a class=\"simple-text\">\n                  \n            <div class=\"logo-img\">\n                        <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\">      \n            </div>\n                  Kello    \n        </a>\n          \n    </div>\n      \n    <ul class=\"nav\">\n            \n        <li>\n                  \n            <a routerLink=\"home\">\n                        <i class=\"ti-home\"></i>\n                        <p>Dashboard</p>\n                      \n            </a>\n                \n        </li>\n            \n        <!-- <li>      <a routerLink=\"flight\">        <i class=\"ti-arrow-top-right\"></i>        <p>Flights</p>      </a>    </li> -->\n        \n        <li>\n              \n          <a routerLink=\"activation\">\n                  <i class=\"ti-lock\"></i>\n                  <p>Activations</p>\n                \n          </a>\n          \n      </li>\n\n        <li>\n              \n            <a routerLink=\"customer\">\n                    <i class=\"ti-user\"></i>\n                    <p>Customers</p>\n                  \n            </a>\n            \n        </li>\n        \n        <li>\n              \n            <a routerLink=\"partner\">\n                    <i class=\"ti-wheelchair\"></i>\n                    <p>Partners</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n              \n          <a routerLink=\"orderses\">\n                  <i class=\"ti-receipt\"></i>\n                  <p>Orders</p>\n                \n          </a>\n          \n      </li>\n        \n        <li>\n              \n            <a routerLink=\"product\">\n                    <i class=\"ti-apple\"></i>\n                    <p>Products</p>\n                  \n            </a>\n            \n        </li>\n                        \n        <!-- <li>\n              \n            <a routerLink=\"offer\">\n                    <i class=\"ti-panel\"></i>\n                    <p>Offers</p>\n                  \n            </a>\n            \n        </li> -->\n        \n        <li>\n              \n            <a routerLink=\"supply\">\n                    <i class=\"ti-car\"></i>\n                    <p>Supplies</p>\n                  \n            </a>\n            \n        </li>\n\n        <!-- <li>\n              \n          <a routerLink=\"rateplan\">\n                  <i class=\"ti-money\"></i>\n                  <p>Rate plans</p>  \n          </a>\n      </li> -->\n            \n        <!--    <li>        <a routerLink=\"passenger-search\">            <i class=\"ti-user\"></i>            <p>Passengers</p>        </a>    </li>-->\n            \n        <!--        <li routerLinkActive=\"active\">        <a>            <i class=\"ti-close\"></i>            <p>Hide Basket</p>        </a>        </li>    -->\n          \n    </ul>\n    \n</div>\n\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/supply/supply-edit/supply-edit.component.html":
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/supply/supply-edit/supply-edit.component.html ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n\n<div class=\"page-title-box\">\n        \n    <ol class=\"breadcrumb float-right\">\n                \n        <li class=\"breadcrumb-item\">\n            <a href=\"javascript:void(0);\">Project</a>\n        </li>\n                <li class=\"breadcrumb-item active\">Supplies</li>\n            \n    </ol>\n        <h4 class=\"page-title\">Supplies Detail</h4>\n    \n</div>\n<!-- End page title box -->\n\n<div class=\"row\">\n        \n    <div class=\"col-xl-12\">\n                \n        <div class=\"card-box\">\n                        <p *ngIf=\"errors\">{{ errors }}</p>\n                                    <a *ngIf=\"supply.id && supply.isArrived == false \" href=\"javascript:;\" (click)=\"supplyArrived(supply.id)\" class=\"btn btn-default\" style=\"float:right;\">                Supply Arrived            </a>\n                        \n            <form #supplyForm=\"ngForm\" *ngIf=\"supply\" class=\"form-horizontal\">\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{supply.id || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"supplierId\">\n                                                    Supplier <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                    \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select required [(ngModel)]=\"supply.supplierId\" name=\"supplierId\" (change)=\"selectedSupplier($event)\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of supplierId_list\" value=\"{{ c.id }}\">{{ c.name }}</option>\n                                                                 \n                        </select>\n                                                    \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"productsId\">\n                                                    Product <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select required [(ngModel)]=\"supply.productsId\" name=\"productsId\" (change)=\"selectedProduct($event)\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of productsId_list\" value=\"{{ c.id }}\">{{ c.displayName }}</option>\n                                                                 \n                        </select>\n                                                                                                                                                                                             \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"referenceNo\">\n                                                    Reference No <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"string\" required [(ngModel)]=\"supply.referenceNo\" name=\"referenceNo\" #referenceNo=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"quentity\">\n                                                    Quentity <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                    \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" required [(ngModel)]=\"supply.quentity\" name=\"quentity\" #quentity=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                    \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"quentityUnitsId\">\n                                                    Quentity Unit <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                    \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select required [(ngModel)]=\"supply.quentityUnitsId\" name=\"quentityUnitsId\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of quentityUnitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                                                                 \n                        </select>\n                                                                                      \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"supplyDate\">                                    Supply Date                                </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                                                                                            <input type=\"date\" [(ngModel)]=\"supply.supplyDate\" name=\"supplyDate\" class=\"form-control\">                                                                                                                \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"arrivedAt\">                                    Arrived At                                </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                                                                                            <input type=\"date\" [(ngModel)]=\"supply.arrivedAt\" name=\"arrivedAt\" class=\"form-control\">                                                                                                                \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"isArrived\">                                    Is Arrived                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{supply.isArrived || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"purchasingCost\">\n                                                    Purchasing Cost <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" required [(ngModel)]=\"supply.purchasingCost\" name=\"purchasingCost\" #purchasingCost=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"buyingPriceUnitId\">\n                                                    Purchasing Price Unit <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                    \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select required [(ngModel)]=\"supply.buyingPriceUnitId\" name=\"buyingPriceUnitId\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of buyingPriceUnitId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                                                                 \n                        </select>\n                                                                                      \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"travlingCost\">\n                                                    Travling Cost <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" required [(ngModel)]=\"supply.travlingCost\" name=\"travlingCost\" #travlingCost=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"labourCost\">\n                                                    Labour Cost <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" required [(ngModel)]=\"supply.labourCost\" name=\"labourCost\" #labourCost=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"otherCost\">\n                                                    Other Cost <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" required [(ngModel)]=\"supply.otherCost\" name=\"otherCost\" #otherCost=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                \n                <div class=\"row\">\n                                        \n                    <div class=\"col-sm-6 text-left\">\n                        <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"supplyForm.invalid\">Save</button>\n                    </div>\n                                        \n                    <div class=\"col-sm-6 text-right\">\n                        <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n                    </div>\n                                    \n                </div>\n                            \n            </form>\n                    \n        </div>\n        <!-- end card-->\n            \n    </div>\n    <!-- end col -->\n    \n</div>\n<!-- end row -->\n\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/supply/supply-list/supply-list.component.html":
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/supply/supply-list/supply-list.component.html ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Supplies</li>\n  </ol>\n  <div class=\"card\">\n    <div class=\"header\">\n      <h2 class=\"title\">Supplies List</h2>\n    </div>\n    <div class=\"content\">\n      <form #f=\"ngForm\">\n        \n        <div class=\"form-group\">\n          <label for=\"referenceNo\">Reference No:</label>\n          <input [(ngModel)]=\"filter.referenceNo\" id=\"referenceNo\" name=\"referenceNo\" class=\"form-control\">\n        </div>\n        \n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n        <a [routerLink]=\"['../supply', 'new' ]\" class=\"btn btn-default\">New</a>\n      </form>\n    </div>\n  </div>\n  \n  <div class=\"card\" *ngIf=\"supplyList.length > 0\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"table-responsive\">\n      <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n        <thead>\n          <tr>\n            <!-- <th class=\"border-top-0\" scope=\"col\">Id</th> -->\n                                          <th class=\"border-top-0\" scope=\"col\">Supplier</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Product</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Reference No</th>\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Quentity Unit</th> -->\n                                          <th class=\"border-top-0\" scope=\"col\">Quentity</th>\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Quentity On Hand</th> -->\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Supply Date</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Arrived At</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Is Arrived</th> -->\n                                          <th class=\"border-top-0\" scope=\"col\">Purchasing Cost</th>\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Purchasing Price Unit</th> -->\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Travling Cost</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Labour Cost</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Other Cost</th> -->\n                                          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of supplyList\" [class.active]=\"item === selectedSupply\">\n          \n            <!-- <td>{{item.id}}</td> -->\n                                    <td>{{item.supplierName}}</td>\n                                    <td>{{item.productTitle}}</td>\n                                    <td>{{item.referenceNo}}</td>\n                                    <!-- <td>{{item.quentityUnitsId}}</td> -->\n                                    <td>{{item.quentity}}</td>\n                                    <!-- <td>{{item.quentityOnHand}}</td>\n                                    <td>{{item.supplyDate | date}}</td>\n                                    <td>{{item.arrivedAt | date}}</td>\n                                    <td>{{item.isArrived}}</td> -->\n                                    <td>{{item.purchasingCost}}</td>\n                                    <!-- <td>{{item.buyingPriceUnitId}}</td> -->\n                                    <!-- <td>{{item.travlingCost}}</td>\n                                    <td>{{item.labourCost}}</td>\n                                    <td>{{item.otherCost}}</td> -->\n            \n            <td style=\"white-space: nowrap\">\n              <a [routerLink]=\"['../supply', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n              <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  ");
+
+/***/ }),
+
 /***/ "./src/$$_lazy_route_resource lazy recursive":
 /*!**********************************************************!*\
   !*** ./src/$$_lazy_route_resource lazy namespace object ***!
@@ -11,7 +297,7 @@ function webpackEmptyAsyncContext(req) {
 	// Here Promise.resolve().then() is used instead of new Promise() to prevent
 	// uncaught exception popping up in devtools
 	return Promise.resolve().then(function() {
-		var e = new Error('Cannot find module "' + req + '".');
+		var e = new Error("Cannot find module '" + req + "'");
 		e.code = 'MODULE_NOT_FOUND';
 		throw e;
 	});
@@ -20,17 +306,6 @@ webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
 webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
-
-/***/ }),
-
-/***/ "./src/app/activation/activation-edit/activation-edit.component.html":
-/*!***************************************************************************!*\
-  !*** ./src/app/activation/activation-edit/activation-edit.component.html ***!
-  \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n    <ol class=\"breadcrumb float-right\">\n        <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n        <li class=\"breadcrumb-item active\">Activations</li>\n    </ol>\n    <h4 class=\"page-title\">Activations Detail</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n    <div class=\"col-xl-12\">\n        <div class=\"card-box\">\n            <p *ngIf=\"errors\">{{ errors }}</p>\n            <form #activationForm=\"ngForm\" *ngIf=\"activation\" class=\"form-horizontal\">\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"id\">\n                                    Id\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{activation.id || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"phone\">\n                                    Phone\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{activation.phone || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"smsCode\">\n                                    Sms Code\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{activation.smsCode || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"emailCode\">\n                                    Email Code\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{activation.emailCode || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"expiry\">\n                                    Expiry\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{activation.expiry || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                \n                <div class=\"row\">\n                    <div class=\"col-sm-6 text-left\"><button type=\"button\" class=\"btn btn-success w-md\"\n                            (click)=\"save()\" [disabled]=\"activationForm.invalid\" >Save</button></div>\n                    <div class=\"col-sm-6 text-right\"><button type=\"button\" class=\"btn btn-secondary w-md\"\n                            (click)=\"cancel()\">Cancel</button></div>\n                </div>\n            </form>\n        </div><!-- end card-->\n    </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -58,6 +333,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -104,10 +382,15 @@ var ActivationEditComponent = /** @class */ (function () {
     ActivationEditComponent.prototype.cancel = function () {
         this.router.navigate(['/activation']);
     };
+    ActivationEditComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _activation_service__WEBPACK_IMPORTED_MODULE_2__["ActivationService"] }
+    ]; };
     ActivationEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'activation-edit',
-            template: __webpack_require__(/*! ./activation-edit.component.html */ "./src/app/activation/activation-edit/activation-edit.component.html")
+            template: __importDefault(__webpack_require__(/*! raw-loader!./activation-edit.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/activation/activation-edit/activation-edit.component.html")).default
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
@@ -130,6 +413,9 @@ var ActivationEditComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActivationFilter", function() { return ActivationFilter; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var ActivationFilter = /** @class */ (function () {
     function ActivationFilter() {
         this.phone = '';
@@ -138,17 +424,6 @@ var ActivationFilter = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/activation/activation-list/activation-list.component.html":
-/*!***************************************************************************!*\
-  !*** ./src/app/activation/activation-list/activation-list.component.html ***!
-  \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n  <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n    <li class=\"breadcrumb-item active\">Activations</li>\n  </ol>\n  <h4 class=\"page-title\">Activations List</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n  <div class=\"col-xl-12\">\n    <form #f=\"ngForm\" class=\"card-box\">\n      \n      <div class=\"form-group\">\n        <label>Phone:</label>\n        <input [(ngModel)]=\"filter.phone\" name=\"phone\" class=\"form-control\">\n      </div>\n      \n      <div class=\"form-group\">\n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-default\">\n          Search\n        </button>\n        <a [routerLink]=\"['../activation','new']\" class=\"btn btn-default\">\n          New\n      </a>\n      </div>\n    </form>\n  </div>\n  <div class=\"col-xl-12\">\n    <!-- <a [routerLink]=\"['../activation', 'new' ]\"><button type=\"button\" class=\"btn btn-icon btn-success\"><i\n          class=\"mdi mdi-asterisk\" title=\"New\"></i></button></a> -->\n    <div class=\"card-box\" *ngIf=\"activationList.length > 0\">\n      <p *ngIf=\"errors\">{{ errors }}</p>\n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n              <th class=\"border-top-0\" scope=\"col\">Id</th>\n              <th class=\"border-top-0\" scope=\"col\">Phone</th>\n              <th class=\"border-top-0\" scope=\"col\">Sms Code</th>\n              <th class=\"border-top-0\" scope=\"col\">Email Code</th>\n              <th class=\"border-top-0\" scope=\"col\">Expiry</th>\n              <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n            </tr>\n          </thead>\n          <tr *ngFor=\"let item of activationList\" [class.active]=\"item === selectedActivation\">\n            \n            <td>{{item.id}}</td>\n            <td>{{item.phone}}</td>\n            <td>{{item.smsCode}}</td>\n            <td>{{item.emailCode}}</td>\n            <td>{{item.expiry}}</td>\n            <td style=\"white-space: nowrap\"><a\n                [routerLink]=\"['../activation', item.id ]\"><button type=\"button\"\n                  class=\"btn btn-icon btn-secondary\"><i class=\"mdi mdi-grease-pencil\"\n                    title=\"Edit\"></i></button></a>&nbsp;\n              <a (click)=\"delete(item)\"><button type=\"button\" class=\"btn btn-icon btn-danger\"><i class=\"mdi mdi-delete\"\n                    title=\"Delete\"></i></button></a></td>\n          </tr>\n        </table>\n      </div><!-- end table-responsive -->\n    </div><!-- end card-->\n  </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -173,6 +448,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -212,10 +490,13 @@ var ActivationListComponent = /** @class */ (function () {
             });
         }
     };
+    ActivationListComponent.ctorParameters = function () { return [
+        { type: _activation_service__WEBPACK_IMPORTED_MODULE_2__["ActivationService"] }
+    ]; };
     ActivationListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'activation',
-            template: __webpack_require__(/*! ./activation-list.component.html */ "./src/app/activation/activation-list/activation-list.component.html")
+            template: __importDefault(__webpack_require__(/*! raw-loader!./activation-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/activation/activation-list/activation-list.component.html")).default
         }),
         __metadata("design:paramtypes", [_activation_service__WEBPACK_IMPORTED_MODULE_2__["ActivationService"]])
     ], ActivationListComponent);
@@ -249,6 +530,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -297,6 +581,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ACTIVATION_ROUTES", function() { return ACTIVATION_ROUTES; });
 /* harmony import */ var _activation_list_activation_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./activation-list/activation-list.component */ "./src/app/activation/activation-list/activation-list.component.ts");
 /* harmony import */ var _activation_edit_activation_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./activation-edit/activation-edit.component */ "./src/app/activation/activation-edit/activation-edit.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var ACTIVATION_ROUTES = [
@@ -334,12 +621,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var ActivationService = /** @class */ (function () {
     function ActivationService(http) {
         this.http = http;
-        this.baseUrl = "/activations";
+        this.baseUrl = "http://127.0.0.1:3000/activations";
         this.activationList = [];
     }
     ActivationService.prototype.findById = function (id) {
@@ -391,6 +681,9 @@ var ActivationService = /** @class */ (function () {
         }
         return null;
     };
+    ActivationService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
     ActivationService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
@@ -412,6 +705,9 @@ var ActivationService = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Activation", function() { return Activation; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var Activation = /** @class */ (function () {
     function Activation() {
     }
@@ -426,21 +722,12 @@ var Activation = /** @class */ (function () {
 /*!***********************************!*\
   !*** ./src/app/app.component.css ***!
   \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = ".loading-indicator {\n  position: fixed;\n  left: 0px;\n  top: 0px;\n  width: 100%;\n  height: 100%;\n  background-color: black;\n  opacity: 0.3;\n}\n\n.spinner {\n  width: 40px;\n  height: 40px;\n\n  position: relative;\n  margin: 100px auto;\n}\n\n.double-bounce1, .double-bounce2 {\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #FFF;\n  opacity: 0.6;\n  position: absolute;\n  top: 0;\n  left: 0;\n\n  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;\n  animation: sk-bounce 2.0s infinite ease-in-out;\n}\n\n.double-bounce2 {\n  -webkit-animation-delay: -1.0s;\n  animation-delay: -1.0s;\n}\n\n@-webkit-keyframes sk-bounce {\n  0%, 100% {\n    -webkit-transform: scale(0.0)\n  }\n  50% {\n    -webkit-transform: scale(1.0)\n  }\n}\n\n@keyframes sk-bounce {\n  0%, 100% {\n    transform: scale(0.0);\n    -webkit-transform: scale(0.0);\n  }\n  50% {\n    transform: scale(1.0);\n    -webkit-transform: scale(1.0);\n  }\n}\n"
-
-/***/ }),
-
-/***/ "./src/app/app.component.html":
-/*!************************************!*\
-  !*** ./src/app/app.component.html ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"wrapper\">\n  <div class=\"sidebar\" data-background-color=\"white\" data-active-color=\"danger\">\n    <sidebar-cmp></sidebar-cmp>\n  </div>\n  <div class=\"main-panel\">\n    <navbar-cmp></navbar-cmp>\n    <div class=\"content\">\n\n      <router-outlet></router-outlet>\n\n      <router-outlet name=\"aux\"></router-outlet>\n\n    </div>\n\n\n  </div>\n</div>\n\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (".loading-indicator {\n  position: fixed;\n  left: 0px;\n  top: 0px;\n  width: 100%;\n  height: 100%;\n  background-color: black;\n  opacity: 0.3;\n}\n\n.spinner {\n  width: 40px;\n  height: 40px;\n\n  position: relative;\n  margin: 100px auto;\n}\n\n.double-bounce1, .double-bounce2 {\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #FFF;\n  opacity: 0.6;\n  position: absolute;\n  top: 0;\n  left: 0;\n\n  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;\n  animation: sk-bounce 2.0s infinite ease-in-out;\n}\n\n.double-bounce2 {\n  -webkit-animation-delay: -1.0s;\n  animation-delay: -1.0s;\n}\n\n@-webkit-keyframes sk-bounce {\n  0%, 100% {\n    -webkit-transform: scale(0.0)\n  }\n  50% {\n    -webkit-transform: scale(1.0)\n  }\n}\n\n@keyframes sk-bounce {\n  0%, 100% {\n    transform: scale(0.0);\n    -webkit-transform: scale(0.0);\n  }\n  50% {\n    transform: scale(1.0);\n    -webkit-transform: scale(1.0);\n  }\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxlQUFlO0VBQ2YsU0FBUztFQUNULFFBQVE7RUFDUixXQUFXO0VBQ1gsWUFBWTtFQUNaLHVCQUF1QjtFQUN2QixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxXQUFXO0VBQ1gsWUFBWTs7RUFFWixrQkFBa0I7RUFDbEIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsV0FBVztFQUNYLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsc0JBQXNCO0VBQ3RCLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsTUFBTTtFQUNOLE9BQU87O0VBRVAsc0RBQXNEO0VBQ3RELDhDQUE4QztBQUNoRDs7QUFFQTtFQUNFLDhCQUE4QjtFQUM5QixzQkFBc0I7QUFDeEI7O0FBRUE7RUFDRTtJQUNFO0VBQ0Y7RUFDQTtJQUNFO0VBQ0Y7QUFDRjs7QUFFQTtFQUNFO0lBQ0UscUJBQXFCO0lBQ3JCLDZCQUE2QjtFQUMvQjtFQUNBO0lBQ0UscUJBQXFCO0lBQ3JCLDZCQUE2QjtFQUMvQjtBQUNGIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubG9hZGluZy1pbmRpY2F0b3Ige1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGxlZnQ6IDBweDtcbiAgdG9wOiAwcHg7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDEwMCU7XG4gIGJhY2tncm91bmQtY29sb3I6IGJsYWNrO1xuICBvcGFjaXR5OiAwLjM7XG59XG5cbi5zcGlubmVyIHtcbiAgd2lkdGg6IDQwcHg7XG4gIGhlaWdodDogNDBweDtcblxuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1hcmdpbjogMTAwcHggYXV0bztcbn1cblxuLmRvdWJsZS1ib3VuY2UxLCAuZG91YmxlLWJvdW5jZTIge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBib3JkZXItcmFkaXVzOiA1MCU7XG4gIGJhY2tncm91bmQtY29sb3I6ICNGRkY7XG4gIG9wYWNpdHk6IDAuNjtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB0b3A6IDA7XG4gIGxlZnQ6IDA7XG5cbiAgLXdlYmtpdC1hbmltYXRpb246IHNrLWJvdW5jZSAyLjBzIGluZmluaXRlIGVhc2UtaW4tb3V0O1xuICBhbmltYXRpb246IHNrLWJvdW5jZSAyLjBzIGluZmluaXRlIGVhc2UtaW4tb3V0O1xufVxuXG4uZG91YmxlLWJvdW5jZTIge1xuICAtd2Via2l0LWFuaW1hdGlvbi1kZWxheTogLTEuMHM7XG4gIGFuaW1hdGlvbi1kZWxheTogLTEuMHM7XG59XG5cbkAtd2Via2l0LWtleWZyYW1lcyBzay1ib3VuY2Uge1xuICAwJSwgMTAwJSB7XG4gICAgLXdlYmtpdC10cmFuc2Zvcm06IHNjYWxlKDAuMClcbiAgfVxuICA1MCUge1xuICAgIC13ZWJraXQtdHJhbnNmb3JtOiBzY2FsZSgxLjApXG4gIH1cbn1cblxuQGtleWZyYW1lcyBzay1ib3VuY2Uge1xuICAwJSwgMTAwJSB7XG4gICAgdHJhbnNmb3JtOiBzY2FsZSgwLjApO1xuICAgIC13ZWJraXQtdHJhbnNmb3JtOiBzY2FsZSgwLjApO1xuICB9XG4gIDUwJSB7XG4gICAgdHJhbnNmb3JtOiBzY2FsZSgxLjApO1xuICAgIC13ZWJraXQtdHJhbnNmb3JtOiBzY2FsZSgxLjApO1xuICB9XG59XG4iXX0= */");
 
 /***/ }),
 
@@ -461,6 +748,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
@@ -468,8 +758,8 @@ var AppComponent = /** @class */ (function () {
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'flight-app',
-            template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
-            styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
+            template: __importDefault(__webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html")).default,
+            styles: [__importDefault(__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")).default]
         })
     ], AppComponent);
     return AppComponent;
@@ -489,37 +779,43 @@ var AppComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
-/* harmony import */ var _flights_flight_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./flights/flight.module */ "./src/app/flights/flight.module.ts");
-/* harmony import */ var _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hotel/hotel.module */ "./src/app/hotel/hotel.module.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _app_routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.routes */ "./src/app/app.routes.ts");
-/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
-/* harmony import */ var _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./sidebar/sidebar.component */ "./src/app/sidebar/sidebar.component.ts");
-/* harmony import */ var _customer_customer_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./customer/customer.module */ "./src/app/customer/customer.module.ts");
-/* harmony import */ var _partner_partner_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./partner/partner.module */ "./src/app/partner/partner.module.ts");
-/* harmony import */ var _product_product_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./product/product.module */ "./src/app/product/product.module.ts");
-/* harmony import */ var _activation_activation_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./activation/activation.module */ "./src/app/activation/activation.module.ts");
-/* harmony import */ var _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./rateplan/rateplan.module */ "./src/app/rateplan/rateplan.module.ts");
-/* harmony import */ var _offer_offer_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./offer/offer.module */ "./src/app/offer/offer.module.ts");
+/* harmony import */ var _flight_flight_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./flight/flight.module */ "./src/app/flight/flight.module.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _app_routes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.routes */ "./src/app/app.routes.ts");
+/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
+/* harmony import */ var _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./sidebar/sidebar.component */ "./src/app/sidebar/sidebar.component.ts");
+/* harmony import */ var _orders_orders_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./orders/orders.module */ "./src/app/orders/orders.module.ts");
+/* harmony import */ var _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./hotel/hotel.module */ "./src/app/hotel/hotel.module.ts");
+/* harmony import */ var _activation_activation_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./activation/activation.module */ "./src/app/activation/activation.module.ts");
+/* harmony import */ var _customer_customer_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./customer/customer.module */ "./src/app/customer/customer.module.ts");
+/* harmony import */ var _partner_partner_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./partner/partner.module */ "./src/app/partner/partner.module.ts");
+/* harmony import */ var _product_product_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./product/product.module */ "./src/app/product/product.module.ts");
+/* harmony import */ var _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./rateplan/rateplan.module */ "./src/app/rateplan/rateplan.module.ts");
 /* harmony import */ var _supply_supply_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./supply/supply.module */ "./src/app/supply/supply.module.ts");
-var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -543,29 +839,29 @@ var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["BrowserModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"],
-                _flights_flight_module__WEBPACK_IMPORTED_MODULE_0__["FlightModule"],
-                _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_1__["HotelModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_7__["APP_ROUTES"].slice(), __assign({}, _app_routes__WEBPACK_IMPORTED_MODULE_7__["APP_EXTRA_OPTIONS"])),
-                _customer_customer_module__WEBPACK_IMPORTED_MODULE_11__["CustomerModule"],
-                _partner_partner_module__WEBPACK_IMPORTED_MODULE_12__["PartnerModule"],
-                _product_product_module__WEBPACK_IMPORTED_MODULE_13__["ProductModule"],
-                _activation_activation_module__WEBPACK_IMPORTED_MODULE_14__["ActivationModule"],
-                _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_15__["RateplanModule"],
-                _offer_offer_module__WEBPACK_IMPORTED_MODULE_16__["OfferModule"],
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
+                _flight_flight_module__WEBPACK_IMPORTED_MODULE_0__["FlightModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_6__["APP_ROUTES"].slice(), __assign({}, _app_routes__WEBPACK_IMPORTED_MODULE_6__["APP_EXTRA_OPTIONS"])),
+                _orders_orders_module__WEBPACK_IMPORTED_MODULE_10__["OrdersModule"],
+                _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_11__["HotelModule"],
+                _activation_activation_module__WEBPACK_IMPORTED_MODULE_12__["ActivationModule"],
+                _customer_customer_module__WEBPACK_IMPORTED_MODULE_13__["CustomerModule"],
+                _partner_partner_module__WEBPACK_IMPORTED_MODULE_14__["PartnerModule"],
+                _product_product_module__WEBPACK_IMPORTED_MODULE_15__["ProductModule"],
+                _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_16__["RateplanModule"],
                 _supply_supply_module__WEBPACK_IMPORTED_MODULE_17__["SupplyModule"],
             ],
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
-                _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_10__["SidebarComponent"],
-                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_9__["NavbarComponent"],
-                _home_home_component__WEBPACK_IMPORTED_MODULE_8__["HomeComponent"],
+                _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
+                _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_9__["SidebarComponent"],
+                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_8__["NavbarComponent"],
+                _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"],
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -588,6 +884,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_EXTRA_OPTIONS", function() { return APP_EXTRA_OPTIONS; });
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var APP_ROUTES = [
@@ -609,17 +908,6 @@ var APP_EXTRA_OPTIONS = {
     preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_0__["PreloadAllModules"]
 };
 
-
-/***/ }),
-
-/***/ "./src/app/customer/customer-edit/customer-edit.component.html":
-/*!*********************************************************************!*\
-  !*** ./src/app/customer/customer-edit/customer-edit.component.html ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n    <ol class=\"breadcrumb float-right\">\n        <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n        <li class=\"breadcrumb-item active\">Customers</li>\n    </ol>\n    <h4 class=\"page-title\">Customers Detail</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n    <div class=\"col-xl-12\">\n        <div class=\"card-box\">\n            <p *ngIf=\"errors\">{{ errors }}</p>\n            <form #customerForm=\"ngForm\" *ngIf=\"customer\" class=\"form-horizontal\">\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"id\">\n                                    Id\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{customer.id || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"name\">\n                            Name <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"string\" required [(ngModel)]=\"customer.name\" name=\"name\" #name=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"phone\">\n                            Phone <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"tel\" required [(ngModel)]=\"customer.phone\" name=\"phone\" #phone=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"accessToken\">\n                                    AccessToken\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{customer.accessToken || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"isActivated\">\n                                    Is Activated\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{customer.isActivated || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                \n                <div class=\"row\">\n                    <div class=\"col-sm-6 text-left\"><button type=\"button\" class=\"btn btn-success w-md\"\n                            (click)=\"save()\" [disabled]=\"customerForm.invalid\" >Save</button></div>\n                    <div class=\"col-sm-6 text-right\"><button type=\"button\" class=\"btn btn-secondary w-md\"\n                            (click)=\"cancel()\">Cancel</button></div>\n                </div>\n            </form>\n        </div><!-- end card-->\n    </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -647,6 +935,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -693,10 +984,15 @@ var CustomerEditComponent = /** @class */ (function () {
     CustomerEditComponent.prototype.cancel = function () {
         this.router.navigate(['/customer']);
     };
+    CustomerEditComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _customer_service__WEBPACK_IMPORTED_MODULE_2__["CustomerService"] }
+    ]; };
     CustomerEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'customer-edit',
-            template: __webpack_require__(/*! ./customer-edit.component.html */ "./src/app/customer/customer-edit/customer-edit.component.html")
+            template: __importDefault(__webpack_require__(/*! raw-loader!./customer-edit.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer/customer-edit/customer-edit.component.html")).default
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
@@ -719,6 +1015,9 @@ var CustomerEditComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerFilter", function() { return CustomerFilter; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var CustomerFilter = /** @class */ (function () {
     function CustomerFilter() {
     }
@@ -726,17 +1025,6 @@ var CustomerFilter = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/customer/customer-list/customer-list.component.html":
-/*!*********************************************************************!*\
-  !*** ./src/app/customer/customer-list/customer-list.component.html ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n  <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n    <li class=\"breadcrumb-item active\">Customers</li>\n  </ol>\n  <h4 class=\"page-title\">Customers List</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n  <div class=\"col-xl-12\">\n    <form #f=\"ngForm\" class=\"card-box\">\n      \n      <div class=\"form-group\">\n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-default\">\n          Search\n        </button>\n        <a [routerLink]=\"['../customer','new']\" class=\"btn btn-default\">\n          New\n      </a>\n      </div>\n    </form>\n  </div>\n  <div class=\"col-xl-12\">\n    <!-- <a [routerLink]=\"['../customer', 'new' ]\"><button type=\"button\" class=\"btn btn-icon btn-success\"><i\n          class=\"mdi mdi-asterisk\" title=\"New\"></i></button></a> -->\n    <div class=\"card-box\" *ngIf=\"customerList.length > 0\">\n      <p *ngIf=\"errors\">{{ errors }}</p>\n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n              <th class=\"border-top-0\" scope=\"col\">Id</th>\n              <th class=\"border-top-0\" scope=\"col\">Name</th>\n              <th class=\"border-top-0\" scope=\"col\">Phone</th>\n              <th class=\"border-top-0\" scope=\"col\">AccessToken</th>\n              <th class=\"border-top-0\" scope=\"col\">Is Activated</th>\n              <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n            </tr>\n          </thead>\n          <tr *ngFor=\"let item of customerList\" [class.active]=\"item === selectedCustomer\">\n            \n            <td>{{item.id}}</td>\n            <td>{{item.name}}</td>\n            <td>{{item.phone}}</td>\n            <td>{{item.accessToken}}</td>\n            <td>{{item.isActivated}}</td>\n            <td style=\"white-space: nowrap\"><a\n                [routerLink]=\"['../customer', item.id ]\"><button type=\"button\"\n                  class=\"btn btn-icon btn-secondary\"><i class=\"mdi mdi-grease-pencil\"\n                    title=\"Edit\"></i></button></a>&nbsp;\n              <a (click)=\"delete(item)\"><button type=\"button\" class=\"btn btn-icon btn-danger\"><i class=\"mdi mdi-delete\"\n                    title=\"Delete\"></i></button></a></td>\n          </tr>\n        </table>\n      </div><!-- end table-responsive -->\n    </div><!-- end card-->\n  </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -761,6 +1049,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -800,10 +1091,13 @@ var CustomerListComponent = /** @class */ (function () {
             });
         }
     };
+    CustomerListComponent.ctorParameters = function () { return [
+        { type: _customer_service__WEBPACK_IMPORTED_MODULE_2__["CustomerService"] }
+    ]; };
     CustomerListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'customer',
-            template: __webpack_require__(/*! ./customer-list.component.html */ "./src/app/customer/customer-list/customer-list.component.html")
+            template: __importDefault(__webpack_require__(/*! raw-loader!./customer-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer/customer-list/customer-list.component.html")).default
         }),
         __metadata("design:paramtypes", [_customer_service__WEBPACK_IMPORTED_MODULE_2__["CustomerService"]])
     ], CustomerListComponent);
@@ -837,6 +1131,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -885,6 +1182,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CUSTOMER_ROUTES", function() { return CUSTOMER_ROUTES; });
 /* harmony import */ var _customer_list_customer_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./customer-list/customer-list.component */ "./src/app/customer/customer-list/customer-list.component.ts");
 /* harmony import */ var _customer_edit_customer_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./customer-edit/customer-edit.component */ "./src/app/customer/customer-edit/customer-edit.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var CUSTOMER_ROUTES = [
@@ -922,12 +1222,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var CustomerService = /** @class */ (function () {
     function CustomerService(http) {
         this.http = http;
-        this.baseUrl = "/customers";
+        this.baseUrl = "http://127.0.0.1:3000/customers";
         this.customerList = [];
     }
     CustomerService.prototype.findById = function (id) {
@@ -979,6 +1282,9 @@ var CustomerService = /** @class */ (function () {
         }
         return null;
     };
+    CustomerService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
     CustomerService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
@@ -1000,6 +1306,9 @@ var CustomerService = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Customer", function() { return Customer; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var Customer = /** @class */ (function () {
     function Customer() {
     }
@@ -1010,21 +1319,10 @@ var Customer = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/flights/flight-edit/flight-edit.component.html":
-/*!****************************************************************!*\
-  !*** ./src/app/flights/flight-edit/flight-edit.component.html ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"card\">\n    <div class=\"header\">\n        <h1 class=\"title\">Flight Detail</h1>\n    </div>\n    <div class=\"content\">\n    \n        <p *ngIf=\"errors\">{{ errors }}</p>\n    \n        <form *ngIf=\"flight\">\n                \n            <div class=\"form-group\">\n                <label>Id:</label>\n                <input [(ngModel)]=\"flight.id\" name=\"id\" class=\"form-control\">\n            </div>\n                \n            <div class=\"form-group\">\n                <label>From:</label>\n                <input [(ngModel)]=\"flight.from\" name=\"from\" class=\"form-control\">\n            </div>\n                \n            <div class=\"form-group\">\n                <label>To:</label>\n                <input [(ngModel)]=\"flight.to\" name=\"to\" class=\"form-control\">\n            </div>\n                \n            <div class=\"form-group\">\n                <label>Date:</label>\n                <input [(ngModel)]=\"flight.date\" name=\"date\" class=\"form-control\">\n            </div>\n        \n            <div class=\"form-group\">\n                <button\n                (click)=\"save()\"\n                class=\"btn btn-default\">Save</button>\n            </div>\n\n        </form>\n    \n    </div>\n</div>"
-
-/***/ }),
-
-/***/ "./src/app/flights/flight-edit/flight-edit.component.ts":
-/*!**************************************************************!*\
-  !*** ./src/app/flights/flight-edit/flight-edit.component.ts ***!
-  \**************************************************************/
+/***/ "./src/app/flight/flight-edit/flight-edit.component.ts":
+/*!*************************************************************!*\
+  !*** ./src/app/flight/flight-edit/flight-edit.component.ts ***!
+  \*************************************************************/
 /*! exports provided: FlightEditComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1033,8 +1331,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FlightEditComponent", function() { return FlightEditComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _flight_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../flight.service */ "./src/app/flights/flight.service.ts");
-/* harmony import */ var _flight__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../flight */ "./src/app/flights/flight.ts");
+/* harmony import */ var _flight_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../flight.service */ "./src/app/flight/flight.service.ts");
+/* harmony import */ var _flight__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../flight */ "./src/app/flight/flight.ts");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -1046,6 +1344,10 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
 
 
 
@@ -1053,42 +1355,57 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var FlightEditComponent = /** @class */ (function () {
-    function FlightEditComponent(route, flightService) {
+    function FlightEditComponent(route, router, flightService) {
         this.route = route;
+        this.router = router;
         this.flightService = flightService;
+        this.feedback = {};
     }
     FlightEditComponent.prototype.ngOnInit = function () {
         var _this = this;
         this
             .route
             .params
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (p) { return p['id']; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (id) {
-            if (id === 'new')
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (p) { return p.id; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (id) {
+            if (id === 'new') {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(new _flight__WEBPACK_IMPORTED_MODULE_3__["Flight"]());
+            }
             return _this.flightService.findById(id);
         }))
             .subscribe(function (flight) {
             _this.flight = flight;
-            _this.errors = '';
+            _this.feedback = {};
         }, function (err) {
-            _this.errors = 'Error loading';
+            _this.feedback = { type: 'warning', message: 'Error loading' };
         });
     };
     FlightEditComponent.prototype.save = function () {
         var _this = this;
         this.flightService.save(this.flight).subscribe(function (flight) {
             _this.flight = flight;
-            _this.errors = 'Save was successful!';
+            _this.feedback = { type: 'success', message: 'Save was successful!' };
+            setTimeout(function () {
+                _this.router.navigate(['/flights']);
+            }, 1000);
         }, function (err) {
-            _this.errors = 'Error saving';
+            _this.feedback = { type: 'warning', message: 'Error saving' };
         });
     };
+    FlightEditComponent.prototype.cancel = function () {
+        this.router.navigate(['/flights']);
+    };
+    FlightEditComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _flight_service__WEBPACK_IMPORTED_MODULE_2__["FlightService"] }
+    ]; };
     FlightEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'flight-edit',
-            template: __webpack_require__(/*! ./flight-edit.component.html */ "./src/app/flights/flight-edit/flight-edit.component.html")
+            selector: 'app-flight-edit',
+            template: __importDefault(__webpack_require__(/*! raw-loader!./flight-edit.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/flight/flight-edit/flight-edit.component.html")).default
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
             _flight_service__WEBPACK_IMPORTED_MODULE_2__["FlightService"]])
     ], FlightEditComponent);
     return FlightEditComponent;
@@ -1098,16 +1415,19 @@ var FlightEditComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/flights/flight-filter.ts":
-/*!******************************************!*\
-  !*** ./src/app/flights/flight-filter.ts ***!
-  \******************************************/
+/***/ "./src/app/flight/flight-filter.ts":
+/*!*****************************************!*\
+  !*** ./src/app/flight/flight-filter.ts ***!
+  \*****************************************/
 /*! exports provided: FlightFilter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FlightFilter", function() { return FlightFilter; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var FlightFilter = /** @class */ (function () {
     function FlightFilter() {
         this.from = '';
@@ -1120,21 +1440,10 @@ var FlightFilter = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/flights/flight-list/flight-list.component.html":
-/*!****************************************************************!*\
-  !*** ./src/app/flights/flight-list/flight-list.component.html ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"card\">\n    \n      <div class=\"header\">\n        <h2 class=\"title\">Flight</h2>\n      </div>\n      <div class=\"content\">\n    \n        <form #f=\"ngForm\">\n\n          <div class=\"form-group\">\n            <label>From:</label>\n            <input [(ngModel)]=\"filter.from\" name=\"from\" class=\"form-control\">\n          </div>\n\n          <div class=\"form-group\">\n            <label>To:</label>\n            <input [(ngModel)]=\"filter.to\" name=\"to\" class=\"form-control\">\n          </div>\n\n          <div class=\"form-group\">\n            <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-default\">\n              Search\n            </button>\n            <a [routerLink]=\"['../flight','new']\" class=\"btn btn-default\">\n                New\n            </a>\n  \n          </div>\n          \n        </form>\n    \n      </div>\n    </div>\n    \n    <div class=\"card\" *ngIf=\"flightList.length > 0\">\n    \n      <table class=\"table table-contensed\" >\n        <thead>\n        <tr>            \n            <th>Id</th>            \n            <th>From</th>            \n            <th>To</th>            \n            <th>Date</th>\n        </tr>\n        </thead>\n        <tr *ngFor=\"let item of flightList\" [class.active]=\"item === selectedFlight\">\n            <td>{{item.id}}</td>\n            <td>{{item.from}}</td>\n            <td>{{item.to}}</td>\n            <td>{{item.date | date}}</td>\n            <td>\n                \n                <a [routerLink]=\"['../flight', item.id ]\">Details</a> |           \n                <a (click)=\"select(item)\">Select</a>\n            </td>\n        </tr>\n      </table>\n    \n    </div>\n"
-
-/***/ }),
-
-/***/ "./src/app/flights/flight-list/flight-list.component.ts":
-/*!**************************************************************!*\
-  !*** ./src/app/flights/flight-list/flight-list.component.ts ***!
-  \**************************************************************/
+/***/ "./src/app/flight/flight-list/flight-list.component.ts":
+/*!*************************************************************!*\
+  !*** ./src/app/flight/flight-list/flight-list.component.ts ***!
+  \*************************************************************/
 /*! exports provided: FlightListComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1142,8 +1451,8 @@ module.exports = "<div class=\"card\">\n    \n      <div class=\"header\">\n    
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FlightListComponent", function() { return FlightListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _flight_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../flight-filter */ "./src/app/flights/flight-filter.ts");
-/* harmony import */ var _flight_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../flight.service */ "./src/app/flights/flight.service.ts");
+/* harmony import */ var _flight_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../flight-filter */ "./src/app/flight/flight-filter.ts");
+/* harmony import */ var _flight_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../flight.service */ "./src/app/flight/flight.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1153,6 +1462,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 
@@ -1160,6 +1472,7 @@ var FlightListComponent = /** @class */ (function () {
     function FlightListComponent(flightService) {
         this.flightService = flightService;
         this.filter = new _flight_filter__WEBPACK_IMPORTED_MODULE_1__["FlightFilter"]();
+        this.feedback = {};
     }
     Object.defineProperty(FlightListComponent.prototype, "flightList", {
         get: function () {
@@ -1169,6 +1482,7 @@ var FlightListComponent = /** @class */ (function () {
         configurable: true
     });
     FlightListComponent.prototype.ngOnInit = function () {
+        this.search();
     };
     FlightListComponent.prototype.search = function () {
         this.flightService.load(this.filter);
@@ -1176,10 +1490,26 @@ var FlightListComponent = /** @class */ (function () {
     FlightListComponent.prototype.select = function (selected) {
         this.selectedFlight = selected;
     };
+    FlightListComponent.prototype.delete = function (flight) {
+        var _this = this;
+        if (confirm('Are you sure?')) {
+            this.flightService.delete(flight).subscribe(function () {
+                _this.feedback = { type: 'success', message: 'Delete was successful!' };
+                setTimeout(function () {
+                    _this.search();
+                }, 1000);
+            }, function (err) {
+                _this.feedback = { type: 'warning', message: 'Error deleting.' };
+            });
+        }
+    };
+    FlightListComponent.ctorParameters = function () { return [
+        { type: _flight_service__WEBPACK_IMPORTED_MODULE_2__["FlightService"] }
+    ]; };
     FlightListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'flight',
-            template: __webpack_require__(/*! ./flight-list.component.html */ "./src/app/flights/flight-list/flight-list.component.html")
+            selector: 'app-flight',
+            template: __importDefault(__webpack_require__(/*! raw-loader!./flight-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/flight/flight-list/flight-list.component.html")).default
         }),
         __metadata("design:paramtypes", [_flight_service__WEBPACK_IMPORTED_MODULE_2__["FlightService"]])
     ], FlightListComponent);
@@ -1190,10 +1520,10 @@ var FlightListComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/flights/flight.module.ts":
-/*!******************************************!*\
-  !*** ./src/app/flights/flight.module.ts ***!
-  \******************************************/
+/***/ "./src/app/flight/flight.module.ts":
+/*!*****************************************!*\
+  !*** ./src/app/flight/flight.module.ts ***!
+  \*****************************************/
 /*! exports provided: FlightModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1204,15 +1534,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _flight_list_flight_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./flight-list/flight-list.component */ "./src/app/flights/flight-list/flight-list.component.ts");
-/* harmony import */ var _flight_edit_flight_edit_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./flight-edit/flight-edit.component */ "./src/app/flights/flight-edit/flight-edit.component.ts");
-/* harmony import */ var _flight_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./flight.service */ "./src/app/flights/flight.service.ts");
-/* harmony import */ var _flight_routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./flight.routes */ "./src/app/flights/flight.routes.ts");
+/* harmony import */ var _flight_list_flight_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./flight-list/flight-list.component */ "./src/app/flight/flight-list/flight-list.component.ts");
+/* harmony import */ var _flight_edit_flight_edit_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./flight-edit/flight-edit.component */ "./src/app/flight/flight-edit/flight-edit.component.ts");
+/* harmony import */ var _flight_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./flight.service */ "./src/app/flight/flight.service.ts");
+/* harmony import */ var _flight_routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./flight.routes */ "./src/app/flight/flight.routes.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -1236,9 +1569,7 @@ var FlightModule = /** @class */ (function () {
                 _flight_list_flight_list_component__WEBPACK_IMPORTED_MODULE_4__["FlightListComponent"],
                 _flight_edit_flight_edit_component__WEBPACK_IMPORTED_MODULE_5__["FlightEditComponent"]
             ],
-            providers: [
-                _flight_service__WEBPACK_IMPORTED_MODULE_6__["FlightService"]
-            ],
+            providers: [_flight_service__WEBPACK_IMPORTED_MODULE_6__["FlightService"]],
             exports: []
         })
     ], FlightModule);
@@ -1249,27 +1580,30 @@ var FlightModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/flights/flight.routes.ts":
-/*!******************************************!*\
-  !*** ./src/app/flights/flight.routes.ts ***!
-  \******************************************/
+/***/ "./src/app/flight/flight.routes.ts":
+/*!*****************************************!*\
+  !*** ./src/app/flight/flight.routes.ts ***!
+  \*****************************************/
 /*! exports provided: FLIGHT_ROUTES */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FLIGHT_ROUTES", function() { return FLIGHT_ROUTES; });
-/* harmony import */ var _flight_list_flight_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./flight-list/flight-list.component */ "./src/app/flights/flight-list/flight-list.component.ts");
-/* harmony import */ var _flight_edit_flight_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./flight-edit/flight-edit.component */ "./src/app/flights/flight-edit/flight-edit.component.ts");
+/* harmony import */ var _flight_list_flight_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./flight-list/flight-list.component */ "./src/app/flight/flight-list/flight-list.component.ts");
+/* harmony import */ var _flight_edit_flight_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./flight-edit/flight-edit.component */ "./src/app/flight/flight-edit/flight-edit.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var FLIGHT_ROUTES = [
     {
-        path: 'flight',
+        path: 'flights',
         component: _flight_list_flight_list_component__WEBPACK_IMPORTED_MODULE_0__["FlightListComponent"]
     },
     {
-        path: 'flight/:id',
+        path: 'flights/:id',
         component: _flight_edit_flight_edit_component__WEBPACK_IMPORTED_MODULE_1__["FlightEditComponent"]
     }
 ];
@@ -1277,10 +1611,10 @@ var FLIGHT_ROUTES = [
 
 /***/ }),
 
-/***/ "./src/app/flights/flight.service.ts":
-/*!*******************************************!*\
-  !*** ./src/app/flights/flight.service.ts ***!
-  \*******************************************/
+/***/ "./src/app/flight/flight.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/flight/flight.service.ts ***!
+  \******************************************/
 /*! exports provided: FlightService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1298,6 +1632,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var FlightService = /** @class */ (function () {
@@ -1306,10 +1643,9 @@ var FlightService = /** @class */ (function () {
         this.flightList = [];
     }
     FlightService.prototype.findById = function (id) {
-        var url = 'http://www.angular.at/api/flight';
-        var params = { "id": id };
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
-            .set('Accept', 'application/json');
+        var url = "http://www.angular.at/api/flight/" + id;
+        var params = { 'id': id };
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Accept', 'application/json');
         return this.http.get(url, { params: params, headers: headers });
     };
     FlightService.prototype.load = function (filter) {
@@ -1321,21 +1657,42 @@ var FlightService = /** @class */ (function () {
         });
     };
     FlightService.prototype.find = function (filter) {
-        var url = 'http://www.angular.at/api/flight';
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
-            .set('Accept', 'application/json');
+        var url = "http://www.angular.at/api/flight";
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Accept', 'application/json');
         var params = {
-            "from": filter.from,
-            "to": filter.to,
+            'from': filter.from,
+            'to': filter.to,
         };
         return this.http.get(url, { params: params, headers: headers });
     };
     FlightService.prototype.save = function (entity) {
-        var url = 'http://www.angular.at/api/flight';
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
-            .set('Accept', 'application/json');
-        return this.http.post(url, entity, { headers: headers });
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('content-type', 'application/json');
+        if (entity.id) {
+            url = "http://www.angular.at/api/flight/" + entity.id.toString();
+            params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
+            return this.http.put(url, entity, { headers: headers, params: params });
+        }
+        else {
+            url = "http://www.angular.at/api/flight";
+            return this.http.post(url, entity, { headers: headers, params: params });
+        }
     };
+    FlightService.prototype.delete = function (entity) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('content-type', 'application/json');
+        if (entity.id) {
+            url = "http://www.angular.at/api/flight/" + entity.id.toString();
+            params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
+            return this.http.delete(url, { headers: headers, params: params });
+        }
+        return null;
+    };
+    FlightService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
     FlightService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
@@ -1347,16 +1704,19 @@ var FlightService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/flights/flight.ts":
-/*!***********************************!*\
-  !*** ./src/app/flights/flight.ts ***!
-  \***********************************/
+/***/ "./src/app/flight/flight.ts":
+/*!**********************************!*\
+  !*** ./src/app/flight/flight.ts ***!
+  \**********************************/
 /*! exports provided: Flight */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Flight", function() { return Flight; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var Flight = /** @class */ (function () {
     function Flight() {
     }
@@ -1371,21 +1731,12 @@ var Flight = /** @class */ (function () {
 /*!*****************************************!*\
   !*** ./src/app/home/home.component.css ***!
   \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/home/home.component.html":
-/*!******************************************!*\
-  !*** ./src/app/home/home.component.html ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"card\">\n  <div class=\"header\">\n    <h1 class=\"title\">Welcome {{userName}}</h1>\n  </div>\n  <div class=\"content\">\n\n    <div *ngIf=\"needsLogin\" class=\"alert alert-warning\">\n      You have been redirected to this page because you don't have the necessary\n      rights for the reqeusted action. Login with a respective user account!\n    </div>\n\n    <button (click)=\"login()\" class=\"btn btn-default\">Login</button>\n    <button (click)=\"logout()\" class=\"btn btn-default\">Logout</button>\n\n    <!--\n    <tabbed-pane [activeId]=\"0\">\n        <tab title=\"Booked\" [id]=\"0\">\n            This page could display all booked passengers ...\n        </tab>\n        <tab title=\"Checked in\" [id]=\"1\">\n            This page could display all checked in passengers ...\n        </tab>\n\n        <tab title=\"Boarded\" [id]=\"2\">\n            This page could display all boarded passengers ...\n        </tab>\n    </tabbed-pane>\n    -->\n  </div>\n\n</div>\n\n\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hvbWUvaG9tZS5jb21wb25lbnQuY3NzIn0= */");
 
 /***/ }),
 
@@ -1410,6 +1761,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var HomeComponent = /** @class */ (function () {
@@ -1433,12 +1787,15 @@ var HomeComponent = /** @class */ (function () {
     HomeComponent.prototype.logout = function () {
         this._userName = '';
     };
+    HomeComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] }
+    ]; };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-home',
-            template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
-            styles: [__webpack_require__(/*! ./home.component.css */ "./src/app/home/home.component.css")],
-            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
+            template: __importDefault(__webpack_require__(/*! raw-loader!./home.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/home/home.component.html")).default,
+            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None,
+            styles: [__importDefault(__webpack_require__(/*! ./home.component.css */ "./src/app/home/home.component.css")).default]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]])
     ], HomeComponent);
@@ -1446,17 +1803,6 @@ var HomeComponent = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/hotel/hotel-edit/hotel-edit.component.html":
-/*!************************************************************!*\
-  !*** ./src/app/hotel/hotel-edit/hotel-edit.component.html ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n    <ol class=\"breadcrumb float-right\">\n        <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n        <li class=\"breadcrumb-item active\">Hotel</li>\n    </ol>\n    <h4 class=\"page-title\">Hotel Detail</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n    <div class=\"col-xl-12\">\n        <div class=\"card-box\">\n            <p *ngIf=\"errors\">{{ errors }}</p>\n            <form #hotelForm=\"ngForm\" *ngIf=\"hotel\" class=\"form-horizontal\">\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"id\">\n                                    Id\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{hotel.id || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"name\">\n                            Name <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"string\" required [(ngModel)]=\"hotel.name\" name=\"name\" #name=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"city\">\n                            City <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"string\" required [(ngModel)]=\"hotel.city\" name=\"city\" #city=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"stars\">\n                            Stars <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"number\" required [(ngModel)]=\"hotel.stars\" name=\"stars\" #stars=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"createdDate\">\n                                    Created Date\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                        <input type=\"date\" [(ngModel)]=\"hotel.createdDate\" name=\"createdDate\"  class=\"form-control\">\n                                        \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"isActivationRequired\">\n                                    Created Date\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                        <input type=\"checkbox\" [(ngModel)]=\"hotel.isActivationRequired\" name=\"isActivationRequired\"  class=\"form-control\">\n                                        \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"testing\">\n                            Testing <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                <select required [(ngModel)]=\"hotel.testing\" name=\"testing\"  class=\"form-control\" >\n                                        <option *ngFor=\"let c of testing_list\" value=\"c.id\">{{ c.title }}</option>\n                                     </select>  \n                            \n\n                            \n                                     \n                                            \n                            </div>\n\n                    </div>\n                \n                <div class=\"row\">\n                    <div class=\"col-sm-6 text-left\"><button type=\"button\" class=\"btn btn-success w-md\"\n                            (click)=\"save()\" [disabled]=\"hotelForm.invalid\" >Save</button></div>\n                    <div class=\"col-sm-6 text-right\"><button type=\"button\" class=\"btn btn-secondary w-md\"\n                            (click)=\"cancel()\">Cancel</button></div>\n                </div>\n            </form>\n        </div><!-- end card-->\n    </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -1485,6 +1831,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 
@@ -1497,43 +1846,50 @@ var HotelEditComponent = /** @class */ (function () {
         this.route = route;
         this.router = router;
         this.hotelService = hotelService;
+        this.feedback = {};
     }
     HotelEditComponent.prototype.ngOnInit = function () {
         var _this = this;
         this
             .route
             .params
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (p) { return p['id']; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (id) {
-            if (id === 'new')
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (p) { return p.id; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (id) {
+            if (id === 'new') {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(new _hotel__WEBPACK_IMPORTED_MODULE_3__["Hotel"]());
+            }
             return _this.hotelService.findById(id);
         }))
             .subscribe(function (hotel) {
             _this.hotel = hotel;
-            _this.errors = '';
+            _this.feedback = {};
         }, function (err) {
-            _this.errors = 'Error loading';
+            _this.feedback = { type: 'warning', message: 'Error loading' };
         });
     };
     HotelEditComponent.prototype.save = function () {
         var _this = this;
         this.hotelService.save(this.hotel).subscribe(function (hotel) {
             _this.hotel = hotel;
-            _this.errors = 'Save was successful!';
+            _this.feedback = { type: 'success', message: 'Save was successful!' };
             setTimeout(function () {
-                _this.router.navigate(['/hotel']);
+                _this.router.navigate(['/hotels']);
             }, 1000);
         }, function (err) {
-            _this.errors = 'Error saving';
+            _this.feedback = { type: 'warning', message: 'Error saving' };
         });
     };
     HotelEditComponent.prototype.cancel = function () {
-        this.router.navigate(['/hotel']);
+        this.router.navigate(['/hotels']);
     };
+    HotelEditComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _hotel_service__WEBPACK_IMPORTED_MODULE_2__["HotelService"] }
+    ]; };
     HotelEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'hotel-edit',
-            template: __webpack_require__(/*! ./hotel-edit.component.html */ "./src/app/hotel/hotel-edit/hotel-edit.component.html")
+            selector: 'app-hotel-edit',
+            template: __importDefault(__webpack_require__(/*! raw-loader!./hotel-edit.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/hotel/hotel-edit/hotel-edit.component.html")).default
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
@@ -1556,6 +1912,9 @@ var HotelEditComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HotelFilter", function() { return HotelFilter; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var HotelFilter = /** @class */ (function () {
     function HotelFilter() {
         this.city = '';
@@ -1564,17 +1923,6 @@ var HotelFilter = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/hotel/hotel-list/hotel-list.component.html":
-/*!************************************************************!*\
-  !*** ./src/app/hotel/hotel-list/hotel-list.component.html ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n  <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n    <li class=\"breadcrumb-item active\">Hotel</li>\n  </ol>\n  <h4 class=\"page-title\">Hotel List</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n  <div class=\"col-xl-12\">\n    <form #f=\"ngForm\" class=\"card-box\">\n      \n      <div class=\"form-group\">\n        <label>City:</label>\n        <input [(ngModel)]=\"filter.city\" name=\"city\" class=\"form-control\">\n      </div>\n      \n      <div class=\"form-group\">\n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-default\">\n          Search\n        </button>\n        <a [routerLink]=\"['../hotel','new']\" class=\"btn btn-default\">\n          New\n      </a>\n      </div>\n    </form>\n  </div>\n  <div class=\"col-xl-12\">\n    <!-- <a [routerLink]=\"['../hotel', 'new' ]\"><button type=\"button\" class=\"btn btn-icon btn-success\"><i\n          class=\"mdi mdi-asterisk\" title=\"New\"></i></button></a> -->\n    <div class=\"card-box\" *ngIf=\"hotelList.length > 0\">\n      <p *ngIf=\"errors\">{{ errors }}</p>\n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n              <th class=\"border-top-0\" scope=\"col\">Id</th>\n              <th class=\"border-top-0\" scope=\"col\">Name</th>\n              <th class=\"border-top-0\" scope=\"col\">City</th>\n              <th class=\"border-top-0\" scope=\"col\">Stars</th>\n              <th class=\"border-top-0\" scope=\"col\">Created Date</th>\n              <th class=\"border-top-0\" scope=\"col\">Created Date</th>\n              <th class=\"border-top-0\" scope=\"col\">Testing</th>\n              <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n            </tr>\n          </thead>\n          <tr *ngFor=\"let item of hotelList\" [class.active]=\"item === selectedHotel\">\n            \n            <td>{{item.id}}</td>\n            <td>{{item.name}}</td>\n            <td>{{item.city}}</td>\n            <td>{{item.stars}}</td>\n            <td>{{item.createdDate | date}}</td>\n            <td>{{item.isActivationRequired}}</td>\n            <td>{{item.testing}}</td>\n            <td style=\"white-space: nowrap\"><a\n                [routerLink]=\"['../hotel', item.id ]\"><button type=\"button\"\n                  class=\"btn btn-icon btn-secondary\"><i class=\"mdi mdi-grease-pencil\"\n                    title=\"Edit\"></i></button></a>&nbsp;\n              <a (click)=\"delete(item)\"><button type=\"button\" class=\"btn btn-icon btn-danger\"><i class=\"mdi mdi-delete\"\n                    title=\"Delete\"></i></button></a></td>\n          </tr>\n        </table>\n      </div><!-- end table-responsive -->\n    </div><!-- end card-->\n  </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -1600,6 +1948,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 
@@ -1607,7 +1958,7 @@ var HotelListComponent = /** @class */ (function () {
     function HotelListComponent(hotelService) {
         this.hotelService = hotelService;
         this.filter = new _hotel_filter__WEBPACK_IMPORTED_MODULE_1__["HotelFilter"]();
-        this.errors = '';
+        this.feedback = {};
     }
     Object.defineProperty(HotelListComponent.prototype, "hotelList", {
         get: function () {
@@ -1627,21 +1978,24 @@ var HotelListComponent = /** @class */ (function () {
     };
     HotelListComponent.prototype.delete = function (hotel) {
         var _this = this;
-        if (confirm("Are you sure?")) {
-            this.hotelService.delete(hotel).subscribe(function (hotel) {
-                _this.errors = 'Delete was successful!';
+        if (confirm('Are you sure?')) {
+            this.hotelService.delete(hotel).subscribe(function () {
+                _this.feedback = { type: 'success', message: 'Delete was successful!' };
                 setTimeout(function () {
                     _this.search();
                 }, 1000);
             }, function (err) {
-                _this.errors = 'Error deleting.';
+                _this.feedback = { type: 'warning', message: 'Error deleting.' };
             });
         }
     };
+    HotelListComponent.ctorParameters = function () { return [
+        { type: _hotel_service__WEBPACK_IMPORTED_MODULE_2__["HotelService"] }
+    ]; };
     HotelListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'hotel',
-            template: __webpack_require__(/*! ./hotel-list.component.html */ "./src/app/hotel/hotel-list/hotel-list.component.html")
+            selector: 'app-hotel',
+            template: __importDefault(__webpack_require__(/*! raw-loader!./hotel-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/hotel/hotel-list/hotel-list.component.html")).default
         }),
         __metadata("design:paramtypes", [_hotel_service__WEBPACK_IMPORTED_MODULE_2__["HotelService"]])
     ], HotelListComponent);
@@ -1676,6 +2030,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 
@@ -1698,9 +2055,7 @@ var HotelModule = /** @class */ (function () {
                 _hotel_list_hotel_list_component__WEBPACK_IMPORTED_MODULE_4__["HotelListComponent"],
                 _hotel_edit_hotel_edit_component__WEBPACK_IMPORTED_MODULE_5__["HotelEditComponent"]
             ],
-            providers: [
-                _hotel_service__WEBPACK_IMPORTED_MODULE_6__["HotelService"]
-            ],
+            providers: [_hotel_service__WEBPACK_IMPORTED_MODULE_6__["HotelService"]],
             exports: []
         })
     ], HotelModule);
@@ -1723,15 +2078,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HOTEL_ROUTES", function() { return HOTEL_ROUTES; });
 /* harmony import */ var _hotel_list_hotel_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hotel-list/hotel-list.component */ "./src/app/hotel/hotel-list/hotel-list.component.ts");
 /* harmony import */ var _hotel_edit_hotel_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hotel-edit/hotel-edit.component */ "./src/app/hotel/hotel-edit/hotel-edit.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var HOTEL_ROUTES = [
     {
-        path: 'hotel',
+        path: 'hotels',
         component: _hotel_list_hotel_list_component__WEBPACK_IMPORTED_MODULE_0__["HotelListComponent"]
     },
     {
-        path: 'hotel/:id',
+        path: 'hotels/:id',
         component: _hotel_edit_hotel_edit_component__WEBPACK_IMPORTED_MODULE_1__["HotelEditComponent"]
     }
 ];
@@ -1760,19 +2118,21 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
+var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Accept', 'application/json');
 var HotelService = /** @class */ (function () {
     function HotelService(http) {
         this.http = http;
-        this.baseUrl = "http://www.angular.at/api/hotel";
         this.hotelList = [];
+        this.api = 'http://www.angular.at/api/hotel';
     }
     HotelService.prototype.findById = function (id) {
-        var url = this.baseUrl + "/" + id;
-        var params = { "id": id };
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
-            .set('Accept', 'application/json');
+        var url = this.api + "/" + id;
+        var params = { id: id };
         return this.http.get(url, { params: params, headers: headers });
     };
     HotelService.prototype.load = function (filter) {
@@ -1784,39 +2144,37 @@ var HotelService = /** @class */ (function () {
         });
     };
     HotelService.prototype.find = function (filter) {
-        var url = "" + this.baseUrl;
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
-            .set('Accept', 'application/json');
         var params = {
-            "city": filter.city,
+            'city': filter.city,
         };
-        return this.http.get(url, { params: params, headers: headers });
+        return this.http.get(this.api, { params: params, headers: headers });
     };
     HotelService.prototype.save = function (entity) {
         var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
-        var url = "";
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('content-type', 'application/json');
+        var url = '';
         if (entity.id) {
-            url = this.baseUrl + "/" + entity.id.toString();
+            url = this.api + "/" + entity.id.toString();
             params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
             return this.http.put(url, entity, { headers: headers, params: params });
         }
         else {
-            url = "" + this.baseUrl;
+            url = "" + this.api;
             return this.http.post(url, entity, { headers: headers, params: params });
         }
     };
     HotelService.prototype.delete = function (entity) {
         var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
-        var url = "";
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('content-type', 'application/json');
+        var url = '';
         if (entity.id) {
-            url = this.baseUrl + "/" + entity.id.toString();
+            url = this.api + "/" + entity.id.toString();
             params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
             return this.http.delete(url, { headers: headers, params: params });
         }
         return null;
     };
+    HotelService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
     HotelService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
@@ -1838,6 +2196,9 @@ var HotelService = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Hotel", function() { return Hotel; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var Hotel = /** @class */ (function () {
     function Hotel() {
     }
@@ -1845,17 +2206,6 @@ var Hotel = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/navbar/navbar.component.html":
-/*!**********************************************!*\
-  !*** ./src/app/navbar/navbar.component.html ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" (click)=\"sidebarToggle()\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar bar1\"></span>\n        <span class=\"icon-bar bar2\"></span>\n        <span class=\"icon-bar bar3\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">Kello</a>\n    </div>\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n            <i class=\"ti-panel\"></i>\n            <p>Stats</p>\n          </a>\n        </li>\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n            <i class=\"ti-bell\"></i>\n            <p class=\"notification\">5</p>\n            <p>Notifications</p>\n            <b class=\"caret\"></b>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li><a href=\"#\">Notification 1</a></li>\n            <li><a href=\"#\">Notification 2</a></li>\n            <li><a href=\"#\">Notification 3</a></li>\n            <li><a href=\"#\">Notification 4</a></li>\n            <li><a href=\"#\">Another notification</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\">\n            <i class=\"ti-settings\"></i>\n            <p>Settings</p>\n          </a>\n        </li>\n      </ul>\n\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1879,6 +2229,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 var NavbarComponent = /** @class */ (function () {
     function NavbarComponent() {
@@ -1898,7 +2251,7 @@ var NavbarComponent = /** @class */ (function () {
     NavbarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'navbar-cmp',
-            template: __webpack_require__(/*! ./navbar.component.html */ "./src/app/navbar/navbar.component.html")
+            template: __importDefault(__webpack_require__(/*! raw-loader!./navbar.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/navbar/navbar.component.html")).default
         }),
         __metadata("design:paramtypes", [])
     ], NavbarComponent);
@@ -1909,35 +2262,22 @@ var NavbarComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/offer/offer-edit/offer-edit.component.html":
-/*!************************************************************!*\
-  !*** ./src/app/offer/offer-edit/offer-edit.component.html ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n    <ol class=\"breadcrumb float-right\">\n        <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n        <li class=\"breadcrumb-item active\">Offers</li>\n    </ol>\n    <h4 class=\"page-title\">Offers Detail</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n    <div class=\"col-xl-12\">\n        <div class=\"card-box\">\n            <p *ngIf=\"errors\">{{ errors }}</p>\n            <a *ngIf=\"offer.id\" [routerLink]=\"['offerproducts']\" class=\"btn btn-default\" style=\"float:right;\">\n                Offer Products\n            </a>\n            <a *ngIf=\"offer.id\" [routerLink]=\"['offerpartners']\" class=\"btn btn-default\" style=\"float:right;\">\n                Offer Partners\n            </a>\n            <a *ngIf=\"offer.id\" href=\"javascript:;\" (click)=\"applyRates(offer.id, offer.rateplansId)\" class=\"btn btn-default\" style=\"float:right;\">\n                Apply Rates\n            </a>\n            <form #offerForm=\"ngForm\" *ngIf=\"offer\" class=\"form-horizontal\">\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"id\">\n                                    Id\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{offer.id || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"offerName\">\n                            Offer Name <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"string\" required [(ngModel)]=\"offer.offerName\" name=\"offerName\" #offerName=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"createdDate\">\n                                    Created Date\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                        <input type=\"date\" [(ngModel)]=\"offer.createdDate\" name=\"createdDate\"  class=\"form-control\">\n                                        \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <!-- <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"productsId\">\n                            productsId <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                <select required [(ngModel)]=\"offer.productsId\" name=\"productsId\"  class=\"form-control\" >\n                                        <option *ngFor=\"let c of productsId_list\" value=\"{{ c.id }}\">{{ c.eng_title }}</option>\n                                     </select>  \n                            \n\n                            \n                                     \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"partnersId\">\n                            partnersId <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                <select required [(ngModel)]=\"offer.partnersId\" name=\"partnersId\"  class=\"form-control\" >\n                                        <option *ngFor=\"let c of partnersId_list\" value=\"{{ c.id }}\">{{ c.name }}</option>\n                                     </select>  \n                            \n\n                            \n                                     \n                                            \n                            </div>\n\n                    </div>\n                    -->\n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"rateplansId\">\n                            Rate Plan <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                <select required [(ngModel)]=\"offer.rateplansId\" name=\"rateplansId\"  class=\"form-control\" >\n                                        <option *ngFor=\"let c of rateplansId_list\" value=\"{{ c.id }}\">{{ c.ratePlanTitle }}</option>\n                                     </select>  \n                            \n\n                            \n                                     \n                                            \n                            </div>\n\n                    </div>\n                \n                <div class=\"row\">\n                    <div class=\"col-sm-6 text-left\"><button type=\"button\" class=\"btn btn-success w-md\"\n                            (click)=\"save()\" [disabled]=\"offerForm.invalid\" >Save</button></div>\n                    <div class=\"col-sm-6 text-right\"><button type=\"button\" class=\"btn btn-secondary w-md\"\n                            (click)=\"cancel()\">Cancel</button></div>\n                </div>\n            </form>\n        </div><!-- end card-->\n    </div><!-- end col -->\n</div><!-- end row -->"
-
-/***/ }),
-
-/***/ "./src/app/offer/offer-edit/offer-edit.component.ts":
-/*!**********************************************************!*\
-  !*** ./src/app/offer/offer-edit/offer-edit.component.ts ***!
-  \**********************************************************/
-/*! exports provided: OfferEditComponent */
+/***/ "./src/app/orders/orders-edit/orders-edit.component.ts":
+/*!*************************************************************!*\
+  !*** ./src/app/orders/orders-edit/orders-edit.component.ts ***!
+  \*************************************************************/
+/*! exports provided: OrdersEditComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OfferEditComponent", function() { return OfferEditComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersEditComponent", function() { return OrdersEditComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _offer_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../offer.service */ "./src/app/offer/offer.service.ts");
-/* harmony import */ var _offer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../offer */ "./src/app/offer/offer.ts");
-/* harmony import */ var _rateplan_rateplan_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../rateplan/rateplan.service */ "./src/app/rateplan/rateplan.service.ts");
-/* harmony import */ var _rateplan_rateplan_filter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../rateplan/rateplan-filter */ "./src/app/rateplan/rateplan-filter.ts");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _orders_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../orders.service */ "./src/app/orders/orders.service.ts");
+/* harmony import */ var _orders__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../orders */ "./src/app/orders/orders.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1947,6 +2287,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 
@@ -1954,127 +2297,104 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
-
-var OfferEditComponent = /** @class */ (function () {
-    function OfferEditComponent(route, router, offerService, rateplanService) {
+var OrdersEditComponent = /** @class */ (function () {
+    function OrdersEditComponent(route, router, ordersService) {
         this.route = route;
         this.router = router;
-        this.offerService = offerService;
-        this.rateplanService = rateplanService;
-        this.ratePlanFilter = new _rateplan_rateplan_filter__WEBPACK_IMPORTED_MODULE_5__["RateplanFilter"]();
+        this.ordersService = ordersService;
+        this.feedback = {};
     }
-    Object.defineProperty(OfferEditComponent.prototype, "rateplansId_list", {
-        get: function () {
-            return this.rateplanService.rateplanList;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OfferEditComponent.prototype.ngOnInit = function () {
+    OrdersEditComponent.prototype.ngOnInit = function () {
         var _this = this;
         this
             .route
             .params
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (p) { return p['id']; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (id) {
-            if (id === 'new')
-                return Object(rxjs__WEBPACK_IMPORTED_MODULE_7__["of"])(new _offer__WEBPACK_IMPORTED_MODULE_3__["Offer"]());
-            return _this.offerService.findById(id);
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (p) { return p.id; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (id) {
+            if (id === 'new') {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(new _orders__WEBPACK_IMPORTED_MODULE_3__["Orders"]());
+            }
+            return _this.ordersService.findById(id);
         }))
-            .subscribe(function (offer) {
-            _this.offer = offer;
-            _this.errors = '';
+            .subscribe(function (orders) {
+            _this.orders = orders;
+            _this.feedback = {};
         }, function (err) {
-            _this.errors = err;
+            _this.feedback = { type: 'warning', message: 'Error loading' };
         });
-        this.rateplanService.load(this.ratePlanFilter);
     };
-    OfferEditComponent.prototype.save = function () {
+    OrdersEditComponent.prototype.save = function () {
         var _this = this;
-        this.offerService.save(this.offer).subscribe(function (offer) {
-            _this.offer = offer;
-            _this.errors = 'Save was successful!';
+        this.ordersService.save(this.orders).subscribe(function (orders) {
+            _this.orders = orders;
+            _this.feedback = { type: 'success', message: 'Save was successful!' };
             setTimeout(function () {
-                _this.router.navigate(['/offer']);
+                _this.router.navigate(['/orderses']);
             }, 1000);
         }, function (err) {
-            _this.errors = err;
+            _this.feedback = { type: 'warning', message: 'Error saving' };
         });
     };
-    OfferEditComponent.prototype.cancel = function () {
-        this.router.navigate(['/offer']);
+    OrdersEditComponent.prototype.cancel = function () {
+        this.router.navigate(['/orderses']);
     };
-    OfferEditComponent.prototype.applyRates = function (offerId, ratePlanId) {
-        var _this = this;
-        this.offerService.applyRates(offerId, ratePlanId)
-            .subscribe(function (offer) {
-            _this.errors = 'Rates Applied successful!';
-        }, function (err) {
-            _this.errors = err;
-        });
-    };
-    OfferEditComponent = __decorate([
+    OrdersEditComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _orders_service__WEBPACK_IMPORTED_MODULE_2__["OrdersService"] }
+    ]; };
+    OrdersEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'offer-edit',
-            template: __webpack_require__(/*! ./offer-edit.component.html */ "./src/app/offer/offer-edit/offer-edit.component.html")
+            selector: 'app-orders-edit',
+            template: __importDefault(__webpack_require__(/*! raw-loader!./orders-edit.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/orders/orders-edit/orders-edit.component.html")).default
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _offer_service__WEBPACK_IMPORTED_MODULE_2__["OfferService"],
-            _rateplan_rateplan_service__WEBPACK_IMPORTED_MODULE_4__["RateplanService"]])
-    ], OfferEditComponent);
-    return OfferEditComponent;
+            _orders_service__WEBPACK_IMPORTED_MODULE_2__["OrdersService"]])
+    ], OrdersEditComponent);
+    return OrdersEditComponent;
 }());
 
 
 
 /***/ }),
 
-/***/ "./src/app/offer/offer-filter.ts":
-/*!***************************************!*\
-  !*** ./src/app/offer/offer-filter.ts ***!
-  \***************************************/
-/*! exports provided: OfferFilter */
+/***/ "./src/app/orders/orders-filter.ts":
+/*!*****************************************!*\
+  !*** ./src/app/orders/orders-filter.ts ***!
+  \*****************************************/
+/*! exports provided: OrdersFilter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OfferFilter", function() { return OfferFilter; });
-var OfferFilter = /** @class */ (function () {
-    function OfferFilter() {
-        this.offerName = '';
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersFilter", function() { return OrdersFilter; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var OrdersFilter = /** @class */ (function () {
+    function OrdersFilter() {
+        this.orderStatus = '';
     }
-    return OfferFilter;
+    return OrdersFilter;
 }());
 
 
 
 /***/ }),
 
-/***/ "./src/app/offer/offer-list/offer-list.component.html":
-/*!************************************************************!*\
-  !*** ./src/app/offer/offer-list/offer-list.component.html ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n  <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n    <li class=\"breadcrumb-item active\">Offers</li>\n  </ol>\n  <h4 class=\"page-title\">Offers List</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n  <div class=\"col-xl-12\">\n    <form #f=\"ngForm\" class=\"card-box\">\n      \n      <div class=\"form-group\">\n        <label>Offer Name:</label>\n        <input [(ngModel)]=\"filter.offerName\" name=\"offerName\" class=\"form-control\">\n      </div>\n      \n      <div class=\"form-group\">\n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-default\">\n          Search\n        </button>\n        <a [routerLink]=\"['../offer','new']\" class=\"btn btn-default\">\n          New\n      </a>\n      </div>\n    </form>\n  </div>\n  <div class=\"col-xl-12\">\n    <!-- <a [routerLink]=\"['../offer', 'new' ]\"><button type=\"button\" class=\"btn btn-icon btn-success\"><i\n          class=\"mdi mdi-asterisk\" title=\"New\"></i></button></a> -->\n    <div class=\"card-box\" *ngIf=\"offerList.length > 0\">\n      <p *ngIf=\"errors\">{{ errors }}</p>\n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n              <th class=\"border-top-0\" scope=\"col\">Id</th>\n              <th class=\"border-top-0\" scope=\"col\">Offer Name</th>\n              <th class=\"border-top-0\" scope=\"col\">Created Date</th>\n              \n              <th class=\"border-top-0\" scope=\"col\">Rate Plan</th>\n              <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n            </tr>\n          </thead>\n          <tr *ngFor=\"let item of offerList\" [class.active]=\"item === selectedOffer\">\n            \n            <td>{{item.id}}</td>\n            <td>{{item.offerName}}</td>\n            <td>{{item.createdDate | date}}</td>\n           \n            <td>{{item.rateplansId}}</td>\n            <td style=\"white-space: nowrap\"><a\n                [routerLink]=\"['../offer', item.id ]\"><button type=\"button\"\n                  class=\"btn btn-icon btn-secondary\"><i class=\"mdi mdi-grease-pencil\"\n                    title=\"Edit\"></i></button></a>&nbsp;\n              <a (click)=\"delete(item)\"><button type=\"button\" class=\"btn btn-icon btn-danger\"><i class=\"mdi mdi-delete\"\n                    title=\"Delete\"></i></button></a></td>\n          </tr>\n        </table>\n      </div><!-- end table-responsive -->\n    </div><!-- end card-->\n  </div><!-- end col -->\n</div><!-- end row -->"
-
-/***/ }),
-
-/***/ "./src/app/offer/offer-list/offer-list.component.ts":
-/*!**********************************************************!*\
-  !*** ./src/app/offer/offer-list/offer-list.component.ts ***!
-  \**********************************************************/
-/*! exports provided: OfferListComponent */
+/***/ "./src/app/orders/orders-list/orders-list.component.ts":
+/*!*************************************************************!*\
+  !*** ./src/app/orders/orders-list/orders-list.component.ts ***!
+  \*************************************************************/
+/*! exports provided: OrdersListComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OfferListComponent", function() { return OfferListComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersListComponent", function() { return OrdersListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _offer_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../offer-filter */ "./src/app/offer/offer-filter.ts");
-/* harmony import */ var _offer_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../offer.service */ "./src/app/offer/offer.service.ts");
+/* harmony import */ var _orders_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../orders-filter */ "./src/app/orders/orders-filter.ts");
+/* harmony import */ var _orders_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../orders.service */ "./src/app/orders/orders.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2084,389 +2404,90 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 
-var OfferListComponent = /** @class */ (function () {
-    function OfferListComponent(offerService) {
-        this.offerService = offerService;
-        this.filter = new _offer_filter__WEBPACK_IMPORTED_MODULE_1__["OfferFilter"]();
-        this.errors = '';
+var OrdersListComponent = /** @class */ (function () {
+    function OrdersListComponent(ordersService) {
+        this.ordersService = ordersService;
+        this.filter = new _orders_filter__WEBPACK_IMPORTED_MODULE_1__["OrdersFilter"]();
+        this.feedback = {};
     }
-    Object.defineProperty(OfferListComponent.prototype, "offerList", {
+    Object.defineProperty(OrdersListComponent.prototype, "ordersList", {
         get: function () {
-            return this.offerService.offerList;
+            return this.ordersService.ordersList;
         },
         enumerable: true,
         configurable: true
     });
-    OfferListComponent.prototype.ngOnInit = function () {
+    OrdersListComponent.prototype.ngOnInit = function () {
         this.search();
     };
-    OfferListComponent.prototype.search = function () {
-        this.offerService.load(this.filter);
+    OrdersListComponent.prototype.search = function () {
+        this.ordersService.load(this.filter);
     };
-    OfferListComponent.prototype.select = function (selected) {
-        this.selectedOffer = selected;
+    OrdersListComponent.prototype.select = function (selected) {
+        this.selectedOrders = selected;
     };
-    OfferListComponent.prototype.delete = function (offer) {
+    OrdersListComponent.prototype.delete = function (orders) {
         var _this = this;
-        if (confirm("Are you sure?")) {
-            this.offerService.delete(offer).subscribe(function (offer) {
-                _this.errors = 'Delete was successful!';
+        if (confirm('Are you sure?')) {
+            this.ordersService.delete(orders).subscribe(function () {
+                _this.feedback = { type: 'success', message: 'Delete was successful!' };
                 setTimeout(function () {
                     _this.search();
                 }, 1000);
             }, function (err) {
-                _this.errors = err;
+                _this.feedback = { type: 'warning', message: 'Error deleting.' };
             });
         }
     };
-    OfferListComponent = __decorate([
+    OrdersListComponent.ctorParameters = function () { return [
+        { type: _orders_service__WEBPACK_IMPORTED_MODULE_2__["OrdersService"] }
+    ]; };
+    OrdersListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'offer',
-            template: __webpack_require__(/*! ./offer-list.component.html */ "./src/app/offer/offer-list/offer-list.component.html")
+            selector: 'app-orders',
+            template: __importDefault(__webpack_require__(/*! raw-loader!./orders-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/orders/orders-list/orders-list.component.html")).default
         }),
-        __metadata("design:paramtypes", [_offer_service__WEBPACK_IMPORTED_MODULE_2__["OfferService"]])
-    ], OfferListComponent);
-    return OfferListComponent;
+        __metadata("design:paramtypes", [_orders_service__WEBPACK_IMPORTED_MODULE_2__["OrdersService"]])
+    ], OrdersListComponent);
+    return OrdersListComponent;
 }());
 
 
 
 /***/ }),
 
-/***/ "./src/app/offer/offer-partners/offer-partners.component.html":
-/*!********************************************************************!*\
-  !*** ./src/app/offer/offer-partners/offer-partners.component.html ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n  <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n    <li class=\"breadcrumb-item active\">Offers</li>\n  </ol>\n  <h4 class=\"page-title\">Offer Partners</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n  <div class=\"col-xl-12\">\n    <form #f=\"ngForm\" class=\"card-box\">\n      \n      <div class=\"form-group\">\n        <label>Partner Name:</label>\n        <input [(ngModel)]=\"filter.eng_title\" name=\"partnerName\" class=\"form-control\">\n      </div>\n      \n      <div class=\"form-group\">\n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-default\">\n          Search\n        </button>\n       \n      </div>\n    </form>\n  </div>\n  <div class=\"col-xl-12\">\n    <!-- <a [routerLink]=\"['../offer', 'new' ]\"><button type=\"button\" class=\"btn btn-icon btn-success\"><i\n          class=\"mdi mdi-asterisk\" title=\"New\"></i></button></a> -->\n    <div class=\"card-box\" *ngIf=\"partnerList.length > 0\">\n      <p *ngIf=\"errors\">{{ errors }}</p>\n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n                <th class=\"border-top-0\" scope=\"col\"><input type=\"checkbox\" [checked]=\"isAllSelected\"  (change)=\"selectAllProducts($event)\" ></th>\n              <th class=\"border-top-0\" scope=\"col\">Id</th>\n              <th class=\"border-top-0\" scope=\"col\">Partner Name</th>\n              <th class=\"border-top-0\" scope=\"col\">Phone</th>\n              <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n            </tr>\n          </thead>\n          <tr *ngFor=\"let item of partnerList; let idx = index\" [class.active]=\"item === selectedOffer\">\n            <td style=\"white-space: nowrap\">\n              <input type=\"checkbox\" (click)=\"addToOffer(item, idx, $event)\" [checked]=\" (-1 != offersPartner.indexOf(item.id) ? true : false )\" />\n            </td>\n            <td>{{item.id}}</td>\n            <td>{{item.name}} </td>\n            <td>{{item.phone}} </td>\n            \n          </tr>\n        </table>\n      </div><!-- end table-responsive -->\n    </div><!-- end card-->\n\n    <!-- <div class=\"row\">\n      \n      <div class=\"col-sm-6 text-right\"><button type=\"button\" class=\"btn btn-secondary w-md\"\n              (click)=\"createOfferProducts()\">Submit</button></div>\n  </div> -->\n\n  </div><!-- end col -->\n</div><!-- end row -->"
-
-/***/ }),
-
-/***/ "./src/app/offer/offer-partners/offer-partners.component.ts":
-/*!******************************************************************!*\
-  !*** ./src/app/offer/offer-partners/offer-partners.component.ts ***!
-  \******************************************************************/
-/*! exports provided: OfferPartnersComponent */
+/***/ "./src/app/orders/orders.module.ts":
+/*!*****************************************!*\
+  !*** ./src/app/orders/orders.module.ts ***!
+  \*****************************************/
+/*! exports provided: OrdersModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OfferPartnersComponent", function() { return OfferPartnersComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _partner_partner_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../partner/partner.service */ "./src/app/partner/partner.service.ts");
-/* harmony import */ var _partner_partner_filter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../partner/partner-filter */ "./src/app/partner/partner-filter.ts");
-/* harmony import */ var _offer_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../offer.service */ "./src/app/offer/offer.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var OfferPartnersComponent = /** @class */ (function () {
-    // get partnerList(): Partner[] {
-    //     return this.partnerService.partnerList;
-    // }
-    function OfferPartnersComponent(route, offerService, partnerService) {
-        this.route = route;
-        this.offerService = offerService;
-        this.partnerService = partnerService;
-        this.filter = new _partner_partner_filter__WEBPACK_IMPORTED_MODULE_3__["PartnerFilter"]();
-        this.errors = '';
-    }
-    OfferPartnersComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this
-            .route
-            .params
-            .subscribe(function (params) {
-            _this.offerId = params.id;
-        });
-        //   this
-        //     .route
-        //     .params
-        //     .pipe(
-        //         map(p => p['id'] ),
-        //         switchMap(id => {
-        //             this.offerId = id;
-        //            return id;
-        //         })
-        //     )
-        this.isSelected = false;
-        this.isAllSelected = false;
-        this.selectedProductList = [];
-        //this.search();
-        this.offerService
-            .getOfferPartners(this.offerId)
-            .subscribe(function (result) {
-            _this.offersPartner = result.map(function (p) { return p.partnersId; });
-            _this.partnerService
-                .find(_this.filter)
-                .subscribe(function (partners) {
-                _this.partnerList = partners;
-            }, function (err) {
-                _this.errors = err;
-            });
-        }, function (err) {
-            _this.errors = err;
-        });
-    };
-    OfferPartnersComponent.prototype.search = function () {
-        this.partnerService.load(this.filter);
-    };
-    OfferPartnersComponent.prototype.select = function (selected) {
-        this.selectedOffer = selected;
-    };
-    OfferPartnersComponent.prototype.addToOffer = function (p, index, e) {
-        if (e.target.checked) {
-            // this.selectedProductList.push({productsId: product.id });
-            this.createOfferPartner(p);
-        }
-        else {
-            this.deleteOfferPartner(p.id);
-            // this.selectedProductList.filter( (pid, idx)=> {
-            //     if(pid.productsId == product.id){
-            //         this.selectedProductList.splice(idx, 1);
-            //     }
-            // } )
-        }
-    };
-    OfferPartnersComponent.prototype.selectAllProducts = function (e) {
-        return;
-        // this.isSelected = e.target.checked;
-        // this.isAllSelected = e.target.checked;
-        // if(this.isAllSelected){
-        //     this.selectedProductList = this.productList.map( (p) => { return {productsId:p.id} });
-        // }else{
-        //     this.selectedProductList = [];
-        // }
-        // console.log(this.selectedProductList);
-    };
-    OfferPartnersComponent.prototype.createOfferPartner = function (p) {
-        var _this = this;
-        this.offerService.createOfferPartner(this.offerId, { partnersId: p.id, offersId: this.offerId })
-            .subscribe(function (offerProducts) {
-            _this.errors = 'Added was successful!';
-        }, function (err) {
-            _this.errors = err;
-        });
-    };
-    OfferPartnersComponent.prototype.deleteOfferPartner = function (partnersId) {
-        var _this = this;
-        this.offerService.deleteOfferPartner(this.offerId, partnersId)
-            .subscribe(function (offerProducts) {
-            _this.errors = 'Delete was successful!';
-        }, function (err) {
-            _this.errors = err;
-        });
-    };
-    OfferPartnersComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'offer-products',
-            template: __webpack_require__(/*! ./offer-partners.component.html */ "./src/app/offer/offer-partners/offer-partners.component.html")
-        }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
-            _offer_service__WEBPACK_IMPORTED_MODULE_4__["OfferService"],
-            _partner_partner_service__WEBPACK_IMPORTED_MODULE_2__["PartnerService"]])
-    ], OfferPartnersComponent);
-    return OfferPartnersComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/offer/offer-products/offer-products.component.html":
-/*!********************************************************************!*\
-  !*** ./src/app/offer/offer-products/offer-products.component.html ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n  <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n    <li class=\"breadcrumb-item active\">Offers</li>\n  </ol>\n  <h4 class=\"page-title\">Offer Products</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n  <div class=\"col-xl-12\">\n    <form #f=\"ngForm\" class=\"card-box\">\n      \n      <div class=\"form-group\">\n        <label>Product Name:</label>\n        <input [(ngModel)]=\"filter.eng_title\" name=\"offerName\" class=\"form-control\">\n      </div>\n      \n      <div class=\"form-group\">\n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-default\">\n          Search\n        </button>\n       \n      </div>\n    </form>\n  </div>\n  <div class=\"col-xl-12\">\n    <!-- <a [routerLink]=\"['../offer', 'new' ]\"><button type=\"button\" class=\"btn btn-icon btn-success\"><i\n          class=\"mdi mdi-asterisk\" title=\"New\"></i></button></a> -->\n    <div class=\"card-box\" *ngIf=\"productList.length > 0\">\n      <p *ngIf=\"errors\">{{ errors }}</p>\n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n                <th class=\"border-top-0\" scope=\"col\"><input type=\"checkbox\" [checked]=\"isAllSelected\"  (change)=\"selectAllProducts($event)\" ></th>\n              <th class=\"border-top-0\" scope=\"col\">Id</th>\n              <th class=\"border-top-0\" scope=\"col\">Product Name</th>\n              <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n            </tr>\n          </thead>\n          <tr *ngFor=\"let item of productList; let idx = index\" [class.active]=\"item === selectedOffer\">\n            <td style=\"white-space: nowrap\">\n              <input type=\"checkbox\" (click)=\"addToOffer(item, idx, $event)\" [checked]=\" (-1 != offerProducts.indexOf(item.id) ? true : false )\"  />\n            </td>\n            <td>{{item.id}}</td>\n            <td>{{item.eng_title}} {{item.urdu_title}}</td>\n            \n          </tr>\n        </table>\n      </div><!-- end table-responsive -->\n    </div><!-- end card-->\n\n    <!-- <div class=\"row\">\n      \n      <div class=\"col-sm-6 text-right\"><button type=\"button\" class=\"btn btn-secondary w-md\"\n              (click)=\"createOfferProducts()\">Submit</button></div>\n  </div> -->\n\n  </div><!-- end col -->\n</div><!-- end row -->"
-
-/***/ }),
-
-/***/ "./src/app/offer/offer-products/offer-products.component.ts":
-/*!******************************************************************!*\
-  !*** ./src/app/offer/offer-products/offer-products.component.ts ***!
-  \******************************************************************/
-/*! exports provided: OfferProductsComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OfferProductsComponent", function() { return OfferProductsComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _product_product_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../product/product.service */ "./src/app/product/product.service.ts");
-/* harmony import */ var _product_product_filter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../product/product-filter */ "./src/app/product/product-filter.ts");
-/* harmony import */ var _offer_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../offer.service */ "./src/app/offer/offer.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var OfferProductsComponent = /** @class */ (function () {
-    // get productList(): Product[] {
-    //     return this.productService.productList;
-    // }
-    function OfferProductsComponent(route, offerService, productService) {
-        this.route = route;
-        this.offerService = offerService;
-        this.productService = productService;
-        this.filter = new _product_product_filter__WEBPACK_IMPORTED_MODULE_3__["ProductFilter"]();
-        this.errors = '';
-    }
-    OfferProductsComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this
-            .route
-            .params
-            .subscribe(function (params) {
-            _this.offerId = params.id;
-        });
-        //   this
-        //     .route
-        //     .params
-        //     .pipe(
-        //         map(p => p['id'] ),
-        //         switchMap(id => {
-        //             this.offerId = id;
-        //            return id;
-        //         })
-        //     )
-        this.isSelected = false;
-        this.isAllSelected = false;
-        this.selectedProductList = [];
-        this.offerService
-            .getOfferProducts(this.offerId)
-            .subscribe(function (offerProducts) {
-            _this.offerProducts = offerProducts.map(function (p) { return p.productsId; });
-            console.log(_this.offerProducts);
-            _this.productService
-                .find(_this.filter)
-                .subscribe(function (products) {
-                _this.productList = products;
-            }, function (err) {
-                _this.errors = err;
-            });
-        }, function (err) {
-            _this.errors = err;
-        });
-    };
-    OfferProductsComponent.prototype.search = function () {
-        this.productService.load(this.filter);
-    };
-    OfferProductsComponent.prototype.select = function (selected) {
-        this.selectedOffer = selected;
-    };
-    OfferProductsComponent.prototype.addToOffer = function (product, index, e) {
-        if (e.target.checked) {
-            // this.selectedProductList.push({productsId: product.id });
-            this.createOfferProducts(product);
-        }
-        else {
-            this.deleteOfferProducts(product.id);
-            // this.selectedProductList.filter( (pid, idx)=> {
-            //     if(pid.productsId == product.id){
-            //         this.selectedProductList.splice(idx, 1);
-            //     }
-            // } )
-        }
-    };
-    OfferProductsComponent.prototype.selectAllProducts = function (e) {
-        return;
-        // this.isSelected = e.target.checked;
-        // this.isAllSelected = e.target.checked;
-        // if(this.isAllSelected){
-        //     this.selectedProductList = this.productList.map( (p) => { return {productsId:p.id} });
-        // }else{
-        //     this.selectedProductList = [];
-        // }
-        // console.log(this.selectedProductList);
-    };
-    OfferProductsComponent.prototype.createOfferProducts = function (product) {
-        var _this = this;
-        this.offerService.createOfferProducts(this.offerId, { productsId: product.id, offersId: this.offerId })
-            .subscribe(function (offerProducts) {
-            _this.errors = 'Added was successful!';
-        }, function (err) {
-            _this.errors = err;
-        });
-    };
-    OfferProductsComponent.prototype.deleteOfferProducts = function (productId) {
-        var _this = this;
-        this.offerService.deleteOfferProducts(this.offerId, productId)
-            .subscribe(function (offerProducts) {
-            _this.errors = 'Delete was successful!';
-        }, function (err) {
-            _this.errors = err;
-        });
-    };
-    OfferProductsComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'offer-products',
-            template: __webpack_require__(/*! ./offer-products.component.html */ "./src/app/offer/offer-products/offer-products.component.html")
-        }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
-            _offer_service__WEBPACK_IMPORTED_MODULE_4__["OfferService"],
-            _product_product_service__WEBPACK_IMPORTED_MODULE_2__["ProductService"]])
-    ], OfferProductsComponent);
-    return OfferProductsComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/offer/offer.module.ts":
-/*!***************************************!*\
-  !*** ./src/app/offer/offer.module.ts ***!
-  \***************************************/
-/*! exports provided: OfferModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OfferModule", function() { return OfferModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersModule", function() { return OrdersModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _offer_list_offer_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./offer-list/offer-list.component */ "./src/app/offer/offer-list/offer-list.component.ts");
-/* harmony import */ var _offer_edit_offer_edit_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./offer-edit/offer-edit.component */ "./src/app/offer/offer-edit/offer-edit.component.ts");
-/* harmony import */ var _offer_products_offer_products_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./offer-products/offer-products.component */ "./src/app/offer/offer-products/offer-products.component.ts");
-/* harmony import */ var _offer_partners_offer_partners_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./offer-partners/offer-partners.component */ "./src/app/offer/offer-partners/offer-partners.component.ts");
-/* harmony import */ var _offer_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./offer.service */ "./src/app/offer/offer.service.ts");
-/* harmony import */ var _offer_routes__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./offer.routes */ "./src/app/offer/offer.routes.ts");
+/* harmony import */ var _orders_list_orders_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./orders-list/orders-list.component */ "./src/app/orders/orders-list/orders-list.component.ts");
+/* harmony import */ var _orders_edit_orders_edit_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./orders-edit/orders-edit.component */ "./src/app/orders/orders-edit/orders-edit.component.ts");
+/* harmony import */ var _orders_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./orders.service */ "./src/app/orders/orders.service.ts");
+/* harmony import */ var _orders_routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./orders.routes */ "./src/app/orders/orders.routes.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -2476,87 +2497,72 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-
-
-var OfferModule = /** @class */ (function () {
-    function OfferModule() {
+var OrdersModule = /** @class */ (function () {
+    function OrdersModule() {
     }
-    OfferModule = __decorate([
+    OrdersModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forChild(_offer_routes__WEBPACK_IMPORTED_MODULE_9__["OFFER_ROUTES"])
+                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forChild(_orders_routes__WEBPACK_IMPORTED_MODULE_7__["ORDERS_ROUTES"])
             ],
             declarations: [
-                _offer_list_offer_list_component__WEBPACK_IMPORTED_MODULE_4__["OfferListComponent"],
-                _offer_edit_offer_edit_component__WEBPACK_IMPORTED_MODULE_5__["OfferEditComponent"],
-                _offer_products_offer_products_component__WEBPACK_IMPORTED_MODULE_6__["OfferProductsComponent"],
-                _offer_partners_offer_partners_component__WEBPACK_IMPORTED_MODULE_7__["OfferPartnersComponent"],
+                _orders_list_orders_list_component__WEBPACK_IMPORTED_MODULE_4__["OrdersListComponent"],
+                _orders_edit_orders_edit_component__WEBPACK_IMPORTED_MODULE_5__["OrdersEditComponent"]
             ],
-            providers: [
-                _offer_service__WEBPACK_IMPORTED_MODULE_8__["OfferService"]
-            ],
+            providers: [_orders_service__WEBPACK_IMPORTED_MODULE_6__["OrdersService"]],
             exports: []
         })
-    ], OfferModule);
-    return OfferModule;
+    ], OrdersModule);
+    return OrdersModule;
 }());
 
 
 
 /***/ }),
 
-/***/ "./src/app/offer/offer.routes.ts":
-/*!***************************************!*\
-  !*** ./src/app/offer/offer.routes.ts ***!
-  \***************************************/
-/*! exports provided: OFFER_ROUTES */
+/***/ "./src/app/orders/orders.routes.ts":
+/*!*****************************************!*\
+  !*** ./src/app/orders/orders.routes.ts ***!
+  \*****************************************/
+/*! exports provided: ORDERS_ROUTES */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OFFER_ROUTES", function() { return OFFER_ROUTES; });
-/* harmony import */ var _offer_list_offer_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./offer-list/offer-list.component */ "./src/app/offer/offer-list/offer-list.component.ts");
-/* harmony import */ var _offer_edit_offer_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./offer-edit/offer-edit.component */ "./src/app/offer/offer-edit/offer-edit.component.ts");
-/* harmony import */ var _offer_products_offer_products_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./offer-products/offer-products.component */ "./src/app/offer/offer-products/offer-products.component.ts");
-/* harmony import */ var _offer_partners_offer_partners_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./offer-partners/offer-partners.component */ "./src/app/offer/offer-partners/offer-partners.component.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ORDERS_ROUTES", function() { return ORDERS_ROUTES; });
+/* harmony import */ var _orders_list_orders_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./orders-list/orders-list.component */ "./src/app/orders/orders-list/orders-list.component.ts");
+/* harmony import */ var _orders_edit_orders_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./orders-edit/orders-edit.component */ "./src/app/orders/orders-edit/orders-edit.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
-
-
-var OFFER_ROUTES = [
+var ORDERS_ROUTES = [
     {
-        path: 'offer',
-        component: _offer_list_offer_list_component__WEBPACK_IMPORTED_MODULE_0__["OfferListComponent"]
+        path: 'orderses',
+        component: _orders_list_orders_list_component__WEBPACK_IMPORTED_MODULE_0__["OrdersListComponent"]
     },
     {
-        path: 'offer/:id',
-        component: _offer_edit_offer_edit_component__WEBPACK_IMPORTED_MODULE_1__["OfferEditComponent"]
-    },
-    {
-        path: 'offer/:id/offerproducts',
-        component: _offer_products_offer_products_component__WEBPACK_IMPORTED_MODULE_2__["OfferProductsComponent"]
-    },
-    {
-        path: 'offer/:id/offerpartners',
-        component: _offer_partners_offer_partners_component__WEBPACK_IMPORTED_MODULE_3__["OfferPartnersComponent"]
+        path: 'orderses/:id',
+        component: _orders_edit_orders_edit_component__WEBPACK_IMPORTED_MODULE_1__["OrdersEditComponent"]
     }
 ];
 
 
 /***/ }),
 
-/***/ "./src/app/offer/offer.service.ts":
-/*!****************************************!*\
-  !*** ./src/app/offer/offer.service.ts ***!
-  \****************************************/
-/*! exports provided: OfferService */
+/***/ "./src/app/orders/orders.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/orders/orders.service.ts ***!
+  \******************************************/
+/*! exports provided: OrdersService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OfferService", function() { return OfferService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersService", function() { return OrdersService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -2568,149 +2574,94 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
-var OfferService = /** @class */ (function () {
-    function OfferService(http) {
+var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Accept', 'application/json');
+var OrdersService = /** @class */ (function () {
+    function OrdersService(http) {
         this.http = http;
-        this.baseUrl = "/offers";
-        this.offerList = [];
+        this.ordersList = [];
+        this.api = 'http://127.0.0.1:3000/orders';
     }
-    OfferService.prototype.findById = function (id) {
-        var url = this.baseUrl + "/" + id;
-        var params = { "id": id };
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
-            .set('Accept', 'application/json');
+    OrdersService.prototype.findById = function (id) {
+        var url = this.api + "/" + id;
+        var params = { id: id };
         return this.http.get(url, { params: params, headers: headers });
     };
-    OfferService.prototype.load = function (filter) {
+    OrdersService.prototype.load = function (filter) {
         var _this = this;
         this.find(filter).subscribe(function (result) {
-            _this.offerList = result;
+            _this.ordersList = result;
         }, function (err) {
             console.error('error loading', err);
         });
     };
-    OfferService.prototype.find = function (filter) {
-        var url = "" + this.baseUrl;
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
-            .set('Accept', 'application/json');
+    OrdersService.prototype.find = function (filter) {
         var params = {
-            "offerName": filter.offerName,
+            'orderStatus': filter.orderStatus,
         };
-        return this.http.get(url, { params: params, headers: headers });
+        return this.http.get(this.api, { params: params, headers: headers });
     };
-    OfferService.prototype.save = function (entity) {
+    OrdersService.prototype.save = function (entity) {
         var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
-        var url = "";
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('content-type', 'application/json');
+        var url = '';
         if (entity.id) {
-            url = this.baseUrl + "/" + entity.id.toString();
+            url = this.api + "/" + entity.id.toString();
             params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
             return this.http.put(url, entity, { headers: headers, params: params });
         }
         else {
-            url = "" + this.baseUrl;
+            url = "" + this.api;
             return this.http.post(url, entity, { headers: headers, params: params });
         }
     };
-    OfferService.prototype.delete = function (entity) {
+    OrdersService.prototype.delete = function (entity) {
         var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
-        var url = "";
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('content-type', 'application/json');
+        var url = '';
         if (entity.id) {
-            url = this.baseUrl + "/" + entity.id.toString();
+            url = this.api + "/" + entity.id.toString();
             params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
             return this.http.delete(url, { headers: headers, params: params });
         }
         return null;
     };
-    OfferService.prototype.createOfferProducts = function (id, productsList) {
-        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
-        var url = "";
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('content-type', 'application/json');
-        url = this.baseUrl + "/" + id.toString() + "/offerproducts";
-        return this.http.post(url, productsList, { headers: headers, params: params });
-    };
-    OfferService.prototype.deleteOfferProducts = function (offerId, productId) {
-        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
-        var url = "";
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('content-type', 'application/json');
-        url = this.baseUrl + "/" + offerId.toString() + "/product/" + productId;
-        return this.http.delete(url, { headers: headers, params: params });
-    };
-    OfferService.prototype.createOfferPartner = function (id, productsList) {
-        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
-        var url = "";
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('content-type', 'application/json');
-        url = this.baseUrl + "/" + id.toString() + "/offerpartners";
-        return this.http.post(url, productsList, { headers: headers, params: params });
-    };
-    OfferService.prototype.deleteOfferPartner = function (offerId, partnersId) {
-        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
-        var url = "";
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('content-type', 'application/json');
-        url = this.baseUrl + "/" + offerId.toString() + "/partner/" + partnersId;
-        return this.http.delete(url, { headers: headers, params: params });
-    };
-    OfferService.prototype.getOfferProducts = function (id) {
-        var url = this.baseUrl + "/" + id + "/offerproducts";
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
-            .set('Accept', 'application/json');
-        return this.http.get(url, { headers: headers });
-    };
-    OfferService.prototype.getOfferPartners = function (id) {
-        var url = this.baseUrl + "/" + id + "/offerpartners";
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
-            .set('Accept', 'application/json');
-        return this.http.get(url, { headers: headers });
-    };
-    OfferService.prototype.applyRates = function (offerId, ratePlanId) {
-        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
-        var url = "";
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('content-type', 'application/json');
-        url = this.baseUrl + "/" + offerId + "/ratePlans/" + ratePlanId;
-        return this.http.post(url, {}, { headers: headers, params: params });
-    };
-    OfferService = __decorate([
+    OrdersService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
+    OrdersService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
-    ], OfferService);
-    return OfferService;
+    ], OrdersService);
+    return OrdersService;
 }());
 
 
 
 /***/ }),
 
-/***/ "./src/app/offer/offer.ts":
-/*!********************************!*\
-  !*** ./src/app/offer/offer.ts ***!
-  \********************************/
-/*! exports provided: Offer */
+/***/ "./src/app/orders/orders.ts":
+/*!**********************************!*\
+  !*** ./src/app/orders/orders.ts ***!
+  \**********************************/
+/*! exports provided: Orders */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Offer", function() { return Offer; });
-var Offer = /** @class */ (function () {
-    function Offer() {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Orders", function() { return Orders; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var Orders = /** @class */ (function () {
+    function Orders() {
     }
-    return Offer;
+    return Orders;
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/partner/partner-edit/partner-edit.component.html":
-/*!******************************************************************!*\
-  !*** ./src/app/partner/partner-edit/partner-edit.component.html ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n    <ol class=\"breadcrumb float-right\">\n        <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n        <li class=\"breadcrumb-item active\">Partners</li>\n    </ol>\n    <h4 class=\"page-title\">Partners Detail</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n    <div class=\"col-xl-12\">\n        <div class=\"card-box\">\n            <p *ngIf=\"errors\">{{ errors }}</p>\n            <form #partnerForm=\"ngForm\" *ngIf=\"partner\" class=\"form-horizontal\">\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"id\">\n                                    Id\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{partner.id || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"name\">\n                            Name <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"string\" required [(ngModel)]=\"partner.name\" name=\"name\" #name=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"phone\">\n                            Phone <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"tel\" required [(ngModel)]=\"partner.phone\" name=\"phone\" #phone=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"accessToken\">\n                                    AccessToken\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{partner.accessToken || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"isActivated\">\n                                    Is Activated\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{partner.isActivated || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"pin\">\n                                    Pin\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                        <input type=\"number\" [(ngModel)]=\"partner.pin\" name=\"pin\"  class=\"form-control\">\n                                        \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"lastActive\">\n                                    Last Active\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                        <input type=\"Date\" [(ngModel)]=\"partner.lastActive\" name=\"lastActive\"  class=\"form-control\">\n                                        \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"creationDate\">\n                                    CreationDate\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                        <input type=\"Date\" [(ngModel)]=\"partner.creationDate\" name=\"creationDate\"  class=\"form-control\">\n                                        \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"partnertypesId\">\n                            Partner Type <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                <select required [(ngModel)]=\"partner.partnertypesId\" name=\"partnertypesId\"  class=\"form-control\" >\n                                        <option *ngFor=\"let c of partnertypesId_list\" value=\"{{ c.id }}\">{{ c.typeName }}</option>\n                                     </select>  \n                            \n\n                            \n                                     \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"offersId\">\n                                    Offer\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                        <select [(ngModel)]=\"partner.offersId\" name=\"offersId\"  class=\"form-control\" >\n                                                <option *ngFor=\"let c of offersId_list\" value=\"{{ c.id }} \">{{ c.offerName }}</option>\n                                             </select>  \n\n                                \n                                            \n                            </div>\n\n                    </div>\n                \n                <div class=\"row\">\n                    <div class=\"col-sm-6 text-left\"><button type=\"button\" class=\"btn btn-success w-md\"\n                            (click)=\"save()\" [disabled]=\"partnerForm.invalid\" >Save</button></div>\n                    <div class=\"col-sm-6 text-right\"><button type=\"button\" class=\"btn btn-secondary w-md\"\n                            (click)=\"cancel()\">Cancel</button></div>\n                </div>\n            </form>\n        </div><!-- end card-->\n    </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -2738,6 +2689,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -2785,10 +2739,15 @@ var PartnerEditComponent = /** @class */ (function () {
     PartnerEditComponent.prototype.cancel = function () {
         this.router.navigate(['/partner']);
     };
+    PartnerEditComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _partner_service__WEBPACK_IMPORTED_MODULE_2__["PartnerService"] }
+    ]; };
     PartnerEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'partner-edit',
-            template: __webpack_require__(/*! ./partner-edit.component.html */ "./src/app/partner/partner-edit/partner-edit.component.html")
+            template: __importDefault(__webpack_require__(/*! raw-loader!./partner-edit.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/partner/partner-edit/partner-edit.component.html")).default
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
@@ -2811,6 +2770,9 @@ var PartnerEditComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PartnerFilter", function() { return PartnerFilter; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var PartnerFilter = /** @class */ (function () {
     function PartnerFilter() {
         this.phone = '';
@@ -2819,17 +2781,6 @@ var PartnerFilter = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/partner/partner-list/partner-list.component.html":
-/*!******************************************************************!*\
-  !*** ./src/app/partner/partner-list/partner-list.component.html ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n  <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n    <li class=\"breadcrumb-item active\">Partners</li>\n  </ol>\n  <h4 class=\"page-title\">Partners List</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n  <div class=\"col-xl-12\">\n    <form #f=\"ngForm\" class=\"card-box\">\n      \n      <div class=\"form-group\">\n        <label>Phone:</label>\n        <input [(ngModel)]=\"filter.phone\" name=\"phone\" class=\"form-control\">\n      </div>\n      \n      <div class=\"form-group\">\n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-default\">\n          Search\n        </button>\n        <a [routerLink]=\"['../partner','new']\" class=\"btn btn-default\">\n          New\n      </a>\n      </div>\n    </form>\n  </div>\n  <div class=\"col-xl-12\">\n    <!-- <a [routerLink]=\"['../partner', 'new' ]\"><button type=\"button\" class=\"btn btn-icon btn-success\"><i\n          class=\"mdi mdi-asterisk\" title=\"New\"></i></button></a> -->\n    <div class=\"card-box\" *ngIf=\"partnerList.length > 0\">\n      <p *ngIf=\"errors\">{{ errors }}</p>\n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n              <th class=\"border-top-0\" scope=\"col\">Id</th>\n              <th class=\"border-top-0\" scope=\"col\">Name</th>\n              <th class=\"border-top-0\" scope=\"col\">Phone</th>\n              <th class=\"border-top-0\" scope=\"col\">AccessToken</th>\n              <th class=\"border-top-0\" scope=\"col\">Is Activated</th>\n              <th class=\"border-top-0\" scope=\"col\">Pin</th>\n              <th class=\"border-top-0\" scope=\"col\">Last Active</th>\n              <th class=\"border-top-0\" scope=\"col\">CreationDate</th>\n              <th class=\"border-top-0\" scope=\"col\">Partner Type</th>\n              <th class=\"border-top-0\" scope=\"col\">Offer</th>\n              <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n            </tr>\n          </thead>\n          <tr *ngFor=\"let item of partnerList\" [class.active]=\"item === selectedPartner\">\n            \n            <td>{{item.id}}</td>\n            <td>{{item.name}}</td>\n            <td>{{item.phone}}</td>\n            <td>{{item.accessToken}}</td>\n            <td>{{item.isActivated}}</td>\n            <td>{{item.pin}}</td>\n            <td>{{item.lastActive}}</td>\n            <td>{{item.creationDate}}</td>\n            <td>{{item.partnertypesId}}</td>\n            <td>{{item.offersId}}</td>\n            <td style=\"white-space: nowrap\"><a\n                [routerLink]=\"['../partner', item.id ]\"><button type=\"button\"\n                  class=\"btn btn-icon btn-secondary\"><i class=\"mdi mdi-grease-pencil\"\n                    title=\"Edit\"></i></button></a>&nbsp;\n              <a (click)=\"delete(item)\"><button type=\"button\" class=\"btn btn-icon btn-danger\"><i class=\"mdi mdi-delete\"\n                    title=\"Delete\"></i></button></a></td>\n          </tr>\n        </table>\n      </div><!-- end table-responsive -->\n    </div><!-- end card-->\n  </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -2854,6 +2805,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -2893,10 +2847,13 @@ var PartnerListComponent = /** @class */ (function () {
             });
         }
     };
+    PartnerListComponent.ctorParameters = function () { return [
+        { type: _partner_service__WEBPACK_IMPORTED_MODULE_2__["PartnerService"] }
+    ]; };
     PartnerListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'partner',
-            template: __webpack_require__(/*! ./partner-list.component.html */ "./src/app/partner/partner-list/partner-list.component.html")
+            template: __importDefault(__webpack_require__(/*! raw-loader!./partner-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/partner/partner-list/partner-list.component.html")).default
         }),
         __metadata("design:paramtypes", [_partner_service__WEBPACK_IMPORTED_MODULE_2__["PartnerService"]])
     ], PartnerListComponent);
@@ -2930,6 +2887,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -2978,6 +2938,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PARTNER_ROUTES", function() { return PARTNER_ROUTES; });
 /* harmony import */ var _partner_list_partner_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./partner-list/partner-list.component */ "./src/app/partner/partner-list/partner-list.component.ts");
 /* harmony import */ var _partner_edit_partner_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./partner-edit/partner-edit.component */ "./src/app/partner/partner-edit/partner-edit.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var PARTNER_ROUTES = [
@@ -3015,12 +2978,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var PartnerService = /** @class */ (function () {
     function PartnerService(http) {
         this.http = http;
-        this.baseUrl = "/partners";
+        this.baseUrl = "http://127.0.0.1:3000/partners";
         this.partnerList = [];
     }
     PartnerService.prototype.findById = function (id) {
@@ -3072,6 +3038,9 @@ var PartnerService = /** @class */ (function () {
         }
         return null;
     };
+    PartnerService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
     PartnerService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
@@ -3093,6 +3062,9 @@ var PartnerService = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Partner", function() { return Partner; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var Partner = /** @class */ (function () {
     function Partner() {
     }
@@ -3100,17 +3072,6 @@ var Partner = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/product/product-edit/product-edit.component.html":
-/*!******************************************************************!*\
-  !*** ./src/app/product/product-edit/product-edit.component.html ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n    <ol class=\"breadcrumb float-right\">\n        <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n        <li class=\"breadcrumb-item active\">Products</li>\n    </ol>\n    <h4 class=\"page-title\">Products Detail</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n    <div class=\"col-xl-12\">\n        <div class=\"card-box\">\n            <p *ngIf=\"errors\">{{ errors }}</p>\n            <form #productForm=\"ngForm\" *ngIf=\"product\" class=\"form-horizontal\">\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"id\">\n                                    Id\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{product.id || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"eng_title\">\n                            Eng Title <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"string\" required [(ngModel)]=\"product.eng_title\" name=\"eng_title\" #eng_title=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"urdu_title\">\n                            Urdu Title <span style=\"color:red\">*</span>\n                        </label>\n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"string\" required [(ngModel)]=\"product.urdu_title\" name=\"urdu_title\" #urdu_title=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"quentityOnHand\">\n                            Quentity On Hand \n                        </label>\n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"number\" readonly [(ngModel)]=\"product.quentityOnHand\" name=\"quentityOnHand\" #quentityOnHand=\"ngModel\"  class=\"form-control\">\n                            </div>\n                    </div>\n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">\n                            Buying Price Unit \n                        </label>\n    \n                        <div class=\"col-sm-10\">\n                            \n                                <select  [(ngModel)]=\"product.buyingPriceUnitsId\" name=\"buyingPriceUnitsId\"  class=\"form-control\" >\n                                        <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                                     </select>       \n                                            \n                            </div>\n                    </div>\n\n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"buyingPrice\">\n                            Buying Price \n                        </label>\n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"number\" [(ngModel)]=\"product.buyingPrice\" name=\"buyingPrice\" #buyingPrice=\"ngModel\"  class=\"form-control\">\n                                                            \n                            </div>\n                    </div>\n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">\n                            Sale Price Unit \n                        </label>\n    \n                        <div class=\"col-sm-10\">\n                            \n                                <select [(ngModel)]=\"product.salePriceUnitsId\" name=\"salePriceUnitsId\"  class=\"form-control\" >\n                                        <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                                     </select>       \n                                            \n                            </div>\n                    </div>\n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"salePrice\">\n                            Sale Price \n                        </label>\n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"number\" [(ngModel)]=\"product.salePrice\" name=\"buyingPrice\" #salePrice=\"ngModel\"  class=\"form-control\">\n                                                            \n                            </div>\n                    </div>\n                    \n\n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">\n                            Retail Price Unit \n                        </label>\n    \n                        <div class=\"col-sm-10\">\n                            \n                                <select  [(ngModel)]=\"product.retailPiceUnitsId\" name=\"retailPiceUnitsId\"  class=\"form-control\" >\n                                        <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                                     </select>       \n                                            \n                            </div>\n                    </div>\n\n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"retailPrice\">\n                            Retail Price \n                        </label>\n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"number\" [(ngModel)]=\"product.retailPrice\" name=\"buyingPrice\" #retailPrice=\"ngModel\"  class=\"form-control\">\n                                                            \n                            </div>\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"producttypesId\">\n                            Product Type <span style=\"color:red\">*</span>\n                        </label>\n                        <div class=\"col-sm-10\">\n                            \n                                <select required [(ngModel)]=\"product.producttypesId\" name=\"producttypesId\"  class=\"form-control\" >\n                                        <option *ngFor=\"let c of producttypesId_list\" value=\"{{ c.id }}\">{{ c.typeName }}</option>\n                                     </select>                                              \n                            </div>\n\n                    </div>\n                   \n                    \n\n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">\n                            Image <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        <div class=\"col-sm-10\">\n                            \n                            <input type=\"file\" required accept=\"image/*\" (change)=\"changeImageListener($event)\">                                                    \n                                  \n                            <img [src]=\"product.image\" style=\"width:100px; height:100px\" />\n                                            \n                            </div>\n\n                    </div>\n\n                \n                <div class=\"row\">\n                    <div class=\"col-sm-6 text-left\"><button type=\"button\" class=\"btn btn-success w-md\"\n                            (click)=\"save()\" [disabled]=\"productForm.invalid\" >Save</button></div>\n                    <div class=\"col-sm-6 text-right\"><button type=\"button\" class=\"btn btn-secondary w-md\"\n                            (click)=\"cancel()\">Cancel</button></div>\n                </div>\n            </form>\n        </div><!-- end card-->\n    </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -3138,6 +3099,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -3203,10 +3167,15 @@ var ProductEditComponent = /** @class */ (function () {
         };
         myReader.readAsDataURL(file);
     };
+    ProductEditComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _product_service__WEBPACK_IMPORTED_MODULE_2__["ProductService"] }
+    ]; };
     ProductEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'product-edit',
-            template: __webpack_require__(/*! ./product-edit.component.html */ "./src/app/product/product-edit/product-edit.component.html")
+            template: __importDefault(__webpack_require__(/*! raw-loader!./product-edit.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/product/product-edit/product-edit.component.html")).default
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
@@ -3229,6 +3198,9 @@ var ProductEditComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductFilter", function() { return ProductFilter; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var ProductFilter = /** @class */ (function () {
     function ProductFilter() {
         this.eng_title = '';
@@ -3237,17 +3209,6 @@ var ProductFilter = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/product/product-list/product-list.component.html":
-/*!******************************************************************!*\
-  !*** ./src/app/product/product-list/product-list.component.html ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n  <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n    <li class=\"breadcrumb-item active\">Products</li>\n  </ol>\n  <h4 class=\"page-title\">Products List</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n  <div class=\"col-xl-12\">\n    <form #f=\"ngForm\" class=\"card-box\">\n      \n      <div class=\"form-group\">\n        <label>Eng Title:</label>\n        <input [(ngModel)]=\"filter.eng_title\" name=\"eng_title\" class=\"form-control\">\n      </div>\n      \n      <div class=\"form-group\">\n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-default\">\n          Search\n        </button>\n        <a [routerLink]=\"['../product','new']\" class=\"btn btn-default\">\n          New\n      </a>\n      </div>\n    </form>\n  </div>\n  <div class=\"col-xl-12\">\n    <!-- <a [routerLink]=\"['../product', 'new' ]\"><button type=\"button\" class=\"btn btn-icon btn-success\"><i\n          class=\"mdi mdi-asterisk\" title=\"New\"></i></button></a> -->\n    <div class=\"card-box\" *ngIf=\"productList.length > 0\">\n      <p *ngIf=\"errors\">{{ errors }}</p>\n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n              <th class=\"border-top-0\" scope=\"col\">Id</th>\n              <th class=\"border-top-0\" scope=\"col\">Eng Title</th>\n              <th class=\"border-top-0\" scope=\"col\">Urdu Title</th>\n              <th class=\"border-top-0\" scope=\"col\">Product Type</th>\n              <th class=\"border-top-0\" scope=\"col\">Quentity On Hand</th>\n              <th class=\"border-top-0\" scope=\"col\">Buying Price</th>\n              <th class=\"border-top-0\" scope=\"col\">Sale Price</th>\n              <th class=\"border-top-0\" scope=\"col\">Retail Price</th>\n              <th class=\"border-top-0\" scope=\"col\">Image</th>\n              <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n            </tr>\n          </thead>\n          <tr *ngFor=\"let item of productList\" [class.active]=\"item === selectedProduct\">\n            \n            <td>{{item.id}}</td>\n            <td>{{item.eng_title}}</td>\n            <td>{{item.urdu_title}}</td>\n            <td>{{item.producttypesId}}</td>\n            <td>{{item.quentityOnHand}}</td>\n            <td>{{item.buyingPrice}}</td>\n            <td>{{item.salePrice}}</td>\n            <td>{{item.retailPrice}}</td>\n            <td><img [src]=\"item.image\" required style=\"width:50px; height:50px\" /></td>\n            <td style=\"white-space: nowrap\"><a\n                [routerLink]=\"['../product', item.id ]\"><button type=\"button\"\n                  class=\"btn btn-icon btn-secondary\"><i class=\"mdi mdi-grease-pencil\"\n                    title=\"Edit\"></i></button></a>&nbsp;\n              <a (click)=\"delete(item)\"><button type=\"button\" class=\"btn btn-icon btn-danger\"><i class=\"mdi mdi-delete\"\n                    title=\"Delete\"></i></button></a></td>\n          </tr>\n        </table>\n      </div><!-- end table-responsive -->\n    </div><!-- end card-->\n  </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -3272,6 +3233,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -3311,10 +3275,13 @@ var ProductListComponent = /** @class */ (function () {
             });
         }
     };
+    ProductListComponent.ctorParameters = function () { return [
+        { type: _product_service__WEBPACK_IMPORTED_MODULE_2__["ProductService"] }
+    ]; };
     ProductListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'product',
-            template: __webpack_require__(/*! ./product-list.component.html */ "./src/app/product/product-list/product-list.component.html")
+            template: __importDefault(__webpack_require__(/*! raw-loader!./product-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/product/product-list/product-list.component.html")).default
         }),
         __metadata("design:paramtypes", [_product_service__WEBPACK_IMPORTED_MODULE_2__["ProductService"]])
     ], ProductListComponent);
@@ -3348,6 +3315,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -3396,6 +3366,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PRODUCT_ROUTES", function() { return PRODUCT_ROUTES; });
 /* harmony import */ var _product_list_product_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./product-list/product-list.component */ "./src/app/product/product-list/product-list.component.ts");
 /* harmony import */ var _product_edit_product_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./product-edit/product-edit.component */ "./src/app/product/product-edit/product-edit.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var PRODUCT_ROUTES = [
@@ -3433,12 +3406,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var ProductService = /** @class */ (function () {
     function ProductService(http) {
         this.http = http;
-        this.baseUrl = "/products";
+        this.baseUrl = "http://127.0.0.1:3000/products";
         this.productList = [];
     }
     ProductService.prototype.findById = function (id) {
@@ -3490,6 +3466,9 @@ var ProductService = /** @class */ (function () {
         }
         return null;
     };
+    ProductService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
     ProductService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
@@ -3511,6 +3490,9 @@ var ProductService = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Product", function() { return Product; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var Product = /** @class */ (function () {
     function Product() {
     }
@@ -3518,17 +3500,6 @@ var Product = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/rateplan/rateplan-edit/rateplan-edit.component.html":
-/*!*********************************************************************!*\
-  !*** ./src/app/rateplan/rateplan-edit/rateplan-edit.component.html ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n    <ol class=\"breadcrumb float-right\">\n        <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n        <li class=\"breadcrumb-item active\">Rateplans</li>\n    </ol>\n    <h4 class=\"page-title\">Rateplans Detail</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n    <div class=\"col-xl-12\">\n        <div class=\"card-box\">\n            <p *ngIf=\"errors\">{{ errors }}</p>\n            <form #rateplanForm=\"ngForm\" *ngIf=\"rateplan\" class=\"form-horizontal\">\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"id\">\n                                    Id\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{rateplan.id || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"ratePlanTitle\">\n                            Rate Plan Title <span style=\"color:red\">*</span>\n                        </label>                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"string\" required [(ngModel)]=\"rateplan.ratePlanTitle\" name=\"ratePlanTitle\" #ratePlanTitle=\"ngModel\"  class=\"form-control\">                        \n                            </div>\n\n                    </div>\n\n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"saleMarkup\">\n                            Sale Markup <span style=\"color:red\">*</span>\n                        </label>                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"number\" required [(ngModel)]=\"rateplan.saleMarkup\" name=\"saleMarkup\" #saleMarkup=\"ngModel\"  class=\"form-control\">                        \n                            </div>\n\n                    </div>\n\n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"retailMarkup\">\n                            Retail Markup <span style=\"color:red\">*</span>\n                        </label>                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"number\" required [(ngModel)]=\"rateplan.retailMarkup\" name=\"retailMarkup\" #retailMarkup=\"ngModel\"  class=\"form-control\">                        \n                            </div>\n\n                    </div>\n\n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"createdDate\">\n                                    Created Date\n                                </label>\n                                                       \n                        <div class=\"col-sm-10\">                            \n                                        <input type=\"date\" [(ngModel)]=\"rateplan.createdDate\" name=\"createdDate\"  class=\"form-control\">                                            \n                            </div>\n                    </div>\n                \n                <div class=\"row\">\n                    <div class=\"col-sm-6 text-left\"><button type=\"button\" class=\"btn btn-success w-md\"\n                            (click)=\"save()\" [disabled]=\"rateplanForm.invalid\" >Save</button></div>\n                    <div class=\"col-sm-6 text-right\"><button type=\"button\" class=\"btn btn-secondary w-md\"\n                            (click)=\"cancel()\">Cancel</button></div>\n                </div>\n            </form>\n        </div><!-- end card-->\n    </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -3556,6 +3527,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -3602,10 +3576,15 @@ var RateplanEditComponent = /** @class */ (function () {
     RateplanEditComponent.prototype.cancel = function () {
         this.router.navigate(['/rateplan']);
     };
+    RateplanEditComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _rateplan_service__WEBPACK_IMPORTED_MODULE_2__["RateplanService"] }
+    ]; };
     RateplanEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'rateplan-edit',
-            template: __webpack_require__(/*! ./rateplan-edit.component.html */ "./src/app/rateplan/rateplan-edit/rateplan-edit.component.html")
+            template: __importDefault(__webpack_require__(/*! raw-loader!./rateplan-edit.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/rateplan/rateplan-edit/rateplan-edit.component.html")).default
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
@@ -3628,6 +3607,9 @@ var RateplanEditComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RateplanFilter", function() { return RateplanFilter; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var RateplanFilter = /** @class */ (function () {
     function RateplanFilter() {
         this.ratePlanTitle = '';
@@ -3636,17 +3618,6 @@ var RateplanFilter = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/rateplan/rateplan-list/rateplan-list.component.html":
-/*!*********************************************************************!*\
-  !*** ./src/app/rateplan/rateplan-list/rateplan-list.component.html ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n  <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n    <li class=\"breadcrumb-item active\">Rateplans</li>\n  </ol>\n  <h4 class=\"page-title\">Rateplans List</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n  <div class=\"col-xl-12\">\n    <form #f=\"ngForm\" class=\"card-box\">\n      \n      <div class=\"form-group\">\n        <label>Rate Plan Title:</label>\n        <input [(ngModel)]=\"filter.ratePlanTitle\" name=\"ratePlanTitle\" class=\"form-control\">\n      </div>\n      \n      <div class=\"form-group\">\n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-default\">\n          Search\n        </button>\n        <a [routerLink]=\"['../rateplan','new']\" class=\"btn btn-default\">\n          New\n      </a>\n      </div>\n    </form>\n  </div>\n  <div class=\"col-xl-12\">\n    <!-- <a [routerLink]=\"['../rateplan', 'new' ]\"><button type=\"button\" class=\"btn btn-icon btn-success\"><i\n          class=\"mdi mdi-asterisk\" title=\"New\"></i></button></a> -->\n    <div class=\"card-box\" *ngIf=\"rateplanList.length > 0\">\n      <p *ngIf=\"errors\">{{ errors }}</p>\n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n              <th class=\"border-top-0\" scope=\"col\">Id</th>\n              <th class=\"border-top-0\" scope=\"col\">Rate Plan Title</th>\n              <th class=\"border-top-0\" scope=\"col\">Created Date</th>\n              <th class=\"border-top-0\" scope=\"col\">Sale Markup</th>\n              <th class=\"border-top-0\" scope=\"col\">Retail Markup</th>\n              <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n            </tr>\n          </thead>\n          <tr *ngFor=\"let item of rateplanList\" [class.active]=\"item === selectedRateplan\">\n            \n            <td>{{item.id}}</td>\n            <td>{{item.ratePlanTitle}}</td>\n            <td>{{item.createdDate | date}}</td>\n            <td>{{item.saleMarkup}}</td>\n            <td>{{item.retailMarkup}}</td>\n            <td style=\"white-space: nowrap\"><a\n                [routerLink]=\"['../rateplan', item.id ]\"><button type=\"button\"\n                  class=\"btn btn-icon btn-secondary\"><i class=\"mdi mdi-grease-pencil\"\n                    title=\"Edit\"></i></button></a>&nbsp;\n              <a (click)=\"delete(item)\"><button type=\"button\" class=\"btn btn-icon btn-danger\"><i class=\"mdi mdi-delete\"\n                    title=\"Delete\"></i></button></a></td>\n          </tr>\n        </table>\n      </div><!-- end table-responsive -->\n    </div><!-- end card-->\n  </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -3671,6 +3642,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -3710,10 +3684,13 @@ var RateplanListComponent = /** @class */ (function () {
             });
         }
     };
+    RateplanListComponent.ctorParameters = function () { return [
+        { type: _rateplan_service__WEBPACK_IMPORTED_MODULE_2__["RateplanService"] }
+    ]; };
     RateplanListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'rateplan',
-            template: __webpack_require__(/*! ./rateplan-list.component.html */ "./src/app/rateplan/rateplan-list/rateplan-list.component.html")
+            template: __importDefault(__webpack_require__(/*! raw-loader!./rateplan-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/rateplan/rateplan-list/rateplan-list.component.html")).default
         }),
         __metadata("design:paramtypes", [_rateplan_service__WEBPACK_IMPORTED_MODULE_2__["RateplanService"]])
     ], RateplanListComponent);
@@ -3747,6 +3724,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -3795,6 +3775,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RATEPLAN_ROUTES", function() { return RATEPLAN_ROUTES; });
 /* harmony import */ var _rateplan_list_rateplan_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rateplan-list/rateplan-list.component */ "./src/app/rateplan/rateplan-list/rateplan-list.component.ts");
 /* harmony import */ var _rateplan_edit_rateplan_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rateplan-edit/rateplan-edit.component */ "./src/app/rateplan/rateplan-edit/rateplan-edit.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var RATEPLAN_ROUTES = [
@@ -3832,12 +3815,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var RateplanService = /** @class */ (function () {
     function RateplanService(http) {
         this.http = http;
-        this.baseUrl = "/rateplans";
+        this.baseUrl = "http://127.0.0.1:3000/rateplans";
         this.rateplanList = [];
     }
     RateplanService.prototype.findById = function (id) {
@@ -3889,6 +3875,9 @@ var RateplanService = /** @class */ (function () {
         }
         return null;
     };
+    RateplanService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
     RateplanService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
@@ -3910,6 +3899,9 @@ var RateplanService = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Rateplan", function() { return Rateplan; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var Rateplan = /** @class */ (function () {
     function Rateplan() {
     }
@@ -3917,17 +3909,6 @@ var Rateplan = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/sidebar/sidebar.component.html":
-/*!************************************************!*\
-  !*** ./src/app/sidebar/sidebar.component.html ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"sidebar-wrapper\">\n  <div class=\"logo\">\n    <a class=\"simple-text\">\n      <div class=\"logo-img\">\n        <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\">\n      </div>\n      Kello\n    </a>\n  </div>\n  <ul class=\"nav\">\n    <li>\n      <a routerLink=\"home\">\n        <i class=\"ti-home\"></i>\n        <p>Dashboard</p>\n      </a>\n    </li>\n\n    <!-- <li>\n      <a routerLink=\"flight\">\n        <i class=\"ti-arrow-top-right\"></i>\n        <p>Flights</p>\n      </a>\n    </li> -->\n\n<li>\n  <a routerLink=\"customer\">\n    <i class=\"ti-user\"></i>\n    <p>Customers</p>\n  </a>\n</li>\n\n<li>\n  <a routerLink=\"partner\">\n    <i class=\"ti-wheelchair\"></i>\n    <p>Partners</p>\n  </a>\n</li>\n\n<li>\n  <a routerLink=\"product\">\n    <i class=\"ti-apple\"></i>\n    <p>Products</p>\n  </a>\n</li>\n\n<li>\n  <a routerLink=\"activation\">\n    <i class=\"ti-lock\"></i>\n    <p>Activations</p>\n  </a>\n</li>\n\n<li>\n  <a routerLink=\"rateplan\">\n    <i class=\"ti-money\"></i>\n    <p>Rate plans</p>\n  </a>\n</li>\n\n<li>\n  <a routerLink=\"offer\">\n    <i class=\"ti-panel\"></i>\n    <p>Offers</p>\n  </a>\n</li>\n\n<li>\n  <a routerLink=\"supply\">\n    <i class=\"ti-car\"></i>\n    <p>Supplies</p>\n  </a>\n</li>\n\n\n    <!--\n    <li>\n        <a routerLink=\"passenger-search\">\n            <i class=\"ti-user\"></i>\n            <p>Passengers</p>\n        </a>\n    </li>\n-->\n\n\n    <!--\n        <li routerLinkActive=\"active\">\n        <a>\n            <i class=\"ti-close\"></i>\n            <p>Hide Basket</p>\n        </a>\n        </li>\n    -->\n\n  </ul>\n</div>\n"
 
 /***/ }),
 
@@ -3948,6 +3929,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 var SidebarComponent = /** @class */ (function () {
     function SidebarComponent() {
@@ -3955,24 +3939,13 @@ var SidebarComponent = /** @class */ (function () {
     SidebarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'sidebar-cmp',
-            template: __webpack_require__(/*! ./sidebar.component.html */ "./src/app/sidebar/sidebar.component.html"),
+            template: __importDefault(__webpack_require__(/*! raw-loader!./sidebar.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/sidebar/sidebar.component.html")).default,
         })
     ], SidebarComponent);
     return SidebarComponent;
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/supply/supply-edit/supply-edit.component.html":
-/*!***************************************************************!*\
-  !*** ./src/app/supply/supply-edit/supply-edit.component.html ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n    <ol class=\"breadcrumb float-right\">\n        <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n        <li class=\"breadcrumb-item active\">Supplies</li>\n    </ol>\n    <h4 class=\"page-title\">Supplies Detail</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n    <div class=\"col-xl-12\">\n        <div class=\"card-box\">\n            <p *ngIf=\"errors\">{{ errors }}</p>\n            \n            <a *ngIf=\"supply.id && supply.isArrived == false \" href=\"javascript:;\" (click)=\"supplyArrived(supply.id)\" class=\"btn btn-default\" style=\"float:right;\">\n                Supply Arrived\n            </a>\n\n            <form #supplyForm=\"ngForm\" *ngIf=\"supply\" class=\"form-horizontal\">\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"id\">\n                                    Id\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{supply.id || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"supplierId\">\n                            Supplier <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        <div class=\"col-sm-10\">\n                            \n                                <select required [(ngModel)]=\"supply.supplierId\" name=\"supplierId\" (change)=\"selectedSupplier($event)\"  class=\"form-control\" >\n                                        <option *ngFor=\"let c of supplierId_list\" value=\"{{ c.id }}\">{{ c.name }}</option>\n                                     </select>              \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"productsId\">\n                            Product <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                <select required [(ngModel)]=\"supply.productsId\" name=\"productsId\" (change)=\"selectedProduct($event)\"  class=\"form-control\" >\n                                        <option *ngFor=\"let c of productsId_list\" value=\"{{ c.id }}\">{{ c.displayName }}</option>\n                                     </select>  \n                            \n\n                            \n                                     \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"referenceNo\">\n                            Reference No <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"string\" required [(ngModel)]=\"supply.referenceNo\" name=\"referenceNo\" #referenceNo=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"quentity\">\n                            Quentity <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"number\" required [(ngModel)]=\"supply.quentity\" name=\"quentity\" #quentity=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n\n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"quentityUnitsId\">\n                            Quentity Unit <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        <div class=\"col-sm-10\">\n                            \n                                <select required [(ngModel)]=\"supply.quentityUnitsId\" name=\"quentityUnitsId\"  class=\"form-control\" >\n                                        <option *ngFor=\"let c of quentityUnitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                                     </select>  \n                                  \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"supplyDate\">\n                                    Supply Date\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                        <input type=\"date\" [(ngModel)]=\"supply.supplyDate\" name=\"supplyDate\"  class=\"form-control\">\n                                        \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"arrivedAt\">\n                                    Arrived At\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                        <input type=\"date\" [(ngModel)]=\"supply.arrivedAt\" name=\"arrivedAt\"  class=\"form-control\">\n                                        \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                            <label class=\"col-sm-2 col-form-label\" for=\"isArrived\">\n                                    Is Arrived\n                                </label>\n                                \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            {{supply.isArrived || 'n/a'}}\n                                \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"purchasingCost\">\n                            Purchasing Cost <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"number\" required [(ngModel)]=\"supply.purchasingCost\" name=\"purchasingCost\" #purchasingCost=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"buyingPriceUnitId\">\n                            Purchasing Price Unit <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        <div class=\"col-sm-10\">\n                            \n                                <select required [(ngModel)]=\"supply.buyingPriceUnitId\" name=\"buyingPriceUnitId\"  class=\"form-control\" >\n                                        <option *ngFor=\"let c of buyingPriceUnitId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                                     </select>  \n                                  \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"travlingCost\">\n                            Travling Cost <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"number\" required [(ngModel)]=\"supply.travlingCost\" name=\"travlingCost\" #travlingCost=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"labourCost\">\n                            Labour Cost <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"number\" required [(ngModel)]=\"supply.labourCost\" name=\"labourCost\" #labourCost=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                   \n                    \n                    <div class=\"form-group row\">\n                            \n                        <label class=\"col-sm-2 col-form-label\" for=\"otherCost\">\n                            Other Cost <span style=\"color:red\">*</span>\n                        </label>\n                        \n                        \n                       \n                        <div class=\"col-sm-10\">\n                            \n                                    <input type=\"number\" required [(ngModel)]=\"supply.otherCost\" name=\"otherCost\" #otherCost=\"ngModel\"  class=\"form-control\">\n                                    \n                                            \n                            </div>\n\n                    </div>\n                \n                <div class=\"row\">\n                    <div class=\"col-sm-6 text-left\"><button type=\"button\" class=\"btn btn-success w-md\"\n                            (click)=\"save()\" [disabled]=\"supplyForm.invalid\" >Save</button></div>\n                    <div class=\"col-sm-6 text-right\"><button type=\"button\" class=\"btn btn-secondary w-md\"\n                            (click)=\"cancel()\">Cancel</button></div>\n                </div>\n            </form>\n        </div><!-- end card-->\n    </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -4004,6 +3977,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -4102,10 +4078,17 @@ var SupplyEditComponent = /** @class */ (function () {
             _this.errors = JSON.stringify(err);
         });
     };
+    SupplyEditComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _supply_service__WEBPACK_IMPORTED_MODULE_2__["SupplyService"] },
+        { type: _partner_partner_service__WEBPACK_IMPORTED_MODULE_4__["PartnerService"] },
+        { type: _product_product_service__WEBPACK_IMPORTED_MODULE_6__["ProductService"] }
+    ]; };
     SupplyEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'supply-edit',
-            template: __webpack_require__(/*! ./supply-edit.component.html */ "./src/app/supply/supply-edit/supply-edit.component.html")
+            template: __importDefault(__webpack_require__(/*! raw-loader!./supply-edit.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/supply/supply-edit/supply-edit.component.html")).default
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
@@ -4130,6 +4113,9 @@ var SupplyEditComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SupplyFilter", function() { return SupplyFilter; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var SupplyFilter = /** @class */ (function () {
     function SupplyFilter() {
         this.referenceNo = '';
@@ -4138,17 +4124,6 @@ var SupplyFilter = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/supply/supply-list/supply-list.component.html":
-/*!***************************************************************!*\
-  !*** ./src/app/supply/supply-list/supply-list.component.html ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n  <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a href=\"javascript:void(0);\">Project</a></li>\n    <li class=\"breadcrumb-item active\">Supplies</li>\n  </ol>\n  <h4 class=\"page-title\">Supplies List</h4>\n</div><!-- End page title box -->\n<div class=\"row\">\n  <div class=\"col-xl-12\">\n    <form #f=\"ngForm\" class=\"card-box\">\n      \n      <div class=\"form-group\">\n        <label>Reference No:</label>\n        <input [(ngModel)]=\"filter.referenceNo\" name=\"referenceNo\" class=\"form-control\">\n      </div>\n      \n      <div class=\"form-group\">\n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-default\">\n          Search\n        </button>\n        <a [routerLink]=\"['../supply','new']\" class=\"btn btn-default\">\n          New\n      </a>\n      </div>\n    </form>\n  </div>\n  <div class=\"col-xl-12\">\n    <!-- <a [routerLink]=\"['../supply', 'new' ]\"><button type=\"button\" class=\"btn btn-icon btn-success\"><i\n          class=\"mdi mdi-asterisk\" title=\"New\"></i></button></a> -->\n    <div class=\"card-box\" *ngIf=\"supplyList.length > 0\">\n      <p *ngIf=\"errors\">{{ errors }}</p>\n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n              <th class=\"border-top-0\" scope=\"col\">Id</th>\n              <th class=\"border-top-0\" scope=\"col\">Supplier</th>\n              <th class=\"border-top-0\" scope=\"col\">Product</th>\n              <th class=\"border-top-0\" scope=\"col\">Reference No</th>\n              <th class=\"border-top-0\" scope=\"col\">Quentity Unit</th>\n              <th class=\"border-top-0\" scope=\"col\">Quentity</th>\n              <th class=\"border-top-0\" scope=\"col\">Quentity On Hand</th>\n              <th class=\"border-top-0\" scope=\"col\">Supply Date</th>\n              <th class=\"border-top-0\" scope=\"col\">Arrived At</th>\n              <th class=\"border-top-0\" scope=\"col\">Is Arrived</th>\n              <th class=\"border-top-0\" scope=\"col\">Purchasing Cost</th>\n              <th class=\"border-top-0\" scope=\"col\">Purchasing Price Unit</th>\n              <th class=\"border-top-0\" scope=\"col\">Travling Cost</th>\n              <th class=\"border-top-0\" scope=\"col\">Labour Cost</th>\n              <th class=\"border-top-0\" scope=\"col\">Other Cost</th>\n              <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n            </tr>\n          </thead>\n          <tr *ngFor=\"let item of supplyList\" [class.active]=\"item === selectedSupply\">\n            \n            <td>{{item.id}}</td>\n            <td>{{item.supplierName}}</td>\n            <td>{{item.productTitle}}</td>\n            <td>{{item.referenceNo}}</td>\n            <td>{{item.quentityUnitsId}}</td>\n            <td>{{item.quentity}}</td>\n            <td>{{item.quentityOnHand}}</td>\n            <td>{{item.supplyDate | date}}</td>\n            <td>{{item.arrivedAt | date}}</td>\n            <td>{{item.isArrived}}</td>\n            <td>{{item.purchasingCost}}</td>\n            <td>{{item.buyingPriceUnitId}}</td>\n            <td>{{item.travlingCost}}</td>\n            <td>{{item.labourCost}}</td>\n            <td>{{item.otherCost}}</td>\n            <td style=\"white-space: nowrap\"><a\n                [routerLink]=\"['../supply', item.id ]\"><button type=\"button\"\n                  class=\"btn btn-icon btn-secondary\"><i class=\"mdi mdi-grease-pencil\"\n                    title=\"Edit\"></i></button></a>&nbsp;\n              <a (click)=\"delete(item)\"><button type=\"button\" class=\"btn btn-icon btn-danger\"><i class=\"mdi mdi-delete\"\n                    title=\"Delete\"></i></button></a></td>\n          </tr>\n        </table>\n      </div><!-- end table-responsive -->\n    </div><!-- end card-->\n  </div><!-- end col -->\n</div><!-- end row -->"
 
 /***/ }),
 
@@ -4173,6 +4148,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -4212,10 +4190,13 @@ var SupplyListComponent = /** @class */ (function () {
             });
         }
     };
+    SupplyListComponent.ctorParameters = function () { return [
+        { type: _supply_service__WEBPACK_IMPORTED_MODULE_2__["SupplyService"] }
+    ]; };
     SupplyListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'supply',
-            template: __webpack_require__(/*! ./supply-list.component.html */ "./src/app/supply/supply-list/supply-list.component.html")
+            template: __importDefault(__webpack_require__(/*! raw-loader!./supply-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/supply/supply-list/supply-list.component.html")).default
         }),
         __metadata("design:paramtypes", [_supply_service__WEBPACK_IMPORTED_MODULE_2__["SupplyService"]])
     ], SupplyListComponent);
@@ -4249,6 +4230,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
@@ -4297,6 +4281,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SUPPLY_ROUTES", function() { return SUPPLY_ROUTES; });
 /* harmony import */ var _supply_list_supply_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./supply-list/supply-list.component */ "./src/app/supply/supply-list/supply-list.component.ts");
 /* harmony import */ var _supply_edit_supply_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./supply-edit/supply-edit.component */ "./src/app/supply/supply-edit/supply-edit.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var SUPPLY_ROUTES = [
@@ -4334,12 +4321,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 var SupplyService = /** @class */ (function () {
     function SupplyService(http) {
         this.http = http;
-        this.baseUrl = "/supplies";
+        this.baseUrl = "http://127.0.0.1:3000/supplies";
         this.supplyList = [];
     }
     SupplyService.prototype.findById = function (id) {
@@ -4398,6 +4388,9 @@ var SupplyService = /** @class */ (function () {
         url = this.baseUrl + "/" + supplyId + "/arrived";
         return this.http.patch(url, {}, { headers: headers, params: params });
     };
+    SupplyService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
     SupplyService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
@@ -4419,6 +4412,9 @@ var SupplyService = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Supply", function() { return Supply; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var Supply = /** @class */ (function () {
     function Supply() {
     }
@@ -4442,6 +4438,9 @@ __webpack_require__.r(__webpack_exports__);
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var environment = {
     production: false
 };
@@ -4469,6 +4468,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm5/platform-browser-dynamic.js");
 /* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 
 
 
@@ -4489,7 +4491,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/bilalmetla/work/portals/gitlab/kilo_admin/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/bilalmetla/work/gitlab/code/kilo/dev_admin_portal/src/main.ts */"./src/main.ts");
 
 
 /***/ })
