@@ -629,7 +629,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var ActivationService = /** @class */ (function () {
     function ActivationService(http) {
         this.http = http;
-        this.baseUrl = "http://kello-dev.herokuapp.com/activations";
+        this.baseUrl = "/activations";
         this.activationList = [];
     }
     ActivationService.prototype.findById = function (id) {
@@ -1230,7 +1230,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var CustomerService = /** @class */ (function () {
     function CustomerService(http) {
         this.http = http;
-        this.baseUrl = "http://kello-dev.herokuapp.com/customers";
+        this.baseUrl = "/customers";
         this.customerList = [];
     }
     CustomerService.prototype.findById = function (id) {
@@ -2584,7 +2584,7 @@ var OrdersService = /** @class */ (function () {
     function OrdersService(http) {
         this.http = http;
         this.ordersList = [];
-        this.api = 'http://kello-dev.herokuapp.com/orders';
+        this.api = '/orders';
     }
     OrdersService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -2986,7 +2986,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var PartnerService = /** @class */ (function () {
     function PartnerService(http) {
         this.http = http;
-        this.baseUrl = "http://kello-dev.herokuapp.com/partners";
+        this.baseUrl = "/partners";
         this.partnerList = [];
     }
     PartnerService.prototype.findById = function (id) {
@@ -3414,7 +3414,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var ProductService = /** @class */ (function () {
     function ProductService(http) {
         this.http = http;
-        this.baseUrl = "http://kello-dev.herokuapp.com/products";
+        this.baseUrl = "/products";
         this.productList = [];
     }
     ProductService.prototype.findById = function (id) {
@@ -3823,7 +3823,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var RateplanService = /** @class */ (function () {
     function RateplanService(http) {
         this.http = http;
-        this.baseUrl = "http://kello-dev.herokuapp.com/rateplans";
+        this.baseUrl = "/rateplans";
         this.rateplanList = [];
     }
     RateplanService.prototype.findById = function (id) {
@@ -4329,7 +4329,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var SupplyService = /** @class */ (function () {
     function SupplyService(http) {
         this.http = http;
-        this.baseUrl = "http://kello-dev.herokuapp.com/supplies";
+        this.baseUrl = "/supplies";
         this.supplyList = [];
     }
     SupplyService.prototype.findById = function (id) {
