@@ -8,7 +8,7 @@
   ],
   "main": "index.js",
   "engines": {
-    "node": "8.9"
+    "node": ">=8.9"
   },
   "scripts": {
     "build": "lb-tsc",
@@ -28,7 +28,6 @@
     "docker:build": "docker build -t kello .",
     "docker:run": "docker run -p 3000:3000 -d kello",
     "migrate": "node ./dist/migrate",
-    
     "start": "node .",
     "prepublishOnly": "npm run test"
   },
@@ -60,6 +59,7 @@
     "loopback-connector-mongodb": "^4.2.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
     "uuid": "^3.3.3"
   },
@@ -76,7 +76,7 @@
     "eslint-plugin-eslint-plugin": "^2.1.0",
     "eslint-plugin-mocha": "^6.2.2",
     "typescript": "~3.7.3",
-    "@types/passport-jwt":"3.0.3",
-    "@types/passport":"1.0.2"
+    "@types/passport-jwt": "3.0.3",
+    "@types/passport": "1.0.2"
   }
 }
