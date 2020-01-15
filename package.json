@@ -7,7 +7,9 @@
     "loopback"
   ],
   "main": "index.js",
-  
+  "engines": {
+    "node": ">=8.9"
+  },
   "scripts": {
     "build": "lb-tsc",
     "build:watch": "lb-tsc --watch",
