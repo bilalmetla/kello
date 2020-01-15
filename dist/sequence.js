@@ -23,25 +23,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const context_1 = require("@loopback/context");
 const rest_1 = require("@loopback/rest");
+const authentication_1 = require("@loopback/authentication");
 const SequenceActions = rest_1.RestBindings.SequenceActions;
 let MySequence = class MySequence {
-    constructor(findRoute, parseParams, invoke, send, reject) {
+    constructor(findRoute, parseParams, invoke, send, reject, authenticateRequest) {
         this.findRoute = findRoute;
         this.parseParams = parseParams;
         this.invoke = invoke;
         this.send = send;
         this.reject = reject;
+        this.authenticateRequest = authenticateRequest;
     }
     handle(context) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { request, response } = context;
                 const route = this.findRoute(request);
+                //call authentication action
+                yield this.authenticateRequest(request);
                 const args = yield this.parseParams(request, route);
                 const result = yield this.invoke(route, args);
                 this.send(response, result);
             }
             catch (err) {
+                if (err.code === 'AUTHENTICATION_STRATEGY_NOT_FOUND' ||
+                    err.code === 'USER_PROFILE_NOT_FOUND') {
+                    Object.assign(err, { statusCode: 401 /* Unauthorized */ });
+                }
                 this.reject(context, err);
             }
         });
@@ -53,7 +61,8 @@ MySequence = __decorate([
     __param(2, context_1.inject(SequenceActions.INVOKE_METHOD)),
     __param(3, context_1.inject(SequenceActions.SEND)),
     __param(4, context_1.inject(SequenceActions.REJECT)),
-    __metadata("design:paramtypes", [Function, Function, Function, Function, Function])
+    __param(5, context_1.inject(authentication_1.AuthenticationBindings.AUTH_ACTION)),
+    __metadata("design:paramtypes", [Function, Function, Function, Function, Function, Function])
 ], MySequence);
 exports.MySequence = MySequence;
 //# sourceMappingURL=sequence.js.map

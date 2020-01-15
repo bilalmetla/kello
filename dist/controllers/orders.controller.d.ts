@@ -13,4 +13,5 @@ export declare class OrdersController {
     replaceById(id: string, orders: Orders): Promise<void>;
     deleteById(id: string): Promise<void>;
     orderDelevered(id: string, where?: Where<Orders>): Promise<object>;
+    orderCancellation(id: string): Promise<object>;
 }

@@ -63,6 +63,14 @@ __decorate([
 ], Orders.prototype, "isDelivered", void 0);
 __decorate([
     repository_1.property({
+        type: 'boolean',
+        required: false,
+        default: false,
+    }),
+    __metadata("design:type", Boolean)
+], Orders.prototype, "isCancelled", void 0);
+__decorate([
+    repository_1.property({
         type: 'string',
     }),
     __metadata("design:type", String)

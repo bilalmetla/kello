@@ -4,7 +4,7 @@ export declare class Customers extends Entity {
     id?: string;
     name: string;
     phone: string;
-    accessToken?: string;
+    access_token?: string;
     isActivated?: boolean;
     createdDate?: string;
     updatedDate?: string;

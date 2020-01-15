@@ -50,7 +50,7 @@ __decorate([
         required: false,
     }),
     __metadata("design:type", String)
-], Partners.prototype, "accessToken", void 0);
+], Partners.prototype, "access_token", void 0);
 __decorate([
     repository_1.property({
         type: 'date',

@@ -47,6 +47,7 @@ let PingController = class PingController {
         this.req = req;
     }
     // Map to `GET /ping`
+    //@secured(SecuredType.IS_AUTHENTICATED)
     ping() {
         // Reply with a greeting, the current time, the url, and request headers
         return {

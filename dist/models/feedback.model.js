@@ -55,6 +55,14 @@ __decorate([
     __metadata("design:type", String)
 ], Feedback.prototype, "message", void 0);
 __decorate([
+    repository_1.property({
+        type: 'boolean',
+        required: false,
+        default: false
+    }),
+    __metadata("design:type", Boolean)
+], Feedback.prototype, "isReviewed", void 0);
+__decorate([
     repository_1.belongsTo(() => customers_model_1.Customers),
     __metadata("design:type", String)
 ], Feedback.prototype, "customersId", void 0);
@@ -66,6 +74,10 @@ __decorate([
     repository_1.belongsTo(() => partners_model_1.Partners),
     __metadata("design:type", String)
 ], Feedback.prototype, "partnersId", void 0);
+__decorate([
+    repository_1.belongsTo(() => partners_model_1.Partners),
+    __metadata("design:type", String)
+], Feedback.prototype, "reviewedById", void 0);
 Feedback = __decorate([
     repository_1.model({ settings: { strict: false } }),
     __metadata("design:paramtypes", [Object])

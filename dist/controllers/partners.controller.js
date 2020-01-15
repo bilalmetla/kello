@@ -27,10 +27,15 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const uuid = require("uuid");
 const constants_1 = require("../constants");
+const auth_1 = require("../auth");
+const util_1 = require("util");
+const { sign } = require('jsonwebtoken');
+const signAsync = util_1.promisify(sign);
 let PartnersController = class PartnersController {
-    constructor(partnersRepository, activationsRepository) {
+    constructor(partnersRepository, activationsRepository, userRepository) {
         this.partnersRepository = partnersRepository;
         this.activationsRepository = activationsRepository;
+        this.userRepository = userRepository;
     }
     create(partners) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -87,16 +92,18 @@ let PartnersController = class PartnersController {
             let foundCust = yield this.partnersRepository.find(filter);
             console.log(foundCust);
             if (foundCust && foundCust.length === 0) {
-                partners.accessToken = uuid.v4();
+                const tokenObject = { username: phone };
+                let token = yield signAsync(tokenObject, auth_1.JWT_SECRET);
+                partners.access_token = token;
                 partners.isActivated = false;
                 let today = new Date();
                 let tomorrow = new Date();
                 tomorrow.setDate(today.getDate() + 1);
                 yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
-                let createdPartner = yield this.partnersRepository.create(partners);
-                delete createdPartner.accessToken;
-                return createdPartner;
-                //throw new HttpErrors.Unauthorized('Please Activate via SMS CODE');    
+                yield this.partnersRepository.create(partners);
+                let user = yield this.userRepository.create({ phone: phone });
+                // delete createdPartner.access_token;
+                return user;
             }
             else {
                 let today = new Date();
@@ -104,7 +111,7 @@ let PartnersController = class PartnersController {
                 tomorrow.setDate(today.getDate() + 1);
                 yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
                 foundCust[0].isActivated = false;
-                foundCust[0].accessToken = uuid.v4();
+                // foundCust[0].access_token = uuid.v4();
                 yield this.partnersRepository.updateAll(foundCust[0], { phone });
                 return foundCust[0];
             }
@@ -349,8 +356,10 @@ __decorate([
 PartnersController = __decorate([
     __param(0, repository_1.repository(repositories_1.PartnersRepository)),
     __param(1, repository_1.repository(repositories_1.ActivationsRepository)),
+    __param(2, repository_1.repository(repositories_1.UserRepository)),
     __metadata("design:paramtypes", [repositories_1.PartnersRepository,
-        repositories_1.ActivationsRepository])
+        repositories_1.ActivationsRepository,
+        repositories_1.UserRepository])
 ], PartnersController);
 exports.PartnersController = PartnersController;
 //# sourceMappingURL=partners.controller.js.map

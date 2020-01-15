@@ -41,4 +41,5 @@ __export(require("./order-ratings-customers.controller"));
 __export(require("./rating-reasons.controller"));
 __export(require("./order-ratings.controller"));
 __export(require("./supply.controller"));
+__export(require("./user.controller"));
 //# sourceMappingURL=index.js.map

@@ -26,11 +26,16 @@ const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const constants_1 = require("../constants");
+const auth_1 = require("../auth");
 const uuid = require("uuid");
+const util_1 = require("util");
+const { sign } = require('jsonwebtoken');
+const signAsync = util_1.promisify(sign);
 let CustomersController = class CustomersController {
-    constructor(customersRepository, activationsRepository) {
+    constructor(customersRepository, activationsRepository, userRepository) {
         this.customersRepository = customersRepository;
         this.activationsRepository = activationsRepository;
+        this.userRepository = userRepository;
     }
     create(customers) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -87,15 +92,19 @@ let CustomersController = class CustomersController {
             let foundCust = yield this.customersRepository.find(filter);
             console.log(foundCust);
             if (foundCust && foundCust.length === 0) {
-                customers.accessToken = uuid.v4();
+                const tokenObject = { username: phone };
+                let token = yield signAsync(tokenObject, auth_1.JWT_SECRET);
+                customers.access_token = token;
+                //customers.access_token = uuid.v4();
                 customers.isActivated = false;
                 let today = new Date();
                 let tomorrow = new Date();
                 tomorrow.setDate(today.getDate() + 1);
                 yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
-                let createdCustomer = yield this.customersRepository.create(customers);
-                delete createdCustomer.accessToken;
-                return createdCustomer;
+                yield this.customersRepository.create(customers);
+                let user = yield this.userRepository.create({ phone: phone });
+                //delete createdCustomer.access_token;
+                return user;
                 //return customer;
                 //throw new HttpErrors.Unauthorized('Please Activate via SMS CODE');    
             }
@@ -105,12 +114,9 @@ let CustomersController = class CustomersController {
                 tomorrow.setDate(today.getDate() + 1);
                 yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
                 foundCust[0].isActivated = false;
-                foundCust[0].accessToken = uuid.v4();
                 yield this.customersRepository.updateAll(foundCust[0], { phone });
-                delete foundCust[0].accessToken;
+                delete foundCust[0].access_token;
                 return foundCust[0];
-                //return await this.customersRepository.findOne({"where":{phone}});
-                // throw new HttpErrors.Unauthorized('Please Activate via SMS CODE');
             }
         });
     }
@@ -124,14 +130,10 @@ let CustomersController = class CustomersController {
                 let customer = { phone, isActivated: true };
                 yield this.customersRepository.updateAll(customer, { phone });
                 yield this.activationsRepository.deleteAll({ phone });
-                return yield this.customersRepository.findOne({ "where": { phone } });
+                const customerInfo = yield this.customersRepository.findOne({ "where": { phone } });
+                return customerInfo;
             }
             else {
-                //throw new HttpErrors.UnprocessableEntity('');
-                // this.response.status(401).send({message: "Activation Failed!"});
-                // let error = new ErrorResponse();
-                // error.message = "Activation Failed!";
-                //error.statusCode = "ER222"
                 return constants_1.CONSTANTS.ACTIVATION_FAILED;
             }
         });
@@ -322,8 +324,10 @@ __decorate([
 CustomersController = __decorate([
     __param(0, repository_1.repository(repositories_1.CustomersRepository)),
     __param(1, repository_1.repository(repositories_1.ActivationsRepository)),
+    __param(2, repository_1.repository(repositories_1.UserRepository)),
     __metadata("design:paramtypes", [repositories_1.CustomersRepository,
-        repositories_1.ActivationsRepository])
+        repositories_1.ActivationsRepository,
+        repositories_1.UserRepository])
 ], CustomersController);
 exports.CustomersController = CustomersController;
 //# sourceMappingURL=customers.controller.js.map

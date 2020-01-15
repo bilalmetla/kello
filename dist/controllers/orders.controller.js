@@ -81,6 +81,20 @@ let OrdersController = class OrdersController {
             return { id };
         });
     }
+    orderCancellation(
+    // @param.path.string('customerId') customerId: string,
+    id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let orders;
+            orders = {
+                "orderStatus": "Cancelled",
+                "isCancelled": true,
+            };
+            yield this.ordersRepository.updateById(id, orders)
+                .catch(error => error);
+            return { id: id };
+        });
+    }
 };
 __decorate([
     rest_1.post('/orders', {
@@ -246,6 +260,24 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "orderDelevered", null);
+__decorate([
+    rest_1.patch('customers/orders/{id}/cancellation', {
+        responses: {
+            '200': {
+                description: 'Order Delivered',
+                content: {
+                    'application/json': {
+                        schema: { type: 'object', properties: { id: { type: "string" } } },
+                    },
+                },
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], OrdersController.prototype, "orderCancellation", null);
 OrdersController = __decorate([
     __param(0, repository_1.repository(repositories_1.OrdersRepository)),
     __metadata("design:paramtypes", [repositories_1.OrdersRepository])

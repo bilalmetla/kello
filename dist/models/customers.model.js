@@ -43,7 +43,7 @@ __decorate([
         type: 'string',
     }),
     __metadata("design:type", String)
-], Customers.prototype, "accessToken", void 0);
+], Customers.prototype, "access_token", void 0);
 __decorate([
     repository_1.property({
         type: 'boolean',

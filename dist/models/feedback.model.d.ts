@@ -5,9 +5,11 @@ export declare class Feedback extends Entity {
     fullname: string;
     phone: string;
     message: string;
+    isReviewed: boolean;
     customersId: string;
     feedbacktypesId: string;
     partnersId: string;
+    reviewedById: string;
     [prop: string]: any;
     constructor(data?: Partial<Feedback>);
 }

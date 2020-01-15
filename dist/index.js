@@ -15,7 +15,16 @@ function main(options = {}) {
     return __awaiter(this, void 0, void 0, function* () {
         const app = new application_1.Kello(options);
         yield app.boot();
-        yield app.start();
+        //await app.start();
+        app.io = require('socket.io')(yield app.start());
+        app.io.on('connection', function (socket) {
+            return __awaiter(this, void 0, void 0, function* () {
+                console.log('connected', socket.id);
+                socket.on('disconnect', function () {
+                    console.log('user disconnected');
+                });
+            });
+        });
         const url = app.restServer.url;
         console.log(`Server is running at ${url}`);
         console.log(`Try ${url}/ping`);

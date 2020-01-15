@@ -10,6 +10,7 @@ export declare class Orders extends Entity {
     orderStatus?: string;
     totalBillAmount: number;
     isDelivered?: boolean;
+    isCancelled?: boolean;
     orderCategory?: string;
     items: object[];
     location?: any;

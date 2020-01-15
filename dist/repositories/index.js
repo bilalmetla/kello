@@ -21,4 +21,7 @@ __export(require("./stock.repository"));
 __export(require("./supply.repository"));
 __export(require("./rating-reasons.repository"));
 __export(require("./order-ratings.repository"));
+__export(require("./role.repository"));
+__export(require("./user-role.repository"));
+__export(require("./user.repository"));
 //# sourceMappingURL=index.js.map

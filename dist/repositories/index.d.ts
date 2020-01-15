@@ -16,3 +16,6 @@ export * from './stock.repository';
 export * from './supply.repository';
 export * from './rating-reasons.repository';
 export * from './order-ratings.repository';
+export * from './role.repository';
+export * from './user-role.repository';
+export * from './user.repository';
