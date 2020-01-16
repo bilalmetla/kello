@@ -19,3 +19,5 @@ export * from './order-ratings.repository';
 export * from './role.repository';
 export * from './user-role.repository';
 export * from './user.repository';
+export * from './promotion.repository';
+export * from './promotiontype.repository';

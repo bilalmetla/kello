@@ -20,17 +20,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const fs_1 = __importDefault(require("fs"));
+const util_1 = __importDefault(require("util"));
+const writeFilePromise = util_1.default.promisify(fs_1.default.writeFile);
+const path_1 = __importDefault(require("path"));
 let ProductsController = class ProductsController {
     constructor(productsRepository) {
         this.productsRepository = productsRepository;
     }
     create(products) {
         return __awaiter(this, void 0, void 0, function* () {
+            products.imageUrl = yield this.convertbase64image(products.displayName, products.image);
+            delete products.image;
             return this.productsRepository.create(products);
         });
     }
@@ -61,6 +70,10 @@ let ProductsController = class ProductsController {
     }
     replaceById(id, products) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (products.image) {
+                products.imageUrl = yield this.convertbase64image(products.displayName, products.image);
+            }
+            delete products.image;
             yield this.productsRepository.replaceById(id, products);
         });
     }
@@ -76,6 +89,17 @@ let ProductsController = class ProductsController {
                 "fields": {}
             };
             return this.productsRepository.find(filter);
+        });
+    }
+    convertbase64image(displayName, image) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let base64String = image;
+            let base64Image = base64String.split(';base64,').pop();
+            let imageName = displayName.replace(' ', '') + '.png';
+            let imagePath = path_1.default.join(__dirname, '../../public/products/images/') + imageName;
+            let imageUrl = '/products/images/' + imageName;
+            yield writeFilePromise(imagePath, base64Image, { encoding: 'base64' });
+            return imageUrl;
         });
     }
 };

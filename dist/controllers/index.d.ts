@@ -37,3 +37,6 @@ export * from './rating-reasons.controller';
 export * from './order-ratings.controller';
 export * from './supply.controller';
 export * from './user.controller';
+export * from './promotion-promotiontype.controller';
+export * from './promotiontype.controller';
+export * from './promotion.controller';

@@ -5,6 +5,7 @@ export declare class Products extends Entity {
     urdu_title: string;
     displayName: string;
     image?: string;
+    imageUrl?: string;
     quentityOnHand?: number;
     buyingPrice?: number;
     salePrice?: number;

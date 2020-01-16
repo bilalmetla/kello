@@ -24,4 +24,6 @@ __export(require("./order-ratings.repository"));
 __export(require("./role.repository"));
 __export(require("./user-role.repository"));
 __export(require("./user.repository"));
+__export(require("./promotion.repository"));
+__export(require("./promotiontype.repository"));
 //# sourceMappingURL=index.js.map

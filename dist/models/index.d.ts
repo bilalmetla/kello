@@ -21,3 +21,5 @@ export * from './user-role.model';
 export * from './order-ratings.model';
 export * from './rating-reasons.model';
 export * from './error-response.model';
+export * from './promotiontype.model';
+export * from './promotion.model';

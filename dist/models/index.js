@@ -26,4 +26,6 @@ __export(require("./user-role.model"));
 __export(require("./order-ratings.model"));
 __export(require("./rating-reasons.model"));
 __export(require("./error-response.model"));
+__export(require("./promotiontype.model"));
+__export(require("./promotion.model"));
 //# sourceMappingURL=index.js.map

@@ -42,4 +42,7 @@ __export(require("./rating-reasons.controller"));
 __export(require("./order-ratings.controller"));
 __export(require("./supply.controller"));
 __export(require("./user.controller"));
+__export(require("./promotion-promotiontype.controller"));
+__export(require("./promotiontype.controller"));
+__export(require("./promotion.controller"));
 //# sourceMappingURL=index.js.map

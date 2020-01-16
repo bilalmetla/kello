@@ -54,6 +54,12 @@ __decorate([
 ], Products.prototype, "image", void 0);
 __decorate([
     repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Products.prototype, "imageUrl", void 0);
+__decorate([
+    repository_1.property({
         type: 'number',
     }),
     __metadata("design:type", Number)

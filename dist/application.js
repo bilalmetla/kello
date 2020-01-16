@@ -19,6 +19,7 @@ class Kello extends boot_1.BootMixin(service_proxy_1.ServiceMixin(repository_1.R
         this.sequence(sequence_1.MySequence);
         // Set up default home page
         this.static('/', path_1.default.join(__dirname, '../public/admin_client'));
+        this.static('/products/images', path_1.default.join(__dirname, '../public/products/images'));
         // Customize @loopback/rest-explorer configuration here
         this.bind(rest_explorer_1.RestExplorerBindings.CONFIG).to({
             path: '/explorer',
