@@ -61,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Customers</li>\n  </ol>\n  <div class=\"card\">\n    <div class=\"header\">\n      <h2 class=\"title\">Customers List</h2>\n    </div>\n    <div class=\"content\">\n      <form #f=\"ngForm\">\n        \n        <!-- <div class=\"form-group\">\n          <label for=\"phone\">Phone:</label>\n          <input [(ngModel)]=\"filter.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n        </div> -->\n        \n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n        <a [routerLink]=\"['../customer', 'new' ]\" class=\"btn btn-default\">New</a>\n      </form>\n    </div>\n  </div>\n  \n  <div class=\"card\" *ngIf=\"customerList.length > 0\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"table-responsive\">\n      <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n        <thead>\n          <tr>\n            <th class=\"border-top-0\" scope=\"col\">Id</th>\n            <th class=\"border-top-0\" scope=\"col\">Name</th>\n            <th class=\"border-top-0\" scope=\"col\">Phone</th>\n            <th class=\"border-top-0\" scope=\"col\">AccessToken</th>\n            <th class=\"border-top-0\" scope=\"col\">Is Activated</th>\n            <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of customerList\" [class.active]=\"item === selectedCustomer\">\n          \n            <td>{{item.id}}</td>\n                                    <td>{{item.name}}</td>\n                                    <td>{{item.phone}}</td>\n                                    <td>{{item.accessToken}}</td>\n                                    <td>{{item.isActivated}}</td>\n            \n            <td style=\"white-space: nowrap\">\n              <a [routerLink]=\"['../customer', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n              <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  ");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Customers</li>\n  </ol>\n  <div class=\"card\">\n    <div class=\"header\">\n      <h2 class=\"title\">Customers List</h2>\n    </div>\n    <div class=\"content\">\n      <form #f=\"ngForm\">\n        \n        <!-- <div class=\"form-group\">\n          <label for=\"phone\">Phone:</label>\n          <input [(ngModel)]=\"filter.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n        </div> -->\n        \n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n        <a [routerLink]=\"['../customer', 'new' ]\" class=\"btn btn-default\">New</a>\n      </form>\n    </div>\n  </div>\n  \n  <div class=\"card\" *ngIf=\"customerList.length > 0\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"table-responsive\">\n      <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n        <thead>\n          <tr>\n            <th class=\"border-top-0\" scope=\"col\">Id</th>\n            <th class=\"border-top-0\" scope=\"col\">Name</th>\n            <th class=\"border-top-0\" scope=\"col\">Phone</th>\n            <!-- <th class=\"border-top-0\" scope=\"col\">AccessToken</th> -->\n            <th class=\"border-top-0\" scope=\"col\">Is Activated</th>\n            <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of customerList\" [class.active]=\"item === selectedCustomer\">\n          \n            <td>{{item.id}}</td>\n                                    <td>{{item.name}}</td>\n                                    <td>{{item.phone}}</td>\n                                    <!-- <td>{{item.accessToken}}</td> -->\n                                    <td>{{item.isActivated}}</td>\n            \n            <td style=\"white-space: nowrap\">\n              <a [routerLink]=\"['../customer', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n              <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  ");
 
 /***/ }),
 
@@ -438,14 +438,14 @@ var ActivationEditComponent = /** @class */ (function () {
             _this.activation = activation;
             _this.errors = 'Save was successful!';
             setTimeout(function () {
-                _this.router.navigate(['/activation']);
+                _this.router.navigate(['/home/activation']);
             }, 1000);
         }, function (err) {
             _this.errors = err;
         });
     };
     ActivationEditComponent.prototype.cancel = function () {
-        this.router.navigate(['/activation']);
+        this.router.navigate(['/home/activation']);
     };
     ActivationEditComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
@@ -646,19 +646,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ACTIVATION_ROUTES", function() { return ACTIVATION_ROUTES; });
 /* harmony import */ var _activation_list_activation_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./activation-list/activation-list.component */ "./src/app/activation/activation-list/activation-list.component.ts");
 /* harmony import */ var _activation_edit_activation_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./activation-edit/activation-edit.component */ "./src/app/activation/activation-edit/activation-edit.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
+
 var ACTIVATION_ROUTES = [
     {
-        path: 'activation',
-        component: _activation_list_activation_list_component__WEBPACK_IMPORTED_MODULE_0__["ActivationListComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'activation',
+                component: _activation_list_activation_list_component__WEBPACK_IMPORTED_MODULE_0__["ActivationListComponent"]
+            }
+        ]
     },
     {
-        path: 'activation/:id',
-        component: _activation_edit_activation_edit_component__WEBPACK_IMPORTED_MODULE_1__["ActivationEditComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'activation/:id',
+                component: _activation_edit_activation_edit_component__WEBPACK_IMPORTED_MODULE_1__["ActivationEditComponent"]
+            }
+        ]
     }
 ];
 
@@ -1079,14 +1093,14 @@ var CustomerEditComponent = /** @class */ (function () {
             _this.customer = customer;
             _this.errors = 'Save was successful!';
             setTimeout(function () {
-                _this.router.navigate(['/customer']);
+                _this.router.navigate(['/home/customer']);
             }, 1000);
         }, function (err) {
             _this.errors = err;
         });
     };
     CustomerEditComponent.prototype.cancel = function () {
-        this.router.navigate(['/customer']);
+        this.router.navigate(['/home/customer']);
     };
     CustomerEditComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
@@ -1286,19 +1300,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CUSTOMER_ROUTES", function() { return CUSTOMER_ROUTES; });
 /* harmony import */ var _customer_list_customer_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./customer-list/customer-list.component */ "./src/app/customer/customer-list/customer-list.component.ts");
 /* harmony import */ var _customer_edit_customer_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./customer-edit/customer-edit.component */ "./src/app/customer/customer-edit/customer-edit.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
+
 var CUSTOMER_ROUTES = [
     {
-        path: 'customer',
-        component: _customer_list_customer_list_component__WEBPACK_IMPORTED_MODULE_0__["CustomerListComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'customer',
+                component: _customer_list_customer_list_component__WEBPACK_IMPORTED_MODULE_0__["CustomerListComponent"]
+            }
+        ]
     },
     {
-        path: 'customer/:id',
-        component: _customer_edit_customer_edit_component__WEBPACK_IMPORTED_MODULE_1__["CustomerEditComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'customer/:id',
+                component: _customer_edit_customer_edit_component__WEBPACK_IMPORTED_MODULE_1__["CustomerEditComponent"]
+            }
+        ]
     }
 ];
 
@@ -1489,14 +1517,14 @@ var CustomerfeedbackEditComponent = /** @class */ (function () {
             _this.customerfeedback = customerfeedback;
             _this.feedback = { type: 'success', message: 'Save was successful!' };
             setTimeout(function () {
-                _this.router.navigate(['/customerfeedbacks']);
+                _this.router.navigate(['/home/customerfeedbacks']);
             }, 1000);
         }, function (err) {
             _this.feedback = { type: 'warning', message: 'Error saving' };
         });
     };
     CustomerfeedbackEditComponent.prototype.cancel = function () {
-        this.router.navigate(['/customerfeedbacks']);
+        this.router.navigate(['/home/customerfeedbacks']);
     };
     CustomerfeedbackEditComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
@@ -1698,19 +1726,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CUSTOMERFEEDBACK_ROUTES", function() { return CUSTOMERFEEDBACK_ROUTES; });
 /* harmony import */ var _customerfeedback_list_customerfeedback_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./customerfeedback-list/customerfeedback-list.component */ "./src/app/customerfeedback/customerfeedback-list/customerfeedback-list.component.ts");
 /* harmony import */ var _customerfeedback_edit_customerfeedback_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./customerfeedback-edit/customerfeedback-edit.component */ "./src/app/customerfeedback/customerfeedback-edit/customerfeedback-edit.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
+
 var CUSTOMERFEEDBACK_ROUTES = [
     {
-        path: 'customerfeedbacks',
-        component: _customerfeedback_list_customerfeedback_list_component__WEBPACK_IMPORTED_MODULE_0__["CustomerfeedbackListComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'customerfeedbacks',
+                component: _customerfeedback_list_customerfeedback_list_component__WEBPACK_IMPORTED_MODULE_0__["CustomerfeedbackListComponent"]
+            }
+        ]
     },
     {
-        path: 'customerfeedbacks/:id',
-        component: _customerfeedback_edit_customerfeedback_edit_component__WEBPACK_IMPORTED_MODULE_1__["CustomerfeedbackEditComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'customerfeedbacks/:id',
+                component: _customerfeedback_edit_customerfeedback_edit_component__WEBPACK_IMPORTED_MODULE_1__["CustomerfeedbackEditComponent"]
+            }
+        ]
     }
 ];
 
@@ -2288,10 +2330,12 @@ var HomeComponent = /** @class */ (function () {
         this.router = router;
         this.loginService = loginService;
         this._userName = '';
-        this.router.navigate([this.loginService.getCurrentUser() || '/home']);
+        var url = this.loginService.getCurrentUser();
+        console.log('url: ', url);
+        this.router.navigate([url || '/login']);
     }
     HomeComponent.prototype.ngOnInit = function () {
-        this.needsLogin = !!this.route.snapshot.params['needsLogin'];
+        //this.needsLogin = !!this.route.snapshot.params['needsLogin'];
     };
     Object.defineProperty(HomeComponent.prototype, "userName", {
         get: function () {
@@ -2743,19 +2787,44 @@ var Hotel = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeLayoutComponent", function() { return HomeLayoutComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _login_login_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../login/login.service */ "./src/app/login/login.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
+
+
 var HomeLayoutComponent = /** @class */ (function () {
-    function HomeLayoutComponent() {
+    function HomeLayoutComponent(route, router, loginService) {
+        // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        // if(!this.currentUser || !this.currentUser.id || !this.currentUser.access_token){
+        //   this.router.navigate(['/login']);
+        // }
+        this.route = route;
+        this.router = router;
+        this.loginService = loginService;
+        //  this.router.navigate([this.loginService.getCurrentUser() || '/home'])
+        var url = this.loginService.getCurrentUser();
+        console.log('HomeLayoutComponent url', url);
+        if (url === '/login') {
+            this.router.navigate(['/login']);
+        }
     }
+    HomeLayoutComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _login_login_service__WEBPACK_IMPORTED_MODULE_2__["LoginService"] }
+    ]; };
     HomeLayoutComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-home-layout',
@@ -2764,7 +2833,10 @@ var HomeLayoutComponent = /** @class */ (function () {
             //   <router-outlet></router-outlet>
             // `,
             template: __importDefault(__webpack_require__(/*! raw-loader!../app.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html")).default
-        })
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _login_login_service__WEBPACK_IMPORTED_MODULE_2__["LoginService"]])
     ], HomeLayoutComponent);
     return HomeLayoutComponent;
 }());
@@ -2850,8 +2922,16 @@ var LoginComponent = /** @class */ (function () {
         this.feedback = {};
     }
     LoginComponent.prototype.ngOnInit = function () {
+        var url = this.loginService.getCurrentUser();
+        console.log('login com. url', url);
+        if (url === '/login') {
+            this.router.navigate(['/login']);
+        }
+        else {
+            this.router.navigate(['/home']);
+        }
         // reset login status
-        this.loginService.logout();
+        //this.loginService.logout();
         // get return url from route parameters or default to '/'
         // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     };
@@ -3031,7 +3111,9 @@ var LoginService = /** @class */ (function () {
             //this.router.navigate(['/login']);
             return '/login';
         }
-        return '';
+        else {
+            return '';
+        }
     };
     LoginService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
@@ -3166,14 +3248,14 @@ var OrderratingEditComponent = /** @class */ (function () {
             _this.orderrating = orderrating;
             _this.feedback = { type: 'success', message: 'Save was successful!' };
             setTimeout(function () {
-                _this.router.navigate(['/orderratings']);
+                _this.router.navigate(['/home/orderratings']);
             }, 1000);
         }, function (err) {
             _this.feedback = { type: 'warning', message: 'Error saving' };
         });
     };
     OrderratingEditComponent.prototype.cancel = function () {
-        this.router.navigate(['/orderratings']);
+        this.router.navigate(['/home/orderratings']);
     };
     OrderratingEditComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
@@ -3390,19 +3472,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ORDERRATING_ROUTES", function() { return ORDERRATING_ROUTES; });
 /* harmony import */ var _orderrating_list_orderrating_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./orderrating-list/orderrating-list.component */ "./src/app/orderrating/orderrating-list/orderrating-list.component.ts");
 /* harmony import */ var _orderrating_edit_orderrating_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./orderrating-edit/orderrating-edit.component */ "./src/app/orderrating/orderrating-edit/orderrating-edit.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
+
 var ORDERRATING_ROUTES = [
     {
-        path: 'orderratings',
-        component: _orderrating_list_orderrating_list_component__WEBPACK_IMPORTED_MODULE_0__["OrderratingListComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'orderratings',
+                component: _orderrating_list_orderrating_list_component__WEBPACK_IMPORTED_MODULE_0__["OrderratingListComponent"]
+            }
+        ]
     },
     {
-        path: 'orderratings/:id',
-        component: _orderrating_edit_orderrating_edit_component__WEBPACK_IMPORTED_MODULE_1__["OrderratingEditComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'orderratings/:id',
+                component: _orderrating_edit_orderrating_edit_component__WEBPACK_IMPORTED_MODULE_1__["OrderratingEditComponent"]
+            }
+        ]
     }
 ];
 
@@ -3596,14 +3692,14 @@ var OrdersEditComponent = /** @class */ (function () {
             _this.orders = orders;
             _this.feedback = { type: 'success', message: 'Save was successful!' };
             setTimeout(function () {
-                _this.router.navigate(['/orderses']);
+                _this.router.navigate(['/home/orderses']);
             }, 1000);
         }, function (err) {
             _this.feedback = { type: 'warning', message: 'Error saving' };
         });
     };
     OrdersEditComponent.prototype.cancel = function () {
-        this.router.navigate(['/orderses']);
+        this.router.navigate(['/home/orderses']);
     };
     OrdersEditComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
@@ -3802,19 +3898,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ORDERS_ROUTES", function() { return ORDERS_ROUTES; });
 /* harmony import */ var _orders_list_orders_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./orders-list/orders-list.component */ "./src/app/orders/orders-list/orders-list.component.ts");
 /* harmony import */ var _orders_edit_orders_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./orders-edit/orders-edit.component */ "./src/app/orders/orders-edit/orders-edit.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
+
 var ORDERS_ROUTES = [
     {
-        path: 'orderses',
-        component: _orders_list_orders_list_component__WEBPACK_IMPORTED_MODULE_0__["OrdersListComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'orderses',
+                component: _orders_list_orders_list_component__WEBPACK_IMPORTED_MODULE_0__["OrdersListComponent"]
+            }
+        ]
     },
     {
-        path: 'orderses/:id',
-        component: _orders_edit_orders_edit_component__WEBPACK_IMPORTED_MODULE_1__["OrdersEditComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'orderses/:id',
+                component: _orders_edit_orders_edit_component__WEBPACK_IMPORTED_MODULE_1__["OrdersEditComponent"]
+            }
+        ]
     }
 ];
 
@@ -3998,14 +4108,14 @@ var PartnerEditComponent = /** @class */ (function () {
             _this.partner = partner;
             _this.errors = 'Save was successful!';
             setTimeout(function () {
-                _this.router.navigate(['/partner']);
+                _this.router.navigate(['/home/partner']);
             }, 1000);
         }, function (err) {
             _this.errors = err;
         });
     };
     PartnerEditComponent.prototype.cancel = function () {
-        this.router.navigate(['/partner']);
+        this.router.navigate(['/home/partner']);
     };
     PartnerEditComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
@@ -4206,19 +4316,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PARTNER_ROUTES", function() { return PARTNER_ROUTES; });
 /* harmony import */ var _partner_list_partner_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./partner-list/partner-list.component */ "./src/app/partner/partner-list/partner-list.component.ts");
 /* harmony import */ var _partner_edit_partner_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./partner-edit/partner-edit.component */ "./src/app/partner/partner-edit/partner-edit.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
+
 var PARTNER_ROUTES = [
     {
-        path: 'partner',
-        component: _partner_list_partner_list_component__WEBPACK_IMPORTED_MODULE_0__["PartnerListComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'partner',
+                component: _partner_list_partner_list_component__WEBPACK_IMPORTED_MODULE_0__["PartnerListComponent"]
+            }
+        ]
     },
     {
-        path: 'partner/:id',
-        component: _partner_edit_partner_edit_component__WEBPACK_IMPORTED_MODULE_1__["PartnerEditComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'partner/:id',
+                component: _partner_edit_partner_edit_component__WEBPACK_IMPORTED_MODULE_1__["PartnerEditComponent"]
+            }
+        ]
     }
 ];
 
@@ -4414,14 +4538,14 @@ var ProductEditComponent = /** @class */ (function () {
             _this.product = product;
             _this.errors = 'Save was successful!';
             setTimeout(function () {
-                _this.router.navigate(['/product']);
+                _this.router.navigate(['/home/product']);
             }, 1000);
         }, function (err) {
             _this.errors = err;
         });
     };
     ProductEditComponent.prototype.cancel = function () {
-        this.router.navigate(['/product']);
+        this.router.navigate(['/home/product']);
     };
     ProductEditComponent.prototype.changeImageListener = function ($event) {
         this.readImage($event.target);
@@ -4634,19 +4758,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PRODUCT_ROUTES", function() { return PRODUCT_ROUTES; });
 /* harmony import */ var _product_list_product_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./product-list/product-list.component */ "./src/app/product/product-list/product-list.component.ts");
 /* harmony import */ var _product_edit_product_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./product-edit/product-edit.component */ "./src/app/product/product-edit/product-edit.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
+
 var PRODUCT_ROUTES = [
     {
-        path: 'product',
-        component: _product_list_product_list_component__WEBPACK_IMPORTED_MODULE_0__["ProductListComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'product',
+                component: _product_list_product_list_component__WEBPACK_IMPORTED_MODULE_0__["ProductListComponent"]
+            }
+        ]
     },
     {
-        path: 'product/:id',
-        component: _product_edit_product_edit_component__WEBPACK_IMPORTED_MODULE_1__["ProductEditComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'product/:id',
+                component: _product_edit_product_edit_component__WEBPACK_IMPORTED_MODULE_1__["ProductEditComponent"]
+            }
+        ]
     }
 ];
 
@@ -5311,14 +5449,14 @@ var SupplyEditComponent = /** @class */ (function () {
             _this.supply = supply;
             _this.errors = 'Save was successful!';
             setTimeout(function () {
-                _this.router.navigate(['/supply']);
+                _this.router.navigate(['/home/supply']);
             }, 1000);
         }, function (err) {
             _this.errors = 'Error saving';
         });
     };
     SupplyEditComponent.prototype.cancel = function () {
-        this.router.navigate(['/supply']);
+        this.router.navigate(['/home/supply']);
     };
     SupplyEditComponent.prototype.selectedProduct = function ($event) {
         var _this = this;
@@ -5549,19 +5687,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SUPPLY_ROUTES", function() { return SUPPLY_ROUTES; });
 /* harmony import */ var _supply_list_supply_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./supply-list/supply-list.component */ "./src/app/supply/supply-list/supply-list.component.ts");
 /* harmony import */ var _supply_edit_supply_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./supply-edit/supply-edit.component */ "./src/app/supply/supply-edit/supply-edit.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
 
+
 var SUPPLY_ROUTES = [
     {
-        path: 'supply',
-        component: _supply_list_supply_list_component__WEBPACK_IMPORTED_MODULE_0__["SupplyListComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'supply',
+                component: _supply_list_supply_list_component__WEBPACK_IMPORTED_MODULE_0__["SupplyListComponent"]
+            }
+        ]
     },
     {
-        path: 'supply/:id',
-        component: _supply_edit_supply_edit_component__WEBPACK_IMPORTED_MODULE_1__["SupplyEditComponent"]
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'supply/:id',
+                component: _supply_edit_supply_edit_component__WEBPACK_IMPORTED_MODULE_1__["SupplyEditComponent"]
+            }
+        ]
     }
 ];
 
