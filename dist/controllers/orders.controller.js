@@ -75,24 +75,35 @@ let OrdersController = class OrdersController {
             orders = {
                 "isDelivered": true,
                 "orderStatus": "Completed",
+                "completionTime": new Date(),
             };
             let orderUpdated = yield this.ordersRepository.updateById(id, orders);
             console.log("orderUpdated: ", orderUpdated);
-            return { id };
+            // orders.id = id;
+            return { id: id, isDelivered: orders.isDelivered, orderStatus: orders.orderStatus };
         });
     }
-    orderCancellation(
-    // @param.path.string('customerId') customerId: string,
-    id) {
+    orderCancellation(customersId, id) {
         return __awaiter(this, void 0, void 0, function* () {
             let orders;
             orders = {
                 "orderStatus": "Cancelled",
                 "isCancelled": true,
             };
-            yield this.ordersRepository.updateById(id, orders)
-                .catch(error => error);
+            yield this.ordersRepository.updateAll({ where: { and: [{ id: id }, { customersId: customersId }] } }, orders);
             return { id: id };
+        });
+    }
+    orderStartProgress(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let orders;
+            orders = {
+                "orderStatus": "InProgress",
+                "startProgressTime": new Date()
+            };
+            yield this.ordersRepository.updateById(id, orders);
+            return { id: id, orderStatus: orders.orderStatus };
+            ;
         });
     }
 };
@@ -242,7 +253,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "deleteById", null);
 __decorate([
-    rest_1.patch('/orders/{id}/delevered', {
+    rest_1.put('/orders/{id}/delevered', {
         responses: {
             '200': {
                 description: 'Order Delivered',
@@ -261,7 +272,26 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "orderDelevered", null);
 __decorate([
-    rest_1.patch('customers/orders/{id}/cancellation', {
+    rest_1.patch('customers/{customersId}/orders/{id}/cancellation', {
+        responses: {
+            '200': {
+                description: 'Order Delivered',
+                content: {
+                    'application/json': {
+                        schema: { type: 'object', properties: { id: { type: "string" } } },
+                    },
+                },
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('customersId')),
+    __param(1, rest_1.param.path.string('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], OrdersController.prototype, "orderCancellation", null);
+__decorate([
+    rest_1.put('/orders/{id}/startProgress', {
         responses: {
             '200': {
                 description: 'Order Delivered',
@@ -277,7 +307,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], OrdersController.prototype, "orderCancellation", null);
+], OrdersController.prototype, "orderStartProgress", null);
 OrdersController = __decorate([
     __param(0, repository_1.repository(repositories_1.OrdersRepository)),
     __metadata("design:paramtypes", [repositories_1.OrdersRepository])

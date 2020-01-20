@@ -5,8 +5,9 @@ export interface OrderLocationObject {
 }
 export declare class Orders extends Entity {
     id?: string;
-    orderTime?: string;
-    completionTime?: string;
+    orderTime?: Date;
+    completionTime?: Date;
+    startProgressTime?: Date;
     orderStatus?: string;
     totalBillAmount: number;
     isDelivered?: boolean;

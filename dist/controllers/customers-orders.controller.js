@@ -27,15 +27,18 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const constants_1 = require("../constants");
 let CustomersOrdersController = class CustomersOrdersController {
-    constructor(customersRepository, partnersRepository, productsRepository, orderdetailsRepository) {
+    constructor(customersRepository, partnersRepository, productsRepository, orderdetailsRepository, ordersRepository) {
         this.customersRepository = customersRepository;
         this.partnersRepository = partnersRepository;
         this.productsRepository = productsRepository;
         this.orderdetailsRepository = orderdetailsRepository;
+        this.ordersRepository = ordersRepository;
     }
     find(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.customersRepository.orders(id).find(filter);
+            return this.customersRepository.orders(id).find({ include: [{ relation: "orders" }] });
+            //console.log('fetching orders');
+            //return this.ordersRepository.dataSource.execute({}, ['id'])// .findOne({where:{customersId: id}});
         });
     }
     create(id, orders) {
@@ -216,10 +219,12 @@ CustomersOrdersController = __decorate([
     __param(1, repository_1.repository(repositories_1.PartnersRepository)),
     __param(2, repository_1.repository(repositories_1.ProductsRepository)),
     __param(3, repository_1.repository(repositories_1.OrderdetailsRepository)),
+    __param(4, repository_1.repository(repositories_1.OrdersRepository)),
     __metadata("design:paramtypes", [repositories_1.CustomersRepository,
         repositories_1.PartnersRepository,
         repositories_1.ProductsRepository,
-        repositories_1.OrderdetailsRepository])
+        repositories_1.OrderdetailsRepository,
+        repositories_1.OrdersRepository])
 ], CustomersOrdersController);
 exports.CustomersOrdersController = CustomersOrdersController;
 //# sourceMappingURL=customers-orders.controller.js.map
