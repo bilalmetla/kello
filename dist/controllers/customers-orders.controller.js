@@ -36,7 +36,7 @@ let CustomersOrdersController = class CustomersOrdersController {
     }
     find(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.customersRepository.orders(id).find(filter);
+            return this.customersRepository.orders(id).find({ where: { customersId: id } });
             //console.log('fetching orders');
             //   return this.ordersRepository.find({
             //         where: {customersId : '5dc97f1aa3434647421ebef7'}

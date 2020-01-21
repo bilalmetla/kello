@@ -52,7 +52,7 @@ __decorate([
     __metadata("design:type", String)
 ], OrderRatings.prototype, "customersId", void 0);
 OrderRatings = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], OrderRatings);
 exports.OrderRatings = OrderRatings;

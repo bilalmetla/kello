@@ -31,7 +31,7 @@ __decorate([
     __metadata("design:type", String)
 ], Role.prototype, "description", void 0);
 Role = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], Role);
 exports.Role = Role;

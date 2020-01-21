@@ -79,7 +79,7 @@ __decorate([
     __metadata("design:type", String)
 ], Feedback.prototype, "reviewedById", void 0);
 Feedback = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], Feedback);
 exports.Feedback = Feedback;

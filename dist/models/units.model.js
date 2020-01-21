@@ -45,7 +45,7 @@ __decorate([
     __metadata("design:type", String)
 ], Units.prototype, "unitShortName", void 0);
 Units = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], Units);
 exports.Units = Units;

@@ -71,7 +71,7 @@ __decorate([
     __metadata("design:type", String)
 ], Orderdetails.prototype, "salePriceUnitsId", void 0);
 Orderdetails = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], Orderdetails);
 exports.Orderdetails = Orderdetails;

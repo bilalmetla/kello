@@ -59,7 +59,7 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 User = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], User);
 exports.User = User;

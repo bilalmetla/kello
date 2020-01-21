@@ -73,7 +73,7 @@ __decorate([
     __metadata("design:type", Array)
 ], Customers.prototype, "orders", void 0);
 Customers = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], Customers);
 exports.Customers = Customers;

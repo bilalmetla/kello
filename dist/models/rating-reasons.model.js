@@ -31,7 +31,7 @@ __decorate([
     __metadata("design:type", String)
 ], RatingReasons.prototype, "reason", void 0);
 RatingReasons = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], RatingReasons);
 exports.RatingReasons = RatingReasons;

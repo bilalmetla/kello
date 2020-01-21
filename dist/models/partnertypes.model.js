@@ -31,7 +31,7 @@ __decorate([
     __metadata("design:type", String)
 ], Partnertypes.prototype, "typeName", void 0);
 Partnertypes = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], Partnertypes);
 exports.Partnertypes = Partnertypes;

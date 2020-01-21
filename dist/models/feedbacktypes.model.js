@@ -31,7 +31,7 @@ __decorate([
     __metadata("design:type", String)
 ], Feedbacktypes.prototype, "typeName", void 0);
 Feedbacktypes = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], Feedbacktypes);
 exports.Feedbacktypes = Feedbacktypes;

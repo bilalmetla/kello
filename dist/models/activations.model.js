@@ -51,7 +51,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Activations.prototype, "emailCode", void 0);
 Activations = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], Activations);
 exports.Activations = Activations;

@@ -31,7 +31,7 @@ __decorate([
     __metadata("design:type", String)
 ], Orderstatuses.prototype, "title", void 0);
 Orderstatuses = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], Orderstatuses);
 exports.Orderstatuses = Orderstatuses;

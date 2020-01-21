@@ -123,7 +123,7 @@ __decorate([
     __metadata("design:type", String)
 ], Supply.prototype, "quentityUnitsId", void 0);
 Supply = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], Supply);
 exports.Supply = Supply;

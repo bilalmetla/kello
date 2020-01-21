@@ -38,7 +38,7 @@ __decorate([
     __metadata("design:type", String)
 ], Promotiontype.prototype, "description", void 0);
 Promotiontype = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], Promotiontype);
 exports.Promotiontype = Promotiontype;

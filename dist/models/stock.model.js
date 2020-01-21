@@ -41,7 +41,7 @@ __decorate([
     __metadata("design:type", String)
 ], Stock.prototype, "unitsId", void 0);
 Stock = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])
 ], Stock);
 exports.Stock = Stock;
