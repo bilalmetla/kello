@@ -27,7 +27,7 @@ export declare class MyAuthMetadataProvider extends AuthMetadataProvider {
     constructor(_controllerClass: Constructor<{}>, _methodName: string);
     value(): MyAuthenticationMetadata | undefined;
 }
-export declare const JWT_SECRET = "changeme";
+export declare const JWT_SECRET = "SSS@123456789";
 export interface Credentials {
     username: string;
     password: string;

@@ -40,6 +40,20 @@ __decorate([
 ], Promotion.prototype, "description", void 0);
 __decorate([
     repository_1.property({
+        type: 'number',
+        required: true,
+    }),
+    __metadata("design:type", Number)
+], Promotion.prototype, "promotionValue", void 0);
+__decorate([
+    repository_1.property({
+        type: 'boolean',
+        default: false,
+    }),
+    __metadata("design:type", Boolean)
+], Promotion.prototype, "isPromotionValueFixed", void 0);
+__decorate([
+    repository_1.property({
         type: 'string',
     }),
     __metadata("design:type", String)

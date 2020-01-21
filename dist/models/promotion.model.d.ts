@@ -3,6 +3,8 @@ export declare class Promotion extends Entity {
     id?: string;
     title: string;
     description: string;
+    promotionValue: number;
+    isPromotionValueFixed: boolean;
     imageUrl?: string;
     effectiveDate?: string;
     endDate: string;

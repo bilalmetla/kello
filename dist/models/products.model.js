@@ -77,6 +77,13 @@ __decorate([
         default: 0,
     }),
     __metadata("design:type", Number)
+], Products.prototype, "totalCost", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        default: 0,
+    }),
+    __metadata("design:type", Number)
 ], Products.prototype, "salePrice", void 0);
 __decorate([
     repository_1.property({
@@ -87,10 +94,9 @@ __decorate([
 ], Products.prototype, "retailPrice", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
-        default: 0,
+        type: 'string',
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Products.prototype, "description", void 0);
 __decorate([
     repository_1.belongsTo(() => units_model_1.Units),

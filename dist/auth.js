@@ -76,7 +76,7 @@ MyAuthMetadataProvider = __decorate([
 ], MyAuthMetadataProvider);
 exports.MyAuthMetadataProvider = MyAuthMetadataProvider;
 // the JWT_secret to encrypt and decrypt JWT token
-exports.JWT_SECRET = 'changeme';
+exports.JWT_SECRET = 'SSS@123456789';
 // implement custom namespace bindings
 var MyAuthBindings;
 (function (MyAuthBindings) {

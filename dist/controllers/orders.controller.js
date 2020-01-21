@@ -77,8 +77,8 @@ let OrdersController = class OrdersController {
                 "orderStatus": "Completed",
                 "completionTime": new Date(),
             };
-            let orderUpdated = yield this.ordersRepository.updateById(id, orders);
-            console.log("orderUpdated: ", orderUpdated);
+            yield this.ordersRepository.updateById(id, orders);
+            //console.log("orderUpdated: ", orderUpdated);
             // orders.id = id;
             return { id: id, isDelivered: orders.isDelivered, orderStatus: orders.orderStatus };
         });
@@ -90,8 +90,9 @@ let OrdersController = class OrdersController {
                 "orderStatus": "Cancelled",
                 "isCancelled": true,
             };
-            yield this.ordersRepository.updateAll({ where: { and: [{ id: id }, { customersId: customersId }] } }, orders);
-            return { id: id };
+            //await this.ordersRepository.updateAll({where: {and:[{id:id}, {customersId: customersId}]} }, orders)
+            yield this.ordersRepository.updateById(id, orders);
+            return { id: id, orderStatus: orders.orderStatus, isCancelled: orders.isCancelled };
         });
     }
     orderStartProgress(id) {
@@ -253,7 +254,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "deleteById", null);
 __decorate([
-    rest_1.put('/orders/{id}/delevered', {
+    rest_1.patch('/orders/{id}/delevered', {
         responses: {
             '200': {
                 description: 'Order Delivered',

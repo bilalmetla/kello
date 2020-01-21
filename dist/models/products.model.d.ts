@@ -8,9 +8,10 @@ export declare class Products extends Entity {
     imageUrl?: string;
     quentityOnHand?: number;
     buyingPrice?: number;
+    totalCost?: number;
     salePrice?: number;
     retailPrice?: number;
-    description?: number;
+    description?: string;
     buyingPriceUnitsId: string;
     salePriceUnitsId: string;
     retailPiceUnitsId: string;
