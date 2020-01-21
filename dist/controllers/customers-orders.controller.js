@@ -36,9 +36,12 @@ let CustomersOrdersController = class CustomersOrdersController {
     }
     find(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.customersRepository.orders(id).find({ include: [{ relation: "orders" }] });
+            return this.customersRepository.orders(id).find(filter);
             //console.log('fetching orders');
-            //return this.ordersRepository.dataSource.execute({}, ['id'])// .findOne({where:{customersId: id}});
+            //   return this.ordersRepository.find({
+            //         where: {customersId : '5dc97f1aa3434647421ebef7'}
+            //     }
+            // )
         });
     }
     create(id, orders) {

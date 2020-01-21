@@ -14,6 +14,10 @@ const orderstatuses_model_1 = require("./orderstatuses.model");
 const orderdetails_model_1 = require("./orderdetails.model");
 const partners_model_1 = require("./partners.model");
 let Orders = class Orders extends repository_1.Entity {
+    // Define well-known properties here
+    // Indexer property to allow additional data
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //[prop: string]: any;
     constructor(data) {
         super(data);
     }

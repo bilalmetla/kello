@@ -19,7 +19,6 @@ export declare class Orders extends Entity {
     customersId?: string;
     orderdetails: Orderdetails[];
     partnersId: string;
-    [prop: string]: any;
     constructor(data?: Partial<Orders>);
 }
 export interface OrdersRelations {

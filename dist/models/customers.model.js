@@ -12,6 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const orders_model_1 = require("./orders.model");
 let Customers = class Customers extends repository_1.Entity {
+    // Define well-known properties here
+    // Indexer property to allow additional data
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //[prop: string]: any;
     constructor(data) {
         super(data);
     }

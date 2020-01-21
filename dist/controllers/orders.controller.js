@@ -107,6 +107,12 @@ let OrdersController = class OrdersController {
             ;
         });
     }
+    orderHistory(customersId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.ordersRepository.find({ where: { customersId: customersId } });
+            //return {id: id, orderStatus: orders.orderStatus, isCancelled: orders.isCancelled};
+        });
+    }
 };
 __decorate([
     rest_1.post('/orders', {
@@ -309,6 +315,24 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "orderStartProgress", null);
+__decorate([
+    rest_1.get('customers/{customersId}/orders/history', {
+        responses: {
+            '200': {
+                description: 'Order History',
+                content: {
+                    'application/json': {
+                        schema: { type: 'object', properties: { customersId: { type: "string" } } },
+                    },
+                },
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('customersId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], OrdersController.prototype, "orderHistory", null);
 OrdersController = __decorate([
     __param(0, repository_1.repository(repositories_1.OrdersRepository)),
     __metadata("design:paramtypes", [repositories_1.OrdersRepository])

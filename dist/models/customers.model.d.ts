@@ -9,7 +9,6 @@ export declare class Customers extends Entity {
     createdDate?: string;
     updatedDate?: string;
     orders: Orders[];
-    [prop: string]: any;
     constructor(data?: Partial<Customers>);
 }
 export interface CustomersRelations {
