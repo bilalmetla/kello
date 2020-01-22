@@ -95,6 +95,7 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'string',
+        default: ''
     }),
     __metadata("design:type", String)
 ], Products.prototype, "description", void 0);

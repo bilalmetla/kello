@@ -12,4 +12,5 @@ export declare class PromotionController {
     updateById(id: string, promotion: Promotion): Promise<void>;
     replaceById(id: string, promotion: Promotion): Promise<void>;
     deleteById(id: string): Promise<void>;
+    convertbase64image(imagename: string, image: string): Promise<string>;
 }

@@ -91,13 +91,13 @@ let ProductsController = class ProductsController {
             return this.productsRepository.find(filter);
         });
     }
-    convertbase64image(displayName, image) {
+    convertbase64image(imagename, image) {
         return __awaiter(this, void 0, void 0, function* () {
             let base64String = image;
             let base64Image = base64String.split(';base64,').pop();
-            let imageName = displayName.replace(' ', '') + '.png';
-            let imagePath = path_1.default.join(__dirname, '../../public/products/images/') + imageName;
-            let imageUrl = '/products/images/' + imageName;
+            imagename = imagename.replace(' ', '') + '.png';
+            let imagePath = path_1.default.join(__dirname, '../../public/products/images/') + imagename;
+            let imageUrl = '/products/images/' + imagename;
             yield writeFilePromise(imagePath, base64Image, { encoding: 'base64' });
             return imageUrl;
         });

@@ -13,5 +13,5 @@ export declare class ProductsController {
     replaceById(id: string, products: Products): Promise<void>;
     deleteById(id: string): Promise<void>;
     findByProductTypeId(producttypesId: string): Promise<Products[]>;
-    convertbase64image(displayName: string, image: string): Promise<string>;
+    convertbase64image(imagename: string, image: string): Promise<string>;
 }

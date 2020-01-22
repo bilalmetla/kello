@@ -217,7 +217,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Orders</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Orders Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"orders\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{orders.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Order Time</label>\n        {{orders.orderTime || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Order Status</label>\n        {{orders.orderStatus || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Total Bill Amount</label>\n        {{orders.totalBillAmount || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Is Delivered</label>\n        {{orders.isDelivered || false}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Ordered By</label>\n        {{orders.orderCategory || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Customer Id</label>\n        {{orders.customersId || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Partner Id</label>\n        {{orders.partnersId || 'n/a'}} \n      </div>\n    \n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n              \n              <th class=\"border-top-0\" scope=\"col\">Product Title</th>\n              <th class=\"border-top-0\" scope=\"col\">Quentity</th>\n              <th class=\"border-top-0\" scope=\"col\">QuentityUnit</th>\n              \n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let product of orders.items\" [class.active]=\"product === selectedOrders\">\n            \n              <td>{{product.productTitle}}</td>\n              <td>{{product.quantity}}</td>\n              <td>{{product.quentityUnit}}</td>\n              \n            </tr>\n          </tbody>\n        </table>\n      </div>\n\n      <!-- <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button> -->\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Orders</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Orders Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"orders\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{orders.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Order Time</label>\n        {{orders.orderTime || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Order Status</label>\n        {{orders.orderStatus || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Total Bill Amount</label>\n        {{orders.totalBillAmount || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Is Delivered</label>\n        {{orders.isDelivered || false}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Ordered By</label>\n        {{orders.orderCategory || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Customer Id</label>\n        {{orders.customersId || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Partner Id</label>\n        {{orders.partnersId || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Special Notes</label>\n        {{orders.specialNotes || 'n/a'}} \n      </div>\n    \n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n              \n              <th class=\"border-top-0\" scope=\"col\">Product Title</th>\n              <th class=\"border-top-0\" scope=\"col\">Quentity</th>\n              <th class=\"border-top-0\" scope=\"col\">QuentityUnit</th>\n              \n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let product of orders.items\" [class.active]=\"product === selectedOrders\">\n            \n              <td>{{product.productTitle}}</td>\n              <td>{{product.quantity}}</td>\n              <td>{{product.quentityUnit}}</td>\n              \n            </tr>\n          </tbody>\n        </table>\n      </div>\n\n      <!-- <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button> -->\n      <button *ngIf=\"orders.orderStatus=='Pending'\" type=\"button\" class=\"btn btn-secondary\" (click)=\"orderStartProgress()\">Start Progress</button>\n      <button *ngIf=\"orders.orderStatus=='InProgress'\" type=\"button\" class=\"btn btn-secondary\" (click)=\"orderDelivered()\">Order Delivered</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -269,7 +269,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n\n<div class=\"page-title-box\">\n        \n    <ol class=\"breadcrumb float-right\">\n                \n        <li class=\"breadcrumb-item\">\n            <a href=\"javascript:void(0);\">Project</a>\n        </li>\n                <li class=\"breadcrumb-item active\">Products</li>\n            \n    </ol>\n        <h4 class=\"page-title\">Products Detail</h4>\n    \n</div>\n<!-- End page title box -->\n\n<div class=\"row\">\n        \n    <div class=\"col-xl-12\">\n                \n        <div class=\"card-box\">\n                        <p *ngIf=\"errors\">{{ errors }}</p>\n                        \n            <form #productForm=\"ngForm\" *ngIf=\"product\" class=\"form-horizontal\">\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{product.id || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"eng_title\">\n                                                    Eng Title <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"string\" required [(ngModel)]=\"product.eng_title\" name=\"eng_title\" #eng_title=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"urdu_title\">\n                                                    Urdu Title <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"string\" required [(ngModel)]=\"product.urdu_title\" name=\"urdu_title\" #urdu_title=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                        \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"quentityOnHand\">                            Quentity On Hand                         </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" readonly [(ngModel)]=\"product.quentityOnHand\" name=\"quentityOnHand\" #quentityOnHand=\"ngModel\" class=\"form-control\">                            \n                    </div>\n                                        \n                </div>\n                                                        \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Buying Price Unit                         </label>\n                                                \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select [(ngModel)]=\"product.buyingPriceUnitsId\" name=\"buyingPriceUnitsId\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                                                                 \n                        </select>\n                                                                                                \n                    </div>\n                                        \n                </div>\n                                    \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"buyingPrice\">                            Buying Price                         </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" [(ngModel)]=\"product.buyingPrice\" name=\"buyingPrice\" #buyingPrice=\"ngModel\" class=\"form-control\">                                                                                        \n                    </div>\n                                        \n                </div>\n                                                        \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Sale Price Unit                         </label>\n                                                \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select [(ngModel)]=\"product.salePriceUnitsId\" name=\"salePriceUnitsId\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                                                                 \n                        </select>\n                                                                                                \n                    </div>\n                                        \n                </div>\n                                                        \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"salePrice\">                            Sale Price                         </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" [(ngModel)]=\"product.salePrice\" name=\"buyingPrice\" #salePrice=\"ngModel\" class=\"form-control\">                                                                                        \n                    </div>\n                                        \n                </div>\n                                                        \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Retail Price Unit                         </label>\n                                                \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select [(ngModel)]=\"product.retailPiceUnitsId\" name=\"retailPiceUnitsId\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                                                                 \n                        </select>\n                                                                                                \n                    </div>\n                                        \n                </div>\n                                    \n                <div class=\"form-group row\">\n                                                                        <label class=\"col-sm-2 col-form-label\" for=\"retailPrice\">                            Retail Price                         </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"number\" [(ngModel)]=\"product.retailPrice\" name=\"buyingPrice\" #retailPrice=\"ngModel\" class=\"form-control\">                                                                                        \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"producttypesId\">\n                                                    Product Type <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                            \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select required [(ngModel)]=\"product.producttypesId\" name=\"producttypesId\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of producttypesId_list\" value=\"{{ c.id }}\">{{ c.typeName }}</option>\n                                                                 \n                        </select>\n                                                    \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">\n                                                    Image <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                    \n                    <div class=\"col-sm-10\">\n                                                                                <input type=\"file\" required accept=\"image/*\" (change)=\"changeImageListener($event)\">\n                                                                                      <img [src]=\"product.image\" style=\"width:100px; height:100px\"/>                                                                        \n                    </div>\n                                        \n                </div>\n                                                \n                <div class=\"row\">\n                                        \n                    <div class=\"col-sm-6 text-left\">\n                        <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"productForm.invalid\">Save</button>\n                    </div>\n                                        \n                    <div class=\"col-sm-6 text-right\">\n                        <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n                    </div>\n                                    \n                </div>\n                            \n            </form>\n                    \n        </div>\n        <!-- end card-->\n            \n    </div>\n    <!-- end col -->\n    \n</div>\n<!-- end row -->\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n   <ol class=\"breadcrumb float-right\">\n      <li class=\"breadcrumb-item\">\n         <a href=\"javascript:void(0);\">Project</a>\n      </li>\n      <li class=\"breadcrumb-item active\">Products</li>\n   </ol>\n   <h4 class=\"page-title\">Products Detail</h4>\n</div>\n<!-- End page title box -->\n<div class=\"row\">\n   <div class=\"col-xl-12\">\n      <div class=\"card-box\">\n         <p *ngIf=\"errors\">{{ errors }}</p>\n         <form #productForm=\"ngForm\" *ngIf=\"product\" class=\"form-horizontal\">\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n               <div class=\"col-sm-10\">                            {{product.id || 'n/a'}}                                                                                                        </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"eng_title\">\n               Eng Title <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"string\" required [(ngModel)]=\"product.eng_title\" name=\"eng_title\" #eng_title=\"ngModel\" class=\"form-control\">                                                                                                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"urdu_title\">\n               Urdu Title <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"string\" required [(ngModel)]=\"product.urdu_title\" name=\"urdu_title\" #urdu_title=\"ngModel\" class=\"form-control\">                                                                                                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"quentityOnHand\">                            Quentity On Hand                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" readonly [(ngModel)]=\"product.quentityOnHand\" name=\"quentityOnHand\" #quentityOnHand=\"ngModel\" class=\"form-control\">                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Buying Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.buyingPriceUnitsId\" name=\"buyingPriceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"buyingPrice\">                            Buying Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.buyingPrice\" name=\"buyingPrice\" #buyingPrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Sale Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.salePriceUnitsId\" name=\"salePriceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"salePrice\">                            Sale Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.salePrice\" name=\"buyingPrice\" #salePrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Retail Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.retailPiceUnitsId\" name=\"retailPiceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"retailPrice\">                            Retail Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.retailPrice\" name=\"buyingPrice\" #retailPrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"producttypesId\">\n               Product Type <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <select required [(ngModel)]=\"product.producttypesId\" name=\"producttypesId\" class=\"form-control\">\n                  <option *ngFor=\"let c of producttypesId_list\" value=\"{{ c.id }}\">{{ c.typeName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n                <label class=\"col-sm-2 col-form-label\" for=\"description\">        \n                                       Description                         </label>\n                <div class=\"col-sm-10\">\n                   <textarea [(ngModel)]=\"product.description\" name=\"description\" #description=\"ngModel\" class=\"form-control\"> \n                       </textarea>                                                                                       \n                </div>\n             </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"image\">\n               Image <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"file\" required accept=\"image/*\" (change)=\"changeImageListener($event)\">\n                  <img [src]=\"product.image\" style=\"width:100px; height:100px\"/>                                                                        \n               </div>\n            </div>\n            <div class=\"row\">\n               <div class=\"col-sm-6 text-left\">\n                  <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"productForm.invalid\">Save</button>\n               </div>\n               <div class=\"col-sm-6 text-right\">\n                  <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n               </div>\n            </div>\n         </form>\n      </div>\n      <!-- end card-->\n   </div>\n   <!-- end col -->\n</div>\n<!-- end row -->");
 
 /***/ }),
 
@@ -283,6 +283,32 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Products</li>\n  </ol>\n  <div class=\"card\">\n    <div class=\"header\">\n      <h2 class=\"title\">Products List</h2>\n    </div>\n    <div class=\"content\">\n      <form #f=\"ngForm\">\n        \n        <div class=\"form-group\">\n          <label for=\"eng_title\">Eng Title:</label>\n          <input [(ngModel)]=\"filter.eng_title\" id=\"eng_title\" name=\"eng_title\" class=\"form-control\">\n        </div>\n        \n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n        <a [routerLink]=\"['../product', 'new' ]\" class=\"btn btn-default\">New</a>\n      </form>\n    </div>\n  </div>\n  \n  <div class=\"card\" *ngIf=\"productList.length > 0\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"table-responsive\">\n      <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n        <thead>\n          <tr>\n            <th class=\"border-top-0\" scope=\"col\">Id</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Eng Title</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Urdu Title</th>\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Product Type</th> -->\n                                          <th class=\"border-top-0\" scope=\"col\">Quentity On Hand</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Buying Price</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Sale Price</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Retail Price</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Image</th>\n                                          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of productList\" [class.active]=\"item === selectedProduct\">\n          \n            <td>{{item.id}}</td>\n                                    <td>{{item.eng_title}}</td>\n                                    <td>{{item.urdu_title}}</td>\n                                    <!-- <td>{{item.producttypesId}}</td> -->\n                                    <td>{{item.quentityOnHand}}</td>\n                                    <td>{{item.buyingPrice}}</td>\n                                    <td>{{item.salePrice}}</td>\n                                    <td>{{item.retailPrice}}</td>\n                                    <td>\n                                        <img src=\"{{item.imageUrl}}\" required style=\"width:50px; height:50px\"/>\n                                    </td>\n            \n            <td style=\"white-space: nowrap\">\n              <a [routerLink]=\"['../product', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n              <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  ");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/promotion/promotion-edit/promotion-edit.component.html":
+/*!**************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/promotion/promotion-edit/promotion-edit.component.html ***!
+  \**************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Promotion</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Promotion Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"promotion\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{promotion.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"title\">Title</label>\n        <input [(ngModel)]=\"promotion.title\" id=\"title\" name=\"title\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"promotionValue\">Promotion Value</label>\n        <input type=\"number\" [(ngModel)]=\"promotion.promotionValue\" id=\"promotionValue\" name=\"promotionValue\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"isPromotionValueFixed\">Is Promotion Value Fixed</label>\n        <input type=\"checkbox\" [(ngModel)]=\"promotion.isPromotionValueFixed\" id=\"isPromotionValueFixed\" name=\"isPromotionValueFixed\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"effectiveDate\">Effective Date</label>\n        <input type=\"date\" [(ngModel)]=\"promotion.effectiveDate\" id=\"effectiveDate\" name=\"effectiveDate\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"endDate\">End Date</label>\n        <input  type=\"date\" [(ngModel)]=\"promotion.endDate\" id=\"endDate\" name=\"endDate\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"description\">Description</label>\n        <input [(ngModel)]=\"promotion.description\" id=\"description\" name=\"description\" class=\"form-control\">\n      </div>\n\n      <div class=\"form-group row\">\n        <label class=\"col-sm-2 col-form-label\" for=\"image\">\n        Image <span style=\"color:red\">*</span>\n        </label>\n        <div class=\"col-sm-10\">\n           <input type=\"file\" required accept=\"image/*\" (change)=\"changeImageListener($event)\">\n           <img [src]=\"promotion.image\" style=\"width:100px; height:100px\"/>                                                                        \n        </div>\n     </div>\n    \n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/promotion/promotion-list/promotion-list.component.html":
+/*!**************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/promotion/promotion-list/promotion-list.component.html ***!
+  \**************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Promotion</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Promotion List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"title\">Title:</label>\n        <input [(ngModel)]=\"filter.title\" id=\"title\" name=\"title\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../promotions', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"promotionList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Title</th>\n          <th class=\"border-top-0\" scope=\"col\">Promotion Value</th>\n          <th class=\"border-top-0\" scope=\"col\">Is Promotion Value Fixed</th>\n          <th class=\"border-top-0\" scope=\"col\">Effective Date</th>\n          <th class=\"border-top-0\" scope=\"col\">End Date</th>\n          <th class=\"border-top-0\" scope=\"col\">Description</th>\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of promotionList\" [class.active]=\"item === selectedPromotion\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.title}}</td>\n          <td>{{item.promotionValue}}</td>\n          <td>{{item.isPromotionValueFixed}}</td>\n          <td>{{item.effectiveDate}}</td>\n          <td>{{item.endDate}}</td>\n          <td>{{item.description}}</td>\n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../promotions', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n            <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -321,7 +347,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"sidebar-wrapper\">\n      \n    <div class=\"logo\">\n            \n        <a class=\"simple-text\">\n                  \n            <div class=\"logo-img\" >\n                        <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\">      \n            </div>\n                  Kello    \n        </a>\n          \n    </div>\n      \n    <ul class=\"nav\">\n            \n        <li>\n                  \n            <a routerLink=\"home\">\n                        <i class=\"ti-home\"></i>\n                        <p>Dashboard</p>\n                      \n            </a>\n                \n        </li>\n            \n        <!-- <li>      <a routerLink=\"flight\">        <i class=\"ti-arrow-top-right\"></i>        <p>Flights</p>      </a>    </li> -->\n        \n        <li>\n              \n          <a routerLink=\"activation\">\n                  <i class=\"ti-lock\"></i>\n                  <p>Activations</p>\n                \n          </a>\n          \n      </li>\n\n        <li>\n              \n            <a routerLink=\"customer\">\n                    <i class=\"ti-user\"></i>\n                    <p>Customers</p>\n                  \n            </a>\n            \n        </li>\n        \n        <li>\n              \n            <a routerLink=\"partner\">\n                    <i class=\"ti-wheelchair\"></i>\n                    <p>Partners</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n              \n          <a routerLink=\"orderses\">\n                  <i class=\"ti-receipt\"></i>\n                  <p>Orders</p>\n                \n          </a>\n          \n      </li>\n        \n        <li>\n              \n            <a routerLink=\"product\">\n                    <i class=\"ti-apple\"></i>\n                    <p>Products</p>\n                  \n            </a>\n            \n        </li>\n                        \n        <!-- <li>\n              \n            <a routerLink=\"offer\">\n                    <i class=\"ti-panel\"></i>\n                    <p>Offers</p>\n                  \n            </a>\n            \n        </li> -->\n        \n        <li>\n            <a routerLink=\"supply\">\n                    <i class=\"ti-car\"></i>\n                    <p>Supplies</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"customerfeedbacks\">\n                    <i class=\"ti-comment\"></i>\n                    <p>FeedBack</p>  \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"orderratings\">\n                    <i class=\"ti-bar-chart\"></i>\n                    <p>Order Ratings</p>      \n            </a>\n        </li>\n\n        <!-- <li>\n              \n          <a routerLink=\"rateplan\">\n                  <i class=\"ti-money\"></i>\n                  <p>Rate plans</p>  \n          </a>\n      </li> -->\n            \n        <!--    <li>        <a routerLink=\"passenger-search\">            <i class=\"ti-user\"></i>            <p>Passengers</p>        </a>    </li>-->\n            \n        <!--        <li routerLinkActive=\"active\">        <a>            <i class=\"ti-close\"></i>            <p>Hide Basket</p>        </a>        </li>    -->\n          \n    </ul>\n    \n</div>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"sidebar-wrapper\">\n      \n    <div class=\"logo\">\n            \n        <a class=\"simple-text\">\n                  \n            <div class=\"logo-img\" >\n                        <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\">      \n            </div>\n                  Kello    \n        </a>\n          \n    </div>\n      \n    <ul class=\"nav\">\n            \n        <li>\n                  \n            <a routerLink=\"home\">\n                        <i class=\"ti-home\"></i>\n                        <p>Dashboard</p>\n                      \n            </a>\n                \n        </li>\n            \n        <!-- <li>      <a routerLink=\"flight\">        <i class=\"ti-arrow-top-right\"></i>        <p>Flights</p>      </a>    </li> -->\n        \n        <li>\n              \n          <a routerLink=\"activation\">\n                  <i class=\"ti-lock\"></i>\n                  <p>Activations</p>\n                \n          </a>\n          \n      </li>\n\n        <li>\n              \n            <a routerLink=\"customer\">\n                    <i class=\"ti-user\"></i>\n                    <p>Customers</p>\n                  \n            </a>\n            \n        </li>\n        \n        <li>\n              \n            <a routerLink=\"partner\">\n                    <i class=\"ti-wheelchair\"></i>\n                    <p>Partners</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n              \n          <a routerLink=\"orderses\">\n                  <i class=\"ti-receipt\"></i>\n                  <p>Orders</p>\n                \n          </a>\n          \n      </li>\n        \n        <li>\n              \n            <a routerLink=\"product\">\n                    <i class=\"ti-apple\"></i>\n                    <p>Products</p>\n                  \n            </a>\n            \n        </li>\n                        \n        <!-- <li>\n              \n            <a routerLink=\"offer\">\n                    <i class=\"ti-panel\"></i>\n                    <p>Offers</p>\n                  \n            </a>\n            \n        </li> -->\n        \n        <li>\n            <a routerLink=\"supply\">\n                    <i class=\"ti-car\"></i>\n                    <p>Supplies</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"customerfeedbacks\">\n                    <i class=\"ti-comment\"></i>\n                    <p>FeedBack</p>  \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"orderratings\">\n                    <i class=\"ti-bar-chart\"></i>\n                    <p>Order Ratings</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"promotions\">\n                    <i class=\"ti-alarm-clock\"></i>\n                    <p>Offers/Promotions</p>      \n            </a>\n        </li>\n\n        <!-- <li>\n              \n          <a routerLink=\"rateplan\">\n                  <i class=\"ti-money\"></i>\n                  <p>Rate plans</p>  \n          </a>\n      </li> -->\n            \n        <!--    <li>        <a routerLink=\"passenger-search\">            <i class=\"ti-user\"></i>            <p>Passengers</p>        </a>    </li>-->\n            \n        <!--        <li routerLinkActive=\"active\">        <a>            <i class=\"ti-close\"></i>            <p>Hide Basket</p>        </a>        </li>    -->\n          \n    </ul>\n    \n</div>\n\n");
 
 /***/ }),
 
@@ -882,6 +908,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./customerfeedback/customerfeedback.module */ "./src/app/customerfeedback/customerfeedback.module.ts");
 /* harmony import */ var _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./orderrating/orderrating.module */ "./src/app/orderrating/orderrating.module.ts");
 /* harmony import */ var _login_login_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./login/login.module */ "./src/app/login/login.module.ts");
+/* harmony import */ var _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./promotion/promotion.module */ "./src/app/promotion/promotion.module.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -902,6 +929,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+
 
 
 
@@ -946,6 +974,7 @@ var AppModule = /** @class */ (function () {
                 _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_20__["CustomerfeedbackModule"],
                 _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_21__["OrderratingModule"],
                 _login_login_module__WEBPACK_IMPORTED_MODULE_22__["LoginModule"],
+                _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_23__["PromotionModule"],
             ],
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
@@ -3701,6 +3730,26 @@ var OrdersEditComponent = /** @class */ (function () {
     OrdersEditComponent.prototype.cancel = function () {
         this.router.navigate(['/home/orderses']);
     };
+    OrdersEditComponent.prototype.orderStartProgress = function () {
+        var _this = this;
+        this.ordersService.orderStartProgress(this.orders).subscribe(function (resp) {
+            // this.orders = orders;
+            _this.feedback = { type: 'success', message: 'Progress started!' };
+            _this.orders.orderStatus = resp.orderStatus;
+        }, function (err) {
+            _this.feedback = { type: 'warning', message: 'Error saving' };
+        });
+    };
+    OrdersEditComponent.prototype.orderDelivered = function () {
+        var _this = this;
+        this.ordersService.orderDelivered(this.orders).subscribe(function (resp) {
+            //this.orders = orders;
+            _this.feedback = { type: 'success', message: 'Delivered successful!' };
+            _this.orders.orderStatus = resp.orderStatus;
+        }, function (err) {
+            _this.feedback = { type: 'warning', message: 'Error saving' };
+        });
+    };
     OrdersEditComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
@@ -4005,6 +4054,26 @@ var OrdersService = /** @class */ (function () {
             return this.http.delete(url, { headers: headers, params: params });
         }
         return null;
+    };
+    OrdersService.prototype.orderStartProgress = function (entity) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        if (entity.id) {
+            url = this.api + "/" + entity.id.toString() + "/startProgress";
+            // params = new HttpParams().set('ID', entity.id.toString());
+            return this.http.put(url, entity, { headers: headers, params: params });
+        }
+        else {
+            url = "" + this.api;
+            return this.http.post(url, { headers: headers, params: params });
+        }
+    };
+    OrdersService.prototype.orderDelivered = function (entity) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        url = this.api + "/" + entity.id.toString() + "/delevered";
+        //params = new HttpParams().set('ID', entity.id.toString());
+        return this.http.patch(url, { headers: headers, params: params });
     };
     OrdersService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
@@ -4526,7 +4595,7 @@ var ProductEditComponent = /** @class */ (function () {
             _this.errors = err;
         });
         this.producttypesId_list = [{ id: 1, typeName: "Vegitables" }, { id: 2, typeName: "Fruites" }];
-        this.unitsId_list = [{ id: 1, unitDisplayName: "kg" }];
+        this.unitsId_list = [{ id: 1, unitDisplayName: "kg" }, { id: 2, unitDisplayName: "dozen" }, { id: 3, unitDisplayName: "250 GM" }];
     };
     ProductEditComponent.prototype.save = function () {
         var _this = this;
@@ -4903,6 +4972,437 @@ var Product = /** @class */ (function () {
     function Product() {
     }
     return Product;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/promotion/promotion-edit/promotion-edit.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/promotion/promotion-edit/promotion-edit.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: PromotionEditComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PromotionEditComponent", function() { return PromotionEditComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _promotion_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../promotion.service */ "./src/app/promotion/promotion.service.ts");
+/* harmony import */ var _promotion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../promotion */ "./src/app/promotion/promotion.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+
+
+
+var PromotionEditComponent = /** @class */ (function () {
+    function PromotionEditComponent(route, router, promotionService) {
+        this.route = route;
+        this.router = router;
+        this.promotionService = promotionService;
+        this.feedback = {};
+    }
+    PromotionEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this
+            .route
+            .params
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (p) { return p.id; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (id) {
+            if (id === 'new') {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(new _promotion__WEBPACK_IMPORTED_MODULE_3__["Promotion"]());
+            }
+            return _this.promotionService.findById(id);
+        }))
+            .subscribe(function (promotion) {
+            _this.promotion = promotion;
+            _this.feedback = {};
+        }, function (err) {
+            _this.feedback = { type: 'warning', message: 'Error loading' };
+        });
+    };
+    PromotionEditComponent.prototype.save = function () {
+        var _this = this;
+        this.promotionService.save(this.promotion).subscribe(function (promotion) {
+            _this.promotion = promotion;
+            _this.feedback = { type: 'success', message: 'Save was successful!' };
+            setTimeout(function () {
+                _this.router.navigate(['/home/promotions']);
+            }, 1000);
+        }, function (err) {
+            _this.feedback = { type: 'warning', message: 'Error saving' };
+        });
+    };
+    PromotionEditComponent.prototype.cancel = function () {
+        this.router.navigate(['/home/promotions']);
+    };
+    PromotionEditComponent.prototype.changeImageListener = function ($event) {
+        this.readImage($event.target);
+    };
+    PromotionEditComponent.prototype.readImage = function (inputValue) {
+        var _this = this;
+        var file = inputValue.files[0];
+        var myReader = new FileReader();
+        myReader.onloadend = function (e) {
+            _this.promotion.image = myReader.result.toString();
+        };
+        myReader.readAsDataURL(file);
+    };
+    PromotionEditComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _promotion_service__WEBPACK_IMPORTED_MODULE_2__["PromotionService"] }
+    ]; };
+    PromotionEditComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-promotion-edit',
+            template: __importDefault(__webpack_require__(/*! raw-loader!./promotion-edit.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/promotion/promotion-edit/promotion-edit.component.html")).default
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _promotion_service__WEBPACK_IMPORTED_MODULE_2__["PromotionService"]])
+    ], PromotionEditComponent);
+    return PromotionEditComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/promotion/promotion-filter.ts":
+/*!***********************************************!*\
+  !*** ./src/app/promotion/promotion-filter.ts ***!
+  \***********************************************/
+/*! exports provided: PromotionFilter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PromotionFilter", function() { return PromotionFilter; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var PromotionFilter = /** @class */ (function () {
+    function PromotionFilter() {
+        this.title = '';
+    }
+    return PromotionFilter;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/promotion/promotion-list/promotion-list.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/promotion/promotion-list/promotion-list.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: PromotionListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PromotionListComponent", function() { return PromotionListComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _promotion_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../promotion-filter */ "./src/app/promotion/promotion-filter.ts");
+/* harmony import */ var _promotion_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../promotion.service */ "./src/app/promotion/promotion.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+var PromotionListComponent = /** @class */ (function () {
+    function PromotionListComponent(promotionService) {
+        this.promotionService = promotionService;
+        this.filter = new _promotion_filter__WEBPACK_IMPORTED_MODULE_1__["PromotionFilter"]();
+        this.feedback = {};
+    }
+    Object.defineProperty(PromotionListComponent.prototype, "promotionList", {
+        get: function () {
+            return this.promotionService.promotionList;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    PromotionListComponent.prototype.ngOnInit = function () {
+        this.search();
+    };
+    PromotionListComponent.prototype.search = function () {
+        this.promotionService.load(this.filter);
+    };
+    PromotionListComponent.prototype.select = function (selected) {
+        this.selectedPromotion = selected;
+    };
+    PromotionListComponent.prototype.delete = function (promotion) {
+        var _this = this;
+        if (confirm('Are you sure?')) {
+            this.promotionService.delete(promotion).subscribe(function () {
+                _this.feedback = { type: 'success', message: 'Delete was successful!' };
+                setTimeout(function () {
+                    _this.search();
+                }, 1000);
+            }, function (err) {
+                _this.feedback = { type: 'warning', message: 'Error deleting.' };
+            });
+        }
+    };
+    PromotionListComponent.ctorParameters = function () { return [
+        { type: _promotion_service__WEBPACK_IMPORTED_MODULE_2__["PromotionService"] }
+    ]; };
+    PromotionListComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-promotion',
+            template: __importDefault(__webpack_require__(/*! raw-loader!./promotion-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/promotion/promotion-list/promotion-list.component.html")).default
+        }),
+        __metadata("design:paramtypes", [_promotion_service__WEBPACK_IMPORTED_MODULE_2__["PromotionService"]])
+    ], PromotionListComponent);
+    return PromotionListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/promotion/promotion.module.ts":
+/*!***********************************************!*\
+  !*** ./src/app/promotion/promotion.module.ts ***!
+  \***********************************************/
+/*! exports provided: PromotionModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PromotionModule", function() { return PromotionModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _promotion_list_promotion_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./promotion-list/promotion-list.component */ "./src/app/promotion/promotion-list/promotion-list.component.ts");
+/* harmony import */ var _promotion_edit_promotion_edit_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./promotion-edit/promotion-edit.component */ "./src/app/promotion/promotion-edit/promotion-edit.component.ts");
+/* harmony import */ var _promotion_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./promotion.service */ "./src/app/promotion/promotion.service.ts");
+/* harmony import */ var _promotion_routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./promotion.routes */ "./src/app/promotion/promotion.routes.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+
+
+
+
+var PromotionModule = /** @class */ (function () {
+    function PromotionModule() {
+    }
+    PromotionModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forChild(_promotion_routes__WEBPACK_IMPORTED_MODULE_7__["PROMOTION_ROUTES"])
+            ],
+            declarations: [
+                _promotion_list_promotion_list_component__WEBPACK_IMPORTED_MODULE_4__["PromotionListComponent"],
+                _promotion_edit_promotion_edit_component__WEBPACK_IMPORTED_MODULE_5__["PromotionEditComponent"]
+            ],
+            providers: [_promotion_service__WEBPACK_IMPORTED_MODULE_6__["PromotionService"]],
+            exports: []
+        })
+    ], PromotionModule);
+    return PromotionModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/promotion/promotion.routes.ts":
+/*!***********************************************!*\
+  !*** ./src/app/promotion/promotion.routes.ts ***!
+  \***********************************************/
+/*! exports provided: PROMOTION_ROUTES */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROMOTION_ROUTES", function() { return PROMOTION_ROUTES; });
+/* harmony import */ var _promotion_list_promotion_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./promotion-list/promotion-list.component */ "./src/app/promotion/promotion-list/promotion-list.component.ts");
+/* harmony import */ var _promotion_edit_promotion_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./promotion-edit/promotion-edit.component */ "./src/app/promotion/promotion-edit/promotion-edit.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+var PROMOTION_ROUTES = [
+    {
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'promotions',
+                component: _promotion_list_promotion_list_component__WEBPACK_IMPORTED_MODULE_0__["PromotionListComponent"]
+            }
+        ]
+    },
+    {
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'promotions/:id',
+                component: _promotion_edit_promotion_edit_component__WEBPACK_IMPORTED_MODULE_1__["PromotionEditComponent"]
+            }
+        ]
+    }
+];
+
+
+/***/ }),
+
+/***/ "./src/app/promotion/promotion.service.ts":
+/*!************************************************!*\
+  !*** ./src/app/promotion/promotion.service.ts ***!
+  \************************************************/
+/*! exports provided: PromotionService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PromotionService", function() { return PromotionService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Accept', 'application/json');
+var PromotionService = /** @class */ (function () {
+    function PromotionService(http) {
+        this.http = http;
+        this.promotionList = [];
+        this.api = '/promotions';
+    }
+    PromotionService.prototype.findById = function (id) {
+        var url = this.api + "/" + id;
+        var params = { id: id };
+        return this.http.get(url, { params: params, headers: headers });
+    };
+    PromotionService.prototype.load = function (filter) {
+        var _this = this;
+        this.find(filter).subscribe(function (result) {
+            _this.promotionList = result;
+        }, function (err) {
+            console.error('error loading', err);
+        });
+    };
+    PromotionService.prototype.find = function (filter) {
+        var params = {
+            'title': filter.title,
+        };
+        return this.http.get(this.api, { params: params, headers: headers });
+    };
+    PromotionService.prototype.save = function (entity) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        entity.effectiveDate = new Date(entity.effectiveDate);
+        entity.endDate = new Date(entity.endDate);
+        if (entity.id) {
+            url = this.api + "/" + entity.id.toString();
+            params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
+            return this.http.put(url, entity, { headers: headers, params: params });
+        }
+        else {
+            url = "" + this.api;
+            return this.http.post(url, entity, { headers: headers, params: params });
+        }
+    };
+    PromotionService.prototype.delete = function (entity) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        if (entity.id) {
+            url = this.api + "/" + entity.id.toString();
+            params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
+            return this.http.delete(url, { headers: headers, params: params });
+        }
+        return null;
+    };
+    PromotionService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
+    PromotionService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], PromotionService);
+    return PromotionService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/promotion/promotion.ts":
+/*!****************************************!*\
+  !*** ./src/app/promotion/promotion.ts ***!
+  \****************************************/
+/*! exports provided: Promotion */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Promotion", function() { return Promotion; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var Promotion = /** @class */ (function () {
+    function Promotion() {
+    }
+    return Promotion;
 }());
 
 

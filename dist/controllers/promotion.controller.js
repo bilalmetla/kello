@@ -20,17 +20,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const fs_1 = __importDefault(require("fs"));
+const util_1 = __importDefault(require("util"));
+const writeFilePromise = util_1.default.promisify(fs_1.default.writeFile);
+const path_1 = __importDefault(require("path"));
 let PromotionController = class PromotionController {
     constructor(promotionRepository) {
         this.promotionRepository = promotionRepository;
     }
     create(promotion) {
         return __awaiter(this, void 0, void 0, function* () {
+            promotion.imageUrl = yield this.convertbase64image(promotion.title, promotion.image);
+            delete promotion.image;
             return this.promotionRepository.create(promotion);
         });
     }
@@ -61,12 +70,27 @@ let PromotionController = class PromotionController {
     }
     replaceById(id, promotion) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (promotion.image) {
+                promotion.imageUrl = yield this.convertbase64image(promotion.title, promotion.image);
+            }
+            delete promotion.image;
             yield this.promotionRepository.replaceById(id, promotion);
         });
     }
     deleteById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.promotionRepository.deleteById(id);
+        });
+    }
+    convertbase64image(imagename, image) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let base64String = image;
+            let base64Image = base64String.split(';base64,').pop();
+            imagename = imagename.replace(' ', '') + '.png';
+            let imagePath = path_1.default.join(__dirname, '../../public/promotions/images/') + imagename;
+            let imageUrl = '/promotions/images/' + imagename;
+            yield writeFilePromise(imagePath, base64Image, { encoding: 'base64' });
+            return imageUrl;
         });
     }
 };
