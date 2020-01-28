@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const partnertypes_model_1 = require("./partnertypes.model");
+const orders_model_1 = require("./orders.model");
 let Partners = class Partners extends repository_1.Entity {
     constructor(data) {
         super(data);
@@ -79,9 +80,19 @@ __decorate([
     __metadata("design:type", String)
 ], Partners.prototype, "creationDate", void 0);
 __decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Partners.prototype, "deviceId", void 0);
+__decorate([
     repository_1.belongsTo(() => partnertypes_model_1.Partnertypes),
     __metadata("design:type", String)
 ], Partners.prototype, "partnertypesId", void 0);
+__decorate([
+    repository_1.hasMany(() => orders_model_1.Orders),
+    __metadata("design:type", Array)
+], Partners.prototype, "orders", void 0);
 Partners = __decorate([
     repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])

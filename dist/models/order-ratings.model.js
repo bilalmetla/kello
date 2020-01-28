@@ -40,6 +40,13 @@ __decorate([
     __metadata("design:type", String)
 ], OrderRatings.prototype, "reasonMessage", void 0);
 __decorate([
+    repository_1.property({
+        type: 'date',
+        default: new Date(),
+    }),
+    __metadata("design:type", Date)
+], OrderRatings.prototype, "createdDate", void 0);
+__decorate([
     repository_1.belongsTo(() => rating_reasons_model_1.RatingReasons),
     __metadata("design:type", String)
 ], OrderRatings.prototype, "ratingReasonsId", void 0);

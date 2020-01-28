@@ -37,19 +37,30 @@ let MySequence = class MySequence {
     handle(context) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                console.log('-----------------------request-------------------------------');
+                console.log(`route:  ${context.request.path}`);
                 const { request, response } = context;
                 const route = this.findRoute(request);
+                const args = yield this.parseParams(request, route);
+                console.log(`route ${route} | request:  ${JSON.stringify(args)}`);
                 //call authentication action
                 yield this.authenticateRequest(request);
-                const args = yield this.parseParams(request, route);
                 const result = yield this.invoke(route, args);
+                console.log(`route ${route} | response:  ${JSON.stringify(result)}`);
                 this.send(response, result);
             }
             catch (err) {
+                console.error(`error:  ${JSON.stringify(err)}`);
                 if (err.code === 'AUTHENTICATION_STRATEGY_NOT_FOUND' ||
                     err.code === 'USER_PROFILE_NOT_FOUND') {
+                    console.error(`err.code:  ${JSON.stringify(err)}`);
                     Object.assign(err, { statusCode: 401 /* Unauthorized */ });
                 }
+                console.error(`reject err:  ${JSON.stringify(err)}`);
+                if (err.message && typeof err.message === 'object') {
+                    err.message = "Valid Access Token Required!";
+                }
+                console.error(`sending final err:  ${JSON.stringify(err)}`);
                 this.reject(context, err);
             }
         });

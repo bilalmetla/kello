@@ -66,13 +66,13 @@ __decorate([
         type: 'date',
         default: new Date()
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], Supply.prototype, "supplyDate", void 0);
 __decorate([
     repository_1.property({
         type: 'date',
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], Supply.prototype, "arrivedAt", void 0);
 __decorate([
     repository_1.property({

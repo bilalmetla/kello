@@ -63,6 +63,13 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Feedback.prototype, "isReviewed", void 0);
 __decorate([
+    repository_1.property({
+        type: 'date',
+        default: new Date(),
+    }),
+    __metadata("design:type", Date)
+], Feedback.prototype, "createdDate", void 0);
+__decorate([
     repository_1.belongsTo(() => customers_model_1.Customers),
     __metadata("design:type", String)
 ], Feedback.prototype, "customersId", void 0);

@@ -3,6 +3,7 @@ export declare class OrderRatings extends Entity {
     id?: string;
     points: number;
     reasonMessage?: string;
+    createdDate?: Date;
     ratingReasonsId: string;
     ordersId: string;
     customersId: string;

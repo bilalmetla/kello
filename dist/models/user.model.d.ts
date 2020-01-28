@@ -1,7 +1,7 @@
 import { Entity } from '@loopback/repository';
 export declare class User extends Entity {
     id?: string;
-    phone: string;
+    username: string;
     password?: string;
     access_token?: string;
     name?: string;

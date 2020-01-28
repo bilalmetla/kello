@@ -25,6 +25,7 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const auth_1 = require("../auth");
 let FeedbackController = class FeedbackController {
     constructor(feedbackRepository) {
         this.feedbackRepository = feedbackRepository;
@@ -41,6 +42,13 @@ let FeedbackController = class FeedbackController {
     }
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (filter) {
+                filter.order = ['createdDate Desc'];
+            }
+            else {
+                filter = {};
+                filter.order = ['createdDate Desc'];
+            }
             return this.feedbackRepository.find(filter);
         });
     }
@@ -71,6 +79,7 @@ let FeedbackController = class FeedbackController {
     }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/feedbacks', {
         responses: {
             '200': {
@@ -94,6 +103,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], FeedbackController.prototype, "create", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/feedbacks/count', {
         responses: {
             '200': {
@@ -108,6 +118,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], FeedbackController.prototype, "count", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/feedbacks', {
         responses: {
             '200': {
@@ -129,6 +140,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], FeedbackController.prototype, "find", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/feedbacks', {
         responses: {
             '200': {
@@ -150,6 +162,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], FeedbackController.prototype, "updateAll", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/feedbacks/{id}', {
         responses: {
             '200': {
@@ -169,6 +182,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], FeedbackController.prototype, "findById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/feedbacks/{id}', {
         responses: {
             '204': {
@@ -189,6 +203,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], FeedbackController.prototype, "updateById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.put('/feedbacks/{id}', {
         responses: {
             '204': {
@@ -203,6 +218,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], FeedbackController.prototype, "replaceById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.del('/feedbacks/{id}', {
         responses: {
             '204': {

@@ -26,6 +26,7 @@ const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const constants_1 = require("../constants");
+const auth_1 = require("../auth");
 let CustomersOrdersController = class CustomersOrdersController {
     constructor(customersRepository, partnersRepository, productsRepository, orderdetailsRepository, ordersRepository) {
         this.customersRepository = customersRepository;
@@ -36,14 +37,18 @@ let CustomersOrdersController = class CustomersOrdersController {
     }
     find(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.customersRepository.orders(id).find({ where: { customersId: id } });
-            //console.log('fetching orders');
-            //   return this.ordersRepository.find({
-            //         where: {customersId : '5dc97f1aa3434647421ebef7'}
-            //     }
-            // )
+            if (filter) {
+                filter.order = ['orderTime Desc'];
+            }
+            else {
+                filter = {};
+                filter.order = ['orderTime Desc'];
+            }
+            filter.where = { customersId: id };
+            return this.customersRepository.orders(id).find(filter);
         });
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     create(id, orders) {
         return __awaiter(this, void 0, void 0, function* () {
             //return this.customersRepository.orders(id).create(orders);
@@ -52,11 +57,14 @@ let CustomersOrdersController = class CustomersOrdersController {
             if (!this.partnersRepository.dataSource.connected) {
                 yield this.partnersRepository.dataSource.connect();
             }
-            const partners = this.partnersRepository.dataSource.connector.collection("Partners");
+            // this.partnersRepository.dataSource.beginTransaction()
+            // let dataSource : DataSource;
+            // let abc = dataSource.connector?.connect();
+            const partnersCollection = this.partnersRepository.dataSource.connector.collection("Partners");
             //  await new Promise((resolve, reject) => {
             //   partners.on('index', (error: any) => error ? reject(error) : resolve());
             //     });
-            let nearestPartner = yield partners.aggregate([
+            let nearestPartner = yield partnersCollection.aggregate([
                 {
                     $geoNear: {
                         near: {
@@ -80,7 +88,7 @@ let CustomersOrdersController = class CustomersOrdersController {
             orders.customersId = id;
             orders.orderStatus = 'Pending';
             orders.orderCategory = 'CUSTOMERS';
-            orders.partnersId = nearestPartner._id || nearestPartner.id;
+            orders.deliveredById = nearestPartner._id || nearestPartner.id;
             let items = JSON.parse(JSON.stringify(orders.items));
             const createdOrder = yield this.customersRepository.orders(id).create(orders);
             let orderId;
@@ -99,6 +107,9 @@ let CustomersOrdersController = class CustomersOrdersController {
             });
             console.log('products for order ');
             console.log(JSON.stringify(products));
+            if (!products) {
+                return constants_1.CONSTANTS.PRODUCT_NOT_FOUND;
+            }
             let orderdetailList;
             orderdetailList = [];
             // let orderdetailList =  Orderdetails;
@@ -122,7 +133,8 @@ let CustomersOrdersController = class CustomersOrdersController {
                 let orderDetailCreated = yield this.orderdetailsRepository.createAll(orderdetailList);
                 console.log('orderDetailCreated ', JSON.stringify(orderDetailCreated));
             }
-            return { order: createdOrder, partner: nearestPartner };
+            let partnerInfo = { id: nearestPartner.id, name: nearestPartner.name, location: nearestPartner.location, phone: nearestPartner.phone };
+            return { orderId: createdOrder.id, partner: partnerInfo };
         });
     }
     patch(id, orders, where) {
@@ -135,8 +147,50 @@ let CustomersOrdersController = class CustomersOrdersController {
             return this.customersRepository.orders(id).delete(where);
         });
     }
+    orderStartProgress(orderId, customerId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let orders;
+            orders = {
+                "orderStatus": "InProgress",
+                "startProgressTime": new Date()
+            };
+            yield this.customersRepository.orders(customerId).patch(orders, { id: orderId });
+            return { id: orderId, orderStatus: orders.orderStatus, startProgressTime: orders.startProgressTime };
+        });
+    }
+    //@secured(SecuredType.IS_AUTHENTICATED)
+    orderCancellation(customersId, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let orders;
+            orders = {
+                "orderStatus": "Cancelled",
+                "isCancelled": true,
+            };
+            //await this.ordersRepository.updateAll({where: {and:[{id:id}, {customersId: customersId}]} }, orders)
+            //await this.ordersRepository.updateById(id, orders);
+            yield this.customersRepository.orders(customersId).patch(orders, { id: id });
+            return { id: id, orderStatus: orders.orderStatus, isCancelled: orders.isCancelled };
+        });
+    }
+    //@secured(SecuredType.IS_AUTHENTICATED)
+    orderDelevered(id, customerId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let orders;
+            orders = {
+                "isDelivered": true,
+                "orderStatus": "Completed",
+                "completionTime": new Date(),
+            };
+            //await this.ordersRepository.updateById(id, orders);
+            yield this.customersRepository.orders(customerId).patch(orders, { id: id });
+            //console.log("orderUpdated: ", orderUpdated);
+            // orders.id = id;
+            return { id: id, isDelivered: orders.isDelivered, orderStatus: orders.orderStatus };
+        });
+    }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/customers/{id}/orders', {
         responses: {
             '200': {
@@ -181,6 +235,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersOrdersController.prototype, "create", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/customers/{id}/orders', {
         responses: {
             '200': {
@@ -203,6 +258,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersOrdersController.prototype, "patch", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.del('/customers/{id}/orders', {
         responses: {
             '200': {
@@ -217,6 +273,60 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], CustomersOrdersController.prototype, "delete", null);
+__decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
+    rest_1.patch('/orders/{orderId}/customers/{customerId}/startProgress', {
+        responses: {
+            '200': {
+                description: 'Customers.Orders PATCH success',
+                content: { 'application/json': { schema: repository_1.CountSchema } },
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('orderId')),
+    __param(1, rest_1.param.path.string('customerId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], CustomersOrdersController.prototype, "orderStartProgress", null);
+__decorate([
+    rest_1.patch('customers/{customersId}/orders/{id}/cancellation', {
+        responses: {
+            '200': {
+                description: 'Order Delivered',
+                content: {
+                    'application/json': {
+                        schema: { type: 'object', properties: { id: { type: "string" } } },
+                    },
+                },
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('customersId')),
+    __param(1, rest_1.param.path.string('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], CustomersOrdersController.prototype, "orderCancellation", null);
+__decorate([
+    rest_1.patch('/orders/{id}/customers/{customerId}/delevered', {
+        responses: {
+            '200': {
+                description: 'Order Delivered',
+                content: {
+                    'application/json': {
+                        schema: { type: 'object', properties: { id: { type: "string" } } },
+                    },
+                },
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __param(1, rest_1.param.path.string('customerId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], CustomersOrdersController.prototype, "orderDelevered", null);
 CustomersOrdersController = __decorate([
     __param(0, repository_1.repository(repositories_1.CustomersRepository)),
     __param(1, repository_1.repository(repositories_1.PartnersRepository)),

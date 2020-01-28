@@ -5,6 +5,7 @@ export declare class Activations extends Entity {
     smsCode: number;
     expiry?: string;
     emailCode?: number;
+    createdTime?: Date;
     [prop: string]: any;
     constructor(data?: Partial<Activations>);
 }

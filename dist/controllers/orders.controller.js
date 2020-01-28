@@ -25,10 +25,12 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const auth_1 = require("../auth");
 let OrdersController = class OrdersController {
     constructor(ordersRepository) {
         this.ordersRepository = ordersRepository;
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     create(orders) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.ordersRepository.create(orders);
@@ -41,6 +43,13 @@ let OrdersController = class OrdersController {
     }
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (filter) {
+                filter.order = ['orderTime Desc'];
+            }
+            else {
+                filter = {};
+                filter.order = ['orderTime Desc'];
+            }
             return this.ordersRepository.find(filter);
         });
     }
@@ -69,44 +78,84 @@ let OrdersController = class OrdersController {
             yield this.ordersRepository.deleteById(id);
         });
     }
-    orderDelevered(id, where) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let orders;
-            orders = {
-                "isDelivered": true,
-                "orderStatus": "Completed",
-                "completionTime": new Date(),
-            };
-            yield this.ordersRepository.updateById(id, orders);
-            //console.log("orderUpdated: ", orderUpdated);
-            // orders.id = id;
-            return { id: id, isDelivered: orders.isDelivered, orderStatus: orders.orderStatus };
-        });
-    }
-    orderCancellation(customersId, id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let orders;
-            orders = {
-                "orderStatus": "Cancelled",
-                "isCancelled": true,
-            };
-            //await this.ordersRepository.updateAll({where: {and:[{id:id}, {customersId: customersId}]} }, orders)
-            yield this.ordersRepository.updateById(id, orders);
-            return { id: id, orderStatus: orders.orderStatus, isCancelled: orders.isCancelled };
-        });
-    }
-    orderStartProgress(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let orders;
-            orders = {
-                "orderStatus": "InProgress",
-                "startProgressTime": new Date()
-            };
-            yield this.ordersRepository.updateById(id, orders);
-            return { id: id, orderStatus: orders.orderStatus };
-            ;
-        });
-    }
+    //@secured(SecuredType.IS_AUTHENTICATED)
+    // @patch('/orders/{id}/delevered', {
+    //   responses: {
+    //     '200': {
+    //       description: 'Order Delivered',
+    //       content: {
+    //         'application/json': {
+    //           schema: {type: 'object', properties:{id: {type: "string"} }},
+    //         },
+    //       },
+    //     },
+    //   },
+    // })
+    // async orderDelevered(    
+    //   @param.path.string('id') id: string,
+    //   @param.query.object('where', getWhereSchemaFor(Orders)) where?: Where<Orders>,
+    // ): Promise<object> {
+    //   let orders;
+    //   orders = {
+    //       "isDelivered": true,
+    //       "orderStatus": "Completed",
+    //       "completionTime": new Date(),
+    //   };
+    //   await this.ordersRepository.updateById(id, orders);
+    //   //console.log("orderUpdated: ", orderUpdated);
+    //  // orders.id = id;
+    //   return {id: id, isDelivered: orders.isDelivered, orderStatus: orders.orderStatus};
+    // }
+    //@secured(SecuredType.IS_AUTHENTICATED)
+    // @patch('customers/{customersId}/orders/{id}/cancellation', {
+    //   responses: {
+    //     '200': {
+    //       description: 'Order Delivered',
+    //       content: {
+    //         'application/json': {
+    //           schema: {type: 'object', properties:{id: {type: "string"} }},
+    //         },
+    //       },
+    //     },
+    //   },
+    // })
+    // async orderCancellation(    
+    //   @param.path.string('customersId') customersId: string,
+    //   @param.path.string('id') id: string,
+    // ): Promise<object> {
+    //   let orders;
+    //   orders = {        
+    //       "orderStatus": "Cancelled",
+    //       "isCancelled": true,
+    //   };
+    //   //await this.ordersRepository.updateAll({where: {and:[{id:id}, {customersId: customersId}]} }, orders)
+    //   await this.ordersRepository.updateById(id, orders);
+    //   return {id: id, orderStatus: orders.orderStatus, isCancelled: orders.isCancelled};
+    // }
+    // @secured(SecuredType.IS_AUTHENTICATED)
+    // @put('/orders/{id}/startProgress', {
+    //   responses: {
+    //     '200': {
+    //       description: 'Order Delivered',
+    //       content: {
+    //         'application/json': {
+    //           schema: {type: 'object', properties:{id: {type: "string"} }},
+    //         },
+    //       },
+    //     },
+    //   },
+    // })
+    // async orderStartProgress(       
+    //   @param.path.string('id') id: string,
+    // ): Promise<object> {
+    //   let orders;
+    //   orders = {        
+    //       "orderStatus": "InProgress",
+    //       "startProgressTime": new Date()        
+    //   };
+    //   await this.ordersRepository.updateById(id, orders)
+    //   return {id: id, orderStatus: orders.orderStatus};;
+    // }
     orderHistory(customersId) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.ordersRepository.find({ where: { customersId: customersId } });
@@ -138,6 +187,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "create", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/orders/count', {
         responses: {
             '200': {
@@ -152,6 +202,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "count", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/orders', {
         responses: {
             '200': {
@@ -173,6 +224,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "find", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/orders', {
         responses: {
             '200': {
@@ -194,6 +246,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "updateAll", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/orders/{id}', {
         responses: {
             '200': {
@@ -213,6 +266,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "findById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/orders/{id}', {
         responses: {
             '200': {
@@ -233,6 +287,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "updateById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.put('/orders/{id}', {
         responses: {
             '204': {
@@ -247,6 +302,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "replaceById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.del('/orders/{id}', {
         responses: {
             '200': {
@@ -260,62 +316,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "deleteById", null);
 __decorate([
-    rest_1.patch('/orders/{id}/delevered', {
-        responses: {
-            '200': {
-                description: 'Order Delivered',
-                content: {
-                    'application/json': {
-                        schema: { type: 'object', properties: { id: { type: "string" } } },
-                    },
-                },
-            },
-        },
-    }),
-    __param(0, rest_1.param.path.string('id')),
-    __param(1, rest_1.param.query.object('where', rest_1.getWhereSchemaFor(models_1.Orders))),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
-    __metadata("design:returntype", Promise)
-], OrdersController.prototype, "orderDelevered", null);
-__decorate([
-    rest_1.patch('customers/{customersId}/orders/{id}/cancellation', {
-        responses: {
-            '200': {
-                description: 'Order Delivered',
-                content: {
-                    'application/json': {
-                        schema: { type: 'object', properties: { id: { type: "string" } } },
-                    },
-                },
-            },
-        },
-    }),
-    __param(0, rest_1.param.path.string('customersId')),
-    __param(1, rest_1.param.path.string('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
-    __metadata("design:returntype", Promise)
-], OrdersController.prototype, "orderCancellation", null);
-__decorate([
-    rest_1.put('/orders/{id}/startProgress', {
-        responses: {
-            '200': {
-                description: 'Order Delivered',
-                content: {
-                    'application/json': {
-                        schema: { type: 'object', properties: { id: { type: "string" } } },
-                    },
-                },
-            },
-        },
-    }),
-    __param(0, rest_1.param.path.string('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], OrdersController.prototype, "orderStartProgress", null);
-__decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('customers/{customersId}/orders/history', {
         responses: {
             '200': {

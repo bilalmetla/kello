@@ -25,6 +25,7 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const auth_1 = require("../auth");
 let RatingReasonsController = class RatingReasonsController {
     constructor(ratingReasonsRepository) {
         this.ratingReasonsRepository = ratingReasonsRepository;
@@ -39,6 +40,7 @@ let RatingReasonsController = class RatingReasonsController {
             return this.ratingReasonsRepository.count(where);
         });
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.ratingReasonsRepository.find(filter);
@@ -71,6 +73,7 @@ let RatingReasonsController = class RatingReasonsController {
     }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/rating-reasons', {
         responses: {
             '200': {
@@ -94,6 +97,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RatingReasonsController.prototype, "create", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/rating-reasons/count', {
         responses: {
             '200': {
@@ -129,6 +133,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RatingReasonsController.prototype, "find", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/rating-reasons', {
         responses: {
             '200': {
@@ -150,6 +155,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RatingReasonsController.prototype, "updateAll", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/rating-reasons/{id}', {
         responses: {
             '200': {
@@ -169,6 +175,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RatingReasonsController.prototype, "findById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/rating-reasons/{id}', {
         responses: {
             '204': {
@@ -189,6 +196,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RatingReasonsController.prototype, "updateById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.put('/rating-reasons/{id}', {
         responses: {
             '204': {
@@ -203,6 +211,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RatingReasonsController.prototype, "replaceById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.del('/rating-reasons/{id}', {
         responses: {
             '204': {

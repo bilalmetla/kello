@@ -31,13 +31,15 @@ const uuid = require("uuid");
 const util_1 = require("util");
 const { sign } = require('jsonwebtoken');
 const signAsync = util_1.promisify(sign);
+const auth_2 = require("../auth");
 let UserController = class UserController {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     create(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            const tokenObject = { username: user.phone };
+            const tokenObject = { username: user.username };
             let token = yield signAsync(tokenObject, auth_1.JWT_SECRET);
             user.access_token = token;
             return this.userRepository.create(user);
@@ -78,10 +80,11 @@ let UserController = class UserController {
             yield this.userRepository.deleteById(id);
         });
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     userLogin(user) {
         return __awaiter(this, void 0, void 0, function* () {
             //const userInfo = this.userRepository.findOne({"where":{phone}});
-            const userInfo = yield this.userRepository.findOne({ "where": { phone: user.phone } });
+            const userInfo = yield this.userRepository.findOne({ "where": { username: user.username } });
             if (!userInfo) {
                 return constants_1.CONSTANTS.AUTHNETICATION_FAILED;
             }
@@ -118,6 +121,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "create", null);
 __decorate([
+    auth_2.secured(auth_2.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/users/count', {
         responses: {
             '200': {
@@ -132,6 +136,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "count", null);
 __decorate([
+    auth_2.secured(auth_2.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/users', {
         responses: {
             '200': {
@@ -153,6 +158,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "find", null);
 __decorate([
+    auth_2.secured(auth_2.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/users', {
         responses: {
             '200': {
@@ -174,6 +180,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "updateAll", null);
 __decorate([
+    auth_2.secured(auth_2.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/users/{id}', {
         responses: {
             '200': {
@@ -193,6 +200,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "findById", null);
 __decorate([
+    auth_2.secured(auth_2.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/users/{id}', {
         responses: {
             '204': {
@@ -213,6 +221,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "updateById", null);
 __decorate([
+    auth_2.secured(auth_2.SecuredType.IS_AUTHENTICATED),
     rest_1.put('/users/{id}', {
         responses: {
             '204': {
@@ -227,6 +236,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "replaceById", null);
 __decorate([
+    auth_2.secured(auth_2.SecuredType.IS_AUTHENTICATED),
     rest_1.del('/users/{id}', {
         responses: {
             '204': {

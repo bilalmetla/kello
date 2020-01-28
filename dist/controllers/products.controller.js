@@ -32,6 +32,7 @@ const fs_1 = __importDefault(require("fs"));
 const util_1 = __importDefault(require("util"));
 const writeFilePromise = util_1.default.promisify(fs_1.default.writeFile);
 const path_1 = __importDefault(require("path"));
+const auth_1 = require("../auth");
 let ProductsController = class ProductsController {
     constructor(productsRepository) {
         this.productsRepository = productsRepository;
@@ -48,6 +49,7 @@ let ProductsController = class ProductsController {
             return this.productsRepository.count(where);
         });
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.productsRepository.find(filter);
@@ -95,7 +97,7 @@ let ProductsController = class ProductsController {
         return __awaiter(this, void 0, void 0, function* () {
             let base64String = image;
             let base64Image = base64String.split(';base64,').pop();
-            imagename = imagename.replace(' ', '') + '.png';
+            imagename = imagename.replace(/ /g, '') + '.png';
             let imagePath = path_1.default.join(__dirname, '../../public/products/images/') + imagename;
             let imageUrl = '/products/images/' + imagename;
             yield writeFilePromise(imagePath, base64Image, { encoding: 'base64' });
@@ -104,6 +106,7 @@ let ProductsController = class ProductsController {
     }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/products', {
         responses: {
             '200': {
@@ -127,6 +130,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "create", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/products/count', {
         responses: {
             '200': {
@@ -162,6 +166,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "find", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/products', {
         responses: {
             '200': {
@@ -183,6 +188,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "updateAll", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/products/{id}', {
         responses: {
             '200': {
@@ -202,6 +208,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "findById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/products/{id}', {
         responses: {
             '204': {
@@ -222,6 +229,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "updateById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.put('/products/{id}', {
         responses: {
             '204': {
@@ -236,6 +244,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "replaceById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.del('/products/{id}', {
         responses: {
             '204': {
@@ -249,6 +258,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "deleteById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/products/types/{producttypesId}', {
         responses: {
             '200': {

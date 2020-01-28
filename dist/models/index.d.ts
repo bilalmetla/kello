@@ -23,3 +23,5 @@ export * from './rating-reasons.model';
 export * from './error-response.model';
 export * from './promotiontype.model';
 export * from './promotion.model';
+export * from './price-plan.model';
+export * from './price-plan-types.model';

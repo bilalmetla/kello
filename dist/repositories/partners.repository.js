@@ -17,16 +17,19 @@ const models_1 = require("../models");
 const datasources_1 = require("../datasources");
 const core_1 = require("@loopback/core");
 let PartnersRepository = class PartnersRepository extends repository_1.DefaultCrudRepository {
-    constructor(dataSource, partnertypesRepositoryGetter) {
+    constructor(dataSource, partnertypesRepositoryGetter, ordersRepositoryGetter) {
         super(models_1.Partners, dataSource);
         this.partnertypesRepositoryGetter = partnertypesRepositoryGetter;
+        this.ordersRepositoryGetter = ordersRepositoryGetter;
+        this.orders = this.createHasManyRepositoryFactoryFor('orders', ordersRepositoryGetter);
+        this.registerInclusionResolver('orders', this.orders.inclusionResolver);
         this.partnertypes = this.createBelongsToAccessorFor('partnertypes', partnertypesRepositoryGetter);
         this.registerInclusionResolver('partnertypes', this.partnertypes.inclusionResolver);
     }
 };
 PartnersRepository = __decorate([
-    __param(0, core_1.inject('datasources.killo')), __param(1, repository_1.repository.getter('PartnertypesRepository')),
-    __metadata("design:paramtypes", [datasources_1.KilloDataSource, Function])
+    __param(0, core_1.inject('datasources.killo')), __param(1, repository_1.repository.getter('PartnertypesRepository')), __param(2, repository_1.repository.getter('OrdersRepository')),
+    __metadata("design:paramtypes", [datasources_1.KilloDataSource, Function, Function])
 ], PartnersRepository);
 exports.PartnersRepository = PartnersRepository;
 //# sourceMappingURL=partners.repository.js.map

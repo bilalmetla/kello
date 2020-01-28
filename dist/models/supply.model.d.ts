@@ -6,8 +6,8 @@ export declare class Supply extends Entity {
     supplierName: string;
     quentity: number;
     quentityOnHand: number;
-    supplyDate?: string;
-    arrivedAt?: string;
+    supplyDate?: Date;
+    arrivedAt?: Date;
     isArrived?: boolean;
     purchasingCost: number;
     travlingCost?: number;

@@ -25,6 +25,7 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const auth_1 = require("../auth");
 let OrderRatingsRatingReasonsController = class OrderRatingsRatingReasonsController {
     constructor(orderRatingsRepository) {
         this.orderRatingsRepository = orderRatingsRepository;
@@ -36,6 +37,7 @@ let OrderRatingsRatingReasonsController = class OrderRatingsRatingReasonsControl
     }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/order-ratings/{id}/rating-reasons', {
         responses: {
             '200': {

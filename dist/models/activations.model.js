@@ -50,6 +50,13 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], Activations.prototype, "emailCode", void 0);
+__decorate([
+    repository_1.property({
+        type: 'date',
+        default: new Date
+    }),
+    __metadata("design:type", Date)
+], Activations.prototype, "createdTime", void 0);
 Activations = __decorate([
     repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])

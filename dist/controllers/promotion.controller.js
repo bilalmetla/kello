@@ -32,6 +32,7 @@ const fs_1 = __importDefault(require("fs"));
 const util_1 = __importDefault(require("util"));
 const writeFilePromise = util_1.default.promisify(fs_1.default.writeFile);
 const path_1 = __importDefault(require("path"));
+const auth_1 = require("../auth");
 let PromotionController = class PromotionController {
     constructor(promotionRepository) {
         this.promotionRepository = promotionRepository;
@@ -50,6 +51,13 @@ let PromotionController = class PromotionController {
     }
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (filter) {
+                filter.order = ['createdDate Desc'];
+            }
+            else {
+                filter = {};
+                filter.order = ['createdDate Desc'];
+            }
             return this.promotionRepository.find(filter);
         });
     }
@@ -86,7 +94,7 @@ let PromotionController = class PromotionController {
         return __awaiter(this, void 0, void 0, function* () {
             let base64String = image;
             let base64Image = base64String.split(';base64,').pop();
-            imagename = imagename.replace(' ', '') + '.png';
+            imagename = imagename.replace(/ /g, '_') + '.png';
             let imagePath = path_1.default.join(__dirname, '../../public/promotions/images/') + imagename;
             let imageUrl = '/promotions/images/' + imagename;
             yield writeFilePromise(imagePath, base64Image, { encoding: 'base64' });
@@ -95,6 +103,7 @@ let PromotionController = class PromotionController {
     }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/promotions', {
         responses: {
             '200': {
@@ -118,6 +127,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PromotionController.prototype, "create", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/promotions/count', {
         responses: {
             '200': {
@@ -132,6 +142,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PromotionController.prototype, "count", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/promotions', {
         responses: {
             '200': {
@@ -153,6 +164,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PromotionController.prototype, "find", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/promotions', {
         responses: {
             '200': {
@@ -174,6 +186,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PromotionController.prototype, "updateAll", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/promotions/{id}', {
         responses: {
             '200': {
@@ -193,6 +206,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PromotionController.prototype, "findById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/promotions/{id}', {
         responses: {
             '204': {
@@ -213,6 +227,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PromotionController.prototype, "updateById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.put('/promotions/{id}', {
         responses: {
             '204': {
@@ -227,6 +242,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PromotionController.prototype, "replaceById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.del('/promotions/{id}', {
         responses: {
             '204': {

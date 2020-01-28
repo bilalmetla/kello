@@ -165,7 +165,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Login</a></li>\n    <li class=\"breadcrumb-item active\">Login</li>\n  </ol> -->\n  <!-- <div class=\"card \">\n    <div class=\"header\">\n      <h2 class=\"title\">Login</h2>\n    </div>\n    <div class=\"content\">\n      <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n      <form #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n      \n      \n        <div class=\"form-group\">\n          <label for=\"phone\">Username</label>\n          <input [(ngModel)]=\"login.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n        </div>\n      \n        <div class=\"form-group\">\n          <label for=\"password\">Password</label>\n          <input [(ngModel)]=\"login.password\" id=\"password\" name=\"password\" class=\"form-control\">\n        </div>\n      \n      \n        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Login</button>\n        \n      </form>\n    </div>\n  </div> -->\n \n\n  <div class=\"container login-container\" style=\"padding-left:25%\">\n    <div class=\"logo\" style=\"padding-left: 115px;\">\n            \n      <a class=\"simple-text\">\n                \n          <div class=\"logo-img\">\n                      <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\" style=\"width: 150px;\n                      height: 200px;\n                      padding-top: 50px;\">      \n          </div>\n                    \n      </a>\n        \n  </div>\n    <div class=\"row\">\n        <div class=\"col-md-6 login-form-1\">\n            <!-- <h3>Kello </h3> -->\n            <form #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n                <div class=\"form-group\">\n                  <label for=\"phone\">Username</label>\n                    <input type=\"text\" [(ngModel)]=\"login.phone\" id=\"phone\" name=\"phone\"  class=\"form-control\" placeholder=\" Username *\" value=\"\" />\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"password\">Password</label>\n                    <input type=\"password\" [(ngModel)]=\"login.password\" id=\"password\" name=\"password\" class=\"form-control\" placeholder=\"Your Password *\" value=\"\" />\n                </div>\n                \n                <div class=\"form-group\">\n                  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Login</button>  \n                    \n                </div>\n                <!-- <div class=\"form-group\">\n                    <a href=\"#\" class=\"ForgetPwd\">Forget Password?</a>\n                </div> -->\n            </form>\n        </div>\n       \n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Login</a></li>\n    <li class=\"breadcrumb-item active\">Login</li>\n  </ol> -->\n  <!-- <div class=\"card \">\n    <div class=\"header\">\n      <h2 class=\"title\">Login</h2>\n    </div>\n    <div class=\"content\">\n      <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n      <form #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n      \n      \n        <div class=\"form-group\">\n          <label for=\"phone\">Username</label>\n          <input [(ngModel)]=\"login.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n        </div>\n      \n        <div class=\"form-group\">\n          <label for=\"password\">Password</label>\n          <input [(ngModel)]=\"login.password\" id=\"password\" name=\"password\" class=\"form-control\">\n        </div>\n      \n      \n        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Login</button>\n        \n      </form>\n    </div>\n  </div> -->\n \n\n  <div class=\"container login-container\" style=\"padding-left:25%\">\n    <div class=\"logo\" style=\"padding-left: 115px;\">\n            \n      <a class=\"simple-text\">\n                \n          <div class=\"logo-img\">\n                      <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\" style=\"width: 150px;\n                      height: 200px;\n                      padding-top: 50px;\">      \n          </div>\n                    \n      </a>\n        \n  </div>\n    <div class=\"row\">\n        <div class=\"col-md-6 login-form-1\">\n            <!-- <h3>Kello </h3> -->\n            <form #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n                <div class=\"form-group\">\n                  <label for=\"phone\">Username</label>\n                    <input type=\"text\" [(ngModel)]=\"login.username\" id=\"username\" name=\"username\"  class=\"form-control\" placeholder=\" Username *\" value=\"\" />\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"password\">Password</label>\n                    <input type=\"password\" [(ngModel)]=\"login.password\" id=\"password\" name=\"password\" class=\"form-control\" placeholder=\"Your Password *\" value=\"\" />\n                </div>\n                \n                <div class=\"form-group\">\n                  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Login</button>  \n                    \n                </div>\n                <!-- <div class=\"form-group\">\n                    <a href=\"#\" class=\"ForgetPwd\">Forget Password?</a>\n                </div> -->\n            </form>\n        </div>\n       \n    </div>\n</div>");
 
 /***/ }),
 
@@ -260,6 +260,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/priceplan/priceplan-edit/priceplan-edit.component.html":
+/*!**************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/priceplan/priceplan-edit/priceplan-edit.component.html ***!
+  \**************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">PricePlan</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">PricePlan Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"priceplan\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{priceplan.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"title\">Title</label>\n        <input [(ngModel)]=\"priceplan.title\" id=\"title\" name=\"title\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"shortCode\">Short Code</label>\n        <input [(ngModel)]=\"priceplan.shortCode\" id=\"shortCode\" name=\"shortCode\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"chargeValue\">Charge Value</label>\n        <input type=\"number\" [(ngModel)]=\"priceplan.chargeValue\" id=\"chargeValue\" name=\"chargeValue\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"effectiveFrom\">Effective From</label>\n        <input type=\"date\" [(ngModel)]=\"priceplan.effectiveFrom\" id=\"effectiveFrom\" name=\"effectiveFrom\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"effectiveTo\">Effective To</label>\n        <input type=\"date\" [(ngModel)]=\"priceplan.effectiveTo\" id=\"effectiveTo\" name=\"effectiveTo\" class=\"form-control\">\n      </div>\n    \n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/priceplan/priceplan-list/priceplan-list.component.html":
+/*!**************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/priceplan/priceplan-list/priceplan-list.component.html ***!
+  \**************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">PricePlan</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">PricePlan List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"title\">Title:</label>\n        <input [(ngModel)]=\"filter.title\" id=\"title\" name=\"title\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../priceplans', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"priceplanList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Title</th>\n          <th class=\"border-top-0\" scope=\"col\">Short Code</th>\n          <th class=\"border-top-0\" scope=\"col\">Charge Value</th>\n          <th class=\"border-top-0\" scope=\"col\">Effective From</th>\n          <th class=\"border-top-0\" scope=\"col\">Effective To</th>\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of priceplanList\" [class.active]=\"item === selectedPriceplan\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.title}}</td>\n          <td>{{item.shortCode}}</td>\n          <td>{{item.chargeValue}}</td>\n          <td>{{item.effectiveFrom}}</td>\n          <td>{{item.effectiveTo}}</td>\n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../priceplans', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n            <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/product/product-edit/product-edit.component.html":
 /*!********************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/product/product-edit/product-edit.component.html ***!
@@ -347,7 +373,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"sidebar-wrapper\">\n      \n    <div class=\"logo\">\n            \n        <a class=\"simple-text\">\n                  \n            <div class=\"logo-img\" >\n                        <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\">      \n            </div>\n                  Kello    \n        </a>\n          \n    </div>\n      \n    <ul class=\"nav\">\n            \n        <li>\n                  \n            <a routerLink=\"home\">\n                        <i class=\"ti-home\"></i>\n                        <p>Dashboard</p>\n                      \n            </a>\n                \n        </li>\n            \n        <!-- <li>      <a routerLink=\"flight\">        <i class=\"ti-arrow-top-right\"></i>        <p>Flights</p>      </a>    </li> -->\n        \n        <li>\n              \n          <a routerLink=\"activation\">\n                  <i class=\"ti-lock\"></i>\n                  <p>Activations</p>\n                \n          </a>\n          \n      </li>\n\n        <li>\n              \n            <a routerLink=\"customer\">\n                    <i class=\"ti-user\"></i>\n                    <p>Customers</p>\n                  \n            </a>\n            \n        </li>\n        \n        <li>\n              \n            <a routerLink=\"partner\">\n                    <i class=\"ti-wheelchair\"></i>\n                    <p>Partners</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n              \n          <a routerLink=\"orderses\">\n                  <i class=\"ti-receipt\"></i>\n                  <p>Orders</p>\n                \n          </a>\n          \n      </li>\n        \n        <li>\n              \n            <a routerLink=\"product\">\n                    <i class=\"ti-apple\"></i>\n                    <p>Products</p>\n                  \n            </a>\n            \n        </li>\n                        \n        <!-- <li>\n              \n            <a routerLink=\"offer\">\n                    <i class=\"ti-panel\"></i>\n                    <p>Offers</p>\n                  \n            </a>\n            \n        </li> -->\n        \n        <li>\n            <a routerLink=\"supply\">\n                    <i class=\"ti-car\"></i>\n                    <p>Supplies</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"customerfeedbacks\">\n                    <i class=\"ti-comment\"></i>\n                    <p>FeedBack</p>  \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"orderratings\">\n                    <i class=\"ti-bar-chart\"></i>\n                    <p>Order Ratings</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"promotions\">\n                    <i class=\"ti-alarm-clock\"></i>\n                    <p>Offers/Promotions</p>      \n            </a>\n        </li>\n\n        <!-- <li>\n              \n          <a routerLink=\"rateplan\">\n                  <i class=\"ti-money\"></i>\n                  <p>Rate plans</p>  \n          </a>\n      </li> -->\n            \n        <!--    <li>        <a routerLink=\"passenger-search\">            <i class=\"ti-user\"></i>            <p>Passengers</p>        </a>    </li>-->\n            \n        <!--        <li routerLinkActive=\"active\">        <a>            <i class=\"ti-close\"></i>            <p>Hide Basket</p>        </a>        </li>    -->\n          \n    </ul>\n    \n</div>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"sidebar-wrapper\">\n      \n    <div class=\"logo\">\n            \n        <a class=\"simple-text\">\n                  \n            <div class=\"logo-img\" >\n                        <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\">      \n            </div>\n                  Kello    \n        </a>\n          \n    </div>\n      \n    <ul class=\"nav\">\n            \n        <li>\n                  \n            <a routerLink=\"home\">\n                        <i class=\"ti-home\"></i>\n                        <p>Dashboard</p>\n                      \n            </a>\n                \n        </li>\n            \n        <!-- <li>      <a routerLink=\"flight\">        <i class=\"ti-arrow-top-right\"></i>        <p>Flights</p>      </a>    </li> -->\n        \n        <li>\n              \n          <a routerLink=\"activation\">\n                  <i class=\"ti-lock\"></i>\n                  <p>Activations</p>\n                \n          </a>\n          \n      </li>\n\n        <li>\n              \n            <a routerLink=\"customer\">\n                    <i class=\"ti-user\"></i>\n                    <p>Customers</p>\n                  \n            </a>\n            \n        </li>\n        \n        <li>\n              \n            <a routerLink=\"partner\">\n                    <i class=\"ti-wheelchair\"></i>\n                    <p>Partners</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n              \n          <a routerLink=\"orderses\">\n                  <i class=\"ti-receipt\"></i>\n                  <p>Orders</p>\n                \n          </a>\n          \n      </li>\n        \n        <li>\n              \n            <a routerLink=\"product\">\n                    <i class=\"ti-apple\"></i>\n                    <p>Products</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n            <a routerLink=\"priceplans\">\n                    <i class=\"ti-gift\"></i>\n                    <p>Price Plan</p>      \n            </a>\n        </li>\n\n                        \n        <!-- <li>\n              \n            <a routerLink=\"offer\">\n                    <i class=\"ti-panel\"></i>\n                    <p>Offers</p>\n                  \n            </a>\n            \n        </li> -->\n        \n        <li>\n            <a routerLink=\"supply\">\n                    <i class=\"ti-car\"></i>\n                    <p>Supplies</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"customerfeedbacks\">\n                    <i class=\"ti-comment\"></i>\n                    <p>FeedBack</p>  \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"orderratings\">\n                    <i class=\"ti-bar-chart\"></i>\n                    <p>Order Ratings</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"promotions\">\n                    <i class=\"ti-alarm-clock\"></i>\n                    <p>Offers/Promotions</p>      \n            </a>\n        </li>\n\n        <!-- <li>\n              \n          <a routerLink=\"rateplan\">\n                  <i class=\"ti-money\"></i>\n                  <p>Rate plans</p>  \n          </a>\n      </li> -->\n            \n        <!--    <li>        <a routerLink=\"passenger-search\">            <i class=\"ti-user\"></i>            <p>Passengers</p>        </a>    </li>-->\n            \n        <!--        <li routerLinkActive=\"active\">        <a>            <i class=\"ti-close\"></i>            <p>Hide Basket</p>        </a>        </li>    -->\n          \n    </ul>\n    \n</div>\n\n");
 
 /***/ }),
 
@@ -397,6 +423,88 @@ webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
 webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
+
+/***/ }),
+
+/***/ "./src/app/AuthInterceptor/AuthInterceptor.ts":
+/*!****************************************************!*\
+  !*** ./src/app/AuthInterceptor/AuthInterceptor.ts ***!
+  \****************************************************/
+/*! exports provided: AuthInterceptor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthInterceptor", function() { return AuthInterceptor; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+/**
+ * Add AuthInterceptor that will intercept all your http requests and add the token to its headers:
+ *
+ */
+
+
+
+
+var AuthInterceptor = /** @class */ (function () {
+    function AuthInterceptor(router) {
+        this.router = router;
+    }
+    AuthInterceptor.prototype.intercept = function (req, next) {
+        var _this = this;
+        //  const token = localStorage.token; // you probably want to store it in localStorage or something
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || !currentUser.access_token) {
+            return next.handle(req)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
+                console.log('http catchError');
+                if (err.status !== 401) {
+                    console.log(err.statusText);
+                    localStorage.removeItem('currentUser');
+                    _this.router.navigate(['/login']);
+                }
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["throwError"])(err.message);
+            }));
+        }
+        var req1 = req.clone({
+            headers: req.headers.set('Authorization', "Bearer " + currentUser.access_token),
+        });
+        return next.handle(req1)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
+            //console.log('http catchError', err);
+            if (err.status === 401) {
+                //console.log(err.statusText);   
+                localStorage.removeItem('currentUser');
+                _this.router.navigate(['/login']);
+            }
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["throwError"])(err);
+        }));
+    };
+    AuthInterceptor.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+    ]; };
+    AuthInterceptor = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], AuthInterceptor);
+    return AuthInterceptor;
+}());
+
+
 
 /***/ }),
 
@@ -731,10 +839,11 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 };
 
 
+//import {HttpHeaderService} from '../services/index'
 var ActivationService = /** @class */ (function () {
     function ActivationService(http) {
         this.http = http;
-        this.baseUrl = "/activations";
+        this.baseUrl = "http://127.0.0.1:3000/activations";
         this.activationList = [];
     }
     ActivationService.prototype.findById = function (id) {
@@ -887,28 +996,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var _flight_flight_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./flight/flight.module */ "./src/app/flight/flight.module.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _app_routes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.routes */ "./src/app/app.routes.ts");
-/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
-/* harmony import */ var _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./layouts/login-layout.component */ "./src/app/layouts/login-layout.component.ts");
-/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
-/* harmony import */ var _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./sidebar/sidebar.component */ "./src/app/sidebar/sidebar.component.ts");
-/* harmony import */ var _orders_orders_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./orders/orders.module */ "./src/app/orders/orders.module.ts");
-/* harmony import */ var _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./hotel/hotel.module */ "./src/app/hotel/hotel.module.ts");
-/* harmony import */ var _activation_activation_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./activation/activation.module */ "./src/app/activation/activation.module.ts");
-/* harmony import */ var _customer_customer_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./customer/customer.module */ "./src/app/customer/customer.module.ts");
-/* harmony import */ var _partner_partner_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./partner/partner.module */ "./src/app/partner/partner.module.ts");
-/* harmony import */ var _product_product_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./product/product.module */ "./src/app/product/product.module.ts");
-/* harmony import */ var _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./rateplan/rateplan.module */ "./src/app/rateplan/rateplan.module.ts");
-/* harmony import */ var _supply_supply_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./supply/supply.module */ "./src/app/supply/supply.module.ts");
-/* harmony import */ var _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./customerfeedback/customerfeedback.module */ "./src/app/customerfeedback/customerfeedback.module.ts");
-/* harmony import */ var _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./orderrating/orderrating.module */ "./src/app/orderrating/orderrating.module.ts");
-/* harmony import */ var _login_login_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./login/login.module */ "./src/app/login/login.module.ts");
-/* harmony import */ var _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./promotion/promotion.module */ "./src/app/promotion/promotion.module.ts");
+/* harmony import */ var _AuthInterceptor_AuthInterceptor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AuthInterceptor/AuthInterceptor */ "./src/app/AuthInterceptor/AuthInterceptor.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _app_routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.routes */ "./src/app/app.routes.ts");
+/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
+/* harmony import */ var _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./layouts/login-layout.component */ "./src/app/layouts/login-layout.component.ts");
+/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
+/* harmony import */ var _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./sidebar/sidebar.component */ "./src/app/sidebar/sidebar.component.ts");
+/* harmony import */ var _orders_orders_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./orders/orders.module */ "./src/app/orders/orders.module.ts");
+/* harmony import */ var _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./hotel/hotel.module */ "./src/app/hotel/hotel.module.ts");
+/* harmony import */ var _activation_activation_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./activation/activation.module */ "./src/app/activation/activation.module.ts");
+/* harmony import */ var _customer_customer_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./customer/customer.module */ "./src/app/customer/customer.module.ts");
+/* harmony import */ var _partner_partner_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./partner/partner.module */ "./src/app/partner/partner.module.ts");
+/* harmony import */ var _product_product_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./product/product.module */ "./src/app/product/product.module.ts");
+/* harmony import */ var _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./rateplan/rateplan.module */ "./src/app/rateplan/rateplan.module.ts");
+/* harmony import */ var _supply_supply_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./supply/supply.module */ "./src/app/supply/supply.module.ts");
+/* harmony import */ var _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./customerfeedback/customerfeedback.module */ "./src/app/customerfeedback/customerfeedback.module.ts");
+/* harmony import */ var _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./orderrating/orderrating.module */ "./src/app/orderrating/orderrating.module.ts");
+/* harmony import */ var _login_login_module__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./login/login.module */ "./src/app/login/login.module.ts");
+/* harmony import */ var _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./promotion/promotion.module */ "./src/app/promotion/promotion.module.ts");
+/* harmony import */ var _priceplan_priceplan_module__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./priceplan/priceplan.module */ "./src/app/priceplan/priceplan.module.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -953,39 +1064,44 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"],
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
                 _flight_flight_module__WEBPACK_IMPORTED_MODULE_0__["FlightModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_6__["APP_ROUTES"].slice(), __assign({}, _app_routes__WEBPACK_IMPORTED_MODULE_6__["APP_EXTRA_OPTIONS"])),
-                _orders_orders_module__WEBPACK_IMPORTED_MODULE_12__["OrdersModule"],
-                _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_13__["HotelModule"],
-                _activation_activation_module__WEBPACK_IMPORTED_MODULE_14__["ActivationModule"],
-                _customer_customer_module__WEBPACK_IMPORTED_MODULE_15__["CustomerModule"],
-                _partner_partner_module__WEBPACK_IMPORTED_MODULE_16__["PartnerModule"],
-                _product_product_module__WEBPACK_IMPORTED_MODULE_17__["ProductModule"],
-                _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_18__["RateplanModule"],
-                _supply_supply_module__WEBPACK_IMPORTED_MODULE_19__["SupplyModule"],
-                _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_20__["CustomerfeedbackModule"],
-                _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_21__["OrderratingModule"],
-                _login_login_module__WEBPACK_IMPORTED_MODULE_22__["LoginModule"],
-                _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_23__["PromotionModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_7__["APP_ROUTES"].slice(), __assign({}, _app_routes__WEBPACK_IMPORTED_MODULE_7__["APP_EXTRA_OPTIONS"])),
+                _orders_orders_module__WEBPACK_IMPORTED_MODULE_13__["OrdersModule"],
+                _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_14__["HotelModule"],
+                _activation_activation_module__WEBPACK_IMPORTED_MODULE_15__["ActivationModule"],
+                _customer_customer_module__WEBPACK_IMPORTED_MODULE_16__["CustomerModule"],
+                _partner_partner_module__WEBPACK_IMPORTED_MODULE_17__["PartnerModule"],
+                _product_product_module__WEBPACK_IMPORTED_MODULE_18__["ProductModule"],
+                _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_19__["RateplanModule"],
+                _supply_supply_module__WEBPACK_IMPORTED_MODULE_20__["SupplyModule"],
+                _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_21__["CustomerfeedbackModule"],
+                _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_22__["OrderratingModule"],
+                _login_login_module__WEBPACK_IMPORTED_MODULE_23__["LoginModule"],
+                _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_24__["PromotionModule"],
+                _priceplan_priceplan_module__WEBPACK_IMPORTED_MODULE_25__["PriceplanModule"],
             ],
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
-                _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_11__["SidebarComponent"],
-                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_10__["NavbarComponent"],
-                _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"],
-                _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_9__["LoginLayoutComponent"],
-                _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_8__["HomeLayoutComponent"],
+                _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
+                _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_12__["SidebarComponent"],
+                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_11__["NavbarComponent"],
+                _home_home_component__WEBPACK_IMPORTED_MODULE_8__["HomeComponent"],
+                _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_10__["LoginLayoutComponent"],
+                _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_9__["HomeLayoutComponent"],
             ],
-            providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
+            providers: [
+                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HTTP_INTERCEPTORS"], useClass: _AuthInterceptor_AuthInterceptor__WEBPACK_IMPORTED_MODULE_2__["AuthInterceptor"], multi: true },
+            ],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -1391,7 +1507,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var CustomerService = /** @class */ (function () {
     function CustomerService(http) {
         this.http = http;
-        this.baseUrl = "/customers";
+        this.baseUrl = "http://127.0.0.1:3000/customers";
         this.customerList = [];
     }
     CustomerService.prototype.findById = function (id) {
@@ -1819,7 +1935,7 @@ var CustomerfeedbackService = /** @class */ (function () {
     function CustomerfeedbackService(http) {
         this.http = http;
         this.customerfeedbackList = [];
-        this.api = '/feedbacks';
+        this.api = 'http://127.0.0.1:3000/feedbacks';
     }
     CustomerfeedbackService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -3111,7 +3227,7 @@ var LoginService = /** @class */ (function () {
     function LoginService(http) {
         this.http = http;
         this.loginList = [];
-        this.api = '/users/login';
+        this.api = 'http://127.0.0.1:3000/users/login';
     }
     // oldlogin(username: string, password: string) {
     //     return this.http.post<any>(`/users/authenticate`, { username: username, password: password })
@@ -3565,7 +3681,7 @@ var OrderratingService = /** @class */ (function () {
     function OrderratingService(http) {
         this.http = http;
         this.orderratingList = [];
-        this.api = '/order-ratings';
+        this.api = 'http://127.0.0.1:3000/order-ratings';
     }
     OrderratingService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -4011,7 +4127,7 @@ var OrdersService = /** @class */ (function () {
     function OrdersService(http) {
         this.http = http;
         this.ordersList = [];
-        this.api = '/orders';
+        this.api = 'http://127.0.0.1:3000/orders';
     }
     OrdersService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -4058,15 +4174,9 @@ var OrdersService = /** @class */ (function () {
     OrdersService.prototype.orderStartProgress = function (entity) {
         var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
         var url = '';
-        if (entity.id) {
-            url = this.api + "/" + entity.id.toString() + "/startProgress";
-            // params = new HttpParams().set('ID', entity.id.toString());
-            return this.http.put(url, entity, { headers: headers, params: params });
-        }
-        else {
-            url = "" + this.api;
-            return this.http.post(url, { headers: headers, params: params });
-        }
+        url = this.api + "/" + entity.id.toString() + "/customers/" + entity.customersId + "/startProgress";
+        // params = new HttpParams().set('ID', entity.id.toString());
+        return this.http.patch(url, entity, { headers: headers, params: params });
     };
     OrdersService.prototype.orderDelivered = function (entity) {
         var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
@@ -4447,7 +4557,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var PartnerService = /** @class */ (function () {
     function PartnerService(http) {
         this.http = http;
-        this.baseUrl = "/partners";
+        this.baseUrl = "http://127.0.0.1:3000/partners";
         this.partnerList = [];
     }
     PartnerService.prototype.findById = function (id) {
@@ -4530,6 +4640,425 @@ var Partner = /** @class */ (function () {
     function Partner() {
     }
     return Partner;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/priceplan/priceplan-edit/priceplan-edit.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/priceplan/priceplan-edit/priceplan-edit.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: PriceplanEditComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PriceplanEditComponent", function() { return PriceplanEditComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _priceplan_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../priceplan.service */ "./src/app/priceplan/priceplan.service.ts");
+/* harmony import */ var _priceplan__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../priceplan */ "./src/app/priceplan/priceplan.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+
+
+
+var PriceplanEditComponent = /** @class */ (function () {
+    function PriceplanEditComponent(route, router, priceplanService) {
+        this.route = route;
+        this.router = router;
+        this.priceplanService = priceplanService;
+        this.feedback = {};
+    }
+    PriceplanEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this
+            .route
+            .params
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (p) { return p.id; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (id) {
+            if (id === 'new') {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(new _priceplan__WEBPACK_IMPORTED_MODULE_3__["Priceplan"]());
+            }
+            return _this.priceplanService.findById(id);
+        }))
+            .subscribe(function (priceplan) {
+            _this.priceplan = priceplan;
+            _this.feedback = {};
+        }, function (err) {
+            _this.feedback = { type: 'warning', message: 'Error loading' };
+        });
+    };
+    PriceplanEditComponent.prototype.save = function () {
+        var _this = this;
+        this.priceplanService.save(this.priceplan).subscribe(function (priceplan) {
+            _this.priceplan = priceplan;
+            _this.feedback = { type: 'success', message: 'Save was successful!' };
+            setTimeout(function () {
+                _this.router.navigate(['/home/priceplans']);
+            }, 1000);
+        }, function (err) {
+            _this.feedback = { type: 'warning', message: 'Error saving' };
+        });
+    };
+    PriceplanEditComponent.prototype.cancel = function () {
+        this.router.navigate(['/home/priceplans']);
+    };
+    PriceplanEditComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _priceplan_service__WEBPACK_IMPORTED_MODULE_2__["PriceplanService"] }
+    ]; };
+    PriceplanEditComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-priceplan-edit',
+            template: __importDefault(__webpack_require__(/*! raw-loader!./priceplan-edit.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/priceplan/priceplan-edit/priceplan-edit.component.html")).default
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _priceplan_service__WEBPACK_IMPORTED_MODULE_2__["PriceplanService"]])
+    ], PriceplanEditComponent);
+    return PriceplanEditComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/priceplan/priceplan-filter.ts":
+/*!***********************************************!*\
+  !*** ./src/app/priceplan/priceplan-filter.ts ***!
+  \***********************************************/
+/*! exports provided: PriceplanFilter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PriceplanFilter", function() { return PriceplanFilter; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var PriceplanFilter = /** @class */ (function () {
+    function PriceplanFilter() {
+        this.title = '';
+    }
+    return PriceplanFilter;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/priceplan/priceplan-list/priceplan-list.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/priceplan/priceplan-list/priceplan-list.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: PriceplanListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PriceplanListComponent", function() { return PriceplanListComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _priceplan_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../priceplan-filter */ "./src/app/priceplan/priceplan-filter.ts");
+/* harmony import */ var _priceplan_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../priceplan.service */ "./src/app/priceplan/priceplan.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+var PriceplanListComponent = /** @class */ (function () {
+    function PriceplanListComponent(priceplanService) {
+        this.priceplanService = priceplanService;
+        this.filter = new _priceplan_filter__WEBPACK_IMPORTED_MODULE_1__["PriceplanFilter"]();
+        this.feedback = {};
+    }
+    Object.defineProperty(PriceplanListComponent.prototype, "priceplanList", {
+        get: function () {
+            return this.priceplanService.priceplanList;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    PriceplanListComponent.prototype.ngOnInit = function () {
+        this.search();
+    };
+    PriceplanListComponent.prototype.search = function () {
+        this.priceplanService.load(this.filter);
+    };
+    PriceplanListComponent.prototype.select = function (selected) {
+        this.selectedPriceplan = selected;
+    };
+    PriceplanListComponent.prototype.delete = function (priceplan) {
+        var _this = this;
+        if (confirm('Are you sure?')) {
+            this.priceplanService.delete(priceplan).subscribe(function () {
+                _this.feedback = { type: 'success', message: 'Delete was successful!' };
+                setTimeout(function () {
+                    _this.search();
+                }, 1000);
+            }, function (err) {
+                _this.feedback = { type: 'warning', message: 'Error deleting.' };
+            });
+        }
+    };
+    PriceplanListComponent.ctorParameters = function () { return [
+        { type: _priceplan_service__WEBPACK_IMPORTED_MODULE_2__["PriceplanService"] }
+    ]; };
+    PriceplanListComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-priceplan',
+            template: __importDefault(__webpack_require__(/*! raw-loader!./priceplan-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/priceplan/priceplan-list/priceplan-list.component.html")).default
+        }),
+        __metadata("design:paramtypes", [_priceplan_service__WEBPACK_IMPORTED_MODULE_2__["PriceplanService"]])
+    ], PriceplanListComponent);
+    return PriceplanListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/priceplan/priceplan.module.ts":
+/*!***********************************************!*\
+  !*** ./src/app/priceplan/priceplan.module.ts ***!
+  \***********************************************/
+/*! exports provided: PriceplanModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PriceplanModule", function() { return PriceplanModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _priceplan_list_priceplan_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./priceplan-list/priceplan-list.component */ "./src/app/priceplan/priceplan-list/priceplan-list.component.ts");
+/* harmony import */ var _priceplan_edit_priceplan_edit_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./priceplan-edit/priceplan-edit.component */ "./src/app/priceplan/priceplan-edit/priceplan-edit.component.ts");
+/* harmony import */ var _priceplan_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./priceplan.service */ "./src/app/priceplan/priceplan.service.ts");
+/* harmony import */ var _priceplan_routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./priceplan.routes */ "./src/app/priceplan/priceplan.routes.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+
+
+
+
+var PriceplanModule = /** @class */ (function () {
+    function PriceplanModule() {
+    }
+    PriceplanModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forChild(_priceplan_routes__WEBPACK_IMPORTED_MODULE_7__["PRICEPLAN_ROUTES"])
+            ],
+            declarations: [
+                _priceplan_list_priceplan_list_component__WEBPACK_IMPORTED_MODULE_4__["PriceplanListComponent"],
+                _priceplan_edit_priceplan_edit_component__WEBPACK_IMPORTED_MODULE_5__["PriceplanEditComponent"]
+            ],
+            providers: [_priceplan_service__WEBPACK_IMPORTED_MODULE_6__["PriceplanService"]],
+            exports: []
+        })
+    ], PriceplanModule);
+    return PriceplanModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/priceplan/priceplan.routes.ts":
+/*!***********************************************!*\
+  !*** ./src/app/priceplan/priceplan.routes.ts ***!
+  \***********************************************/
+/*! exports provided: PRICEPLAN_ROUTES */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PRICEPLAN_ROUTES", function() { return PRICEPLAN_ROUTES; });
+/* harmony import */ var _priceplan_list_priceplan_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./priceplan-list/priceplan-list.component */ "./src/app/priceplan/priceplan-list/priceplan-list.component.ts");
+/* harmony import */ var _priceplan_edit_priceplan_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./priceplan-edit/priceplan-edit.component */ "./src/app/priceplan/priceplan-edit/priceplan-edit.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+var PRICEPLAN_ROUTES = [
+    {
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'priceplans',
+                component: _priceplan_list_priceplan_list_component__WEBPACK_IMPORTED_MODULE_0__["PriceplanListComponent"]
+            }
+        ]
+    },
+    {
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'priceplans/:id',
+                component: _priceplan_edit_priceplan_edit_component__WEBPACK_IMPORTED_MODULE_1__["PriceplanEditComponent"]
+            }
+        ]
+    }
+];
+
+
+/***/ }),
+
+/***/ "./src/app/priceplan/priceplan.service.ts":
+/*!************************************************!*\
+  !*** ./src/app/priceplan/priceplan.service.ts ***!
+  \************************************************/
+/*! exports provided: PriceplanService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PriceplanService", function() { return PriceplanService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Accept', 'application/json');
+var PriceplanService = /** @class */ (function () {
+    function PriceplanService(http) {
+        this.http = http;
+        this.priceplanList = [];
+        this.api = 'http://127.0.0.1:3000/price-plans';
+    }
+    PriceplanService.prototype.findById = function (id) {
+        var url = this.api + "/" + id;
+        var params = { id: id };
+        return this.http.get(url, { params: params, headers: headers });
+    };
+    PriceplanService.prototype.load = function (filter) {
+        var _this = this;
+        this.find(filter).subscribe(function (result) {
+            _this.priceplanList = result;
+        }, function (err) {
+            console.error('error loading', err);
+        });
+    };
+    PriceplanService.prototype.find = function (filter) {
+        var params = {
+            'title': filter.title,
+        };
+        return this.http.get(this.api, { params: params, headers: headers });
+    };
+    PriceplanService.prototype.save = function (entity) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        entity.effectiveFrom = new Date(entity.effectiveFrom);
+        entity.effectiveTo = new Date(entity.effectiveTo);
+        if (entity.id) {
+            url = this.api + "/" + entity.id.toString();
+            params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
+            return this.http.put(url, entity, { headers: headers, params: params });
+        }
+        else {
+            url = "" + this.api;
+            return this.http.post(url, entity, { headers: headers, params: params });
+        }
+    };
+    PriceplanService.prototype.delete = function (entity) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        if (entity.id) {
+            url = this.api + "/" + entity.id.toString();
+            params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
+            return this.http.delete(url, { headers: headers, params: params });
+        }
+        return null;
+    };
+    PriceplanService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
+    PriceplanService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], PriceplanService);
+    return PriceplanService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/priceplan/priceplan.ts":
+/*!****************************************!*\
+  !*** ./src/app/priceplan/priceplan.ts ***!
+  \****************************************/
+/*! exports provided: Priceplan */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Priceplan", function() { return Priceplan; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var Priceplan = /** @class */ (function () {
+    function Priceplan() {
+    }
+    return Priceplan;
 }());
 
 
@@ -4889,7 +5418,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var ProductService = /** @class */ (function () {
     function ProductService(http) {
         this.http = http;
-        this.baseUrl = "/products";
+        this.baseUrl = "http://127.0.0.1:3000/products";
         this.productList = [];
     }
     ProductService.prototype.findById = function (id) {
@@ -5326,7 +5855,7 @@ var PromotionService = /** @class */ (function () {
     function PromotionService(http) {
         this.http = http;
         this.promotionList = [];
-        this.api = '/promotions';
+        this.api = 'http://127.0.0.1:3000/promotions';
     }
     PromotionService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -5729,7 +6258,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var RateplanService = /** @class */ (function () {
     function RateplanService(http) {
         this.http = http;
-        this.baseUrl = "/rateplans";
+        this.baseUrl = "http://127.0.0.1:3000/rateplans";
         this.rateplanList = [];
     }
     RateplanService.prototype.findById = function (id) {
@@ -5979,6 +6508,7 @@ var SupplyEditComponent = /** @class */ (function () {
         var _this = this;
         this.supplyService.supplyArrived(supplyId)
             .subscribe(function (sp) {
+            _this.supply.isArrived = sp.isArrived;
             _this.errors = "Supply Arrived Successfully!";
         }, function (err) {
             _this.errors = JSON.stringify(err);
@@ -6249,7 +6779,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var SupplyService = /** @class */ (function () {
     function SupplyService(http) {
         this.http = http;
-        this.baseUrl = "/supplies";
+        this.baseUrl = "http://127.0.0.1:3000/supplies";
         this.supplyList = [];
     }
     SupplyService.prototype.findById = function (id) {

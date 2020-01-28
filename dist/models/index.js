@@ -28,4 +28,6 @@ __export(require("./rating-reasons.model"));
 __export(require("./error-response.model"));
 __export(require("./promotiontype.model"));
 __export(require("./promotion.model"));
+__export(require("./price-plan.model"));
+__export(require("./price-plan-types.model"));
 //# sourceMappingURL=index.js.map

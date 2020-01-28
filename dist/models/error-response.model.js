@@ -18,15 +18,29 @@ let ErrorResponse = class ErrorResponse extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: 'string',
+        required: true,
     }),
     __metadata("design:type", String)
 ], ErrorResponse.prototype, "message", void 0);
 __decorate([
     repository_1.property({
+        type: 'number',
+        required: true,
+    }),
+    __metadata("design:type", Number)
+], ErrorResponse.prototype, "statusCode", void 0);
+__decorate([
+    repository_1.property({
         type: 'string',
     }),
     __metadata("design:type", String)
-], ErrorResponse.prototype, "statusCode", void 0);
+], ErrorResponse.prototype, "name", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], ErrorResponse.prototype, "code", void 0);
 ErrorResponse = __decorate([
     repository_1.model(),
     __metadata("design:paramtypes", [Object])

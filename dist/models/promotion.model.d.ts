@@ -7,8 +7,9 @@ export declare class Promotion extends Entity {
     isPromotionValueFixed: boolean;
     image?: string;
     imageUrl?: string;
-    effectiveDate?: string;
-    endDate: string;
+    createdDate?: Date;
+    effectiveDate?: Date;
+    endDate: Date;
     isActive?: boolean;
     promotiontypeId: string;
     [prop: string]: any;

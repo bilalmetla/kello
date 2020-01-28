@@ -45,4 +45,8 @@ __export(require("./user.controller"));
 __export(require("./promotion-promotiontype.controller"));
 __export(require("./promotiontype.controller"));
 __export(require("./promotion.controller"));
+__export(require("./price-plan-price-plan-types.controller"));
+__export(require("./price-plan-types.controller"));
+__export(require("./price-plan.controller"));
+__export(require("./partners-orders.controller"));
 //# sourceMappingURL=index.js.map

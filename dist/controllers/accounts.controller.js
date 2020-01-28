@@ -41,6 +41,13 @@ let AccountsController = class AccountsController {
     }
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (filter) {
+                filter.order = ['createdTime Desc'];
+            }
+            else {
+                filter = {};
+                filter.order = ['createdTime Desc'];
+            }
             return this.accountsRepository.find(filter);
         });
     }

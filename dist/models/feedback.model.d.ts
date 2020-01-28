@@ -6,6 +6,7 @@ export declare class Feedback extends Entity {
     phone: string;
     message: string;
     isReviewed: boolean;
+    createdDate?: Date;
     customersId: string;
     feedbacktypesId: string;
     partnersId: string;

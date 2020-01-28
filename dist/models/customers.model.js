@@ -60,14 +60,20 @@ __decorate([
         type: 'date',
         default: new Date(),
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], Customers.prototype, "createdDate", void 0);
 __decorate([
     repository_1.property({
         type: 'date',
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], Customers.prototype, "updatedDate", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Customers.prototype, "deviceId", void 0);
 __decorate([
     repository_1.hasMany(() => orders_model_1.Orders),
     __metadata("design:type", Array)

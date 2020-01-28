@@ -25,6 +25,7 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const auth_1 = require("../auth");
 let ActivationsController = class ActivationsController {
     constructor(activationsRepository) {
         this.activationsRepository = activationsRepository;
@@ -41,6 +42,14 @@ let ActivationsController = class ActivationsController {
     }
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (filter) {
+                filter.order = ['createdTime Desc'];
+            }
+            else {
+                filter = {};
+                filter.order = ['createdTime Desc'];
+            }
+            //filter.where = {id: "232323232323"}
             return this.activationsRepository.find(filter);
         });
     }
@@ -71,6 +80,7 @@ let ActivationsController = class ActivationsController {
     }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/activations', {
         responses: {
             '200': {
@@ -94,6 +104,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ActivationsController.prototype, "create", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/activations/count', {
         responses: {
             '200': {
@@ -108,6 +119,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ActivationsController.prototype, "count", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/activations', {
         responses: {
             '200': {
@@ -129,6 +141,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ActivationsController.prototype, "find", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/activations', {
         responses: {
             '200': {
@@ -150,6 +163,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ActivationsController.prototype, "updateAll", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/activations/{id}', {
         responses: {
             '200': {
@@ -169,6 +183,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ActivationsController.prototype, "findById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/activations/{id}', {
         responses: {
             '204': {
@@ -189,6 +204,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ActivationsController.prototype, "updateById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.put('/activations/{id}', {
         responses: {
             '204': {
@@ -203,6 +219,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ActivationsController.prototype, "replaceById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.del('/activations/{id}', {
         responses: {
             '204': {

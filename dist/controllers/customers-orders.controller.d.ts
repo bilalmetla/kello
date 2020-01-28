@@ -12,4 +12,7 @@ export declare class CustomersOrdersController {
     create(id: typeof Customers.prototype.id, orders: Omit<Orders, 'id'>): Promise<any>;
     patch(id: string, orders: Partial<Orders>, where?: Where<Orders>): Promise<Count>;
     delete(id: string, where?: Where<Orders>): Promise<Count>;
+    orderStartProgress(orderId: string, customerId: string): Promise<Orders | any>;
+    orderCancellation(customersId: string, id: string): Promise<object>;
+    orderDelevered(id: string, customerId: string): Promise<object>;
 }

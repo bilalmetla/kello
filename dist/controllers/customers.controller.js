@@ -49,6 +49,13 @@ let CustomersController = class CustomersController {
     }
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (filter) {
+                filter.order = ['createdDate Desc'];
+            }
+            else {
+                filter = {};
+                filter.order = ['createdDate Desc'];
+            }
             return this.customersRepository.find(filter);
         });
     }
@@ -77,6 +84,7 @@ let CustomersController = class CustomersController {
             yield this.customersRepository.deleteById(id);
         });
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     authenticate(customers) {
         return __awaiter(this, void 0, void 0, function* () {
             let phone = customers.phone;
@@ -102,8 +110,9 @@ let CustomersController = class CustomersController {
                 tomorrow.setDate(today.getDate() + 1);
                 yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
                 yield this.customersRepository.create(customers);
-                let user = yield this.userRepository.create({ phone: phone });
+                let user = yield this.userRepository.create({ username: phone });
                 //delete createdCustomer.access_token;
+                yield this.sendSMS();
                 return user;
                 //return customer;
                 //throw new HttpErrors.Unauthorized('Please Activate via SMS CODE');    
@@ -115,11 +124,13 @@ let CustomersController = class CustomersController {
                 yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
                 foundCust[0].isActivated = false;
                 yield this.customersRepository.updateAll(foundCust[0], { phone });
+                yield this.sendSMS();
                 delete foundCust[0].access_token;
                 return foundCust[0];
             }
         });
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     activation(activations) {
         return __awaiter(this, void 0, void 0, function* () {
             let phone = activations.phone;
@@ -138,8 +149,31 @@ let CustomersController = class CustomersController {
             }
         });
     }
+    sendSMS() {
+        return __awaiter(this, void 0, void 0, function* () {
+            // Download the helper library from https://www.twilio.com/docs/node/install
+            // Your Account Sid and Auth Token from twilio.com/console
+            // DANGER! This is insecure. See http://twil.io/secure
+            console.log('sending sms via twilio..');
+            const accountSid = 'ACeccf074eced9ed0be6a11fba3295228d';
+            const authToken = 'e6b969ab8a142a69f2ee6569c4240725';
+            const client = require('twilio')(accountSid, authToken);
+            client.messages
+                .create({
+                body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+                from: '+15017122661',
+                to: '+923136604801'
+            })
+                .then((message) => {
+                console.log(message.sid);
+                return message;
+            })
+                .catch((error) => console.log(error));
+        });
+    }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/customers', {
         responses: {
             '200': {
@@ -163,6 +197,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "create", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/customers/count', {
         responses: {
             '200': {
@@ -177,6 +212,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "count", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/customers', {
         responses: {
             '200': {
@@ -198,6 +234,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "find", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/customers', {
         responses: {
             '200': {
@@ -219,6 +256,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "updateAll", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/customers/{id}', {
         responses: {
             '200': {
@@ -238,6 +276,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "findById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/customers/{id}', {
         responses: {
             '204': {
@@ -258,6 +297,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "updateById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.put('/customers/{id}', {
         responses: {
             '204': {
@@ -272,6 +312,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "replaceById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.del('/customers/{id}', {
         responses: {
             '204': {

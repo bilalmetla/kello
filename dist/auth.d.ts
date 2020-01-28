@@ -42,7 +42,12 @@ export declare class MyAuthAuthenticationStrategyProvider implements Provider<Au
     constructor(metadata: MyAuthenticationMetadata, userRepository: UserRepository, userRoleRepository: UserRoleRepository);
     value(): ValueOrPromise<AuthenticationStrategy | undefined>;
     verifyToken(payload: Credentials, done: (err: Error | null, user?: UserProfile | false, info?: Object) => void): Promise<void>;
-    verifyRoles(username: string): Promise<void>;
+    verifyRoles(username: string): Promise<{
+        error: {
+            "statusCode": number;
+            message: string;
+        };
+    } | undefined>;
 }
 export declare class MyAuthActionProvider implements Provider<AuthenticateFn> {
     readonly getStrategy: Getter<AuthenticationStrategy>;

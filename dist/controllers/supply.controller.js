@@ -25,9 +25,12 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const constants_1 = require("../constants");
+const auth_1 = require("../auth");
 let SupplyController = class SupplyController {
-    constructor(supplyRepository) {
+    constructor(supplyRepository, productsRepository) {
         this.supplyRepository = supplyRepository;
+        this.productsRepository = productsRepository;
     }
     create(supply) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -46,6 +49,7 @@ let SupplyController = class SupplyController {
     }
     updateAll(supply, where) {
         return __awaiter(this, void 0, void 0, function* () {
+            supply.isArrived = false;
             return this.supplyRepository.updateAll(supply, where);
         });
     }
@@ -56,6 +60,7 @@ let SupplyController = class SupplyController {
     }
     updateById(id, supply) {
         return __awaiter(this, void 0, void 0, function* () {
+            supply.isArrived = false;
             yield this.supplyRepository.updateById(id, supply);
         });
     }
@@ -69,8 +74,37 @@ let SupplyController = class SupplyController {
             yield this.supplyRepository.deleteById(id);
         });
     }
+    supplyArrived(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let supply = yield this.supplyRepository.findOne({ "where": { id } });
+            if (supply) {
+                supply.arrivedAt = new Date();
+                supply.isArrived = true;
+                let productId = supply.productsId;
+                yield this.supplyRepository.updateById(id, supply);
+                console.log("productId: ", productId);
+                let product = yield this.productsRepository.findById(productId);
+                if (product) {
+                    product.quentityOnHand = product.quentityOnHand ? product.quentityOnHand + supply.quentity : supply.quentity;
+                    product.buyingPrice = supply.purchasingCost;
+                    product.buyingPriceUnitsId = supply.buyingPriceUnitId;
+                    yield this.productsRepository.updateById(productId, product);
+                    return { id, isArrived: supply.isArrived };
+                }
+                else {
+                    // throw new rest_1.HttpErrors.UnprocessableEntity('Product Not Found!');
+                    return constants_1.CONSTANTS.PRODUCT_NOT_FOUND;
+                }
+            }
+            else {
+                //throw new rest_1.HttpErrors.UnprocessableEntity('Supply Not Found!');
+                return constants_1.CONSTANTS.NO_SUPPLY_EXISTS;
+            }
+        });
+    }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/supplies', {
         responses: {
             '200': {
@@ -94,6 +128,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SupplyController.prototype, "create", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/supplies/count', {
         responses: {
             '200': {
@@ -108,6 +143,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SupplyController.prototype, "count", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/supplies', {
         responses: {
             '200': {
@@ -129,6 +165,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SupplyController.prototype, "find", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/supplies', {
         responses: {
             '200': {
@@ -150,6 +187,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SupplyController.prototype, "updateAll", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/supplies/{id}', {
         responses: {
             '200': {
@@ -169,6 +207,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SupplyController.prototype, "findById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/supplies/{id}', {
         responses: {
             '204': {
@@ -189,6 +228,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SupplyController.prototype, "updateById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.put('/supplies/{id}', {
         responses: {
             '204': {
@@ -203,6 +243,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SupplyController.prototype, "replaceById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.del('/supplies/{id}', {
         responses: {
             '204': {
@@ -215,9 +256,25 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], SupplyController.prototype, "deleteById", null);
+__decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
+    rest_1.patch('/supplies/{id}/arrived', {
+        responses: {
+            '204': {
+                description: 'Supply Arrived success',
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], SupplyController.prototype, "supplyArrived", null);
 SupplyController = __decorate([
     __param(0, repository_1.repository(repositories_1.SupplyRepository)),
-    __metadata("design:paramtypes", [repositories_1.SupplyRepository])
+    __param(1, repository_1.repository(repositories_1.ProductsRepository)),
+    __metadata("design:paramtypes", [repositories_1.SupplyRepository,
+        repositories_1.ProductsRepository])
 ], SupplyController);
 exports.SupplyController = SupplyController;
 //# sourceMappingURL=supply.controller.js.map

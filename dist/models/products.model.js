@@ -67,7 +67,6 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'number',
-        default: 0,
     }),
     __metadata("design:type", Number)
 ], Products.prototype, "buyingPrice", void 0);
@@ -92,6 +91,20 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], Products.prototype, "retailPrice", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        default: 0,
+    }),
+    __metadata("design:type", Number)
+], Products.prototype, "discountAmount", void 0);
+__decorate([
+    repository_1.property({
+        type: 'date',
+        default: new Date()
+    }),
+    __metadata("design:type", Date)
+], Products.prototype, "createdDate", void 0);
 __decorate([
     repository_1.property({
         type: 'string',

@@ -29,7 +29,6 @@ const auth_metadata_provider_1 = require("@loopback/authentication/dist/provider
 const repositories_1 = require("./repositories");
 const repository_1 = require("@loopback/repository");
 const passport_jwt_1 = require("passport-jwt");
-const rest_1 = require("@loopback/rest");
 exports.JWT_STRATEGY_NAME = 'jwt';
 exports.BEARER_STRATEGY_NAME = 'bearer';
 // the decorator function, every required param has its own default
@@ -127,17 +126,20 @@ let MyAuthAuthenticationStrategyProvider = class MyAuthAuthenticationStrategyPro
     verifyToken(payload, done) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                console.log('auth payload' + JSON.stringify(payload));
                 const { username } = payload;
-                const user = yield this.userRepository.findOne({ "where": { phone: username } }); //await this.userRepository.findById(username);
+                const user = yield this.userRepository.findOne({ "where": { username: username } }); //await this.userRepository.findById(username);
                 if (!user)
                     done(null, false);
                 yield this.verifyRoles(username);
                 if (user)
-                    done(null, { phone: user.phone, [security_1.securityId]: username });
+                    done(null, { phone: user.username, [security_1.securityId]: username });
             }
             catch (err) {
-                if (err.name === 'UnauthorizedError')
-                    done(null, false);
+                console.log('auth error: ', err);
+                if (err.name === 'UnauthorizedError') {
+                    done(err, false);
+                }
                 done(err, false);
             }
         });
@@ -170,7 +172,8 @@ let MyAuthAuthenticationStrategyProvider = class MyAuthAuthenticationStrategyPro
                 if (valid)
                     return;
             }
-            throw new rest_1.HttpErrors.Unauthorized('Invalid authorization');
+            //throw new HttpErrors.Unauthorized('Invalid authorization');
+            return { error: { "statusCode": 401, message: "Invalid authorization" } };
         });
     }
 };

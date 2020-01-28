@@ -14,6 +14,10 @@ const orderstatuses_model_1 = require("./orderstatuses.model");
 const orderdetails_model_1 = require("./orderdetails.model");
 const partners_model_1 = require("./partners.model");
 let Orders = class Orders extends repository_1.Entity {
+    // @hasMany(() => Orderdetails)
+    // orderdetails: Orderdetails[];
+    // @belongsTo(() => Partners)
+    // partnersId: string;
     // Define well-known properties here
     // Indexer property to allow additional data
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -87,6 +91,12 @@ __decorate([
 ], Orders.prototype, "orderCategory", void 0);
 __decorate([
     repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Orders.prototype, "specialNotes", void 0);
+__decorate([
+    repository_1.property({
         type: 'array',
         itemType: 'object',
         required: true,
@@ -105,19 +115,25 @@ __decorate([
     __metadata("design:type", String)
 ], Orders.prototype, "orderstatusesId", void 0);
 __decorate([
+    repository_1.hasMany(() => orderdetails_model_1.Orderdetails),
+    __metadata("design:type", Array)
+], Orders.prototype, "orderdetails", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Orders.prototype, "partnersId", void 0);
+__decorate([
+    repository_1.belongsTo(() => partners_model_1.Partners),
+    __metadata("design:type", String)
+], Orders.prototype, "deliveredById", void 0);
+__decorate([
     repository_1.property({
         type: 'string',
     }),
     __metadata("design:type", String)
 ], Orders.prototype, "customersId", void 0);
-__decorate([
-    repository_1.hasMany(() => orderdetails_model_1.Orderdetails),
-    __metadata("design:type", Array)
-], Orders.prototype, "orderdetails", void 0);
-__decorate([
-    repository_1.belongsTo(() => partners_model_1.Partners),
-    __metadata("design:type", String)
-], Orders.prototype, "partnersId", void 0);
 Orders = __decorate([
     repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])

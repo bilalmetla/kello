@@ -29,25 +29,22 @@ __decorate([
         required: true,
     }),
     __metadata("design:type", String)
-], User.prototype, "phone", void 0);
+], User.prototype, "username", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
-        required: false,
     }),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
-        required: false,
     }),
     __metadata("design:type", String)
 ], User.prototype, "access_token", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
-        required: false,
     }),
     __metadata("design:type", String)
 ], User.prototype, "name", void 0);

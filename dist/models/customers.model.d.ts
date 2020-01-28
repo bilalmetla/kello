@@ -6,8 +6,9 @@ export declare class Customers extends Entity {
     phone: string;
     access_token?: string;
     isActivated?: boolean;
-    createdDate?: string;
-    updatedDate?: string;
+    createdDate?: Date;
+    updatedDate?: Date;
+    deviceId?: string;
     orders: Orders[];
     constructor(data?: Partial<Customers>);
 }

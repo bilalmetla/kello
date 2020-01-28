@@ -13,12 +13,14 @@ export declare class Orders extends Entity {
     isDelivered?: boolean;
     isCancelled?: boolean;
     orderCategory?: string;
+    specialNotes?: string;
     items: object[];
     location?: any;
     orderstatusesId: string;
-    customersId?: string;
     orderdetails: Orderdetails[];
-    partnersId: string;
+    partnersId?: string;
+    deliveredById: string;
+    customersId?: string;
     constructor(data?: Partial<Orders>);
 }
 export interface OrdersRelations {

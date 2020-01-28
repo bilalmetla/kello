@@ -69,7 +69,14 @@ __decorate([
         type: 'date',
         default: new Date(),
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
+], Promotion.prototype, "createdDate", void 0);
+__decorate([
+    repository_1.property({
+        type: 'date',
+        default: new Date(),
+    }),
+    __metadata("design:type", Date)
 ], Promotion.prototype, "effectiveDate", void 0);
 __decorate([
     repository_1.property({
@@ -77,7 +84,7 @@ __decorate([
         required: true,
         default: new Date(),
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], Promotion.prototype, "endDate", void 0);
 __decorate([
     repository_1.property({

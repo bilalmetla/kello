@@ -101,7 +101,7 @@ let PartnersController = class PartnersController {
                 tomorrow.setDate(today.getDate() + 1);
                 yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
                 yield this.partnersRepository.create(partners);
-                let user = yield this.userRepository.create({ phone: phone });
+                let user = yield this.userRepository.create({ username: phone });
                 // delete createdPartner.access_token;
                 return user;
             }
@@ -147,6 +147,7 @@ let PartnersController = class PartnersController {
     }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/partners', {
         responses: {
             '200': {
@@ -170,6 +171,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PartnersController.prototype, "create", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/partners/count', {
         responses: {
             '200': {
@@ -184,6 +186,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PartnersController.prototype, "count", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/partners', {
         responses: {
             '200': {
@@ -205,6 +208,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PartnersController.prototype, "find", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/partners', {
         responses: {
             '200': {
@@ -226,6 +230,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PartnersController.prototype, "updateAll", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/partners/{id}', {
         responses: {
             '200': {
@@ -245,6 +250,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PartnersController.prototype, "findById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/partners/{id}', {
         responses: {
             '204': {
@@ -265,6 +271,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PartnersController.prototype, "updateById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.put('/partners/{id}', {
         responses: {
             '204': {
@@ -279,6 +286,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PartnersController.prototype, "replaceById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.del('/partners/{id}', {
         responses: {
             '204': {
@@ -292,6 +300,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PartnersController.prototype, "deleteById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/partners/authenticate', {
         responses: {
             '200': {
@@ -315,6 +324,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PartnersController.prototype, "authenticate", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/partners/activate', {
         responses: {
             '200': {
@@ -338,6 +348,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PartnersController.prototype, "activation", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/partners/{id}/location/{long}/{lat}', {
         responses: {
             '204': {

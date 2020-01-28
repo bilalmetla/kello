@@ -17,15 +17,12 @@ const models_1 = require("../models");
 const datasources_1 = require("../datasources");
 const core_1 = require("@loopback/core");
 let OrdersRepository = class OrdersRepository extends repository_1.DefaultCrudRepository {
-    constructor(dataSource, orderstatusesRepositoryGetter, orderdetailsRepositoryGetter, partnersRepositoryGetter, customersRepositoryGetter) {
+    constructor(dataSource, orderstatusesRepositoryGetter, orderdetailsRepositoryGetter, partnersRepositoryGetter) {
         super(models_1.Orders, dataSource);
         this.orderstatusesRepositoryGetter = orderstatusesRepositoryGetter;
         this.orderdetailsRepositoryGetter = orderdetailsRepositoryGetter;
         this.partnersRepositoryGetter = partnersRepositoryGetter;
-        this.customersRepositoryGetter = customersRepositoryGetter;
-        //this.customers = this.createBelongsToAccessorFor('customers', customersRepositoryGetter,);
-        //this.registerInclusionResolver('customers', this.customers.inclusionResolver);
-        this.partners = this.createBelongsToAccessorFor('partners', partnersRepositoryGetter);
+        this.partners = this.createBelongsToAccessorFor('deliveredBy', partnersRepositoryGetter);
         this.registerInclusionResolver('partners', this.partners.inclusionResolver);
         this.orderdetails = this.createHasManyRepositoryFactoryFor('orderdetails', orderdetailsRepositoryGetter);
         this.registerInclusionResolver('orderdetails', this.orderdetails.inclusionResolver);
@@ -34,8 +31,8 @@ let OrdersRepository = class OrdersRepository extends repository_1.DefaultCrudRe
     }
 };
 OrdersRepository = __decorate([
-    __param(0, core_1.inject('datasources.killo')), __param(1, repository_1.repository.getter('OrderstatusesRepository')), __param(2, repository_1.repository.getter('OrderdetailsRepository')), __param(3, repository_1.repository.getter('PartnersRepository')), __param(4, repository_1.repository.getter('PartnersRepository')),
-    __metadata("design:paramtypes", [datasources_1.KilloDataSource, Function, Function, Function, Function])
+    __param(0, core_1.inject('datasources.killo')), __param(1, repository_1.repository.getter('OrderstatusesRepository')), __param(2, repository_1.repository.getter('OrderdetailsRepository')), __param(3, repository_1.repository.getter('PartnersRepository')),
+    __metadata("design:paramtypes", [datasources_1.KilloDataSource, Function, Function, Function])
 ], OrdersRepository);
 exports.OrdersRepository = OrdersRepository;
 //# sourceMappingURL=orders.repository.js.map

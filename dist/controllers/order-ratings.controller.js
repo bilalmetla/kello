@@ -25,10 +25,12 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const auth_1 = require("../auth");
 let OrderRatingsController = class OrderRatingsController {
     constructor(orderRatingsRepository) {
         this.orderRatingsRepository = orderRatingsRepository;
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     create(orderRatings) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.orderRatingsRepository.create(orderRatings);
@@ -41,6 +43,13 @@ let OrderRatingsController = class OrderRatingsController {
     }
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (filter) {
+                filter.order = ['createdDate Desc'];
+            }
+            else {
+                filter = {};
+                filter.order = ['createdDate Desc'];
+            }
             return this.orderRatingsRepository.find(filter);
         });
     }
@@ -94,6 +103,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderRatingsController.prototype, "create", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/order-ratings/count', {
         responses: {
             '200': {
@@ -108,6 +118,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderRatingsController.prototype, "count", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/order-ratings', {
         responses: {
             '200': {
@@ -129,6 +140,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderRatingsController.prototype, "find", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/order-ratings', {
         responses: {
             '200': {
@@ -150,6 +162,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderRatingsController.prototype, "updateAll", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/order-ratings/{id}', {
         responses: {
             '200': {
@@ -169,6 +182,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderRatingsController.prototype, "findById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/order-ratings/{id}', {
         responses: {
             '204': {
@@ -189,6 +203,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderRatingsController.prototype, "updateById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.put('/order-ratings/{id}', {
         responses: {
             '204': {
@@ -203,6 +218,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderRatingsController.prototype, "replaceById", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.del('/order-ratings/{id}', {
         responses: {
             '204': {

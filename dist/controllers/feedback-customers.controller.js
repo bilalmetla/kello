@@ -25,6 +25,7 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const auth_1 = require("../auth");
 let FeedbackCustomersController = class FeedbackCustomersController {
     constructor(feedbackRepository) {
         this.feedbackRepository = feedbackRepository;
@@ -36,6 +37,7 @@ let FeedbackCustomersController = class FeedbackCustomersController {
     }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/feedbacks/{id}/customers', {
         responses: {
             '200': {

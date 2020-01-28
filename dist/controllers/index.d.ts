@@ -40,3 +40,7 @@ export * from './user.controller';
 export * from './promotion-promotiontype.controller';
 export * from './promotiontype.controller';
 export * from './promotion.controller';
+export * from './price-plan-price-plan-types.controller';
+export * from './price-plan-types.controller';
+export * from './price-plan.controller';
+export * from './partners-orders.controller';
