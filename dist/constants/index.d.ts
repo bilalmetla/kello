@@ -21,4 +21,7 @@ export declare class CONSTANTS {
     static readonly NO_SUPPLY_EXISTS: {
         error: ErrorResponse;
     };
+    static readonly ORDER_DETAILS_NOT_CREATED: {
+        error: ErrorResponse;
+    };
 }

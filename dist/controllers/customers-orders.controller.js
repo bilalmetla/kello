@@ -48,7 +48,6 @@ let CustomersOrdersController = class CustomersOrdersController {
             return this.customersRepository.orders(id).find(filter);
         });
     }
-    //@secured(SecuredType.IS_AUTHENTICATED)
     create(id, orders) {
         return __awaiter(this, void 0, void 0, function* () {
             //return this.customersRepository.orders(id).create(orders);
@@ -57,6 +56,8 @@ let CustomersOrdersController = class CustomersOrdersController {
             if (!this.partnersRepository.dataSource.connected) {
                 yield this.partnersRepository.dataSource.connect();
             }
+            //const session = this.partnersRepository.dataSource.connector.client.startSession();
+            // this.partnersRepository.dataSource.
             // this.partnersRepository.dataSource.beginTransaction()
             // let dataSource : DataSource;
             // let abc = dataSource.connector?.connect();
@@ -85,14 +86,19 @@ let CustomersOrdersController = class CustomersOrdersController {
             nearestPartner = nearestPartner[0];
             console.log('nearestPartner ..');
             console.log(JSON.stringify(nearestPartner));
+            //start a transaction 
+            const session = this.customersRepository.dataSource.connector.client.startSession();
+            session.startTransaction();
             orders.customersId = id;
             orders.orderStatus = 'Pending';
             orders.orderCategory = 'CUSTOMERS';
             orders.deliveredById = nearestPartner._id || nearestPartner.id;
             let items = JSON.parse(JSON.stringify(orders.items));
-            const createdOrder = yield this.customersRepository.orders(id).create(orders);
+            const createdOrder = yield this.customersRepository.orders(id).create(orders, { session });
             let orderId;
             if (!createdOrder) {
+                yield session.abortTransaction();
+                session.endSession();
                 return constants_1.CONSTANTS.ORDER_NOT_PLACED;
             }
             if (createdOrder.id) {
@@ -104,10 +110,12 @@ let CustomersOrdersController = class CustomersOrdersController {
             console.log('productids ', JSON.stringify(productIds));
             let products = yield this.productsRepository.find({
                 where: { or: productIds },
-            });
+            }, { session });
             console.log('products for order ');
             console.log(JSON.stringify(products));
             if (!products) {
+                yield session.abortTransaction();
+                session.endSession();
                 return constants_1.CONSTANTS.PRODUCT_NOT_FOUND;
             }
             let orderdetailList;
@@ -130,9 +138,16 @@ let CustomersOrdersController = class CustomersOrdersController {
             console.log(JSON.stringify(orderdetailList));
             // orderdetailList = asd;
             if (orderdetailList.length > 0) {
-                let orderDetailCreated = yield this.orderdetailsRepository.createAll(orderdetailList);
+                let orderDetailCreated = yield this.orderdetailsRepository.createAll(orderdetailList, { session });
                 console.log('orderDetailCreated ', JSON.stringify(orderDetailCreated));
+                if (!orderDetailCreated) {
+                    yield session.abortTransaction();
+                    session.endSession();
+                    return constants_1.CONSTANTS.ORDER_DETAILS_NOT_CREATED;
+                }
             }
+            yield session.commitTransaction();
+            session.endSession();
             let partnerInfo = { id: nearestPartner.id, name: nearestPartner.name, location: nearestPartner.location, phone: nearestPartner.phone };
             return { orderId: createdOrder.id, partner: partnerInfo };
         });
@@ -210,6 +225,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersOrdersController.prototype, "find", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/customers/{id}/orders', {
         responses: {
             '200': {

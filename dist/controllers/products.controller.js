@@ -49,7 +49,6 @@ let ProductsController = class ProductsController {
             return this.productsRepository.count(where);
         });
     }
-    //@secured(SecuredType.IS_AUTHENTICATED)
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.productsRepository.find(filter);
@@ -145,6 +144,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "count", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/products', {
         responses: {
             '200': {

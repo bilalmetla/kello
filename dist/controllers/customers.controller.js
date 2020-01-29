@@ -64,8 +64,16 @@ let CustomersController = class CustomersController {
             return this.customersRepository.updateAll(customers, where);
         });
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     findById(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
+            // const session = (this.customersRepository.dataSource.connector as any).client.startSession();
+            // session.startTransaction();
+            // const customers = this.customersRepository.find(filter, {session});
+            // const commit = await session.commitTransaction();
+            // console.log('transaction commit', commit);
+            // session.endSession();
+            //  return customers;
             return this.customersRepository.findById(id, filter);
         });
     }
@@ -125,7 +133,7 @@ let CustomersController = class CustomersController {
                 foundCust[0].isActivated = false;
                 yield this.customersRepository.updateAll(foundCust[0], { phone });
                 //await this.sendSMS();
-                delete foundCust[0].access_token;
+                // delete foundCust[0].access_token;
                 return foundCust[0];
             }
         });
@@ -256,7 +264,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "updateAll", null);
 __decorate([
-    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/customers/{id}', {
         responses: {
             '200': {
