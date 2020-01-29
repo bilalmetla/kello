@@ -112,8 +112,8 @@ let CustomersController = class CustomersController {
                 yield this.customersRepository.create(customers);
                 let user = yield this.userRepository.create({ username: phone });
                 //delete createdCustomer.access_token;
-                yield this.sendSMS();
-                return user;
+                // await this.sendSMS();
+                return customers;
                 //return customer;
                 //throw new HttpErrors.Unauthorized('Please Activate via SMS CODE');    
             }
@@ -124,7 +124,7 @@ let CustomersController = class CustomersController {
                 yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
                 foundCust[0].isActivated = false;
                 yield this.customersRepository.updateAll(foundCust[0], { phone });
-                yield this.sendSMS();
+                //await this.sendSMS();
                 delete foundCust[0].access_token;
                 return foundCust[0];
             }
