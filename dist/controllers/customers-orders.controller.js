@@ -95,7 +95,7 @@ let CustomersOrdersController = class CustomersOrdersController {
             orders.orderCategory = 'CUSTOMERS';
             orders.deliveredById = nearestPartner._id || nearestPartner.id;
             let items = JSON.parse(JSON.stringify(orders.items));
-            const createdOrder = yield this.customersRepository.orders(id).create(orders, { session });
+            const createdOrder = yield this.customersRepository.orders(id).create(orders);
             let orderId;
             if (!createdOrder) {
                 yield session.abortTransaction();
@@ -111,7 +111,7 @@ let CustomersOrdersController = class CustomersOrdersController {
             console.log('productids ', JSON.stringify(productIds));
             let products = yield this.productsRepository.find({
                 where: { or: productIds },
-            }, { session });
+            });
             console.log('products for order ');
             console.log(JSON.stringify(products));
             if (!products) {
@@ -139,7 +139,7 @@ let CustomersOrdersController = class CustomersOrdersController {
             console.log(JSON.stringify(orderdetailList));
             // orderdetailList = asd;
             if (orderdetailList.length > 0) {
-                let orderDetailCreated = yield this.orderdetailsRepository.createAll(orderdetailList, { session });
+                let orderDetailCreated = yield this.orderdetailsRepository.createAll(orderdetailList);
                 console.log('orderDetailCreated ', JSON.stringify(orderDetailCreated));
                 if (!orderDetailCreated) {
                     yield session.abortTransaction();
