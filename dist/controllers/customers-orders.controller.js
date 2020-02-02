@@ -35,6 +35,7 @@ let CustomersOrdersController = class CustomersOrdersController {
         this.orderdetailsRepository = orderdetailsRepository;
         this.ordersRepository = ordersRepository;
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     find(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
             if (filter) {
@@ -149,8 +150,9 @@ let CustomersOrdersController = class CustomersOrdersController {
             }
             //await session.commitTransaction();
             //session.endSession();
-            let partnerInfo = { id: nearestPartner.id, name: nearestPartner.name, location: nearestPartner.location, phone: nearestPartner.phone };
-            return { orderId: createdOrder.id, partner: partnerInfo };
+            //let partnerInfo =  {id: nearestPartner.id, name: nearestPartner.name, location: nearestPartner.location, phone: nearestPartner.phone }
+            //return { orderId: createdOrder.id, partner: partnerInfo  };
+            return { order: createdOrder, partner: nearestPartner };
         });
     }
     patch(id, orders, where) {
@@ -206,7 +208,6 @@ let CustomersOrdersController = class CustomersOrdersController {
     }
 };
 __decorate([
-    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/customers/{id}/orders', {
         responses: {
             '200': {
