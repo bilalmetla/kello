@@ -191,7 +191,7 @@ let CustomersOrdersController = class CustomersOrdersController {
         });
     }
     //@secured(SecuredType.IS_AUTHENTICATED)
-    orderDelevered(id, customerId) {
+    orderDelevered(id) {
         return __awaiter(this, void 0, void 0, function* () {
             let orders;
             orders = {
@@ -199,8 +199,8 @@ let CustomersOrdersController = class CustomersOrdersController {
                 "orderStatus": "Completed",
                 "completionTime": new Date(),
             };
-            //await this.ordersRepository.updateById(id, orders);
-            yield this.customersRepository.orders(customerId).patch(orders, { id: id });
+            yield this.ordersRepository.updateById(id, orders);
+            // await this.customersRepository.orders(customerId).patch(orders, {id:id});
             //console.log("orderUpdated: ", orderUpdated);
             // orders.id = id;
             return { id: id, isDelivered: orders.isDelivered, orderStatus: orders.orderStatus };
@@ -326,7 +326,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersOrdersController.prototype, "orderCancellation", null);
 __decorate([
-    rest_1.patch('/orders/{id}/customers/{customerId}/delevered', {
+    rest_1.patch('/orders/{id}/delevered', {
         responses: {
             '200': {
                 description: 'Order Delivered',
@@ -339,9 +339,8 @@ __decorate([
         },
     }),
     __param(0, rest_1.param.path.string('id')),
-    __param(1, rest_1.param.path.string('customerId')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], CustomersOrdersController.prototype, "orderDelevered", null);
 CustomersOrdersController = __decorate([
