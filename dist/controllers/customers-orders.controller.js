@@ -88,8 +88,8 @@ let CustomersOrdersController = class CustomersOrdersController {
             console.log('nearestPartner ..');
             console.log(JSON.stringify(nearestPartner));
             //start a transaction 
-            const session = this.customersRepository.dataSource.connector.client.startSession();
-            session.startTransaction();
+            //const session = (this.customersRepository.dataSource.connector as any).client.startSession();
+            //session.startTransaction();
             orders.customersId = id;
             orders.orderStatus = 'Pending';
             orders.orderCategory = 'CUSTOMERS';
@@ -98,8 +98,8 @@ let CustomersOrdersController = class CustomersOrdersController {
             const createdOrder = yield this.customersRepository.orders(id).create(orders);
             let orderId;
             if (!createdOrder) {
-                yield session.abortTransaction();
-                session.endSession();
+                //await session.abortTransaction();
+                //session.endSession();
                 return constants_1.CONSTANTS.ORDER_NOT_PLACED;
             }
             if (createdOrder.id) {
@@ -115,8 +115,8 @@ let CustomersOrdersController = class CustomersOrdersController {
             console.log('products for order ');
             console.log(JSON.stringify(products));
             if (!products) {
-                yield session.abortTransaction();
-                session.endSession();
+                //await session.abortTransaction();
+                //session.endSession();
                 return constants_1.CONSTANTS.PRODUCT_NOT_FOUND;
             }
             let orderdetailList;
@@ -142,13 +142,13 @@ let CustomersOrdersController = class CustomersOrdersController {
                 let orderDetailCreated = yield this.orderdetailsRepository.createAll(orderdetailList);
                 console.log('orderDetailCreated ', JSON.stringify(orderDetailCreated));
                 if (!orderDetailCreated) {
-                    yield session.abortTransaction();
-                    session.endSession();
+                    //await session.abortTransaction();
+                    //session.endSession();
                     return constants_1.CONSTANTS.ORDER_DETAILS_NOT_CREATED;
                 }
             }
-            yield session.commitTransaction();
-            session.endSession();
+            //await session.commitTransaction();
+            //session.endSession();
             let partnerInfo = { id: nearestPartner.id, name: nearestPartner.name, location: nearestPartner.location, phone: nearestPartner.phone };
             return { orderId: createdOrder.id, partner: partnerInfo };
         });
