@@ -10,6 +10,7 @@ export declare class PricePlan extends Entity {
     maxFees?: number;
     effectiveFrom?: string;
     effectiveTo?: string;
+    isApplied?: boolean;
     pricePlanTypesId: string;
     [prop: string]: any;
     constructor(data?: Partial<PricePlan>);

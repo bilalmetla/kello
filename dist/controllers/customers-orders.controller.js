@@ -48,6 +48,7 @@ let CustomersOrdersController = class CustomersOrdersController {
             return this.customersRepository.orders(id).find(filter);
         });
     }
+    // @secured(SecuredType.IS_AUTHENTICATED)
     create(id, orders) {
         return __awaiter(this, void 0, void 0, function* () {
             //return this.customersRepository.orders(id).create(orders);
@@ -225,7 +226,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersOrdersController.prototype, "find", null);
 __decorate([
-    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/customers/{id}/orders', {
         responses: {
             '200': {

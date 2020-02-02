@@ -26,9 +26,11 @@ const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const auth_1 = require("../auth");
+const constants_1 = require("../constants");
 let PricePlanController = class PricePlanController {
-    constructor(pricePlanRepository) {
+    constructor(pricePlanRepository, productsRepository) {
         this.pricePlanRepository = pricePlanRepository;
+        this.productsRepository = productsRepository;
     }
     create(pricePlan) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -68,6 +70,74 @@ let PricePlanController = class PricePlanController {
     deleteById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.pricePlanRepository.deleteById(id);
+        });
+    }
+    applyPricePlan(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const rateplan = yield this.pricePlanRepository.findById(id);
+            if (!rateplan) {
+                return constants_1.CONSTANTS.PRICEPLAN_NOT_FOUND;
+            }
+            const session = this.productsRepository.dataSource.connector.client.startSession();
+            session.startTransaction();
+            let markUpPercentage = rateplan.chargeValue;
+            //CONSIDERING 2 IS FOR FIXED RATE.
+            if (rateplan.pricePlanTypesId && rateplan.pricePlanTypesId == '2') {
+                markUpPercentage = rateplan.chargeValue;
+            }
+            const allproducts = yield this.productsRepository.find({
+            // fields: {
+            //   id: true,
+            //   totalCost: true,
+            //   retailPrice: true,
+            //   } 
+            });
+            console.log('all products', JSON.stringify(allproducts));
+            for (let p of allproducts) {
+                p.retailPrice = Math.round(((p.totalCost || 0) / (100 - markUpPercentage) * 100));
+                const p_updated = yield this.productsRepository.updateAll(p, undefined, { session });
+                console.log('price paln updatedProducts', JSON.stringify(p_updated));
+                if (!p_updated.count) {
+                    yield session.abortTransaction();
+                    session.endSession();
+                    return constants_1.CONSTANTS.PRODUCT_NOT_UPDATED;
+                }
+            }
+            rateplan.isApplied = true;
+            let updatedPricePlan = yield this.pricePlanRepository.updateAll(rateplan, undefined, { session });
+            console.log('price paln updatedPricePlan', JSON.stringify(updatedPricePlan));
+            const se_resp = yield session.commitTransaction();
+            session.endSession();
+            console.log(`session response ${se_resp}`);
+            return { id };
+        });
+    }
+    stopPricePlan(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const session = this.productsRepository.dataSource.connector.client.startSession();
+            session.startTransaction();
+            const allproducts = yield this.productsRepository.find({
+            // fields: {
+            //   id: true,
+            //   totalCost: true,
+            //   retailPrice: true,
+            //   } 
+            });
+            console.log('all products', JSON.stringify(allproducts));
+            for (let p of allproducts) {
+                p.retailPrice = 0;
+                const p_updated = yield this.productsRepository.updateAll(p, undefined, { session });
+                console.log('price paln updatedProducts', JSON.stringify(p_updated));
+                if (!p_updated.count) {
+                    yield session.abortTransaction();
+                    session.endSession();
+                    return constants_1.CONSTANTS.PRODUCT_NOT_UPDATED; //todo 
+                }
+            }
+            yield this.pricePlanRepository.updateById(id, { isApplied: false });
+            yield session.commitTransaction();
+            session.endSession();
+            return { id };
         });
     }
 };
@@ -224,9 +294,39 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], PricePlanController.prototype, "deleteById", null);
+__decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
+    rest_1.put('/price-plans/{id}/apply', {
+        responses: {
+            '204': {
+                description: 'PricePlan applied success',
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], PricePlanController.prototype, "applyPricePlan", null);
+__decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
+    rest_1.put('/price-plans/{id}/stop', {
+        responses: {
+            '204': {
+                description: 'PricePlan stoped success',
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], PricePlanController.prototype, "stopPricePlan", null);
 PricePlanController = __decorate([
     __param(0, repository_1.repository(repositories_1.PricePlanRepository)),
-    __metadata("design:paramtypes", [repositories_1.PricePlanRepository])
+    __param(1, repository_1.repository(repositories_1.ProductsRepository)),
+    __metadata("design:paramtypes", [repositories_1.PricePlanRepository,
+        repositories_1.ProductsRepository])
 ], PricePlanController);
 exports.PricePlanController = PricePlanController;
 //# sourceMappingURL=price-plan.controller.js.map

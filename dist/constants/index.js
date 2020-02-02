@@ -12,4 +12,7 @@ CONSTANTS.AUTHNETICATION_FAILED = { error: new models_1.ErrorResponse({ statusCo
 CONSTANTS.PRODUCT_NOT_FOUND = { error: new models_1.ErrorResponse({ statusCode: 404, name: "Not Found", code: "PRODUCT_NOT_FOUND", message: "Product Not Found For This Supply" }) };
 CONSTANTS.NO_SUPPLY_EXISTS = { error: new models_1.ErrorResponse({ statusCode: 404, name: "Not Found", code: "NO_SUPPLY_EXISTS", message: "Supply Not Found!" }) };
 CONSTANTS.ORDER_DETAILS_NOT_CREATED = { error: new models_1.ErrorResponse({ statusCode: 204, name: "No Content", code: "ORDER_DETAILS_NOT_CREATED", message: "Order Detail Not Created!" }) };
+CONSTANTS.PRODUCT_NOT_UPDATED = { error: new models_1.ErrorResponse({ statusCode: 403, name: "Forbidden", code: "PRODUCT_NOT_UPDATED", message: "Product Not Updated!" }) };
+CONSTANTS.PRICEPLAN_NOT_FOUND = { error: new models_1.ErrorResponse({ statusCode: 404, name: "Not Found", code: "PRICEPLAN_NOT_FOUND", message: "PricePlan Not Found!" }) };
+CONSTANTS.PEOMOTION_NOT_FOUND = { error: new models_1.ErrorResponse({ statusCode: 404, name: "Not Found", code: "PEOMOTION_NOT_FOUND", message: "Promotion Not Found!" }) };
 //# sourceMappingURL=index.js.map

@@ -44,3 +44,4 @@ export * from './price-plan-price-plan-types.controller';
 export * from './price-plan-types.controller';
 export * from './price-plan.controller';
 export * from './partners-orders.controller';
+export * from './dashboards.controller';

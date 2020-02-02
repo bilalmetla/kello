@@ -24,4 +24,13 @@ export declare class CONSTANTS {
     static readonly ORDER_DETAILS_NOT_CREATED: {
         error: ErrorResponse;
     };
+    static readonly PRODUCT_NOT_UPDATED: {
+        error: ErrorResponse;
+    };
+    static readonly PRICEPLAN_NOT_FOUND: {
+        error: ErrorResponse;
+    };
+    static readonly PEOMOTION_NOT_FOUND: {
+        error: ErrorResponse;
+    };
 }

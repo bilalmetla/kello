@@ -87,6 +87,13 @@ __decorate([
     __metadata("design:type", String)
 ], PricePlan.prototype, "effectiveTo", void 0);
 __decorate([
+    repository_1.property({
+        type: 'boolean',
+        default: false,
+    }),
+    __metadata("design:type", Boolean)
+], PricePlan.prototype, "isApplied", void 0);
+__decorate([
     repository_1.belongsTo(() => price_plan_types_model_1.PricePlanTypes),
     __metadata("design:type", String)
 ], PricePlan.prototype, "pricePlanTypesId", void 0);

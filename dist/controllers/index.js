@@ -49,4 +49,5 @@ __export(require("./price-plan-price-plan-types.controller"));
 __export(require("./price-plan-types.controller"));
 __export(require("./price-plan.controller"));
 __export(require("./partners-orders.controller"));
+__export(require("./dashboards.controller"));
 //# sourceMappingURL=index.js.map

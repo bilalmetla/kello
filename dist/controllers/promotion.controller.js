@@ -33,9 +33,11 @@ const util_1 = __importDefault(require("util"));
 const writeFilePromise = util_1.default.promisify(fs_1.default.writeFile);
 const path_1 = __importDefault(require("path"));
 const auth_1 = require("../auth");
+const constants_1 = require("../constants");
 let PromotionController = class PromotionController {
-    constructor(promotionRepository) {
+    constructor(promotionRepository, productsRepository) {
         this.promotionRepository = promotionRepository;
+        this.productsRepository = productsRepository;
     }
     create(promotion) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -99,6 +101,69 @@ let PromotionController = class PromotionController {
             let imageUrl = '/promotions/images/' + imagename;
             yield writeFilePromise(imagePath, base64Image, { encoding: 'base64' });
             return imageUrl;
+        });
+    }
+    applyPromotions(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const promo = yield this.promotionRepository.findById(id);
+            if (!promo) {
+                return constants_1.CONSTANTS.PEOMOTION_NOT_FOUND;
+            }
+            const session = this.productsRepository.dataSource.connector.client.startSession();
+            session.startTransaction();
+            const allproducts = yield this.productsRepository.find({
+            // fields: {
+            //   id: true,
+            //   totalCost: true,
+            //   retailPrice: true,
+            //   } 
+            });
+            console.log('all products', JSON.stringify(allproducts));
+            for (let p of allproducts) {
+                p.salePrice = Math.round(promo.isPromotionValueFixed ? p.retailPrice ? ((p.retailPrice / 100) * promo.promotionValue) : 0 : p.retailPrice ? p.retailPrice - promo.promotionValue : 0);
+                const p_updated = yield this.productsRepository.updateAll(p, undefined, { session });
+                console.log('promotion updatedProducts', JSON.stringify(p_updated));
+                if (!p_updated.count) {
+                    yield session.abortTransaction();
+                    session.endSession();
+                    return constants_1.CONSTANTS.PRODUCT_NOT_UPDATED;
+                }
+            }
+            promo.isActive = true;
+            let updatedPricePlan = yield this.promotionRepository.updateAll(promo, undefined, { session });
+            console.log('price paln updatedPricePlan', JSON.stringify(updatedPricePlan));
+            const se_resp = yield session.commitTransaction();
+            session.endSession();
+            console.log(`session response ${se_resp}`);
+            return { id };
+        });
+    }
+    stoppromotions(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const session = this.productsRepository.dataSource.connector.client.startSession();
+            session.startTransaction();
+            const allproducts = yield this.productsRepository.find({
+            // fields: {
+            //   id: true,
+            //   totalCost: true,
+            //   retailPrice: true,
+            //   } 
+            });
+            console.log('all products', JSON.stringify(allproducts));
+            for (let p of allproducts) {
+                p.salePrice = 0;
+                const p_updated = yield this.productsRepository.updateAll(p, undefined, { session });
+                console.log('promotion updatedProducts', JSON.stringify(p_updated));
+                if (!p_updated.count) {
+                    yield session.abortTransaction();
+                    session.endSession();
+                    return constants_1.CONSTANTS.PRODUCT_NOT_UPDATED; //todo 
+                }
+            }
+            yield this.promotionRepository.updateById(id, { isActive: false });
+            yield session.commitTransaction();
+            session.endSession();
+            return { id };
         });
     }
 };
@@ -255,9 +320,39 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], PromotionController.prototype, "deleteById", null);
+__decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
+    rest_1.put('/promotions/{id}/apply', {
+        responses: {
+            '204': {
+                description: 'promotions applied success',
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], PromotionController.prototype, "applyPromotions", null);
+__decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
+    rest_1.put('/promotions/{id}/stop', {
+        responses: {
+            '204': {
+                description: 'promotions stoped success',
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], PromotionController.prototype, "stoppromotions", null);
 PromotionController = __decorate([
     __param(0, repository_1.repository(repositories_1.PromotionRepository)),
-    __metadata("design:paramtypes", [repositories_1.PromotionRepository])
+    __param(1, repository_1.repository(repositories_1.ProductsRepository)),
+    __metadata("design:paramtypes", [repositories_1.PromotionRepository,
+        repositories_1.ProductsRepository])
 ], PromotionController);
 exports.PromotionController = PromotionController;
 //# sourceMappingURL=promotion.controller.js.map

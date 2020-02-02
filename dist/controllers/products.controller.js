@@ -83,6 +83,7 @@ let ProductsController = class ProductsController {
             yield this.productsRepository.deleteById(id);
         });
     }
+    // @secured(SecuredType.IS_AUTHENTICATED)
     findByProductTypeId(producttypesId) {
         return __awaiter(this, void 0, void 0, function* () {
             let filter = {
@@ -258,7 +259,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "deleteById", null);
 __decorate([
-    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/products/types/{producttypesId}', {
         responses: {
             '200': {
