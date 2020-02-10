@@ -36,7 +36,6 @@ let UserController = class UserController {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
-    //@secured(SecuredType.IS_AUTHENTICATED)
     create(user) {
         return __awaiter(this, void 0, void 0, function* () {
             const tokenObject = { username: user.username };
@@ -80,7 +79,6 @@ let UserController = class UserController {
             yield this.userRepository.deleteById(id);
         });
     }
-    //@secured(SecuredType.IS_AUTHENTICATED)
     userLogin(user) {
         return __awaiter(this, void 0, void 0, function* () {
             //const userInfo = this.userRepository.findOne({"where":{phone}});

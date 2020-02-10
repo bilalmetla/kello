@@ -35,7 +35,6 @@ let CustomersOrdersController = class CustomersOrdersController {
         this.orderdetailsRepository = orderdetailsRepository;
         this.ordersRepository = ordersRepository;
     }
-    //@secured(SecuredType.IS_AUTHENTICATED)
     find(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
             if (filter) {
@@ -49,7 +48,6 @@ let CustomersOrdersController = class CustomersOrdersController {
             return this.customersRepository.orders(id).find(filter);
         });
     }
-    // @secured(SecuredType.IS_AUTHENTICATED)
     create(id, orders) {
         return __awaiter(this, void 0, void 0, function* () {
             //return this.customersRepository.orders(id).create(orders);
@@ -152,6 +150,7 @@ let CustomersOrdersController = class CustomersOrdersController {
             //session.endSession();
             //let partnerInfo =  {id: nearestPartner.id, name: nearestPartner.name, location: nearestPartner.location, phone: nearestPartner.phone }
             //return { orderId: createdOrder.id, partner: partnerInfo  };
+            delete createdOrder.items;
             return { order: createdOrder, partner: nearestPartner };
         });
     }
@@ -176,7 +175,6 @@ let CustomersOrdersController = class CustomersOrdersController {
             return { id: orderId, orderStatus: orders.orderStatus, startProgressTime: orders.startProgressTime };
         });
     }
-    //@secured(SecuredType.IS_AUTHENTICATED)
     orderCancellation(customersId, id) {
         return __awaiter(this, void 0, void 0, function* () {
             let orders;
@@ -190,8 +188,7 @@ let CustomersOrdersController = class CustomersOrdersController {
             return { id: id, orderStatus: orders.orderStatus, isCancelled: orders.isCancelled };
         });
     }
-    //@secured(SecuredType.IS_AUTHENTICATED)
-    orderDelevered(id) {
+    orderDelevered(id, customerId) {
         return __awaiter(this, void 0, void 0, function* () {
             let orders;
             orders = {
@@ -199,8 +196,8 @@ let CustomersOrdersController = class CustomersOrdersController {
                 "orderStatus": "Completed",
                 "completionTime": new Date(),
             };
-            yield this.ordersRepository.updateById(id, orders);
-            // await this.customersRepository.orders(customerId).patch(orders, {id:id});
+            //await this.ordersRepository.updateById(id, orders);
+            yield this.customersRepository.orders(customerId).patch(orders, { id: id });
             //console.log("orderUpdated: ", orderUpdated);
             // orders.id = id;
             return { id: id, isDelivered: orders.isDelivered, orderStatus: orders.orderStatus };
@@ -208,6 +205,7 @@ let CustomersOrdersController = class CustomersOrdersController {
     }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/customers/{id}/orders', {
         responses: {
             '200': {
@@ -227,6 +225,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersOrdersController.prototype, "find", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/customers/{id}/orders', {
         responses: {
             '200': {
@@ -307,6 +306,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersOrdersController.prototype, "orderStartProgress", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('customers/{customersId}/orders/{id}/cancellation', {
         responses: {
             '200': {
@@ -326,7 +326,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersOrdersController.prototype, "orderCancellation", null);
 __decorate([
-    rest_1.patch('/orders/{id}/delevered', {
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
+    rest_1.patch('/orders/{id}/customers/{customerId}/delevered', {
         responses: {
             '200': {
                 description: 'Order Delivered',
@@ -339,8 +340,9 @@ __decorate([
         },
     }),
     __param(0, rest_1.param.path.string('id')),
+    __param(1, rest_1.param.path.string('customerId')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], CustomersOrdersController.prototype, "orderDelevered", null);
 CustomersOrdersController = __decorate([

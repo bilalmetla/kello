@@ -35,7 +35,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrapper\">\n  <div class=\"sidebar\" data-background-color=\"white\" data-active-color=\"danger\">\n    <sidebar-cmp></sidebar-cmp>\n  </div>\n  <div class=\"main-panel\">\n    <navbar-cmp></navbar-cmp>\n    <div class=\"content\">\n\n      <router-outlet></router-outlet>\n\n      <router-outlet name=\"aux\"></router-outlet>\n\n    </div>\n\n\n  </div>\n</div>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrapper\">\n  \n  <ng-http-loader></ng-http-loader>\n\n  <div class=\"sidebar\" data-background-color=\"white\" data-active-color=\"danger\">\n    <sidebar-cmp></sidebar-cmp>\n  </div>\n  <div class=\"main-panel\">\n    <navbar-cmp></navbar-cmp>\n    <div class=\"content\">\n\n      <router-outlet></router-outlet>\n\n      <router-outlet name=\"aux\"></router-outlet>\n\n    </div>\n\n\n  </div>\n</div>\n\n");
 
 /***/ }),
 
@@ -88,6 +88,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">CustomerFeedBack</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">CustomerFeedBack List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"phone\">Phone:</label>\n        <input [(ngModel)]=\"filter.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../customerfeedbacks', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"customerfeedbackList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Full Name</th>\n          <th class=\"border-top-0\" scope=\"col\">Phone</th>\n          <th class=\"border-top-0\" scope=\"col\">Message</th>\n          <!-- <th class=\"border-top-0\" scope=\"col\">Customer Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Partner Id</th> -->\n          <th class=\"border-top-0\" scope=\"col\">Is Reviewed</th>\n          <!-- <th class=\"border-top-0\" scope=\"col\">Reviewed By</th> -->\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of customerfeedbackList\" [class.active]=\"item === selectedCustomerfeedback\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.fullname}}</td>\n          <td>{{item.phone}}</td>\n          <td>{{item.message}}</td>\n          <!-- <td>{{item.customersId}}</td>\n          <td>{{item.partnersId}}</td> -->\n          <td>{{item.isReviewed}}</td>\n          <!-- <td>{{item.reviewedById}}</td> -->\n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../customerfeedbacks', item.id ]\" class=\"btn btn-secondary\">View</a>&nbsp;\n            <!-- <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button> -->\n            <button (click)=\"reviewed()\" [disabled]=\"!f?.valid\" class=\"btn btn-secondary\">Reviewed</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/dashboard/dashboard-list/dashboard-list.component.html":
+/*!**************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/dashboard/dashboard-list/dashboard-list.component.html ***!
+  \**************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Dashboard</li>\n  </ol>\n  <div class=\"card\">\n    <div class=\"header\">\n      <h2 class=\"title\">Welcome To Kello </h2>\n    </div>\n    <div class=\"content\">\n      \n      <p>Kello is an online fruit & vegetable delivery service.</p>\n\n    </div>\n  </div>\n  \n  <div class=\"card\" *ngIf=\"dashboardList.feedbacks\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"header\">\n      <h2 class=\"title\">Stats </h2>\n    </div>\n    <div class=\"content\">\n    \n    \n    <section class=\"statistics\">\n      <div class=\"container-fluid\">\n        <div class=\"row\">\n          <div class=\"col-md-4\">\n            <div class=\"box\">\n              <i class=\"fa fa-envelope fa-fw bg-primary\"></i>\n              <div class=\"info\">\n                <h3>{{dashboardList.feedbacks.count}}</h3> <span>Feedbacks</span>\n                <p>Total feedback received</p>\n              </div>\n            </div>\n          </div>\n          <div class=\"col-md-4\">\n            <div class=\"box\">\n              <i class=\"fa fa-file fa-fw danger\"></i>\n              <div class=\"info\">\n                <h3>{{dashboardList.orders.count}}</h3> <span>orders</span>\n                <p>Total order placed</p>\n              </div>\n            </div>\n          </div>\n          <div class=\"col-md-4\">\n            <div class=\"box\">\n              <i class=\"fa fa-users fa-fw success\"></i>\n              <div class=\"info\">\n                <h3>{{dashboardList.users.count}}</h3> <span>Users</span>\n                <p>Total users in the system</p>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </section>\n\n   </div>\n\n  </div>\n  ");
 
 /***/ }),
 
@@ -178,7 +191,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" (click)=\"sidebarToggle()\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar bar1\"></span>\n        <span class=\"icon-bar bar2\"></span>\n        <span class=\"icon-bar bar3\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">Kello</a>\n    </div>\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n            <i class=\"ti-panel\"></i>\n            <p>Stats</p>\n          </a>\n        </li>\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n            <i class=\"ti-bell\"></i>\n            <p class=\"notification\">5</p>\n            <p>Notifications</p>\n            <b class=\"caret\"></b>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li><a href=\"#\">Notification 1</a></li>\n            <li><a href=\"#\">Notification 2</a></li>\n            <li><a href=\"#\">Notification 3</a></li>\n            <li><a href=\"#\">Notification 4</a></li>\n            <li><a href=\"#\">Another notification</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\">\n            <i class=\"ti-settings\"></i>\n            <p>Settings</p>\n          </a>\n        </li>\n      </ul>\n\n    </div>\n  </div>\n</nav>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" (click)=\"sidebarToggle()\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar bar1\"></span>\n        <span class=\"icon-bar bar2\"></span>\n        <span class=\"icon-bar bar3\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"javascript:void(0)\">Kello</a>\n    </div>\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav navbar-right\">\n        <!-- <li>\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n            <i class=\"ti-panel\"></i>\n            <p>Stats</p>\n          </a>\n        </li> -->\n        <li class=\"dropdown\">\n          <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n            <i class=\"ti-bell\"></i>\n            <p class=\"notification\">5</p>\n            <p>Notifications</p>\n            <b class=\"caret\"></b>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li><a href=\"#\">Notification 1</a></li>\n            <li><a href=\"#\">Notification 2</a></li>\n            <li><a href=\"#\">Notification 3</a></li>\n            <li><a href=\"#\">Notification 4</a></li>\n            <li><a href=\"#\">Another notification</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"javascript:void(0)\">\n            <i class=\"ti-settings\"></i>\n            <p>Settings</p>\n          </a>\n        </li>\n\n         <!-- Dropdown -->\n         <li class=\"nav-item dropdown\" dropdown>\n          <a dropdownToggle mdbWavesEffect type=\"button\" class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n          Basic dropdown<span class=\"caret\"></span></a>\n          <div *dropdownMenu class=\"dropdown-menu dropdown dropdown-primary\" role=\"menu\">\n              <a class=\"dropdown-item waves-light\" mdbWavesEffect href=\"#\">Action</a>\n              <a class=\"dropdown-item waves-light\" mdbWavesEffect href=\"#\">Another action</a>\n              <a class=\"dropdown-item waves-light\" mdbWavesEffect href=\"#\">Something else here</a>\n              <div class=\"divider dropdown-divider\"></div>\n              <a class=\"dropdown-item waves-light\" mdbWavesEffect href=\"#\">Separated link</a>\n          </div>\n      </li>\n      \n      </ul>\n\n    </div>\n\n\n  </div>\n</nav>\n");
 
 /***/ }),
 
@@ -269,7 +282,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">PricePlan</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">PricePlan Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"priceplan\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{priceplan.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"title\">Title</label>\n        <input [(ngModel)]=\"priceplan.title\" id=\"title\" name=\"title\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"shortCode\">Short Code</label>\n        <input [(ngModel)]=\"priceplan.shortCode\" id=\"shortCode\" name=\"shortCode\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"chargeValue\">Charge Value</label>\n        <input type=\"number\" [(ngModel)]=\"priceplan.chargeValue\" id=\"chargeValue\" name=\"chargeValue\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"effectiveFrom\">Effective From</label>\n        <input type=\"date\" [(ngModel)]=\"priceplan.effectiveFrom\" id=\"effectiveFrom\" name=\"effectiveFrom\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"effectiveTo\">Effective To</label>\n        <input type=\"date\" [(ngModel)]=\"priceplan.effectiveTo\" id=\"effectiveTo\" name=\"effectiveTo\" class=\"form-control\">\n      </div>\n    \n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">PricePlan</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">PricePlan Detail</h2>\n  </div>\n  <div *ngIf=\"priceplan\" class=\"content\">\n   \n      \n      <button *ngIf=\"!priceplan.isApplied\" (click)=\"applyPricePlan()\" class=\"btn btn-primary\">Apply Price Plan</button>\n      <button *ngIf=\"priceplan.isApplied === true\" (click)=\"stopPricePlan()\" class=\"btn btn-primary\">Stop Price Plan</button>\n    \n  </div>\n\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"priceplan\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{priceplan.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"title\">Title</label>\n        <input [(ngModel)]=\"priceplan.title\" id=\"title\" name=\"title\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"shortCode\">Short Code</label>\n        <input [(ngModel)]=\"priceplan.shortCode\" id=\"shortCode\" name=\"shortCode\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"chargeValue\">Charge Value</label>\n        <input type=\"number\" [(ngModel)]=\"priceplan.chargeValue\" id=\"chargeValue\" name=\"chargeValue\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"effectiveFrom\">Effective From</label>\n        <input type=\"date\" [(ngModel)]=\"priceplan.effectiveFrom\" id=\"effectiveFrom\" name=\"effectiveFrom\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"effectiveTo\">Effective To</label>\n        <input type=\"date\" [(ngModel)]=\"priceplan.effectiveTo\" id=\"effectiveTo\" name=\"effectiveTo\" class=\"form-control\">\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"isApplied\">Is Applied</label>\n        <input type=\"checkbox\" [(ngModel)]=\"priceplan.isApplied\" [checked]=\"priceplan.isApplied\" id=\"isApplied\" name=\"isApplied\" class=\"form-control\">\n      </div>\n    \n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -282,7 +295,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">PricePlan</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">PricePlan List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"title\">Title:</label>\n        <input [(ngModel)]=\"filter.title\" id=\"title\" name=\"title\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../priceplans', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"priceplanList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Title</th>\n          <th class=\"border-top-0\" scope=\"col\">Short Code</th>\n          <th class=\"border-top-0\" scope=\"col\">Charge Value</th>\n          <th class=\"border-top-0\" scope=\"col\">Effective From</th>\n          <th class=\"border-top-0\" scope=\"col\">Effective To</th>\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of priceplanList\" [class.active]=\"item === selectedPriceplan\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.title}}</td>\n          <td>{{item.shortCode}}</td>\n          <td>{{item.chargeValue}}</td>\n          <td>{{item.effectiveFrom}}</td>\n          <td>{{item.effectiveTo}}</td>\n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../priceplans', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n            <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">PricePlan</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">PricePlan List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"title\">Title:</label>\n        <input [(ngModel)]=\"filter.title\" id=\"title\" name=\"title\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../priceplans', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"priceplanList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Title</th>\n          <th class=\"border-top-0\" scope=\"col\">Charge Value</th>\n          <th class=\"border-top-0\" scope=\"col\">Is Applied</th>\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of priceplanList\" [class.active]=\"item === selectedPriceplan\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.title}}</td>\n          <td>{{item.chargeValue}}</td>\n          <td>{{item.isApplied}}</td>\n          \n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../priceplans', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n            <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -321,7 +334,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Promotion</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Promotion Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"promotion\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{promotion.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"title\">Title</label>\n        <input [(ngModel)]=\"promotion.title\" id=\"title\" name=\"title\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"promotionValue\">Promotion Value</label>\n        <input type=\"number\" [(ngModel)]=\"promotion.promotionValue\" id=\"promotionValue\" name=\"promotionValue\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"isPromotionValueFixed\">Is Promotion Value Fixed</label>\n        <input type=\"checkbox\" [(ngModel)]=\"promotion.isPromotionValueFixed\" id=\"isPromotionValueFixed\" name=\"isPromotionValueFixed\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"effectiveDate\">Effective Date</label>\n        <input type=\"date\" [(ngModel)]=\"promotion.effectiveDate\" id=\"effectiveDate\" name=\"effectiveDate\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"endDate\">End Date</label>\n        <input  type=\"date\" [(ngModel)]=\"promotion.endDate\" id=\"endDate\" name=\"endDate\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"description\">Description</label>\n        <input [(ngModel)]=\"promotion.description\" id=\"description\" name=\"description\" class=\"form-control\">\n      </div>\n\n      <div class=\"form-group row\">\n        <label class=\"col-sm-2 col-form-label\" for=\"image\">\n        Image <span style=\"color:red\">*</span>\n        </label>\n        <div class=\"col-sm-10\">\n           <input type=\"file\" required accept=\"image/*\" (change)=\"changeImageListener($event)\">\n           <img [src]=\"promotion.image\" style=\"width:100px; height:100px\"/>                                                                        \n        </div>\n     </div>\n    \n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Promotion</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Promotion Detail</h2>\n  </div>\n\n  <div *ngIf=\"promotion\" class=\"content\">         \n    <button *ngIf=\"!promotion.isActive\" (click)=\"applyPromotion()\" class=\"btn btn-primary\">Apply Promotion</button>\n    <button *ngIf=\"promotion.isActive === true\" (click)=\"stopPromotion()\" class=\"btn btn-primary\">Stop Promotion</button>\n  </div>\n\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"promotion\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{promotion.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"title\">Title</label>\n        <input [(ngModel)]=\"promotion.title\" id=\"title\" name=\"title\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"promotionValue\">Promotion Value</label>\n        <input type=\"number\" [(ngModel)]=\"promotion.promotionValue\" id=\"promotionValue\" name=\"promotionValue\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"isPromotionValueFixed\">Is Promotion Value Fixed</label>\n        <input type=\"checkbox\" [(ngModel)]=\"promotion.isPromotionValueFixed\" id=\"isPromotionValueFixed\" name=\"isPromotionValueFixed\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"effectiveDate\">Effective Date</label>\n        <input type=\"date\" [(ngModel)]=\"promotion.effectiveDate\" id=\"effectiveDate\" name=\"effectiveDate\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"endDate\">End Date</label>\n        <input  type=\"date\" [(ngModel)]=\"promotion.endDate\" id=\"endDate\" name=\"endDate\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"description\">Description</label>\n        <input [(ngModel)]=\"promotion.description\" id=\"description\" name=\"description\" class=\"form-control\">\n      </div>\n\n      <div class=\"form-group row\">\n        <label class=\"col-sm-2 col-form-label\" for=\"image\">\n        Image <span style=\"color:red\">*</span>\n        </label>\n        <div class=\"col-sm-10\">\n           <input type=\"file\" required accept=\"image/*\" (change)=\"changeImageListener($event)\">\n           <img [src]=\"promotion.image\" style=\"width:100px; height:100px\"/>                                                                        \n        </div>\n     </div>\n    \n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -334,7 +347,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Promotion</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Promotion List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"title\">Title:</label>\n        <input [(ngModel)]=\"filter.title\" id=\"title\" name=\"title\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../promotions', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"promotionList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Title</th>\n          <th class=\"border-top-0\" scope=\"col\">Promotion Value</th>\n          <th class=\"border-top-0\" scope=\"col\">Is Promotion Value Fixed</th>\n          <th class=\"border-top-0\" scope=\"col\">Effective Date</th>\n          <th class=\"border-top-0\" scope=\"col\">End Date</th>\n          <th class=\"border-top-0\" scope=\"col\">Description</th>\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of promotionList\" [class.active]=\"item === selectedPromotion\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.title}}</td>\n          <td>{{item.promotionValue}}</td>\n          <td>{{item.isPromotionValueFixed}}</td>\n          <td>{{item.effectiveDate}}</td>\n          <td>{{item.endDate}}</td>\n          <td>{{item.description}}</td>\n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../promotions', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n            <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Promotion</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Promotion List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"title\">Title:</label>\n        <input [(ngModel)]=\"filter.title\" id=\"title\" name=\"title\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../promotions', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"promotionList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Title</th>\n          <th class=\"border-top-0\" scope=\"col\">Promotion Value</th>\n          <th class=\"border-top-0\" scope=\"col\">Is Promotion Value Fixed</th>\n          <!-- <th class=\"border-top-0\" scope=\"col\">Effective Date</th>\n          <th class=\"border-top-0\" scope=\"col\">End Date</th> -->\n          <th class=\"border-top-0\" scope=\"col\">Is Active</th>\n          <th class=\"border-top-0\" scope=\"col\">Description</th>\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of promotionList\" [class.active]=\"item === selectedPromotion\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.title}}</td>\n          <td>{{item.promotionValue}}</td>\n          <td>{{item.isPromotionValueFixed}}</td>\n          <!-- <td>{{item.effectiveDate}}</td>\n          <td>{{item.endDate}}</td> -->\n          <td>{{isActive}}</td>\n          <td>{{item.description}}</td>\n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../promotions', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n            <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -373,7 +386,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"sidebar-wrapper\">\n      \n    <div class=\"logo\">\n            \n        <a class=\"simple-text\">\n                  \n            <div class=\"logo-img\" >\n                        <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\">      \n            </div>\n                  Kello    \n        </a>\n          \n    </div>\n      \n    <ul class=\"nav\">\n            \n        <li>\n                  \n            <a routerLink=\"home\">\n                        <i class=\"ti-home\"></i>\n                        <p>Dashboard</p>\n                      \n            </a>\n                \n        </li>\n            \n        <!-- <li>      <a routerLink=\"flight\">        <i class=\"ti-arrow-top-right\"></i>        <p>Flights</p>      </a>    </li> -->\n        \n        <li>\n              \n          <a routerLink=\"activation\">\n                  <i class=\"ti-lock\"></i>\n                  <p>Activations</p>\n                \n          </a>\n          \n      </li>\n\n        <li>\n              \n            <a routerLink=\"customer\">\n                    <i class=\"ti-user\"></i>\n                    <p>Customers</p>\n                  \n            </a>\n            \n        </li>\n        \n        <li>\n              \n            <a routerLink=\"partner\">\n                    <i class=\"ti-wheelchair\"></i>\n                    <p>Partners</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n              \n          <a routerLink=\"orderses\">\n                  <i class=\"ti-receipt\"></i>\n                  <p>Orders</p>\n                \n          </a>\n          \n      </li>\n        \n        <li>\n              \n            <a routerLink=\"product\">\n                    <i class=\"ti-apple\"></i>\n                    <p>Products</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n            <a routerLink=\"priceplans\">\n                    <i class=\"ti-gift\"></i>\n                    <p>Price Plan</p>      \n            </a>\n        </li>\n\n                        \n        <!-- <li>\n              \n            <a routerLink=\"offer\">\n                    <i class=\"ti-panel\"></i>\n                    <p>Offers</p>\n                  \n            </a>\n            \n        </li> -->\n        \n        <li>\n            <a routerLink=\"supply\">\n                    <i class=\"ti-car\"></i>\n                    <p>Supplies</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"customerfeedbacks\">\n                    <i class=\"ti-comment\"></i>\n                    <p>FeedBack</p>  \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"orderratings\">\n                    <i class=\"ti-bar-chart\"></i>\n                    <p>Order Ratings</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"promotions\">\n                    <i class=\"ti-alarm-clock\"></i>\n                    <p>Offers/Promotions</p>      \n            </a>\n        </li>\n\n        <!-- <li>\n              \n          <a routerLink=\"rateplan\">\n                  <i class=\"ti-money\"></i>\n                  <p>Rate plans</p>  \n          </a>\n      </li> -->\n            \n        <!--    <li>        <a routerLink=\"passenger-search\">            <i class=\"ti-user\"></i>            <p>Passengers</p>        </a>    </li>-->\n            \n        <!--        <li routerLinkActive=\"active\">        <a>            <i class=\"ti-close\"></i>            <p>Hide Basket</p>        </a>        </li>    -->\n          \n    </ul>\n    \n</div>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"sidebar-wrapper\">\n      \n    <div class=\"logo\">\n            \n        <a class=\"simple-text\">\n                  \n            <div class=\"logo-img\" >\n                        <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\">      \n            </div>\n                  Kello    \n        </a>\n          \n    </div>\n      \n    <ul class=\"nav\">\n            \n        <li>\n                  \n            <a routerLink=\"dashboard\">\n                        <i class=\"ti-home\"></i>\n                        <p>Dashboard</p>\n                      \n            </a>\n                \n        </li>\n            \n        <!-- <li>      <a routerLink=\"flight\">        <i class=\"ti-arrow-top-right\"></i>        <p>Flights</p>      </a>    </li> -->\n        \n        <li>\n              \n          <a routerLink=\"activation\">\n                  <i class=\"ti-lock\"></i>\n                  <p>Activations</p>\n                \n          </a>\n          \n      </li>\n\n        <li>\n              \n            <a routerLink=\"customer\">\n                    <i class=\"ti-user\"></i>\n                    <p>Customers</p>\n                  \n            </a>\n            \n        </li>\n        \n        <li>\n              \n            <a routerLink=\"partner\">\n                    <i class=\"ti-wheelchair\"></i>\n                    <p>Partners</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n              \n          <a routerLink=\"orderses\">\n                  <i class=\"ti-receipt\"></i>\n                  <p>Orders</p>\n                \n          </a>\n          \n      </li>\n        \n        <li>\n              \n            <a routerLink=\"product\">\n                    <i class=\"ti-apple\"></i>\n                    <p>Products</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n            <a routerLink=\"priceplans\">\n                    <i class=\"ti-gift\"></i>\n                    <p>Price Plan</p>      \n            </a>\n        </li>\n\n                        \n        <!-- <li>\n              \n            <a routerLink=\"offer\">\n                    <i class=\"ti-panel\"></i>\n                    <p>Offers</p>\n                  \n            </a>\n            \n        </li> -->\n        \n        <li>\n            <a routerLink=\"supply\">\n                    <i class=\"ti-car\"></i>\n                    <p>Supplies</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"customerfeedbacks\">\n                    <i class=\"ti-comment\"></i>\n                    <p>FeedBack</p>  \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"orderratings\">\n                    <i class=\"ti-bar-chart\"></i>\n                    <p>Order Ratings</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"promotions\">\n                    <i class=\"ti-alarm-clock\"></i>\n                    <p>Offers/Promotions</p>      \n            </a>\n        </li>\n\n        <!-- <li>\n              \n          <a routerLink=\"rateplan\">\n                  <i class=\"ti-money\"></i>\n                  <p>Rate plans</p>  \n          </a>\n      </li> -->\n            \n        <!--    <li>        <a routerLink=\"passenger-search\">            <i class=\"ti-user\"></i>            <p>Passengers</p>        </a>    </li>-->\n            \n        <!--        <li routerLinkActive=\"active\">        <a>            <i class=\"ti-close\"></i>            <p>Hide Basket</p>        </a>        </li>    -->\n          \n    </ul>\n    \n</div>\n\n");
 
 /***/ }),
 
@@ -440,6 +453,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _modals_modal_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modals/modal.service */ "./src/app/modals/modal.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -460,9 +474,12 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+//import { CustomDialogComponent} from './modals/custom-dialog.component';
+
 var AuthInterceptor = /** @class */ (function () {
-    function AuthInterceptor(router) {
+    function AuthInterceptor(router, modalService) {
         this.router = router;
+        this.modalService = modalService;
     }
     AuthInterceptor.prototype.intercept = function (req, next) {
         var _this = this;
@@ -471,13 +488,9 @@ var AuthInterceptor = /** @class */ (function () {
         if (!currentUser || !currentUser.access_token) {
             return next.handle(req)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
-                console.log('http catchError');
-                if (err.status !== 401) {
-                    console.log(err.statusText);
-                    localStorage.removeItem('currentUser');
-                    _this.router.navigate(['/login']);
-                }
-                return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["throwError"])(err.message);
+                _this.showErrorDialog(err);
+                _this.handleError(err);
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["throwError"])(err);
             }));
         }
         var req1 = req.clone({
@@ -485,21 +498,42 @@ var AuthInterceptor = /** @class */ (function () {
         });
         return next.handle(req1)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
-            //console.log('http catchError', err);
-            if (err.status === 401) {
-                //console.log(err.statusText);   
-                localStorage.removeItem('currentUser');
-                _this.router.navigate(['/login']);
-            }
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["throwError"])(err);
+            _this.showErrorDialog(err);
+            _this.handleError(err);
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["throwError"])(err.message + " [" + err.name + "]");
         }));
     };
+    AuthInterceptor.prototype.handleError = function (err) {
+        if (err.status == 401) {
+            console.log(err.statusText);
+            localStorage.removeItem('currentUser');
+            this.router.navigate(['/login']);
+        }
+        return err;
+    };
+    AuthInterceptor.prototype.showErrorDialog = function (err) {
+        console.error(err);
+        var error = err;
+        if (err && err.error && err.error.error) {
+            error = err.error.error;
+        }
+        else if (err.error) {
+            error = err.error;
+        }
+        return alert(err.message + " [" + err.name + "] \n " + error.message + " [" + error.code + "] ");
+        this.modalService.message('My biscuits are burning!').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["take"])(1))
+            .subscribe(function (result) {
+            console.log(result);
+            //this.confirmedResult = result;
+        });
+    };
     AuthInterceptor.ctorParameters = function () { return [
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+        { type: _modals_modal_service__WEBPACK_IMPORTED_MODULE_4__["ModalService"] }
     ]; };
     AuthInterceptor = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _modals_modal_service__WEBPACK_IMPORTED_MODULE_4__["ModalService"]])
     ], AuthInterceptor);
     return AuthInterceptor;
 }());
@@ -997,29 +1031,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _flight_flight_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./flight/flight.module */ "./src/app/flight/flight.module.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _AuthInterceptor_AuthInterceptor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AuthInterceptor/AuthInterceptor */ "./src/app/AuthInterceptor/AuthInterceptor.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _app_routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.routes */ "./src/app/app.routes.ts");
-/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
-/* harmony import */ var _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./layouts/login-layout.component */ "./src/app/layouts/login-layout.component.ts");
-/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
-/* harmony import */ var _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./sidebar/sidebar.component */ "./src/app/sidebar/sidebar.component.ts");
-/* harmony import */ var _orders_orders_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./orders/orders.module */ "./src/app/orders/orders.module.ts");
-/* harmony import */ var _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./hotel/hotel.module */ "./src/app/hotel/hotel.module.ts");
-/* harmony import */ var _activation_activation_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./activation/activation.module */ "./src/app/activation/activation.module.ts");
-/* harmony import */ var _customer_customer_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./customer/customer.module */ "./src/app/customer/customer.module.ts");
-/* harmony import */ var _partner_partner_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./partner/partner.module */ "./src/app/partner/partner.module.ts");
-/* harmony import */ var _product_product_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./product/product.module */ "./src/app/product/product.module.ts");
-/* harmony import */ var _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./rateplan/rateplan.module */ "./src/app/rateplan/rateplan.module.ts");
-/* harmony import */ var _supply_supply_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./supply/supply.module */ "./src/app/supply/supply.module.ts");
-/* harmony import */ var _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./customerfeedback/customerfeedback.module */ "./src/app/customerfeedback/customerfeedback.module.ts");
-/* harmony import */ var _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./orderrating/orderrating.module */ "./src/app/orderrating/orderrating.module.ts");
-/* harmony import */ var _login_login_module__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./login/login.module */ "./src/app/login/login.module.ts");
-/* harmony import */ var _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./promotion/promotion.module */ "./src/app/promotion/promotion.module.ts");
-/* harmony import */ var _priceplan_priceplan_module__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./priceplan/priceplan.module */ "./src/app/priceplan/priceplan.module.ts");
+/* harmony import */ var ng_http_loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ng-http-loader */ "./node_modules/ng-http-loader/fesm5/ng-http-loader.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _app_routes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.routes */ "./src/app/app.routes.ts");
+/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
+/* harmony import */ var _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./layouts/login-layout.component */ "./src/app/layouts/login-layout.component.ts");
+/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
+/* harmony import */ var _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./sidebar/sidebar.component */ "./src/app/sidebar/sidebar.component.ts");
+/* harmony import */ var _orders_orders_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./orders/orders.module */ "./src/app/orders/orders.module.ts");
+/* harmony import */ var _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./hotel/hotel.module */ "./src/app/hotel/hotel.module.ts");
+/* harmony import */ var _activation_activation_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./activation/activation.module */ "./src/app/activation/activation.module.ts");
+/* harmony import */ var _customer_customer_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./customer/customer.module */ "./src/app/customer/customer.module.ts");
+/* harmony import */ var _partner_partner_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./partner/partner.module */ "./src/app/partner/partner.module.ts");
+/* harmony import */ var _product_product_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./product/product.module */ "./src/app/product/product.module.ts");
+/* harmony import */ var _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./rateplan/rateplan.module */ "./src/app/rateplan/rateplan.module.ts");
+/* harmony import */ var _supply_supply_module__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./supply/supply.module */ "./src/app/supply/supply.module.ts");
+/* harmony import */ var _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./customerfeedback/customerfeedback.module */ "./src/app/customerfeedback/customerfeedback.module.ts");
+/* harmony import */ var _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./orderrating/orderrating.module */ "./src/app/orderrating/orderrating.module.ts");
+/* harmony import */ var _login_login_module__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./login/login.module */ "./src/app/login/login.module.ts");
+/* harmony import */ var _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./promotion/promotion.module */ "./src/app/promotion/promotion.module.ts");
+/* harmony import */ var _priceplan_priceplan_module__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./priceplan/priceplan.module */ "./src/app/priceplan/priceplan.module.ts");
+/* harmony import */ var _dashboard_dashboard_module__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./dashboard/dashboard.module */ "./src/app/dashboard/dashboard.module.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _modals_message_dialog_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./modals/message-dialog.component */ "./src/app/modals/message-dialog.component.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -1066,42 +1104,59 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+
+
+
+//import { CustomDialogComponent} from './modal/custom-dialog.component';
+//import {ConfirmDialogComponent} from './modals/confirm-dialog.component';
+//import { InputDialogComponent} from './modals/input-dialog.component';
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["NgModule"])({
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["BrowserModule"],
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
+                ng_http_loader__WEBPACK_IMPORTED_MODULE_3__["NgHttpLoaderModule"].forRoot(),
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_28__["NgbModule"],
                 _flight_flight_module__WEBPACK_IMPORTED_MODULE_0__["FlightModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_7__["APP_ROUTES"].slice(), __assign({}, _app_routes__WEBPACK_IMPORTED_MODULE_7__["APP_EXTRA_OPTIONS"])),
-                _orders_orders_module__WEBPACK_IMPORTED_MODULE_13__["OrdersModule"],
-                _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_14__["HotelModule"],
-                _activation_activation_module__WEBPACK_IMPORTED_MODULE_15__["ActivationModule"],
-                _customer_customer_module__WEBPACK_IMPORTED_MODULE_16__["CustomerModule"],
-                _partner_partner_module__WEBPACK_IMPORTED_MODULE_17__["PartnerModule"],
-                _product_product_module__WEBPACK_IMPORTED_MODULE_18__["ProductModule"],
-                _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_19__["RateplanModule"],
-                _supply_supply_module__WEBPACK_IMPORTED_MODULE_20__["SupplyModule"],
-                _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_21__["CustomerfeedbackModule"],
-                _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_22__["OrderratingModule"],
-                _login_login_module__WEBPACK_IMPORTED_MODULE_23__["LoginModule"],
-                _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_24__["PromotionModule"],
-                _priceplan_priceplan_module__WEBPACK_IMPORTED_MODULE_25__["PriceplanModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_8__["APP_ROUTES"].slice(), __assign({}, _app_routes__WEBPACK_IMPORTED_MODULE_8__["APP_EXTRA_OPTIONS"])),
+                _orders_orders_module__WEBPACK_IMPORTED_MODULE_14__["OrdersModule"],
+                _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_15__["HotelModule"],
+                _activation_activation_module__WEBPACK_IMPORTED_MODULE_16__["ActivationModule"],
+                _customer_customer_module__WEBPACK_IMPORTED_MODULE_17__["CustomerModule"],
+                _partner_partner_module__WEBPACK_IMPORTED_MODULE_18__["PartnerModule"],
+                _product_product_module__WEBPACK_IMPORTED_MODULE_19__["ProductModule"],
+                _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_20__["RateplanModule"],
+                _supply_supply_module__WEBPACK_IMPORTED_MODULE_21__["SupplyModule"],
+                _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_22__["CustomerfeedbackModule"],
+                _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_23__["OrderratingModule"],
+                _login_login_module__WEBPACK_IMPORTED_MODULE_24__["LoginModule"],
+                _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_25__["PromotionModule"],
+                _priceplan_priceplan_module__WEBPACK_IMPORTED_MODULE_26__["PriceplanModule"],
+                _dashboard_dashboard_module__WEBPACK_IMPORTED_MODULE_27__["DashboardModule"],
             ],
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
-                _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_12__["SidebarComponent"],
-                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_11__["NavbarComponent"],
-                _home_home_component__WEBPACK_IMPORTED_MODULE_8__["HomeComponent"],
-                _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_10__["LoginLayoutComponent"],
-                _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_9__["HomeLayoutComponent"],
+                _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
+                _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_13__["SidebarComponent"],
+                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_12__["NavbarComponent"],
+                _home_home_component__WEBPACK_IMPORTED_MODULE_9__["HomeComponent"],
+                _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_11__["LoginLayoutComponent"],
+                _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_10__["HomeLayoutComponent"],
+                _modals_message_dialog_component__WEBPACK_IMPORTED_MODULE_29__["MessageDialogComponent"],
+            ],
+            entryComponents: [
+                //ConfirmDialogComponent,
+                //InputDialogComponent,
+                _modals_message_dialog_component__WEBPACK_IMPORTED_MODULE_29__["MessageDialogComponent"],
             ],
             providers: [
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HTTP_INTERCEPTORS"], useClass: _AuthInterceptor_AuthInterceptor__WEBPACK_IMPORTED_MODULE_2__["AuthInterceptor"], multi: true },
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
+            //entryComponents: [AlertDialogComponent],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -1123,10 +1178,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_ROUTES", function() { return APP_ROUTES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_EXTRA_OPTIONS", function() { return APP_EXTRA_OPTIONS; });
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
-/* harmony import */ var _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./layouts/login-layout.component */ "./src/app/layouts/login-layout.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
+/* harmony import */ var _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./layouts/login-layout.component */ "./src/app/layouts/login-layout.component.ts");
+/* harmony import */ var _dashboard_dashboard_list_dashboard_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dashboard/dashboard-list/dashboard-list.component */ "./src/app/dashboard/dashboard-list/dashboard-list.component.ts");
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -1143,22 +1198,22 @@ var APP_ROUTES = [
     },
     {
         path: 'home',
-        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_3__["HomeLayoutComponent"],
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
         children: [
             {
-                path: 'home',
-                component: _home_home_component__WEBPACK_IMPORTED_MODULE_1__["HomeComponent"]
+                path: 'dashboard',
+                component: _dashboard_dashboard_list_dashboard_list_component__WEBPACK_IMPORTED_MODULE_4__["DashboardListComponent"]
             }
         ]
     },
     {
         path: 'login',
-        component: _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_4__["LoginLayoutComponent"],
+        component: _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_3__["LoginLayoutComponent"],
         //component: LoginComponent,
         children: [
             {
                 path: 'login',
-                component: _login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"]
+                component: _login_login_component__WEBPACK_IMPORTED_MODULE_1__["LoginComponent"]
             }
         ]
     },
@@ -2010,6 +2065,271 @@ var Customerfeedback = /** @class */ (function () {
     function Customerfeedback() {
     }
     return Customerfeedback;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dashboard/dashboard-filter.ts":
+/*!***********************************************!*\
+  !*** ./src/app/dashboard/dashboard-filter.ts ***!
+  \***********************************************/
+/*! exports provided: DashboardFilter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardFilter", function() { return DashboardFilter; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var DashboardFilter = /** @class */ (function () {
+    function DashboardFilter() {
+        this.phone = '';
+    }
+    return DashboardFilter;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dashboard/dashboard-list/dashboard-list.component.css":
+/*!***********************************************************************!*\
+  !*** ./src/app/dashboard/dashboard-list/dashboard-list.component.css ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/* Start statistics */\n.statistics {\n    margin-top: 25px;\n    color: #CCC;\n  }\n.statistics .box {\n    background-color: #313348;\n    padding: 15px;\n    overflow: hidden;\n  }\n.statistics .box > i {\n    float: left;\n    color: #FFF;\n    border-radius: 50%;\n    width: 60px;\n    height: 60px;\n    line-height: 60px;\n    font-size: 22px;\n  }\n.statistics .box .info {\n    float: left;\n    width: auto;\n    margin-left: 10px;\n  }\n.statistics .box .info h3 {\n    margin: 5px 0 5px;\n    display: inline-block;\n  }\n.statistics .box .info p {color:#BBB}\n/* End statistics */\n  \n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGFzaGJvYXJkL2Rhc2hib2FyZC1saXN0L2Rhc2hib2FyZC1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBLHFCQUFxQjtBQUNyQjtJQUNJLGdCQUFnQjtJQUNoQixXQUFXO0VBQ2I7QUFDQTtJQUNFLHlCQUF5QjtJQUN6QixhQUFhO0lBQ2IsZ0JBQWdCO0VBQ2xCO0FBQ0E7SUFDRSxXQUFXO0lBQ1gsV0FBVztJQUNYLGtCQUFrQjtJQUNsQixXQUFXO0lBQ1gsWUFBWTtJQUNaLGlCQUFpQjtJQUNqQixlQUFlO0VBQ2pCO0FBQ0E7SUFDRSxXQUFXO0lBQ1gsV0FBVztJQUNYLGlCQUFpQjtFQUNuQjtBQUNBO0lBQ0UsaUJBQWlCO0lBQ2pCLHFCQUFxQjtFQUN2QjtBQUNBLDBCQUEwQixVQUFVO0FBRXBDLG1CQUFtQiIsImZpbGUiOiJzcmMvYXBwL2Rhc2hib2FyZC9kYXNoYm9hcmQtbGlzdC9kYXNoYm9hcmQtbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4vKiBTdGFydCBzdGF0aXN0aWNzICovXG4uc3RhdGlzdGljcyB7XG4gICAgbWFyZ2luLXRvcDogMjVweDtcbiAgICBjb2xvcjogI0NDQztcbiAgfVxuICAuc3RhdGlzdGljcyAuYm94IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzEzMzQ4O1xuICAgIHBhZGRpbmc6IDE1cHg7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgfVxuICAuc3RhdGlzdGljcyAuYm94ID4gaSB7XG4gICAgZmxvYXQ6IGxlZnQ7XG4gICAgY29sb3I6ICNGRkY7XG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xuICAgIHdpZHRoOiA2MHB4O1xuICAgIGhlaWdodDogNjBweDtcbiAgICBsaW5lLWhlaWdodDogNjBweDtcbiAgICBmb250LXNpemU6IDIycHg7XG4gIH1cbiAgLnN0YXRpc3RpY3MgLmJveCAuaW5mbyB7XG4gICAgZmxvYXQ6IGxlZnQ7XG4gICAgd2lkdGg6IGF1dG87XG4gICAgbWFyZ2luLWxlZnQ6IDEwcHg7XG4gIH1cbiAgLnN0YXRpc3RpY3MgLmJveCAuaW5mbyBoMyB7XG4gICAgbWFyZ2luOiA1cHggMCA1cHg7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB9XG4gIC5zdGF0aXN0aWNzIC5ib3ggLmluZm8gcCB7Y29sb3I6I0JCQn1cbiAgXG4gIC8qIEVuZCBzdGF0aXN0aWNzICovXG4gICJdfQ== */");
+
+/***/ }),
+
+/***/ "./src/app/dashboard/dashboard-list/dashboard-list.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/dashboard/dashboard-list/dashboard-list.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: DashboardListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardListComponent", function() { return DashboardListComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _dashboard_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dashboard-filter */ "./src/app/dashboard/dashboard-filter.ts");
+/* harmony import */ var _dashboard_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dashboard.service */ "./src/app/dashboard/dashboard.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+var DashboardListComponent = /** @class */ (function () {
+    function DashboardListComponent(dashboardService) {
+        this.dashboardService = dashboardService;
+        this.filter = new _dashboard_filter__WEBPACK_IMPORTED_MODULE_1__["DashboardFilter"]();
+        this.errors = '';
+    }
+    Object.defineProperty(DashboardListComponent.prototype, "dashboardList", {
+        get: function () {
+            return this.dashboardService.dashboardList;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DashboardListComponent.prototype.ngOnInit = function () {
+        this.search();
+    };
+    DashboardListComponent.prototype.search = function () {
+        this.dashboardService.load(this.filter);
+    };
+    DashboardListComponent.ctorParameters = function () { return [
+        { type: _dashboard_service__WEBPACK_IMPORTED_MODULE_2__["DashboardService"] }
+    ]; };
+    DashboardListComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'dashboard',
+            template: __importDefault(__webpack_require__(/*! raw-loader!./dashboard-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/dashboard/dashboard-list/dashboard-list.component.html")).default,
+            styles: [__importDefault(__webpack_require__(/*! ./dashboard-list.component.css */ "./src/app/dashboard/dashboard-list/dashboard-list.component.css")).default]
+        }),
+        __metadata("design:paramtypes", [_dashboard_service__WEBPACK_IMPORTED_MODULE_2__["DashboardService"]])
+    ], DashboardListComponent);
+    return DashboardListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dashboard/dashboard.module.ts":
+/*!***********************************************!*\
+  !*** ./src/app/dashboard/dashboard.module.ts ***!
+  \***********************************************/
+/*! exports provided: DashboardModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardModule", function() { return DashboardModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _dashboard_list_dashboard_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dashboard-list/dashboard-list.component */ "./src/app/dashboard/dashboard-list/dashboard-list.component.ts");
+/* harmony import */ var _dashboard_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dashboard.service */ "./src/app/dashboard/dashboard.service.ts");
+/* harmony import */ var _dashboard_routes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dashboard.routes */ "./src/app/dashboard/dashboard.routes.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+
+
+
+var DashboardModule = /** @class */ (function () {
+    function DashboardModule() {
+    }
+    DashboardModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forChild(_dashboard_routes__WEBPACK_IMPORTED_MODULE_6__["DASHBOARD_ROUTES"])
+            ],
+            declarations: [
+                _dashboard_list_dashboard_list_component__WEBPACK_IMPORTED_MODULE_4__["DashboardListComponent"],
+            ],
+            providers: [
+                _dashboard_service__WEBPACK_IMPORTED_MODULE_5__["DashboardService"]
+            ],
+            exports: []
+        })
+    ], DashboardModule);
+    return DashboardModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dashboard/dashboard.routes.ts":
+/*!***********************************************!*\
+  !*** ./src/app/dashboard/dashboard.routes.ts ***!
+  \***********************************************/
+/*! exports provided: DASHBOARD_ROUTES */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DASHBOARD_ROUTES", function() { return DASHBOARD_ROUTES; });
+/* harmony import */ var _dashboard_list_dashboard_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dashboard-list/dashboard-list.component */ "./src/app/dashboard/dashboard-list/dashboard-list.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+var DASHBOARD_ROUTES = [
+    {
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_1__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'dashboard',
+                component: _dashboard_list_dashboard_list_component__WEBPACK_IMPORTED_MODULE_0__["DashboardListComponent"]
+            }
+        ]
+    },
+];
+
+
+/***/ }),
+
+/***/ "./src/app/dashboard/dashboard.service.ts":
+/*!************************************************!*\
+  !*** ./src/app/dashboard/dashboard.service.ts ***!
+  \************************************************/
+/*! exports provided: DashboardService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardService", function() { return DashboardService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+//import {HttpHeaderService} from '../services/index'
+var DashboardService = /** @class */ (function () {
+    function DashboardService(http) {
+        this.http = http;
+        this.baseUrl = "/dashboards";
+        this.dashboardList = [];
+    }
+    DashboardService.prototype.findById = function (id) {
+        var url = this.baseUrl + "/" + id;
+        var params = { "id": id };
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
+            .set('Accept', 'application/json');
+        return this.http.get(url, { params: params, headers: headers });
+    };
+    DashboardService.prototype.load = function (filter) {
+        var _this = this;
+        this.find(filter).subscribe(function (result) {
+            _this.dashboardList = result;
+        }, function (err) {
+            console.error('error loading', err);
+        });
+    };
+    DashboardService.prototype.find = function (filter) {
+        var url = this.baseUrl + "/stats";
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
+            .set('Accept', 'application/json');
+        var params = {
+        //  "phone": filter.phone,
+        };
+        return this.http.get(url, { params: params, headers: headers });
+    };
+    DashboardService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
+    DashboardService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], DashboardService);
+    return DashboardService;
 }());
 
 
@@ -2963,6 +3283,11 @@ var HomeLayoutComponent = /** @class */ (function () {
         console.log('HomeLayoutComponent url', url);
         if (url === '/login') {
             this.router.navigate(['/login']);
+            return;
+        }
+        else if (this.router.url === 'home' || this.router.url === '/home') {
+            this.router.navigate(['/home/dashboard']);
+            return;
         }
     }
     HomeLayoutComponent.ctorParameters = function () { return [
@@ -3274,6 +3599,270 @@ var LoginService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/modals/confirm-dialog.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/modals/confirm-dialog.component.ts ***!
+  \****************************************************/
+/*! exports provided: ConfirmDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmDialogComponent", function() { return ConfirmDialogComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+var ConfirmDialogComponent = /** @class */ (function () {
+    function ConfirmDialogComponent(activeModal) {
+        this.activeModal = activeModal;
+    }
+    ConfirmDialogComponent.ctorParameters = function () { return [
+        { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NgbActiveModal"] }
+    ]; };
+    ConfirmDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-confirm-dialog',
+            template: "\n  <div>\n    <div class=\"modal-header\">\n      <h4 class=\"modal-title\">{{title}}</h4>\n    </div>\n    <div class=\"modal-body\">\n      <p>{{prompt}}</p>\n    </div>\n    <div class=\"modal-footer\">\n      <button type=\"button\"\n        class=\"btn btn-outline-dark\"\n        (click)=\"activeModal.close(false)\">Cancel</button>\n      <button type=\"button\"\n        class=\"btn btn-outline-dark\"\n        (click)=\"activeModal.close(true)\">OK</button>\n    </div>\n  </div>",
+            changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectionStrategy"].OnPush
+        }),
+        __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NgbActiveModal"]])
+    ], ConfirmDialogComponent);
+    return ConfirmDialogComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/modals/input-dialog.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/modals/input-dialog.component.ts ***!
+  \**************************************************/
+/*! exports provided: InputDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InputDialogComponent", function() { return InputDialogComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+var InputDialogComponent = /** @class */ (function () {
+    function InputDialogComponent(activeModal) {
+        this.activeModal = activeModal;
+        this.input = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required);
+    }
+    Object.defineProperty(InputDialogComponent.prototype, "initialValue", {
+        set: function (value) {
+            this.input.setValue(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    InputDialogComponent.ctorParameters = function () { return [
+        { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbActiveModal"] }
+    ]; };
+    InputDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-input-dialog',
+            template: "\n  <div>\n    <div class=\"modal-header\">\n      <h4 class=\"modal-title\">{{title}}</h4>\n    </div>\n    <div class=\"modal-body\">\n      <p>{{message}}</p>\n      <input [formControl]=\"input\" type=\"text\">\n    </div>\n    <div class=\"modal-footer\">\n      <button type=\"button\"\n        class=\"btn btn-outline-dark\"\n        (click)=\"activeModal.close()\">Cancel</button>\n      <button type=\"button\"\n        class=\"btn btn-outline-dark\"\n        [class.disabled]=\"input.invalid\"\n        [disabled]=\"input.invalid\"\n        (click)=\"activeModal.close(input.value)\">OK</button>\n    </div>\n  </div>",
+            changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectionStrategy"].OnPush
+        }),
+        __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbActiveModal"]])
+    ], InputDialogComponent);
+    return InputDialogComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/modals/message-dialog.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/modals/message-dialog.component.ts ***!
+  \****************************************************/
+/*! exports provided: MessageDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageDialogComponent", function() { return MessageDialogComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+var MessageDialogComponent = /** @class */ (function () {
+    function MessageDialogComponent(activeModal) {
+        this.activeModal = activeModal;
+    }
+    MessageDialogComponent.ctorParameters = function () { return [
+        { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NgbActiveModal"] }
+    ]; };
+    MessageDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-message-dialog',
+            template: "\n  <div>\n    <div class=\"modal-header\">\n      <h4 class=\"modal-title\">{{title}}</h4>\n    </div>\n    <div class=\"modal-body\">\n      <p>{{message}}</p>\n    </div>\n    <div class=\"modal-footer\">\n      <button type=\"button\"\n        class=\"btn btn-outline-dark\"\n        (click)=\"activeModal.close(true)\">OK</button>\n    </div>\n  </div>",
+            changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectionStrategy"].OnPush
+        }),
+        __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NgbActiveModal"]])
+    ], MessageDialogComponent);
+    return MessageDialogComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/modals/modal.service.ts":
+/*!*****************************************!*\
+  !*** ./src/app/modals/modal.service.ts ***!
+  \*****************************************/
+/*! exports provided: ModalService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalService", function() { return ModalService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _confirm_dialog_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./confirm-dialog.component */ "./src/app/modals/confirm-dialog.component.ts");
+/* harmony import */ var _input_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./input-dialog.component */ "./src/app/modals/input-dialog.component.ts");
+/* harmony import */ var _message_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./message-dialog.component */ "./src/app/modals/message-dialog.component.ts");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+
+
+
+var ModalService = /** @class */ (function () {
+    function ModalService(ngbModal) {
+        this.ngbModal = ngbModal;
+    }
+    ModalService.prototype.confirm = function (prompt, title) {
+        if (prompt === void 0) { prompt = 'Really?'; }
+        if (title === void 0) { title = 'Confirm'; }
+        var modal = this.ngbModal.open(_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_4__["ConfirmDialogComponent"], { backdrop: 'static' });
+        modal.componentInstance.prompt = prompt;
+        modal.componentInstance.title = title;
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(modal.result).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (error) {
+            console.warn(error);
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(undefined);
+        }));
+    };
+    ModalService.prototype.input = function (message, initialValue, title) {
+        if (title === void 0) { title = 'Input'; }
+        var modal = this.ngbModal.open(_input_dialog_component__WEBPACK_IMPORTED_MODULE_5__["InputDialogComponent"], { backdrop: 'static' });
+        modal.componentInstance.message = message;
+        modal.componentInstance.initialValue = initialValue;
+        modal.componentInstance.title = title;
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(modal.result).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (error) {
+            console.warn(error);
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(undefined);
+        }));
+    };
+    ModalService.prototype.message = function (message, title) {
+        if (title === void 0) { title = 'Message'; }
+        var modal = this.ngbModal.open(_message_dialog_component__WEBPACK_IMPORTED_MODULE_6__["MessageDialogComponent"], { backdrop: 'static' });
+        modal.componentInstance.message = message;
+        modal.componentInstance.title = title;
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(modal.result).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (error) {
+            console.warn(error);
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(undefined);
+        }));
+    };
+    ModalService.prototype.custom = function (content, config, options) {
+        // we use a static backdrop by default,
+        // but allow the user to set anything in the options
+        var modal = this.ngbModal.open(content, __assign({ backdrop: 'static' }, options));
+        // copy the config values (if any) into the component
+        Object.assign(modal.componentInstance, config);
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(modal.result).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (error) {
+            console.warn(error);
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(undefined);
+        }));
+    };
+    ModalService.ctorParameters = function () { return [
+        { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NgbModal"] }
+    ]; };
+    ModalService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NgbModal"]])
+    ], ModalService);
+    return ModalService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/navbar/navbar.component.ts":
 /*!********************************************!*\
   !*** ./src/app/navbar/navbar.component.ts ***!
@@ -3304,6 +3893,7 @@ var NavbarComponent = /** @class */ (function () {
     }
     NavbarComponent.prototype.sidebarToggle = function () {
         var body = document.getElementsByTagName('body')[0];
+        console.log('nav bar', this.sidebarVisible);
         if (this.sidebarVisible == false) {
             body.classList.add('nav-open');
             this.sidebarVisible = true;
@@ -4700,6 +5290,9 @@ var PriceplanEditComponent = /** @class */ (function () {
             return _this.priceplanService.findById(id);
         }))
             .subscribe(function (priceplan) {
+            //priceplan.effectiveFrom = new Date(priceplan.effectiveFrom).toLocaleDateString();
+            // let formatted_date = (priceplan.effectiveFrom.getMonth() + 1) + "/" + (priceplan.effectiveFrom.getDay()) + "/" + priceplan.effectiveFrom.getFullYear()
+            // console.log(formatted_date)
             _this.priceplan = priceplan;
             _this.feedback = {};
         }, function (err) {
@@ -4720,6 +5313,30 @@ var PriceplanEditComponent = /** @class */ (function () {
     };
     PriceplanEditComponent.prototype.cancel = function () {
         this.router.navigate(['/home/priceplans']);
+    };
+    PriceplanEditComponent.prototype.applyPricePlan = function () {
+        var _this = this;
+        this.priceplanService.applyPricePlan(this.priceplan).subscribe(function (priceplan) {
+            _this.priceplan.isApplied = true;
+            _this.feedback = { type: 'success', message: 'Save was successful!' };
+            // setTimeout(() => {
+            //   this.router.navigate(['/home/priceplans']);
+            // }, 1000);
+        }, function (err) {
+            _this.feedback = { type: 'warning', message: 'Error saving' };
+        });
+    };
+    PriceplanEditComponent.prototype.stopPricePlan = function () {
+        var _this = this;
+        this.priceplanService.stopPricePlan(this.priceplan).subscribe(function (priceplan) {
+            _this.priceplan.isApplied = false;
+            _this.feedback = { type: 'success', message: 'Save was successful!' };
+            // setTimeout(() => {
+            //   this.router.navigate(['/home/priceplans']);
+            // }, 1000);
+        }, function (err) {
+            _this.feedback = { type: 'warning', message: 'Error saving' };
+        });
     };
     PriceplanEditComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
@@ -5027,6 +5644,20 @@ var PriceplanService = /** @class */ (function () {
             return this.http.delete(url, { headers: headers, params: params });
         }
         return null;
+    };
+    PriceplanService.prototype.applyPricePlan = function (entity) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        url = this.api + "/" + entity.id.toString() + "/apply";
+        params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
+        return this.http.put(url, {}, { headers: headers, params: params });
+    };
+    PriceplanService.prototype.stopPricePlan = function (entity) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        url = this.api + "/" + entity.id.toString() + "/stop";
+        params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
+        return this.http.put(url, {}, { headers: headers, params: params });
     };
     PriceplanService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
@@ -5594,6 +6225,24 @@ var PromotionEditComponent = /** @class */ (function () {
         };
         myReader.readAsDataURL(file);
     };
+    PromotionEditComponent.prototype.applyPromotion = function () {
+        var _this = this;
+        this.promotionService.applyPromotion(this.promotion).subscribe(function (promotion) {
+            _this.promotion.isActive = true;
+            _this.feedback = { type: 'success', message: 'Save was successful!' };
+        }, function (err) {
+            _this.feedback = { type: 'warning', message: 'Error saving' };
+        });
+    };
+    PromotionEditComponent.prototype.stopPromotion = function () {
+        var _this = this;
+        this.promotionService.stopPromotion(this.promotion).subscribe(function (promotion) {
+            _this.promotion.isActive = false;
+            _this.feedback = { type: 'success', message: 'Save was successful!' };
+        }, function (err) {
+            _this.feedback = { type: 'warning', message: 'Error saving' };
+        });
+    };
     PromotionEditComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
@@ -5900,6 +6549,20 @@ var PromotionService = /** @class */ (function () {
             return this.http.delete(url, { headers: headers, params: params });
         }
         return null;
+    };
+    PromotionService.prototype.applyPromotion = function (entity) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        url = this.api + "/" + entity.id.toString() + "/apply";
+        params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
+        return this.http.put(url, {}, { headers: headers, params: params });
+    };
+    PromotionService.prototype.stopPromotion = function (entity) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        url = this.api + "/" + entity.id.toString() + "/stop";
+        params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
+        return this.http.put(url, {}, { headers: headers, params: params });
     };
     PromotionService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }

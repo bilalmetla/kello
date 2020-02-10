@@ -31,6 +31,7 @@ const uuid = require("uuid");
 const util_1 = require("util");
 const { sign } = require('jsonwebtoken');
 const signAsync = util_1.promisify(sign);
+const sendpk_1 = require("../sms/sendpk");
 let CustomersController = class CustomersController {
     constructor(customersRepository, activationsRepository, userRepository) {
         this.customersRepository = customersRepository;
@@ -64,7 +65,6 @@ let CustomersController = class CustomersController {
             return this.customersRepository.updateAll(customers, where);
         });
     }
-    //@secured(SecuredType.IS_AUTHENTICATED)
     findById(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
             // const session = (this.customersRepository.dataSource.connector as any).client.startSession();
@@ -95,6 +95,7 @@ let CustomersController = class CustomersController {
     //@secured(SecuredType.IS_AUTHENTICATED)
     authenticate(customers) {
         return __awaiter(this, void 0, void 0, function* () {
+            const sendPk = new sendpk_1.SendPk();
             let phone = customers.phone;
             // let filter = getFilterSchemaFor(Customers);
             let filter = {
@@ -116,12 +117,14 @@ let CustomersController = class CustomersController {
                 let today = new Date();
                 let tomorrow = new Date();
                 tomorrow.setDate(today.getDate() + 1);
-                yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
-                yield this.customersRepository.create(customers);
+                let smsCode = Math.floor(Math.random() * 899999 + 100000);
+                yield this.activationsRepository.create({ phone, smsCode: smsCode, expiry: tomorrow.toString() });
+                const createdCustomer = yield this.customersRepository.create(customers);
                 let user = yield this.userRepository.create({ username: phone });
-                //delete createdCustomer.access_token;
-                // await this.sendSMS();
-                return customers;
+                delete createdCustomer.access_token;
+                //this.sendSMS();
+                sendPk.sendOTP(smsCode, createdCustomer.phone);
+                return createdCustomer;
                 //return customer;
                 //throw new HttpErrors.Unauthorized('Please Activate via SMS CODE');    
             }
@@ -129,11 +132,13 @@ let CustomersController = class CustomersController {
                 let today = new Date();
                 let tomorrow = new Date();
                 tomorrow.setDate(today.getDate() + 1);
-                yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
+                let smsCode = Math.floor(Math.random() * 899999 + 100000);
+                yield this.activationsRepository.create({ phone, smsCode: smsCode, expiry: tomorrow.toString() });
                 foundCust[0].isActivated = false;
                 yield this.customersRepository.updateAll(foundCust[0], { phone });
-                //await this.sendSMS();
-                // delete foundCust[0].access_token;
+                //this.sendSMS(smsCode,foundCust[0].phone);
+                sendPk.sendOTP(smsCode, foundCust[0].phone);
+                delete foundCust[0].access_token;
                 return foundCust[0];
             }
         });
@@ -162,21 +167,22 @@ let CustomersController = class CustomersController {
             // Download the helper library from https://www.twilio.com/docs/node/install
             // Your Account Sid and Auth Token from twilio.com/console
             // DANGER! This is insecure. See http://twil.io/secure
-            console.log('sending sms via twilio..');
-            const accountSid = 'ACeccf074eced9ed0be6a11fba3295228d';
-            const authToken = 'e6b969ab8a142a69f2ee6569c4240725';
-            const client = require('twilio')(accountSid, authToken);
-            client.messages
-                .create({
-                body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-                from: '+15017122661',
-                to: '+923136604801'
-            })
-                .then((message) => {
-                console.log(message.sid);
-                return message;
-            })
-                .catch((error) => console.log(error));
+            // console.log('sending sms via twilio..');
+            // const accountSid = 'ACeccf074eced9ed0be6a11fba3295228d';
+            // const authToken = 'e6b969ab8a142a69f2ee6569c4240725';
+            // const client = require('twilio')(accountSid, authToken);
+            // client.messages
+            //   .create({
+            //      body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+            //      from: '+15017122661',
+            //      to:   '+923136604801'
+            //    })
+            //   .then( (message: any) => { 
+            //     console.log(message.sid);
+            //     return message;
+            //   })
+            //   .catch( (error: any) => console.log(error))
+            //   }
         });
     }
 };
@@ -264,6 +270,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "updateAll", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/customers/{id}', {
         responses: {
             '200': {

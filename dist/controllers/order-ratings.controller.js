@@ -30,7 +30,6 @@ let OrderRatingsController = class OrderRatingsController {
     constructor(orderRatingsRepository) {
         this.orderRatingsRepository = orderRatingsRepository;
     }
-    //@secured(SecuredType.IS_AUTHENTICATED)
     create(orderRatings) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.orderRatingsRepository.create(orderRatings);
@@ -80,6 +79,7 @@ let OrderRatingsController = class OrderRatingsController {
     }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/order-ratings', {
         responses: {
             '200': {
