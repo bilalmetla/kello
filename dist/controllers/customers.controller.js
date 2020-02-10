@@ -96,8 +96,21 @@ let CustomersController = class CustomersController {
     authenticate(customers) {
         return __awaiter(this, void 0, void 0, function* () {
             const sendPk = new sendpk_1.SendPk();
+            customers.phone = parseInt(customers.phone, 10).toString();
             let phone = customers.phone;
             // let filter = getFilterSchemaFor(Customers);
+            if (phone.length < 10) {
+                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
+            }
+            else if (phone.length == 10) {
+                phone = "92" + phone;
+            }
+            else if (phone.length > 12) {
+                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
+            }
+            else if (phone.length <= 12 && phone.substring(0, 2) != "92") {
+                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
+            }
             let filter = {
                 "where": { phone },
                 "fields": {

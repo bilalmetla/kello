@@ -33,4 +33,7 @@ export declare class CONSTANTS {
     static readonly PEOMOTION_NOT_FOUND: {
         error: ErrorResponse;
     };
+    static readonly INVALID_PHONE_NUMBER: {
+        error: ErrorResponse;
+    };
 }

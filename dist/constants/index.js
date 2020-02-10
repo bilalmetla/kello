@@ -15,4 +15,5 @@ CONSTANTS.ORDER_DETAILS_NOT_CREATED = { error: new models_1.ErrorResponse({ stat
 CONSTANTS.PRODUCT_NOT_UPDATED = { error: new models_1.ErrorResponse({ statusCode: 403, name: "Forbidden", code: "PRODUCT_NOT_UPDATED", message: "Product Not Updated!" }) };
 CONSTANTS.PRICEPLAN_NOT_FOUND = { error: new models_1.ErrorResponse({ statusCode: 404, name: "Not Found", code: "PRICEPLAN_NOT_FOUND", message: "PricePlan Not Found!" }) };
 CONSTANTS.PEOMOTION_NOT_FOUND = { error: new models_1.ErrorResponse({ statusCode: 404, name: "Not Found", code: "PEOMOTION_NOT_FOUND", message: "Promotion Not Found!" }) };
+CONSTANTS.INVALID_PHONE_NUMBER = { error: new models_1.ErrorResponse({ statusCode: 400, name: "Bad Request", code: "INVALID_PHONE_NUMBER", message: "Phone Number Is Invalid!" }) };
 //# sourceMappingURL=index.js.map
