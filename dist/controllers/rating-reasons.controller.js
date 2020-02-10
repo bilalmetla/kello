@@ -40,6 +40,7 @@ let RatingReasonsController = class RatingReasonsController {
             return this.ratingReasonsRepository.count(where);
         });
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.ratingReasonsRepository.find(filter);
@@ -111,7 +112,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RatingReasonsController.prototype, "count", null);
 __decorate([
-    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/rating-reasons', {
         responses: {
             '200': {

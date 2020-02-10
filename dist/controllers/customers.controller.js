@@ -133,6 +133,7 @@ let CustomersController = class CustomersController {
                 let tomorrow = new Date();
                 tomorrow.setDate(today.getDate() + 1);
                 let smsCode = Math.floor(Math.random() * 899999 + 100000);
+                yield this.activationsRepository.deleteAll({ phone });
                 yield this.activationsRepository.create({ phone, smsCode: smsCode, expiry: tomorrow.toString() });
                 foundCust[0].isActivated = false;
                 yield this.customersRepository.updateAll(foundCust[0], { phone });
@@ -147,11 +148,13 @@ let CustomersController = class CustomersController {
     activation(activations) {
         return __awaiter(this, void 0, void 0, function* () {
             let phone = activations.phone;
+            let deviceId = activations.deviceId;
+            let deviceToken = activations.deviceToken;
             let smsCode = activations.smsCode;
             let actRecord = yield this.activationsRepository.findOne({ "where": { phone, smsCode } });
             console.log(actRecord);
             if (actRecord) {
-                let customer = { phone, isActivated: true };
+                let customer = { phone, isActivated: true, deviceId: deviceId, deviceToken: deviceToken };
                 yield this.customersRepository.updateAll(customer, { phone });
                 yield this.activationsRepository.deleteAll({ phone });
                 const customerInfo = yield this.customersRepository.findOne({ "where": { phone } });

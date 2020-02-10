@@ -57,6 +57,18 @@ __decorate([
     }),
     __metadata("design:type", Date)
 ], Activations.prototype, "createdTime", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Activations.prototype, "deviceId", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Activations.prototype, "deviceToken", void 0);
 Activations = __decorate([
     repository_1.model({ settings: { strict: false, strictObjectIDCoercion: true } }),
     __metadata("design:paramtypes", [Object])

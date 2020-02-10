@@ -75,6 +75,12 @@ __decorate([
     __metadata("design:type", String)
 ], Customers.prototype, "deviceId", void 0);
 __decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Customers.prototype, "deviceToken", void 0);
+__decorate([
     repository_1.hasMany(() => orders_model_1.Orders),
     __metadata("design:type", Array)
 ], Customers.prototype, "orders", void 0);
