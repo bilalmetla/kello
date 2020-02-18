@@ -191,7 +191,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" (click)=\"sidebarToggle()\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar bar1\"></span>\n        <span class=\"icon-bar bar2\"></span>\n        <span class=\"icon-bar bar3\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"javascript:void(0)\">Kello</a>\n    </div>\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav navbar-right\">\n        <!-- <li>\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n            <i class=\"ti-panel\"></i>\n            <p>Stats</p>\n          </a>\n        </li> -->\n        <li class=\"dropdown\">\n          <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n            <i class=\"ti-bell\"></i>\n            <p class=\"notification\">5</p>\n            <p>Notifications</p>\n            <b class=\"caret\"></b>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li><a href=\"#\">Notification 1</a></li>\n            <li><a href=\"#\">Notification 2</a></li>\n            <li><a href=\"#\">Notification 3</a></li>\n            <li><a href=\"#\">Notification 4</a></li>\n            <li><a href=\"#\">Another notification</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"javascript:void(0)\">\n            <i class=\"ti-settings\"></i>\n            <p>Settings</p>\n          </a>\n        </li>\n\n         <!-- Dropdown -->\n         <li class=\"nav-item dropdown\" dropdown>\n          <a dropdownToggle mdbWavesEffect type=\"button\" class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n          Basic dropdown<span class=\"caret\"></span></a>\n          <div *dropdownMenu class=\"dropdown-menu dropdown dropdown-primary\" role=\"menu\">\n              <a class=\"dropdown-item waves-light\" mdbWavesEffect href=\"#\">Action</a>\n              <a class=\"dropdown-item waves-light\" mdbWavesEffect href=\"#\">Another action</a>\n              <a class=\"dropdown-item waves-light\" mdbWavesEffect href=\"#\">Something else here</a>\n              <div class=\"divider dropdown-divider\"></div>\n              <a class=\"dropdown-item waves-light\" mdbWavesEffect href=\"#\">Separated link</a>\n          </div>\n      </li>\n      \n      </ul>\n\n    </div>\n\n\n  </div>\n</nav>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-default \">\n  <div class=\"container-fluid \">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" (click)=\"sidebarToggle()\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar bar1\"></span>\n        <span class=\"icon-bar bar2\"></span>\n        <span class=\"icon-bar bar3\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"javascript:void(0)\">Kello</a>\n    </div>\n    <div class=\"collapse navbar-collapse \">\n      <ul class=\"nav navbar-nav navbar-right \">\n        <!-- <li>\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n            <i class=\"ti-panel\"></i>\n            <p>Stats</p>\n          </a>\n        </li> -->\n        <li class=\"\">\n          <a href=\"javascript:void(0)\" >\n            <i class=\"ti-bell\"></i>\n            <p class=\"notification\">5</p>\n            <p>Notifications</p>\n            <!-- <b class=\"caret\"></b> -->\n          </a>\n          \n        </li>\n        <li>\n          <a href=\"javascript:void(0)\" >\n            <i class=\"ti-user\"></i>\n            <!-- <p>Profile</p> -->\n            <select class=\"selectBox\" (change)=\"ProfileDropDownHandler($event.target.value)\" >\n              <option >Profile</option>\n              <option disabled>_________</option>\n              <option >Settings</option>\n              <option disabled>_________</option>\n              <option>Logout</option>\n            </select>\n          </a>\n        </li>\n\n         <!-- Dropdown -->\n         <!-- <li class=\"nav-item dropdown\" dropdown>\n          <a dropdownToggle mdbWavesEffect type=\"button\" class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n          Basic dropdown<span class=\"caret\"></span></a>\n          <div *dropdownMenu class=\"dropdown-menu dropdown dropdown-primary\" role=\"menu\">\n              <a class=\"dropdown-item waves-light\" mdbWavesEffect href=\"#\">Action</a>\n              <a class=\"dropdown-item waves-light\" mdbWavesEffect href=\"#\">Another action</a>\n              <a class=\"dropdown-item waves-light\" mdbWavesEffect href=\"#\">Something else here</a>\n              <div class=\"divider dropdown-divider\"></div>\n              <a class=\"dropdown-item waves-light\" mdbWavesEffect href=\"#\">Separated link</a>\n          </div>\n      </li> -->\n      \n      \n      </ul>\n\n    </div>\n\n   \n\n  </div>\n</nav>\n");
 
 /***/ }),
 
@@ -487,7 +487,7 @@ var AuthInterceptor = /** @class */ (function () {
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (!currentUser || !currentUser.access_token) {
             return next.handle(req)
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (event) { return _this.checkAnyError(event); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
                 _this.showErrorDialog(err);
                 _this.handleError(err);
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["throwError"])(err);
@@ -497,11 +497,19 @@ var AuthInterceptor = /** @class */ (function () {
             headers: req.headers.set('Authorization', "Bearer " + currentUser.access_token),
         });
         return next.handle(req1)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (event) { return _this.checkAnyError(event); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
             _this.showErrorDialog(err);
             _this.handleError(err);
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["throwError"])(err.message + " [" + err.name + "]");
         }));
+    };
+    AuthInterceptor.prototype.checkAnyError = function (event) {
+        console.log('checkAnyError', event);
+        if (event.body && event.body.error) {
+            var error = event.body.error;
+            //throwError (`${error.message} [${error.name}]`);
+            this.showErrorDialog({ error: error });
+        }
     };
     AuthInterceptor.prototype.handleError = function (err) {
         if (err.status == 401) {
@@ -520,12 +528,7 @@ var AuthInterceptor = /** @class */ (function () {
         else if (err.error) {
             error = err.error;
         }
-        return alert(err.message + " [" + err.name + "] \n " + error.message + " [" + error.code + "] ");
-        this.modalService.message('My biscuits are burning!').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["take"])(1))
-            .subscribe(function (result) {
-            console.log(result);
-            //this.confirmedResult = result;
-        });
+        return alert((err.message || '') + " [" + (err.name || '') + "] \n " + (error.message || '') + " [" + (error.code || '') + "] ");
     };
     AuthInterceptor.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
@@ -1056,7 +1059,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./promotion/promotion.module */ "./src/app/promotion/promotion.module.ts");
 /* harmony import */ var _priceplan_priceplan_module__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./priceplan/priceplan.module */ "./src/app/priceplan/priceplan.module.ts");
 /* harmony import */ var _dashboard_dashboard_module__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./dashboard/dashboard.module */ "./src/app/dashboard/dashboard.module.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
 /* harmony import */ var _modals_message_dialog_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./modals/message-dialog.component */ "./src/app/modals/message-dialog.component.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -1120,7 +1123,7 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
                 ng_http_loader__WEBPACK_IMPORTED_MODULE_3__["NgHttpLoaderModule"].forRoot(),
-                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_28__["NgbModule"],
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_28__["NgbModule"].forRoot(),
                 _flight_flight_module__WEBPACK_IMPORTED_MODULE_0__["FlightModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_8__["APP_ROUTES"].slice(), __assign({}, _app_routes__WEBPACK_IMPORTED_MODULE_8__["APP_EXTRA_OPTIONS"])),
                 _orders_orders_module__WEBPACK_IMPORTED_MODULE_14__["OrdersModule"],
@@ -3610,7 +3613,7 @@ var LoginService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmDialogComponent", function() { return ConfirmDialogComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3659,7 +3662,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InputDialogComponent", function() { return InputDialogComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3716,7 +3719,7 @@ var InputDialogComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageDialogComponent", function() { return MessageDialogComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3764,7 +3767,7 @@ var MessageDialogComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalService", function() { return ModalService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _confirm_dialog_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./confirm-dialog.component */ "./src/app/modals/confirm-dialog.component.ts");
@@ -3863,6 +3866,19 @@ var ModalService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/navbar/navbar.component.css":
+/*!*********************************************!*\
+  !*** ./src/app/navbar/navbar.component.css ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n  .selectBox {\n    width: 14px;\n    height: 17px;\n    background-color: whitesmoke;\n    color: #777777;\n    border: 0px;\n    padding-bottom: 20px;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbmF2YmFyL25hdmJhci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7RUFDRTtJQUNFLFdBQVc7SUFDWCxZQUFZO0lBQ1osNEJBQTRCO0lBQzVCLGNBQWM7SUFDZCxXQUFXO0lBQ1gsb0JBQW9CO0VBQ3RCIiwiZmlsZSI6InNyYy9hcHAvbmF2YmFyL25hdmJhci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gIC5zZWxlY3RCb3gge1xuICAgIHdpZHRoOiAxNHB4O1xuICAgIGhlaWdodDogMTdweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZXNtb2tlO1xuICAgIGNvbG9yOiAjNzc3Nzc3O1xuICAgIGJvcmRlcjogMHB4O1xuICAgIHBhZGRpbmctYm90dG9tOiAyMHB4O1xuICB9Il19 */");
+
+/***/ }),
+
 /***/ "./src/app/navbar/navbar.component.ts":
 /*!********************************************!*\
   !*** ./src/app/navbar/navbar.component.ts ***!
@@ -3874,6 +3890,7 @@ var ModalService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavbarComponent", function() { return NavbarComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3887,12 +3904,15 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
+
 var NavbarComponent = /** @class */ (function () {
-    function NavbarComponent() {
+    function NavbarComponent(router) {
+        this.router = router;
         this.sidebarVisible = false;
     }
     NavbarComponent.prototype.sidebarToggle = function () {
         var body = document.getElementsByTagName('body')[0];
+        console.log(body);
         console.log('nav bar', this.sidebarVisible);
         if (this.sidebarVisible == false) {
             body.classList.add('nav-open');
@@ -3903,12 +3923,26 @@ var NavbarComponent = /** @class */ (function () {
             body.classList.remove('nav-open');
         }
     };
+    NavbarComponent.prototype.ProfileDropDownHandler = function (value) {
+        console.log(value);
+        if (value === 'Logout') {
+            this.logOutHandler();
+        }
+    };
+    NavbarComponent.prototype.logOutHandler = function () {
+        localStorage.removeItem('currentUser');
+        this.router.navigate(['/login']);
+    };
+    NavbarComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] }
+    ]; };
     NavbarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'navbar-cmp',
-            template: __importDefault(__webpack_require__(/*! raw-loader!./navbar.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/navbar/navbar.component.html")).default
+            template: __importDefault(__webpack_require__(/*! raw-loader!./navbar.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/navbar/navbar.component.html")).default,
+            styles: [__importDefault(__webpack_require__(/*! ./navbar.component.css */ "./src/app/navbar/navbar.component.css")).default]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], NavbarComponent);
     return NavbarComponent;
 }());

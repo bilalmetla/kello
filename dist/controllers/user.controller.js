@@ -27,10 +27,11 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const constants_1 = require("../constants");
 const auth_1 = require("../auth");
-const uuid = require("uuid");
+//const uuid = require("uuid");
 const util_1 = require("util");
-const { sign } = require('jsonwebtoken');
+const { sign, verify, decode } = require('jsonwebtoken');
 const signAsync = util_1.promisify(sign);
+const verifyAsync = util_1.promisify(verify);
 const auth_2 = require("../auth");
 let UserController = class UserController {
     constructor(userRepository) {
@@ -40,6 +41,7 @@ let UserController = class UserController {
         return __awaiter(this, void 0, void 0, function* () {
             const tokenObject = { username: user.username };
             let token = yield signAsync(tokenObject, auth_1.JWT_SECRET);
+            user.password = yield signAsync(user.password, auth_1.JWT_SECRET);
             user.access_token = token;
             return this.userRepository.create(user);
         });
@@ -80,16 +82,26 @@ let UserController = class UserController {
         });
     }
     userLogin(user) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
-            //const userInfo = this.userRepository.findOne({"where":{phone}});
-            const userInfo = yield this.userRepository.findOne({ "where": { username: user.username } });
-            if (!userInfo) {
-                return constants_1.CONSTANTS.AUTHNETICATION_FAILED;
+            try {
+                //const userInfo = this.userRepository.findOne({"where":{phone}});
+                const userInfo = yield this.userRepository.findOne({ "where": { username: user.username } });
+                let pwd = yield signAsync(user.password, auth_1.JWT_SECRET);
+                //console.log("jwt signed password: ", pwd);
+                let dbPassword = yield verifyAsync((_a = userInfo) === null || _a === void 0 ? void 0 : _a.password, auth_1.JWT_SECRET);
+                if (!userInfo) {
+                    return constants_1.CONSTANTS.AUTHNETICATION_FAILED;
+                }
+                else if (dbPassword === user.password) {
+                    return userInfo;
+                }
+                else {
+                    return constants_1.CONSTANTS.AUTHNETICATION_FAILED;
+                }
             }
-            else if (userInfo && userInfo.password === user.password) {
-                return userInfo;
-            }
-            else {
+            catch (ex) {
+                console.log(ex);
                 return constants_1.CONSTANTS.AUTHNETICATION_FAILED;
             }
         });
