@@ -59,6 +59,13 @@ let OrdersController = class OrdersController {
     }
     findById(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (filter) {
+                filter.include = [{ "relation": 'partners' }];
+            }
+            else {
+                filter = {};
+                filter.include = [{ "relation": 'partners' }];
+            }
             return this.ordersRepository.findById(id, filter);
         });
     }

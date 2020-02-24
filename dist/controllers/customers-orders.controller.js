@@ -35,6 +35,7 @@ let CustomersOrdersController = class CustomersOrdersController {
         this.orderdetailsRepository = orderdetailsRepository;
         this.ordersRepository = ordersRepository;
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     find(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
             if (filter) {
@@ -45,6 +46,9 @@ let CustomersOrdersController = class CustomersOrdersController {
                 filter.order = ['orderTime Desc'];
             }
             filter.where = { customersId: id };
+            filter.include = [{ "relation": 'partners',
+                    scope: { fields: { "id": true, "name": true, "phone": true, "location": true, } } }
+            ];
             return this.customersRepository.orders(id).find(filter);
         });
     }
@@ -205,14 +209,13 @@ let CustomersOrdersController = class CustomersOrdersController {
     }
 };
 __decorate([
-    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/customers/{id}/orders', {
         responses: {
             '200': {
                 description: 'Array of Orders\'s belonging to Customers',
                 content: {
                     'application/json': {
-                        schema: { type: 'array', items: rest_1.getModelSchemaRef(models_1.Orders) },
+                        schema: { type: 'array', items: rest_1.getModelSchemaRef(models_1.Orders, { includeRelations: true }) },
                     },
                 },
             },
