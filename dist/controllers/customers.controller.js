@@ -113,11 +113,6 @@ let CustomersController = class CustomersController {
             }
             let filter = {
                 "where": { phone },
-                "fields": {
-                    "id": true,
-                    "name": true,
-                    "phone": true,
-                }
             };
             let foundCust = yield this.customersRepository.find(filter);
             console.log(foundCust);
