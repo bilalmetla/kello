@@ -156,13 +156,26 @@ let CustomersController = class CustomersController {
     activation(activations) {
         return __awaiter(this, void 0, void 0, function* () {
             let phone = activations.phone;
+            phone = parseInt(phone, 10).toString();
+            if (phone.length < 10) {
+                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
+            }
+            else if (phone.length == 10) {
+                phone = "92" + phone;
+            }
+            else if (phone.length > 12) {
+                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
+            }
+            else if (phone.length <= 12 && phone.substring(0, 2) != "92") {
+                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
+            }
             let deviceId = activations.deviceId;
             let deviceToken = activations.deviceToken;
             let smsCode = activations.smsCode;
             let actRecord = yield this.activationsRepository.findOne({ "where": { phone, smsCode } });
             console.log(actRecord);
             if (actRecord) {
-                let customer = { phone, isActivated: true, deviceId: deviceId, deviceToken: deviceToken };
+                let customer = { isActivated: true, deviceId: deviceId, deviceToken: deviceToken };
                 yield this.customersRepository.updateAll(customer, { phone });
                 yield this.activationsRepository.deleteAll({ phone });
                 const customerInfo = yield this.customersRepository.findOne({ "where": { phone } });
