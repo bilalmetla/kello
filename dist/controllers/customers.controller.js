@@ -117,6 +117,7 @@ let CustomersController = class CustomersController {
             let foundCust = yield this.customersRepository.find(filter);
             console.log(foundCust);
             if (foundCust && foundCust.length === 0) {
+                customers.phone = phone;
                 const tokenObject = { username: phone };
                 let token = yield signAsync(tokenObject, auth_1.JWT_SECRET);
                 customers.access_token = token;
