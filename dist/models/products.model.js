@@ -49,12 +49,14 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'string',
+        deafult: ''
     }),
     __metadata("design:type", String)
 ], Products.prototype, "image", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
+        deafult: ''
     }),
     __metadata("design:type", String)
 ], Products.prototype, "imageUrl", void 0);
@@ -112,6 +114,20 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Products.prototype, "description", void 0);
+__decorate([
+    repository_1.property({
+        type: 'boolean',
+        default: true
+    }),
+    __metadata("design:type", Boolean)
+], Products.prototype, "isAvailable", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        default: 1
+    }),
+    __metadata("design:type", Number)
+], Products.prototype, "displayingPeriority", void 0);
 __decorate([
     repository_1.belongsTo(() => units_model_1.Units),
     __metadata("design:type", String)

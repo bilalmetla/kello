@@ -26,6 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const repositories_1 = require("../repositories");
+const auth_1 = require("../auth");
 let DashboardsController = class DashboardsController {
     constructor(customersRepository, feedbackRepository, ordersRepository) {
         this.customersRepository = customersRepository;
@@ -42,6 +43,7 @@ let DashboardsController = class DashboardsController {
     }
 };
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/dashboards/stats', {
         responses: {
             '200': {

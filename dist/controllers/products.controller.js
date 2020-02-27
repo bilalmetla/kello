@@ -51,6 +51,17 @@ let ProductsController = class ProductsController {
     }
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (filter) {
+                filter.order = ['displayingPeriority Asc'];
+            }
+            else {
+                filter = {};
+                filter.order = ['displayingPeriority Asc'];
+            }
+            // filter.where = {customersId:id};
+            // filter.include = [{"relation": 'partners', 
+            // scope: {fields :{"id": true, "name": true,"phone": true,"location": true,} } }
+            // ];
             return this.productsRepository.find(filter);
         });
     }
@@ -85,10 +96,13 @@ let ProductsController = class ProductsController {
     }
     findByProductTypeId(producttypesId) {
         return __awaiter(this, void 0, void 0, function* () {
-            let filter = {
-                "where": { producttypesId },
-                "fields": {}
-            };
+            //   let filter = {
+            //     "where": { producttypesId },
+            //     "fields": {}
+            // };
+            const filter = {};
+            filter.where = { and: [{ producttypesId }, { isAvailable: true }] };
+            filter.order = ['displayingPeriority Asc'];
             return this.productsRepository.find(filter);
         });
     }

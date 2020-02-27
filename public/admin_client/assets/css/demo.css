@@ -115,3 +115,6 @@
 .review-block-description{
 	font-size:13px;
 }
+.pagination-controls{
+  float: right;
+}

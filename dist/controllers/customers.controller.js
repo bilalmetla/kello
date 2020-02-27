@@ -96,19 +96,8 @@ let CustomersController = class CustomersController {
     authenticate(customers) {
         return __awaiter(this, void 0, void 0, function* () {
             const sendPk = new sendpk_1.SendPk();
-            customers.phone = parseInt(customers.phone, 10).toString();
-            let phone = customers.phone;
-            // let filter = getFilterSchemaFor(Customers);
-            if (phone.length < 10) {
-                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
-            }
-            else if (phone.length == 10) {
-                phone = "92" + phone;
-            }
-            else if (phone.length > 12) {
-                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
-            }
-            else if (phone.length <= 12 && phone.substring(0, 2) != "92") {
+            let phone = this.validatePhone(customers.phone);
+            if (!phone) {
                 return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
             }
             let filter = {
@@ -157,23 +146,25 @@ let CustomersController = class CustomersController {
     activation(activations) {
         return __awaiter(this, void 0, void 0, function* () {
             let phone = activations.phone;
-            phone = parseInt(phone, 10).toString();
-            if (phone.length < 10) {
+            phone = this.validatePhone(phone);
+            if (!phone) {
                 return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
             }
-            else if (phone.length == 10) {
-                phone = "92" + phone;
-            }
-            else if (phone.length > 12) {
-                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
-            }
-            else if (phone.length <= 12 && phone.substring(0, 2) != "92") {
-                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
-            }
+            // if(phone.length < 10) {  
+            //   return CONSTANTS.INVALID_PHONE_NUMBER; 
+            //   }else if(phone.length == 10){
+            //     phone = "92"+phone;
+            //   }
+            //   else if(phone.length > 12){
+            //     return CONSTANTS.INVALID_PHONE_NUMBER; 
+            //   }
+            //   else if(phone.length <= 12 && phone.substring(0, 2) != "92" ){
+            //     return CONSTANTS.INVALID_PHONE_NUMBER; 
+            //   }
             let deviceId = activations.deviceId;
             let deviceToken = activations.deviceToken;
             let smsCode = activations.smsCode;
-            let actRecord = yield this.activationsRepository.findOne({ "where": { phone, smsCode } });
+            let actRecord = yield this.activationsRepository.findOne({ "where": { and: [{ phone }, { smsCode }] } });
             console.log(actRecord);
             if (actRecord) {
                 let customer = { isActivated: true, deviceId: deviceId, deviceToken: deviceToken };
@@ -186,6 +177,22 @@ let CustomersController = class CustomersController {
                 return constants_1.CONSTANTS.ACTIVATION_FAILED;
             }
         });
+    }
+    validatePhone(phone) {
+        phone = parseInt(phone, 10).toString();
+        if (phone.length < 10) {
+            return '';
+        }
+        if (phone.length === 10) {
+            phone = "92" + phone;
+        }
+        if (phone.length !== 12) {
+            return '';
+        }
+        if (phone.length === 12 && phone.substring(0, 2) != "92") {
+            return '';
+        }
+        return phone;
     }
     sendSMS() {
         return __awaiter(this, void 0, void 0, function* () {

@@ -16,5 +16,6 @@ export declare class CustomersController {
     deleteById(id: string): Promise<void>;
     authenticate(customers: Omit<Customers, 'id'>): Promise<User | Customers | any>;
     activation(activations: Activations): Promise<Customers | any>;
+    validatePhone(phone: string): string;
     sendSMS(): Promise<any>;
 }
