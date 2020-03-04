@@ -45,7 +45,12 @@
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
     "uuid": "^3.3.3",
-    "firebase-admin": "^8.9.2"
+    "firebase-admin": "^8.9.2",
+    "@types/app-root-path": "^1.2.4",
+    "app-root-path": "^3.0.0",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.4.2"
+
   },
   "devDependencies": {
     "@loopback/build": "^3.0.0",

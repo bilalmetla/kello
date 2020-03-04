@@ -150,17 +150,6 @@ let CustomersController = class CustomersController {
             if (!phone) {
                 return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
             }
-            // if(phone.length < 10) {  
-            //   return CONSTANTS.INVALID_PHONE_NUMBER; 
-            //   }else if(phone.length == 10){
-            //     phone = "92"+phone;
-            //   }
-            //   else if(phone.length > 12){
-            //     return CONSTANTS.INVALID_PHONE_NUMBER; 
-            //   }
-            //   else if(phone.length <= 12 && phone.substring(0, 2) != "92" ){
-            //     return CONSTANTS.INVALID_PHONE_NUMBER; 
-            //   }
             let deviceId = activations.deviceId;
             let deviceToken = activations.deviceToken;
             let smsCode = activations.smsCode;
@@ -172,6 +161,20 @@ let CustomersController = class CustomersController {
                 yield this.activationsRepository.deleteAll({ phone });
                 const customerInfo = yield this.customersRepository.findOne({ "where": { phone } });
                 return customerInfo;
+            }
+            else {
+                return constants_1.CONSTANTS.ACTIVATION_FAILED;
+            }
+        });
+    }
+    activationResend(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const sendPk = new sendpk_1.SendPk();
+            const customerInfo = yield this.customersRepository.findById(id);
+            let actRecord = yield this.activationsRepository.findOne({ "where": { phone: customerInfo } });
+            if (actRecord) {
+                sendPk.sendOTP(actRecord.smsCode, actRecord.phone);
+                return constants_1.CONSTANTS.ACTIVATION_FAILED;
             }
             else {
                 return constants_1.CONSTANTS.ACTIVATION_FAILED;
@@ -408,6 +411,20 @@ __decorate([
     __metadata("design:paramtypes", [models_1.Activations]),
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "activation", null);
+__decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
+    rest_1.post('/customers/{id}/activation/resend', {
+        responses: {
+            '204': {
+                description: 'Customers model instance',
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], CustomersController.prototype, "activationResend", null);
 CustomersController = __decorate([
     __param(0, repository_1.repository(repositories_1.CustomersRepository)),
     __param(1, repository_1.repository(repositories_1.ActivationsRepository)),

@@ -25,6 +25,7 @@ const context_1 = require("@loopback/context");
 const rest_1 = require("@loopback/rest");
 const authentication_1 = require("@loopback/authentication");
 const SequenceActions = rest_1.RestBindings.SequenceActions;
+const logger_1 = require("./logger");
 let MySequence = class MySequence {
     constructor(findRoute, parseParams, invoke, send, reject, authenticateRequest) {
         this.findRoute = findRoute;
@@ -37,30 +38,37 @@ let MySequence = class MySequence {
     handle(context) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log('-----------------------request-------------------------------');
-                console.log(`route:  ${context.request.path}`);
+                logger_1.winstonLogger.info('-----------------------request-------------------------------');
+                logger_1.winstonLogger.info(`route:  ${context.request.path}`);
+                //console.log('-----------------------request-------------------------------');
+                //console.log(`route:  ${context.request.path}`) ;
                 const { request, response } = context;
                 const route = this.findRoute(request);
                 const args = yield this.parseParams(request, route);
-                console.log(`route ${route} | request:  ${JSON.stringify(args)}`);
+                //console.log(`route ${route} | request:  ${JSON.stringify(args) }`) ;
+                logger_1.winstonLogger.debug(`route ${route} | request:  ${JSON.stringify(args)}`);
                 //call authentication action
                 yield this.authenticateRequest(request);
                 const result = yield this.invoke(route, args);
-                console.log(`route ${route} | response:  ${JSON.stringify(result)}`);
+                //console.log(`route ${route} | response:  ${JSON.stringify(result) }`) ;
+                logger_1.winstonLogger.debug(`route ${route} | response:  ${JSON.stringify(result)}`);
                 this.send(response, result);
             }
             catch (err) {
-                console.error(`error:  ${JSON.stringify(err)}`);
+                // console.error(`error:  ${JSON.stringify(err) }`) ;
+                logger_1.winstonLogger.error(`error:  ${JSON.stringify(err)}`);
                 if (err.code === 'AUTHENTICATION_STRATEGY_NOT_FOUND' ||
                     err.code === 'USER_PROFILE_NOT_FOUND') {
-                    console.error(`err.code:  ${JSON.stringify(err)}`);
+                    //console.error(`err.code:  ${JSON.stringify(err) }`) ;
+                    logger_1.winstonLogger.error(`err.code:  ${JSON.stringify(err)}`);
                     Object.assign(err, { statusCode: 401 /* Unauthorized */ });
                 }
                 console.error(`reject err:  ${JSON.stringify(err)}`);
                 if (err.message && typeof err.message === 'object') {
                     err.message = "Valid Access Token Required!";
                 }
-                console.error(`sending final err:  ${JSON.stringify(err)}`);
+                //console.error(`sending final err:  ${JSON.stringify(err) }`) ;
+                logger_1.winstonLogger.error(`sending final err:  ${JSON.stringify(err)}`);
                 this.reject(context, err);
             }
         });

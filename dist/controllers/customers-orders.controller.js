@@ -27,6 +27,7 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const constants_1 = require("../constants");
 const auth_1 = require("../auth");
+const firebase_1 = require("../firebase");
 let CustomersOrdersController = class CustomersOrdersController {
     constructor(customersRepository, partnersRepository, productsRepository, orderdetailsRepository, ordersRepository) {
         this.customersRepository = customersRepository;
@@ -199,11 +200,26 @@ let CustomersOrdersController = class CustomersOrdersController {
                 "orderStatus": "Completed",
                 "completionTime": new Date(),
             };
-            //await this.ordersRepository.updateById(id, orders);
-            yield this.customersRepository.orders(customerId).patch(orders, { id: id });
+            yield this.ordersRepository.updateById(id, orders);
+            // await this.customersRepository.orders(customerId).patch(orders, {id:id});
+            const customerInfo = yield this.customersRepository.findById(customerId);
             //console.log("orderUpdated: ", orderUpdated);
             // orders.id = id;
-            return { id: id, isDelivered: orders.isDelivered, orderStatus: orders.orderStatus };
+            const response = { id: id, isDelivered: orders.isDelivered, orderStatus: orders.orderStatus,
+                customerId: customerId };
+            console.log('sending notification to device token ', customerInfo.deviceToken);
+            if (customerInfo.deviceToken) {
+                const firebase = new firebase_1.Firebase();
+                const payload = {
+                    data: { "orderId": id, "customerId": customerId },
+                    notification: {
+                        title: 'Kellostore Order Delivered!',
+                        body: 'Thank you for your order at kellostore.!'
+                    }
+                };
+                firebase.sendNotification(customerInfo.deviceToken, payload);
+            }
+            return response;
         });
     }
 };
@@ -313,7 +329,7 @@ __decorate([
     rest_1.patch('customers/{customersId}/orders/{id}/cancellation', {
         responses: {
             '200': {
-                description: 'Order Delivered',
+                description: 'Order Cancelled',
                 content: {
                     'application/json': {
                         schema: { type: 'object', properties: { id: { type: "string" } } },

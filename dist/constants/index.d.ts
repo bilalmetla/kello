@@ -36,4 +36,10 @@ export declare class CONSTANTS {
     static readonly INVALID_PHONE_NUMBER: {
         error: ErrorResponse;
     };
+    static readonly ACTIVATION_NOT_FOUND: {
+        error: ErrorResponse;
+    };
+    static readonly ACTIVATION_RESENT: {
+        error: ErrorResponse;
+    };
 }

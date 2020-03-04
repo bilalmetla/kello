@@ -22,6 +22,17 @@
  */
 export declare class Firebase {
     constructor();
+    /**
+     *
+     * @param payload = {
+        data: {
+          score: '850',
+          time: '2:45'
+        }
+      };
+
+     * @param deviceToken
+     */
     sendNotification(deviceToken: string, payload: object): void;
     sendNotificationToMany(registrationTokens: any, payload: any): void;
 }
