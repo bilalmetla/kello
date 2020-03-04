@@ -200,8 +200,8 @@ let CustomersOrdersController = class CustomersOrdersController {
                 "orderStatus": "Completed",
                 "completionTime": new Date(),
             };
-            yield this.ordersRepository.updateById(id, orders);
-            // await this.customersRepository.orders(customerId).patch(orders, {id:id});
+            //await this.ordersRepository.updateById(id, orders);
+            yield this.customersRepository.orders(customerId).patch(orders, { id: id });
             const customerInfo = yield this.customersRepository.findById(customerId);
             //console.log("orderUpdated: ", orderUpdated);
             // orders.id = id;
