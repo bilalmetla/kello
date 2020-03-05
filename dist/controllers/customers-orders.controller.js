@@ -213,8 +213,8 @@ let CustomersOrdersController = class CustomersOrdersController {
                 const payload = {
                     data: { "orderId": id, "customerId": customerId },
                     notification: {
-                        title: 'Kellostore Order Delivered!',
-                        body: 'Thank you for your order at kellostore.!'
+                        title: 'Kellostore',
+                        body: 'Thank you for your order at kello. We provide best quality fruits & vegetalbes'
                     }
                 };
                 firebase.sendNotification(customerInfo.deviceToken, payload);

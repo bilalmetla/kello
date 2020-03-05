@@ -17,5 +17,5 @@ CONSTANTS.PRICEPLAN_NOT_FOUND = { error: new models_1.ErrorResponse({ statusCode
 CONSTANTS.PEOMOTION_NOT_FOUND = { error: new models_1.ErrorResponse({ statusCode: 404, name: "Not Found", code: "PEOMOTION_NOT_FOUND", message: "Promotion Not Found!" }) };
 CONSTANTS.INVALID_PHONE_NUMBER = { error: new models_1.ErrorResponse({ statusCode: 400, name: "Bad Request", code: "INVALID_PHONE_NUMBER", message: "Phone Number Is Invalid!" }) };
 CONSTANTS.ACTIVATION_NOT_FOUND = { error: new models_1.ErrorResponse({ statusCode: 404, name: "Not Found", code: "ACTIVATION_NOT_FOUND", message: "OTP Not Found!" }) };
-CONSTANTS.ACTIVATION_RESENT = { error: new models_1.ErrorResponse({ statusCode: 200, name: "Ok", code: "ACTIVATION_RESENT", message: "OTP Resent!" }) };
+CONSTANTS.ACTIVATION_RESENT = { result: new models_1.ErrorResponse({ statusCode: 200, name: "Ok", code: "ACTIVATION_RESENT", message: "OTP Resent!" }) };
 //# sourceMappingURL=index.js.map

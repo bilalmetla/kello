@@ -40,6 +40,6 @@ export declare class CONSTANTS {
         error: ErrorResponse;
     };
     static readonly ACTIVATION_RESENT: {
-        error: ErrorResponse;
+        result: ErrorResponse;
     };
 }

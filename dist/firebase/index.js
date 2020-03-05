@@ -56,8 +56,8 @@ class Firebase {
      */
     sendNotification(deviceToken, payload) {
         const options = {
-        //priority: 'normal',            
-        //timeToLive: 60 * 60 * 24, // 1 day
+            priority: 'normal',
+            timeToLive: 60 * 60 * 24,
         };
         firebase
             .messaging()
