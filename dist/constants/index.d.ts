@@ -42,4 +42,7 @@ export declare class CONSTANTS {
     static readonly ACTIVATION_RESENT: {
         result: ErrorResponse;
     };
+    static readonly DEVICE_TOKEN_INVALID: {
+        error: ErrorResponse;
+    };
 }

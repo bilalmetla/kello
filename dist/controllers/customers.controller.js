@@ -184,6 +184,14 @@ let CustomersController = class CustomersController {
             }
         });
     }
+    updateDeviceToken(id, token) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!token) {
+                return constants_1.CONSTANTS.ACTIVATION_NOT_FOUND;
+            }
+            yield this.customersRepository.updateById(id, { deviceToken: token });
+        });
+    }
     validatePhone(phone) {
         phone = parseInt(phone, 10).toString();
         if (phone.length < 10) {
@@ -380,7 +388,7 @@ __decorate([
 __decorate([
     rest_1.post('/customers/authenticate', {
         responses: {
-            '204': {
+            '200': {
                 description: 'Please Activate via SMS CODE',
                 content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Customers) } },
             },
@@ -417,7 +425,7 @@ __decorate([
 __decorate([
     rest_1.post('/customers/{id}/activation/resend', {
         responses: {
-            '204': {
+            '200': {
                 description: 'Customers model instance',
             },
         },
@@ -427,6 +435,20 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "activationResend", null);
+__decorate([
+    rest_1.patch('/customers/{id}/device/{token}', {
+        responses: {
+            '200': {
+                description: 'Customers model instance',
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __param(1, rest_1.param.path.string('token')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], CustomersController.prototype, "updateDeviceToken", null);
 CustomersController = __decorate([
     __param(0, repository_1.repository(repositories_1.CustomersRepository)),
     __param(1, repository_1.repository(repositories_1.ActivationsRepository)),
