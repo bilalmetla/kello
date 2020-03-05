@@ -172,7 +172,9 @@ let CustomersController = class CustomersController {
         return __awaiter(this, void 0, void 0, function* () {
             const sendPk = new sendpk_1.SendPk();
             const customerInfo = yield this.customersRepository.findById(id);
+            console.log('customerInfo record', JSON.stringify(customerInfo));
             let actRecord = yield this.activationsRepository.findOne({ "where": { phone: customerInfo } });
+            console.log('Activation record', JSON.stringify(actRecord));
             if (actRecord) {
                 sendPk.sendOTP(actRecord.smsCode, actRecord.phone);
                 return constants_1.CONSTANTS.ACTIVATION_RESENT;
