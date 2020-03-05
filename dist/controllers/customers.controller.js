@@ -175,10 +175,10 @@ let CustomersController = class CustomersController {
             let actRecord = yield this.activationsRepository.findOne({ "where": { phone: customerInfo } });
             if (actRecord) {
                 sendPk.sendOTP(actRecord.smsCode, actRecord.phone);
-                return constants_1.CONSTANTS.ACTIVATION_FAILED;
+                return constants_1.CONSTANTS.ACTIVATION_RESENT;
             }
             else {
-                return constants_1.CONSTANTS.ACTIVATION_FAILED;
+                return constants_1.CONSTANTS.ACTIVATION_NOT_FOUND;
             }
         });
     }
