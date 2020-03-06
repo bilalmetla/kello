@@ -27,12 +27,27 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const auth_1 = require("../auth");
 let OrderRatingsController = class OrderRatingsController {
-    constructor(orderRatingsRepository) {
+    constructor(orderRatingsRepository, ordersRepository) {
         this.orderRatingsRepository = orderRatingsRepository;
+        this.ordersRepository = ordersRepository;
     }
     create(orderRatings) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.orderRatingsRepository.create(orderRatings);
+            //let orderIds: any = [];
+            orderRatings.forEach(item => this.ordersRepository.updateById(item.ordersId, { isOrderRatingDone: true }));
+            //const up_orders = await this.ordersRepository.update({id:{$in:orderIds}})
+            //this.ordersRepository.updateAll({isOrderRatingDone: true}, {id: {$in:orderIds}});
+            // if (!this.ordersRepository.dataSource.connected) {
+            //   await this.ordersRepository.dataSource.connect();         
+            // }
+            // const ordersCollection = (this.ordersRepository.dataSource.connector as any).collection("Orders");
+            // this.ordersRepository.update({id:{in:orderIds }},
+            //   { $set: {isOrderRatingDone: true} })
+            // const up_orders = await ordersCollection.update(
+            //   {_id:{$in:orderIds }},
+            //   { $set: {isOrderRatingDone: true} }
+            //   );
+            return this.orderRatingsRepository.createAll(orderRatings);
         });
     }
     count(where) {
@@ -99,7 +114,7 @@ __decorate([
         },
     })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Array]),
     __metadata("design:returntype", Promise)
 ], OrderRatingsController.prototype, "create", null);
 __decorate([
@@ -233,7 +248,9 @@ __decorate([
 ], OrderRatingsController.prototype, "deleteById", null);
 OrderRatingsController = __decorate([
     __param(0, repository_1.repository(repositories_1.OrderRatingsRepository)),
-    __metadata("design:paramtypes", [repositories_1.OrderRatingsRepository])
+    __param(1, repository_1.repository(repositories_1.OrdersRepository)),
+    __metadata("design:paramtypes", [repositories_1.OrderRatingsRepository,
+        repositories_1.OrdersRepository])
 ], OrderRatingsController);
 exports.OrderRatingsController = OrderRatingsController;
 //# sourceMappingURL=order-ratings.controller.js.map

@@ -35,12 +35,15 @@ let StaticDataController = class StaticDataController {
     //@requestBody() inputs: {customersId: {type:'string'}},
     customerId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const arr_resp = {};
+            const arr_resp = {
+                ratingList: [],
+                ratingPending: []
+            };
             const ratingList = yield this.ratingReasonsRepository.find();
             arr_resp.ratingList = ratingList;
             if (customerId) {
                 let orderFlter = {
-                    where: { "and": [{ customersId: customerId }, { isOrderRatingDone: false }] },
+                    where: { "and": [{ customersId: customerId }, { isOrderRatingDone: false }, { isDelivered: true }] },
                     fields: { id: true }
                 };
                 const pendingRatesOrders = yield this.ordersRepository.find(orderFlter);
@@ -51,7 +54,7 @@ let StaticDataController = class StaticDataController {
     }
 };
 __decorate([
-    rest_1.post('/static-data', {
+    rest_1.get('/static-data', {
         responses: {
             '200': {
                 description: 'Array of Static Data',
