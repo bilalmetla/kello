@@ -23,7 +23,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
-const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 let StaticDataController = class StaticDataController {
     constructor(ratingReasonsRepository, customersRepository, ordersRepository) {
@@ -32,14 +31,16 @@ let StaticDataController = class StaticDataController {
         this.ordersRepository = ordersRepository;
     }
     //@secured(SecuredType.IS_AUTHENTICATED)
-    find(inputs) {
+    find(
+    //@requestBody() inputs: {customersId: {type:'string'}},
+    customerId) {
         return __awaiter(this, void 0, void 0, function* () {
             const arr_resp = {};
             const ratingList = yield this.ratingReasonsRepository.find();
             arr_resp.ratingList = ratingList;
-            if (inputs && inputs.id) {
+            if (customerId) {
                 let orderFlter = {
-                    where: { "and": [{ customersId: inputs.id }, { isOrderRatingDone: false }] },
+                    where: { "and": [{ customersId: customerId }, { isOrderRatingDone: false }] },
                     fields: { id: true }
                 };
                 const pendingRatesOrders = yield this.ordersRepository.find(orderFlter);
@@ -64,9 +65,9 @@ __decorate([
             },
         },
     }),
-    __param(0, rest_1.requestBody()),
+    __param(0, rest_1.param.query.string('customerId')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [models_1.Customers]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], StaticDataController.prototype, "find", null);
 StaticDataController = __decorate([
