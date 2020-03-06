@@ -186,7 +186,7 @@ let CustomersController = class CustomersController {
     }
     updateDeviceToken(id, token) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!token) {
+            if (!id || !token) {
                 return constants_1.CONSTANTS.ACTIVATION_NOT_FOUND;
             }
             yield this.customersRepository.updateById(id, { deviceToken: token });

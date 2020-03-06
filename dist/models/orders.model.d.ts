@@ -16,6 +16,7 @@ export declare class Orders extends Entity {
     specialNotes?: string;
     items: object[];
     location?: any;
+    isOrderRatingDone?: boolean;
     orderstatusesId: string;
     orderdetails: Orderdetails[];
     partnersId?: string;

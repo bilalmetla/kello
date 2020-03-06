@@ -43,7 +43,7 @@ let RatingReasonsController = class RatingReasonsController {
     //@secured(SecuredType.IS_AUTHENTICATED)
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.ratingReasonsRepository.find(filter);
+            return this.ratingReasonsRepository.find();
         });
     }
     updateAll(ratingReasons, where) {

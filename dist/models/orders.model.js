@@ -111,6 +111,14 @@ __decorate([
     __metadata("design:type", Object)
 ], Orders.prototype, "location", void 0);
 __decorate([
+    repository_1.property({
+        type: 'boolean',
+        required: false,
+        default: false
+    }),
+    __metadata("design:type", Boolean)
+], Orders.prototype, "isOrderRatingDone", void 0);
+__decorate([
     repository_1.belongsTo(() => orderstatuses_model_1.Orderstatuses),
     __metadata("design:type", String)
 ], Orders.prototype, "orderstatusesId", void 0);
