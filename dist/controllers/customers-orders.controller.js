@@ -97,6 +97,7 @@ let CustomersOrdersController = class CustomersOrdersController {
             orders.orderStatus = 'Pending';
             orders.orderCategory = 'CUSTOMERS';
             orders.deliveredById = nearestPartner._id || nearestPartner.id;
+            orders.orderTime = new Date();
             let items = JSON.parse(JSON.stringify(orders.items));
             const createdOrder = yield this.customersRepository.orders(id).create(orders);
             let orderId;
@@ -185,6 +186,7 @@ let CustomersOrdersController = class CustomersOrdersController {
             orders = {
                 "orderStatus": "Cancelled",
                 "isCancelled": true,
+                cancelTime: new Date()
             };
             //await this.ordersRepository.updateAll({where: {and:[{id:id}, {customersId: customersId}]} }, orders)
             //await this.ordersRepository.updateById(id, orders);

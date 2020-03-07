@@ -7,6 +7,7 @@ export declare class Orders extends Entity {
     id?: string;
     orderTime?: Date;
     completionTime?: Date;
+    cancelTime?: Date;
     startProgressTime?: Date;
     orderStatus?: string;
     totalBillAmount: number;

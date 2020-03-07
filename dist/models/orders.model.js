@@ -37,7 +37,6 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'date',
-        default: new Date(),
     }),
     __metadata("design:type", Date)
 ], Orders.prototype, "orderTime", void 0);
@@ -47,6 +46,12 @@ __decorate([
     }),
     __metadata("design:type", Date)
 ], Orders.prototype, "completionTime", void 0);
+__decorate([
+    repository_1.property({
+        type: 'date',
+    }),
+    __metadata("design:type", Date)
+], Orders.prototype, "cancelTime", void 0);
 __decorate([
     repository_1.property({
         type: 'date',
