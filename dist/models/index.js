@@ -30,4 +30,5 @@ __export(require("./promotiontype.model"));
 __export(require("./promotion.model"));
 __export(require("./price-plan.model"));
 __export(require("./price-plan-types.model"));
+__export(require("./configurations.model"));
 //# sourceMappingURL=index.js.map

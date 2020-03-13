@@ -51,4 +51,6 @@ __export(require("./price-plan.controller"));
 __export(require("./partners-orders.controller"));
 __export(require("./dashboards.controller"));
 __export(require("./static-data.controller"));
+__export(require("./orders-user.controller"));
+__export(require("./configurations.controller"));
 //# sourceMappingURL=index.js.map

@@ -25,10 +25,11 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const repositories_1 = require("../repositories");
 let StaticDataController = class StaticDataController {
-    constructor(ratingReasonsRepository, customersRepository, ordersRepository) {
+    constructor(ratingReasonsRepository, customersRepository, ordersRepository, configurationsRepository) {
         this.ratingReasonsRepository = ratingReasonsRepository;
         this.customersRepository = customersRepository;
         this.ordersRepository = ordersRepository;
+        this.configurationsRepository = configurationsRepository;
     }
     //@secured(SecuredType.IS_AUTHENTICATED)
     find(
@@ -37,7 +38,8 @@ let StaticDataController = class StaticDataController {
         return __awaiter(this, void 0, void 0, function* () {
             const arr_resp = {
                 ratingList: [],
-                ratingPending: []
+                ratingPending: [],
+                androidAppVersion: ''
             };
             const ratingList = yield this.ratingReasonsRepository.find();
             arr_resp.ratingList = ratingList;
@@ -48,6 +50,12 @@ let StaticDataController = class StaticDataController {
                 };
                 const pendingRatesOrders = yield this.ordersRepository.find(orderFlter);
                 arr_resp.ratingPending = pendingRatesOrders;
+            }
+            //end for order rating things
+            const configurations = yield this.configurationsRepository.find();
+            console.log("Found configurations ..", configurations);
+            if (configurations && configurations.length > 0) {
+                arr_resp.androidAppVersion = configurations[0].androidAppVersion;
             }
             return arr_resp;
         });
@@ -77,9 +85,11 @@ StaticDataController = __decorate([
     __param(0, repository_1.repository(repositories_1.RatingReasonsRepository)),
     __param(1, repository_1.repository(repositories_1.CustomersRepository)),
     __param(2, repository_1.repository(repositories_1.OrdersRepository)),
+    __param(3, repository_1.repository(repositories_1.ConfigurationsRepository)),
     __metadata("design:paramtypes", [repositories_1.RatingReasonsRepository,
         repositories_1.CustomersRepository,
-        repositories_1.OrdersRepository])
+        repositories_1.OrdersRepository,
+        repositories_1.ConfigurationsRepository])
 ], StaticDataController);
 exports.StaticDataController = StaticDataController;
 //# sourceMappingURL=static-data.controller.js.map

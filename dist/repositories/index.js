@@ -28,4 +28,5 @@ __export(require("./promotion.repository"));
 __export(require("./promotiontype.repository"));
 __export(require("./price-plan-types.repository"));
 __export(require("./price-plan.repository"));
+__export(require("./configurations.repository"));
 //# sourceMappingURL=index.js.map

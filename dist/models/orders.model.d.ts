@@ -18,10 +18,12 @@ export declare class Orders extends Entity {
     items: object[];
     location?: any;
     isOrderRatingDone?: boolean;
+    isDeleted?: boolean;
     orderstatusesId: string;
     orderdetails: Orderdetails[];
     partnersId?: string;
     deliveredById: string;
+    deletedById: string;
     customersId?: string;
     constructor(data?: Partial<Orders>);
 }

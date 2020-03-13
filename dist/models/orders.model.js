@@ -13,6 +13,8 @@ const repository_1 = require("@loopback/repository");
 const orderstatuses_model_1 = require("./orderstatuses.model");
 const orderdetails_model_1 = require("./orderdetails.model");
 const partners_model_1 = require("./partners.model");
+const customers_model_1 = require("./customers.model");
+const user_model_1 = require("./user.model");
 let Orders = class Orders extends repository_1.Entity {
     // @hasMany(() => Orderdetails)
     // orderdetails: Orderdetails[];
@@ -124,6 +126,14 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Orders.prototype, "isOrderRatingDone", void 0);
 __decorate([
+    repository_1.property({
+        type: 'boolean',
+        required: false,
+        default: false
+    }),
+    __metadata("design:type", Boolean)
+], Orders.prototype, "isDeleted", void 0);
+__decorate([
     repository_1.belongsTo(() => orderstatuses_model_1.Orderstatuses),
     __metadata("design:type", String)
 ], Orders.prototype, "orderstatusesId", void 0);
@@ -142,9 +152,11 @@ __decorate([
     __metadata("design:type", String)
 ], Orders.prototype, "deliveredById", void 0);
 __decorate([
-    repository_1.property({
-        type: 'string',
-    }),
+    repository_1.belongsTo(() => user_model_1.User),
+    __metadata("design:type", String)
+], Orders.prototype, "deletedById", void 0);
+__decorate([
+    repository_1.belongsTo(() => customers_model_1.Customers),
     __metadata("design:type", String)
 ], Orders.prototype, "customersId", void 0);
 Orders = __decorate([

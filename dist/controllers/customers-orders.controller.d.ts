@@ -15,4 +15,5 @@ export declare class CustomersOrdersController {
     orderStartProgress(orderId: string, customerId: string): Promise<Orders | any>;
     orderCancellation(customersId: string, id: string): Promise<object>;
     orderDelevered(id: string, customerId: string): Promise<object>;
+    orderDeletion(id: string, userId: string): Promise<object>;
 }

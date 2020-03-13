@@ -23,3 +23,4 @@ export * from './promotion.repository';
 export * from './promotiontype.repository';
 export * from './price-plan-types.repository';
 export * from './price-plan.repository';
+export * from './configurations.repository';

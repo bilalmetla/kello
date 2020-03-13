@@ -5,8 +5,8 @@ class SendPk {
     constructor() { }
     sendOTP(OTP, receiverMobile) {
         try {
-            let username = 923357077449; //923136604801;
-            let password = 'sendpk123456'; //'sendpk@1991'
+            let username = 923136604801;
+            let password = 'sendpk@1991';
             let mobile = parseInt(receiverMobile);
             let message = 'Your Kello Store Activation OTP Code: ' + OTP;
             let url = `https://sendpk.com/api/sms.php?username=${username}&password=${password}&sender=BrandName&mobile=${mobile}&message=${message}`;

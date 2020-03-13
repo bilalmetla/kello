@@ -46,3 +46,5 @@ export * from './price-plan.controller';
 export * from './partners-orders.controller';
 export * from './dashboards.controller';
 export * from './static-data.controller';
+export * from './orders-user.controller';
+export * from './configurations.controller';

@@ -70,6 +70,38 @@ __decorate([
     __metadata("design:type", Date)
 ], Feedback.prototype, "createdDate", void 0);
 __decorate([
+    repository_1.property({
+        type: 'string',
+        required: false,
+        default: ''
+    }),
+    __metadata("design:type", String)
+], Feedback.prototype, "image1", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+        required: false,
+        default: ''
+    }),
+    __metadata("design:type", String)
+], Feedback.prototype, "image2", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+        required: false,
+        default: ''
+    }),
+    __metadata("design:type", String)
+], Feedback.prototype, "image3", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+        required: false,
+        default: ''
+    }),
+    __metadata("design:type", String)
+], Feedback.prototype, "image4", void 0);
+__decorate([
     repository_1.belongsTo(() => customers_model_1.Customers),
     __metadata("design:type", String)
 ], Feedback.prototype, "customersId", void 0);

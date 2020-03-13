@@ -25,3 +25,4 @@ export * from './promotiontype.model';
 export * from './promotion.model';
 export * from './price-plan.model';
 export * from './price-plan-types.model';
+export * from './configurations.model';

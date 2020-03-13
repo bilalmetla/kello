@@ -224,6 +224,14 @@ let CustomersOrdersController = class CustomersOrdersController {
             return response;
         });
     }
+    orderDeletion(id, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let orderStatus = "Deleted";
+            let isDeleted = true;
+            yield this.ordersRepository.updateById(id, { isDeleted, orderStatus, deletedById: userId });
+            return { id, orderStatus, isDeleted };
+        });
+    }
 };
 __decorate([
     auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
@@ -366,6 +374,26 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], CustomersOrdersController.prototype, "orderDelevered", null);
+__decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
+    rest_1.del('/orders/{id}/users/{userId}', {
+        responses: {
+            '200': {
+                description: 'Order Deleted',
+                content: {
+                    'application/json': {
+                        schema: { type: 'object', properties: { id: { type: "string" } } },
+                    },
+                },
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __param(1, rest_1.param.path.string('userId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], CustomersOrdersController.prototype, "orderDeletion", null);
 CustomersOrdersController = __decorate([
     __param(0, repository_1.repository(repositories_1.CustomersRepository)),
     __param(1, repository_1.repository(repositories_1.PartnersRepository)),

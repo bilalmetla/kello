@@ -20,110 +20,72 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const auth_1 = require("../auth");
-const fs_1 = __importDefault(require("fs"));
-const util_1 = __importDefault(require("util"));
-const writeFilePromise = util_1.default.promisify(fs_1.default.writeFile);
-const path_1 = __importDefault(require("path"));
-let FeedbackController = class FeedbackController {
-    constructor(feedbackRepository) {
-        this.feedbackRepository = feedbackRepository;
+let ConfigurationsController = class ConfigurationsController {
+    constructor(configurationsRepository) {
+        this.configurationsRepository = configurationsRepository;
     }
-    create(feedback) {
+    create(configurations) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (feedback.image1) {
-                feedback.image1 = yield this.convertbase64image(feedback.fullname, feedback.image1);
-            }
-            if (feedback.image2) {
-                feedback.image2 = yield this.convertbase64image(feedback.fullname, feedback.image2);
-            }
-            if (feedback.image3) {
-                feedback.image3 = yield this.convertbase64image(feedback.fullname, feedback.image3);
-            }
-            if (feedback.image4) {
-                feedback.image4 = yield this.convertbase64image(feedback.fullname, feedback.image4);
-            }
-            //delete feedback.image;
-            return this.feedbackRepository.create(feedback);
+            return this.configurationsRepository.create(configurations);
         });
     }
     count(where) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.feedbackRepository.count(where);
+            return this.configurationsRepository.count(where);
         });
     }
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (filter) {
-                filter.order = ['createdDate Desc'];
-            }
-            else {
-                filter = {};
-                filter.order = ['createdDate Desc'];
-            }
-            return this.feedbackRepository.find(filter);
+            return this.configurationsRepository.find(filter);
         });
     }
-    updateAll(feedback, where) {
+    updateAll(configurations, where) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.feedbackRepository.updateAll(feedback, where);
+            return this.configurationsRepository.updateAll(configurations, where);
         });
     }
     findById(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.feedbackRepository.findById(id, filter);
+            return this.configurationsRepository.findById(id, filter);
         });
     }
-    updateById(id, feedback) {
+    updateById(id, configurations) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.feedbackRepository.updateById(id, feedback);
+            yield this.configurationsRepository.updateById(id, configurations);
         });
     }
-    replaceById(id, feedback) {
+    replaceById(id, configurations) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.feedbackRepository.replaceById(id, feedback);
+            yield this.configurationsRepository.replaceById(id, configurations);
         });
     }
     deleteById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.feedbackRepository.deleteById(id);
-        });
-    }
-    convertbase64image(imagename, image) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let base64String = image;
-            let base64Image = base64String.split(';base64,').pop();
-            imagename = imagename.replace(/ /g, '_') + '.png';
-            let imagePath = path_1.default.join(__dirname, '../../public/feedback/images/') + imagename;
-            let imageUrl = '/feedback/images/' + imagename;
-            yield writeFilePromise(imagePath, base64Image, { encoding: 'base64' });
-            return imageUrl;
+            yield this.configurationsRepository.deleteById(id);
         });
     }
 };
 __decorate([
     auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
-    rest_1.post('/feedbacks', {
+    rest_1.post('/configurations', {
         responses: {
             '200': {
-                description: 'Feedback model instance',
-                content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Feedback) } },
+                description: 'Configurations model instance',
+                content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Configurations) } },
             },
         },
     }),
     __param(0, rest_1.requestBody({
         content: {
             'application/json': {
-                schema: rest_1.getModelSchemaRef(models_1.Feedback, {
-                    title: 'NewFeedback',
+                schema: rest_1.getModelSchemaRef(models_1.Configurations, {
+                    title: 'NewConfigurations',
                     exclude: ['id'],
                 }),
             },
@@ -132,50 +94,50 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], FeedbackController.prototype, "create", null);
+], ConfigurationsController.prototype, "create", null);
 __decorate([
     auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
-    rest_1.get('/feedbacks/count', {
+    rest_1.get('/configurations/count', {
         responses: {
             '200': {
-                description: 'Feedback model count',
+                description: 'Configurations model count',
                 content: { 'application/json': { schema: repository_1.CountSchema } },
             },
         },
     }),
-    __param(0, rest_1.param.query.object('where', rest_1.getWhereSchemaFor(models_1.Feedback))),
+    __param(0, rest_1.param.query.object('where', rest_1.getWhereSchemaFor(models_1.Configurations))),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], FeedbackController.prototype, "count", null);
+], ConfigurationsController.prototype, "count", null);
 __decorate([
     auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
-    rest_1.get('/feedbacks', {
+    rest_1.get('/configurations', {
         responses: {
             '200': {
-                description: 'Array of Feedback model instances',
+                description: 'Array of Configurations model instances',
                 content: {
                     'application/json': {
                         schema: {
                             type: 'array',
-                            items: rest_1.getModelSchemaRef(models_1.Feedback, { includeRelations: true }),
+                            items: rest_1.getModelSchemaRef(models_1.Configurations, { includeRelations: true }),
                         },
                     },
                 },
             },
         },
     }),
-    __param(0, rest_1.param.query.object('filter', rest_1.getFilterSchemaFor(models_1.Feedback))),
+    __param(0, rest_1.param.query.object('filter', rest_1.getFilterSchemaFor(models_1.Configurations))),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], FeedbackController.prototype, "find", null);
+], ConfigurationsController.prototype, "find", null);
 __decorate([
     auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
-    rest_1.patch('/feedbacks', {
+    rest_1.patch('/configurations', {
         responses: {
             '200': {
-                description: 'Feedback PATCH success count',
+                description: 'Configurations PATCH success count',
                 content: { 'application/json': { schema: repository_1.CountSchema } },
             },
         },
@@ -183,41 +145,41 @@ __decorate([
     __param(0, rest_1.requestBody({
         content: {
             'application/json': {
-                schema: rest_1.getModelSchemaRef(models_1.Feedback, { partial: true }),
+                schema: rest_1.getModelSchemaRef(models_1.Configurations, { partial: true }),
             },
         },
     })),
-    __param(1, rest_1.param.query.object('where', rest_1.getWhereSchemaFor(models_1.Feedback))),
+    __param(1, rest_1.param.query.object('where', rest_1.getWhereSchemaFor(models_1.Configurations))),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [models_1.Feedback, Object]),
+    __metadata("design:paramtypes", [models_1.Configurations, Object]),
     __metadata("design:returntype", Promise)
-], FeedbackController.prototype, "updateAll", null);
+], ConfigurationsController.prototype, "updateAll", null);
 __decorate([
     auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
-    rest_1.get('/feedbacks/{id}', {
+    rest_1.get('/configurations/{id}', {
         responses: {
             '200': {
-                description: 'Feedback model instance',
+                description: 'Configurations model instance',
                 content: {
                     'application/json': {
-                        schema: rest_1.getModelSchemaRef(models_1.Feedback, { includeRelations: true }),
+                        schema: rest_1.getModelSchemaRef(models_1.Configurations, { includeRelations: true }),
                     },
                 },
             },
         },
     }),
     __param(0, rest_1.param.path.string('id')),
-    __param(1, rest_1.param.query.object('filter', rest_1.getFilterSchemaFor(models_1.Feedback))),
+    __param(1, rest_1.param.query.object('filter', rest_1.getFilterSchemaFor(models_1.Configurations))),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
-], FeedbackController.prototype, "findById", null);
+], ConfigurationsController.prototype, "findById", null);
 __decorate([
     auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
-    rest_1.patch('/feedbacks/{id}', {
+    rest_1.patch('/configurations/{id}', {
         responses: {
             '204': {
-                description: 'Feedback PATCH success',
+                description: 'Configurations PATCH success',
             },
         },
     }),
@@ -225,35 +187,35 @@ __decorate([
     __param(1, rest_1.requestBody({
         content: {
             'application/json': {
-                schema: rest_1.getModelSchemaRef(models_1.Feedback, { partial: true }),
+                schema: rest_1.getModelSchemaRef(models_1.Configurations, { partial: true }),
             },
         },
     })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, models_1.Feedback]),
+    __metadata("design:paramtypes", [String, models_1.Configurations]),
     __metadata("design:returntype", Promise)
-], FeedbackController.prototype, "updateById", null);
+], ConfigurationsController.prototype, "updateById", null);
 __decorate([
     auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
-    rest_1.put('/feedbacks/{id}', {
+    rest_1.put('/configurations/{id}', {
         responses: {
             '204': {
-                description: 'Feedback PUT success',
+                description: 'Configurations PUT success',
             },
         },
     }),
     __param(0, rest_1.param.path.string('id')),
     __param(1, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, models_1.Feedback]),
+    __metadata("design:paramtypes", [String, models_1.Configurations]),
     __metadata("design:returntype", Promise)
-], FeedbackController.prototype, "replaceById", null);
+], ConfigurationsController.prototype, "replaceById", null);
 __decorate([
     auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
-    rest_1.del('/feedbacks/{id}', {
+    rest_1.del('/configurations/{id}', {
         responses: {
             '204': {
-                description: 'Feedback DELETE success',
+                description: 'Configurations DELETE success',
             },
         },
     }),
@@ -261,10 +223,10 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], FeedbackController.prototype, "deleteById", null);
-FeedbackController = __decorate([
-    __param(0, repository_1.repository(repositories_1.FeedbackRepository)),
-    __metadata("design:paramtypes", [repositories_1.FeedbackRepository])
-], FeedbackController);
-exports.FeedbackController = FeedbackController;
-//# sourceMappingURL=feedback.controller.js.map
+], ConfigurationsController.prototype, "deleteById", null);
+ConfigurationsController = __decorate([
+    __param(0, repository_1.repository(repositories_1.ConfigurationsRepository)),
+    __metadata("design:paramtypes", [repositories_1.ConfigurationsRepository])
+], ConfigurationsController);
+exports.ConfigurationsController = ConfigurationsController;
+//# sourceMappingURL=configurations.controller.js.map

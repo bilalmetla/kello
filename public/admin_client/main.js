@@ -39,6 +39,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/configuration/configuration-edit/configuration-edit.component.html":
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/configuration/configuration-edit/configuration-edit.component.html ***!
+  \**************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Configurations</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Configurations Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"configuration\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{configuration.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"androidAppVersion\">Android App Version</label>\n        <input [(ngModel)]=\"configuration.androidAppVersion\" id=\"androidAppVersion\" name=\"androidAppVersion\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"sms_username\">SMS Username</label>\n        <input [(ngModel)]=\"configuration.sms_username\" id=\"sms_username\" name=\"sms_username\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"sms_password\">SMS Password</label>\n        <input [(ngModel)]=\"configuration.sms_password\" id=\"sms_password\" name=\"sms_password\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"isProductionInstance\">Is Production Instance</label>\n        <input type=\"checkbox\" [(ngModel)]=\"configuration.isProductionInstance\" id=\"isProductionInstance\" name=\"isProductionInstance\" class=\"form-control\">\n      </div>\n    \n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/configuration/configuration-list/configuration-list.component.html":
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/configuration/configuration-list/configuration-list.component.html ***!
+  \**************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Configurations</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Configurations List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../configurations', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"configurationList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Android App Version</th>\n          <th class=\"border-top-0\" scope=\"col\">SMS Username</th>\n          <th class=\"border-top-0\" scope=\"col\">SMS Password</th>\n          <th class=\"border-top-0\" scope=\"col\">Is Production Instance</th>\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of configurationList\" [class.active]=\"item === selectedConfiguration\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.androidAppVersion}}</td>\n          <td>{{item.sms_username}}</td>\n          <td>{{item.sms_password}}</td>\n          <td>{{item.isProductionInstance}}</td>\n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../configurations', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n            <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer/customer-edit/customer-edit.component.html":
 /*!***********************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/customer/customer-edit/customer-edit.component.html ***!
@@ -74,7 +100,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">CustomerFeedBack</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">CustomerFeedBack Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"customerfeedback\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{customerfeedback.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Full Name</label>\n        {{customerfeedback.fullname || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Phone</label>\n        {{customerfeedback.phone || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Message</label>\n        {{customerfeedback.message || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Customer Id</label>\n        {{customerfeedback.customersId || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Partner Id</label>\n        {{customerfeedback.partnersId || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Is Reviewed</label>\n        {{customerfeedback.isReviewed || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Reviewed By</label>\n        {{customerfeedback.reviewedById || 'n/a'}} \n      </div>\n    \n      <!-- <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button> -->\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">CustomerFeedBack</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">CustomerFeedBack Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"customerfeedback\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{customerfeedback.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Full Name</label>\n        {{customerfeedback.fullname || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Phone</label>\n        {{customerfeedback.phone || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Message</label>\n        {{customerfeedback.message || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Customer Id</label>\n        {{customerfeedback.customersId || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Partner Id</label>\n        {{customerfeedback.partnersId || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Is Reviewed</label>\n        {{customerfeedback.isReviewed || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Reviewed By</label>\n        {{customerfeedback.reviewedById || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Feedback Images</label> <br>\n        <img  *ngIf=\"customerfeedback.image1\" src=\"{{customerfeedback.image1}}\" required style=\"width:200px; height:200px\"/>\n        <img *ngIf=\"customerfeedback.image2\" src=\"{{customerfeedback.image2}}\" required style=\"width:200px; height:200px\"/>\n        <br><img *ngIf=\"customerfeedback.image3\" src=\"{{customerfeedback.image3}}\" required style=\"width:200px; height:200px\"/>\n        <img *ngIf=\"customerfeedback.image4\" src=\"{{customerfeedback.image4}}\" required style=\"width:200px; height:200px\"/>\n      </div>\n    \n      <!-- <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button> -->\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -87,7 +113,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">CustomerFeedBack</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">CustomerFeedBack List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"phone\">Phone:</label>\n        <input [(ngModel)]=\"filter.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../customerfeedbacks', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"customerfeedbackList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Full Name</th>\n          <th class=\"border-top-0\" scope=\"col\">Phone</th>\n          <th class=\"border-top-0\" scope=\"col\">Message</th>\n          <!-- <th class=\"border-top-0\" scope=\"col\">Customer Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Partner Id</th> -->\n          <th class=\"border-top-0\" scope=\"col\">Is Reviewed</th>\n          <!-- <th class=\"border-top-0\" scope=\"col\">Reviewed By</th> -->\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of customerfeedbackList | paginate: { itemsPerPage: 10, currentPage: p, totalItems: customerfeedbackList.length } \" [class.active]=\"item === selectedCustomerfeedback\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.fullname}}</td>\n          <td>{{item.phone}}</td>\n          <td>{{item.message}}</td>\n          <!-- <td>{{item.customersId}}</td>\n          <td>{{item.partnersId}}</td> -->\n          <td>{{item.isReviewed}}</td>\n          <!-- <td>{{item.reviewedById}}</td> -->\n          <td style=\"white-space: nowrap\">\n            <!-- <a [routerLink]=\"['../customerfeedbacks', item.id ]\" class=\"btn btn-secondary\">View</a>&nbsp; -->\n            <!-- <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button> -->\n            <button *ngIf=\"item.isReviewed === false\" (click)=\"reviewed(item)\" [disabled]=\"!f?.valid\" class=\"btn btn-secondary\">Reviewed</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n\n    <pagination-controls class=\"pagination-controls\" (pageChange)=\"p = $event\"></pagination-controls>  \n\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">CustomerFeedBack</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">CustomerFeedBack List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"phone\">Phone:</label>\n        <input [(ngModel)]=\"filter.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../customerfeedbacks', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"customerfeedbackList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Full Name</th>\n          <th class=\"border-top-0\" scope=\"col\">Phone</th>\n          <th class=\"border-top-0\" scope=\"col\">Message</th>\n          <!-- <th class=\"border-top-0\" scope=\"col\">Customer Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Partner Id</th> -->\n          <th class=\"border-top-0\" scope=\"col\">Is Reviewed</th>\n          <!-- <th class=\"border-top-0\" scope=\"col\">Reviewed By</th> -->\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of customerfeedbackList | paginate: { itemsPerPage: 10, currentPage: p, totalItems: customerfeedbackList.length } \" [class.active]=\"item === selectedCustomerfeedback\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.fullname}}</td>\n          <td>{{item.phone}}</td>\n          <td>{{item.message}}</td>\n          <!-- <td>{{item.customersId}}</td>\n          <td>{{item.partnersId}}</td> -->\n          <td>{{item.isReviewed}}</td>\n          <!-- <td>{{item.reviewedById}}</td> -->\n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../customerfeedbacks', item.id ]\" class=\"btn btn-secondary\">View</a>&nbsp;\n            <!-- <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button> -->\n            <button *ngIf=\"item.isReviewed === false\" (click)=\"reviewed(item)\" [disabled]=\"!f?.valid\" class=\"btn btn-secondary\">Reviewed</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n\n    <pagination-controls class=\"pagination-controls\" (pageChange)=\"p = $event\"></pagination-controls>  \n\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -230,7 +256,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Orders</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Orders Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"orders\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{orders.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Order Time</label>\n        {{orders.orderTime || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Order Status</label>\n        {{orders.orderStatus || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Total Bill Amount</label>\n        {{orders.totalBillAmount || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Is Delivered</label>\n        {{orders.isDelivered || false}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Ordered By</label>\n        {{orders.orderCategory || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Customer Id</label>\n        {{orders.customersId || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Partner Id</label>\n        {{orders.partnersId || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Special Notes</label>\n        {{orders.specialNotes || 'n/a'}} \n      </div>\n    \n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n              \n              <th class=\"border-top-0\" scope=\"col\">Product Title</th>\n              <th class=\"border-top-0\" scope=\"col\">Quentity</th>\n              <th class=\"border-top-0\" scope=\"col\">QuentityUnit</th>\n              \n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let product of orders.items\" [class.active]=\"product === selectedOrders\">\n            \n              <td>{{product.productTitle}}</td>\n              <td>{{product.quantity}}</td>\n              <td>{{product.quentityUnit}}</td>\n              \n            </tr>\n          </tbody>\n        </table>\n      </div>\n      <!-- *ngIf=\"orders.orderStatus=='InProgress'\" -->\n\n      <!-- <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button> -->\n      <button *ngIf=\"orders.orderStatus=='Pending'\" type=\"button\" class=\"btn btn-secondary\" (click)=\"orderStartProgress()\">Start Progress</button>\n      <button  type=\"button\" class=\"btn btn-secondary\" (click)=\"orderDelivered()\">Order Delivered</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Orders</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Orders Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"orders\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{orders.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Order Time</label>\n        {{orders.orderTime || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.startProgressTime\" class=\"form-group\">\n        <label>Start Progress Time</label>\n        {{orders.startProgressTime || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.completionTime\" class=\"form-group\">\n        <label>Completion Time</label>\n        {{orders.completionTime || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.cancelTime\" class=\"form-group\">\n        <label>Cancel Time</label>\n        {{orders.cancelTime || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Order Status</label>\n        {{orders.orderStatus || 'n/a'}} \n      </div>\n    \n          \n      <div class=\"form-group\">\n        <label>Is Delivered</label>\n        {{orders.isDelivered || false}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Is Cancelled</label>\n        {{orders.isCancelled || false}} \n      </div>\n\n      <div *ngIf=\"orders.isDeleted\" class=\"form-group\">\n        <label>Is Deleted</label>\n        {{orders.isDeleted || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.deletedById\" class=\"form-group\">\n        <label>Deleted By</label>\n        {{orders.deletedById || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Is Rating Done</label>\n        {{orders.isOrderRatingDone || false}} \n      </div>\n\n\n      <div class=\"form-group\">\n        <label>Ordered By</label>\n        {{orders.orderCategory || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Customer Id</label>\n        {{orders.customersId || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Delivered By</label>\n        {{orders.deliveredById || 'n/a'}} \n      </div>\n    \n      <div *ngIf=\"orders.partnersId\" class=\"form-group\">\n        <label>Partner Id</label>\n        {{orders.partnersId || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.specialNotes\" class=\"form-group\">\n        <label>Special Notes</label>\n        {{orders.specialNotes || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Order Location</label>\n        <a  href=\"{{locationUrl}}\" target=\"_blank\"> <b> View Location </b></a> \n      </div>\n\n      <div class=\"form-group\">\n        <label>Total Bill Amount</label>\n        {{orders.totalBillAmount || 'n/a'}} \n      </div>\n    \n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n          <thead>\n            <tr>\n              \n              <th class=\"border-top-0\" scope=\"col\">Product Title</th>\n              <th class=\"border-top-0\" scope=\"col\">Quentity</th>\n              <th class=\"border-top-0\" scope=\"col\">QuentityUnit</th>\n              \n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let product of orders.items\" [class.active]=\"product === selectedOrders\">\n            \n              <td>{{product.productTitle}}</td>\n              <td>{{product.quantity}}</td>\n              <td>{{product.quentityUnit}}</td>\n              \n            </tr>\n          </tbody>\n        </table>\n      </div>\n      <!--  -->\n\n      <!-- <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button> -->\n      <button *ngIf=\"orders.orderStatus=='Pending'\" type=\"button\" class=\"btn btn-secondary\" (click)=\"orderStartProgress()\">Start Progress</button>\n      <button *ngIf=\"orders.orderStatus=='InProgress'\" type=\"button\" class=\"btn btn-secondary\" (click)=\"orderDelivered()\">Order Delivered</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -243,7 +269,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Orders</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Orders List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"orderStatus\">Order Status:</label>\n        <input [(ngModel)]=\"filter.orderStatus\" id=\"orderStatus\" name=\"orderStatus\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <!-- <a [routerLink]=\"['../orderses', 'new' ]\" class=\"btn btn-default\">New</a> -->\n    </form>\n  </div>\n</div>\n\n<div class=\"card\" *ngIf=\"ordersList.length > 0\">\n  <p *ngIf=\"errors\">{{ errors }}</p>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Order Time</th>\n          <th class=\"border-top-0\" scope=\"col\">Order Status</th>\n          <th class=\"border-top-0\" scope=\"col\">Is Delivered</th>\n          <th class=\"border-top-0\" scope=\"col\">Total Bill Amount</th>\n          <th class=\"border-top-0\" scope=\"col\">Ordered By</th>\n          \n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of ordersList | paginate: { itemsPerPage: 10, currentPage: p, totalItems: ordersList.length } \" [class.active]=\"item === selectedOrders\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.orderTime}}</td>\n          <td>{{item.orderStatus}}</td>\n          <td>{{item.isDelivered}}</td>\n          <td>{{item.totalBillAmount}}</td>\n          <td>{{item.orderCategory}}</td>\n          \n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../orderses', item.id ]\" class=\"btn btn-secondary\">View</a>&nbsp;\n            <!-- <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button> -->\n          </td>\n        </tr>\n      </tbody>\n    </table>\n\n    <pagination-controls class=\"pagination-controls\" (pageChange)=\"p = $event\"></pagination-controls>  \n    \n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Orders</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Orders List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <div class=\"form-group\">\n        <label for=\"orderStatus\">Order Status:</label>\n        <input [(ngModel)]=\"filter.orderStatus\" id=\"orderStatus\" name=\"orderStatus\" class=\"form-control\">\n      </div>\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <!-- <a [routerLink]=\"['../orderses', 'new' ]\" class=\"btn btn-default\">New</a> -->\n    </form>\n  </div>\n</div>\n\n<div class=\"card\" *ngIf=\"ordersList.length > 0\">\n  <p *ngIf=\"errors\">{{ errors }}</p>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Order Time</th>\n          <th class=\"border-top-0\" scope=\"col\">Order Status</th>\n          <th class=\"border-top-0\" scope=\"col\">Name</th>\n          <th class=\"border-top-0\" scope=\"col\">Phone</th>\n          <!-- <th class=\"border-top-0\" scope=\"col\">Ordered By</th> -->\n          \n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of ordersList | paginate: { itemsPerPage: 10, currentPage: p, totalItems: ordersList.length } \" [class.active]=\"item === selectedOrders\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.orderTime}}</td>\n          <td>{{item.orderStatus}}</td>\n          <td>{{item.customers? item.customers.name: 'NA'}}</td>\n          <td>{{item.customers? item.customers.phone: 'NA'}}</td>\n          <!-- <td>{{item.orderCategory}}</td> -->\n          \n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../orderses', item.id ]\" class=\"btn btn-secondary\">View</a>&nbsp;\n            <button *ngIf=\"item.isDeleted != true\" (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n\n    <pagination-controls class=\"pagination-controls\" (pageChange)=\"p = $event\"></pagination-controls>  \n    \n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -386,7 +412,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"sidebar-wrapper\">\n      \n    <div class=\"logo\">\n            \n        <a class=\"simple-text\">\n                  \n            <div class=\"logo-img\" >\n                        <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\">      \n            </div>\n                  Kello    \n        </a>\n          \n    </div>\n      \n    <ul class=\"nav\">\n            \n        <li>\n                  \n            <a routerLink=\"dashboard\">\n                        <i class=\"ti-home\"></i>\n                        <p>Dashboard</p>\n                      \n            </a>\n                \n        </li>\n            \n        <!-- <li>      <a routerLink=\"flight\">        <i class=\"ti-arrow-top-right\"></i>        <p>Flights</p>      </a>    </li> -->\n        \n        <li>\n              \n          <a routerLink=\"activation\">\n                  <i class=\"ti-lock\"></i>\n                  <p>Activations</p>\n                \n          </a>\n          \n      </li>\n\n        <li>\n              \n            <a routerLink=\"customer\">\n                    <i class=\"ti-user\"></i>\n                    <p>Customers</p>\n                  \n            </a>\n            \n        </li>\n        \n        <li>\n              \n            <a routerLink=\"partner\">\n                    <i class=\"ti-wheelchair\"></i>\n                    <p>Partners</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n              \n          <a routerLink=\"orderses\">\n                  <i class=\"ti-receipt\"></i>\n                  <p>Orders</p>\n                \n          </a>\n          \n      </li>\n        \n        <li>\n              \n            <a routerLink=\"product\">\n                    <i class=\"ti-apple\"></i>\n                    <p>Products</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n            <a routerLink=\"priceplans\">\n                    <i class=\"ti-gift\"></i>\n                    <p>Price Plan</p>      \n            </a>\n        </li>\n\n                        \n        <!-- <li>\n              \n            <a routerLink=\"offer\">\n                    <i class=\"ti-panel\"></i>\n                    <p>Offers</p>\n                  \n            </a>\n            \n        </li> -->\n        \n        <li>\n            <a routerLink=\"supply\">\n                    <i class=\"ti-car\"></i>\n                    <p>Supplies</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"customerfeedbacks\">\n                    <i class=\"ti-comment\"></i>\n                    <p>FeedBack</p>  \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"orderratings\">\n                    <i class=\"ti-bar-chart\"></i>\n                    <p>Order Ratings</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"promotions\">\n                    <i class=\"ti-alarm-clock\"></i>\n                    <p>Offers/Promotions</p>      \n            </a>\n        </li>\n\n        <!-- <li>\n              \n          <a routerLink=\"rateplan\">\n                  <i class=\"ti-money\"></i>\n                  <p>Rate plans</p>  \n          </a>\n      </li> -->\n            \n        <!--    <li>        <a routerLink=\"passenger-search\">            <i class=\"ti-user\"></i>            <p>Passengers</p>        </a>    </li>-->\n            \n        <!--        <li routerLinkActive=\"active\">        <a>            <i class=\"ti-close\"></i>            <p>Hide Basket</p>        </a>        </li>    -->\n          \n    </ul>\n    \n</div>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"sidebar-wrapper\">\n      \n    <div class=\"logo\">\n            \n        <a class=\"simple-text\">\n                  \n            <div class=\"logo-img\" >\n                        <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\">      \n            </div>\n                  Kello    \n        </a>\n          \n    </div>\n      \n    <ul class=\"nav\">\n            \n        <li>\n                  \n            <a routerLink=\"dashboard\">\n                        <i class=\"ti-home\"></i>\n                        <p>Dashboard</p>\n                      \n            </a>\n                \n        </li>\n            \n        <!-- <li>      <a routerLink=\"flight\">        <i class=\"ti-arrow-top-right\"></i>        <p>Flights</p>      </a>    </li> -->\n        \n        <li>\n              \n          <a routerLink=\"activation\">\n                  <i class=\"ti-lock\"></i>\n                  <p>Activations</p>\n                \n          </a>\n          \n      </li>\n\n        <li>\n              \n            <a routerLink=\"customer\">\n                    <i class=\"ti-user\"></i>\n                    <p>Customers</p>\n                  \n            </a>\n            \n        </li>\n        \n        <li>\n              \n            <a routerLink=\"partner\">\n                    <i class=\"ti-wheelchair\"></i>\n                    <p>Partners</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n              \n          <a routerLink=\"orderses\">\n                  <i class=\"ti-receipt\"></i>\n                  <p>Orders</p>\n                \n          </a>\n          \n      </li>\n        \n        <li>\n              \n            <a routerLink=\"product\">\n                    <i class=\"ti-apple\"></i>\n                    <p>Products</p>\n                  \n            </a>\n            \n        </li>\n\n        <li>\n            <a routerLink=\"priceplans\">\n                    <i class=\"ti-gift\"></i>\n                    <p>Price Plan</p>      \n            </a>\n        </li>\n\n                        \n        <!-- <li>\n              \n            <a routerLink=\"offer\">\n                    <i class=\"ti-panel\"></i>\n                    <p>Offers</p>\n                  \n            </a>\n            \n        </li> -->\n        \n        <li>\n            <a routerLink=\"supply\">\n                    <i class=\"ti-truck\"></i>\n                    <p>Supplies</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"customerfeedbacks\">\n                    <i class=\"ti-comments\"></i>\n                    <p>FeedBack</p>  \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"orderratings\">\n                    <i class=\"ti-bar-chart\"></i>\n                    <p>Order Ratings</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"promotions\">\n                    <i class=\"ti-alarm-clock\"></i>\n                    <p>Offers/Promotions</p>      \n            </a>\n        </li>\n\n        <li>\n            <a routerLink=\"configurations\">\n                    <i class=\"ti-settings\"></i>\n                    <p>Configurations</p>      \n            </a>\n        </li>\n\n        <!-- <li>\n              \n          <a routerLink=\"rateplan\">\n                  <i class=\"ti-money\"></i>\n                  <p>Rate plans</p>  \n          </a>\n      </li> -->\n            \n        <!--    <li>        <a routerLink=\"passenger-search\">            <i class=\"ti-user\"></i>            <p>Passengers</p>        </a>    </li>-->\n            \n        <!--        <li routerLinkActive=\"active\">        <a>            <i class=\"ti-close\"></i>            <p>Hide Basket</p>        </a>        </li>    -->\n          \n    </ul>\n    \n</div>\n\n");
 
 /***/ }),
 
@@ -880,7 +906,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var ActivationService = /** @class */ (function () {
     function ActivationService(http) {
         this.http = http;
-        this.baseUrl = "/activations";
+        this.baseUrl = "http://127.0.0.1:3000/activations";
         this.activationList = [];
     }
     ActivationService.prototype.findById = function (id) {
@@ -1062,6 +1088,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
 /* harmony import */ var _modals_message_dialog_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./modals/message-dialog.component */ "./src/app/modals/message-dialog.component.ts");
 /* harmony import */ var ngx_pagination__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ngx-pagination */ "./node_modules/ngx-pagination/dist/ngx-pagination.js");
+/* harmony import */ var _configuration_configuration_module__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./configuration/configuration.module */ "./src/app/configuration/configuration.module.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -1116,6 +1143,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 //import { InputDialogComponent} from './modals/input-dialog.component';
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -1143,6 +1171,7 @@ var AppModule = /** @class */ (function () {
                 _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_25__["PromotionModule"],
                 _priceplan_priceplan_module__WEBPACK_IMPORTED_MODULE_26__["PriceplanModule"],
                 _dashboard_dashboard_module__WEBPACK_IMPORTED_MODULE_27__["DashboardModule"],
+                _configuration_configuration_module__WEBPACK_IMPORTED_MODULE_31__["ConfigurationModule"],
             ],
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
@@ -1231,6 +1260,420 @@ var APP_ROUTES = [
 var APP_EXTRA_OPTIONS = {
     preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_0__["PreloadAllModules"]
 };
+
+
+/***/ }),
+
+/***/ "./src/app/configuration/configuration-edit/configuration-edit.component.ts":
+/*!**********************************************************************************!*\
+  !*** ./src/app/configuration/configuration-edit/configuration-edit.component.ts ***!
+  \**********************************************************************************/
+/*! exports provided: ConfigurationEditComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigurationEditComponent", function() { return ConfigurationEditComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _configuration_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../configuration.service */ "./src/app/configuration/configuration.service.ts");
+/* harmony import */ var _configuration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../configuration */ "./src/app/configuration/configuration.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+
+
+
+var ConfigurationEditComponent = /** @class */ (function () {
+    function ConfigurationEditComponent(route, router, configurationService) {
+        this.route = route;
+        this.router = router;
+        this.configurationService = configurationService;
+        this.feedback = {};
+    }
+    ConfigurationEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this
+            .route
+            .params
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (p) { return p.id; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (id) {
+            if (id === 'new') {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(new _configuration__WEBPACK_IMPORTED_MODULE_3__["Configuration"]());
+            }
+            return _this.configurationService.findById(id);
+        }))
+            .subscribe(function (configuration) {
+            _this.configuration = configuration;
+            _this.feedback = {};
+        }, function (err) {
+            _this.feedback = { type: 'warning', message: 'Error loading' };
+        });
+    };
+    ConfigurationEditComponent.prototype.save = function () {
+        var _this = this;
+        this.configurationService.save(this.configuration).subscribe(function (configuration) {
+            _this.configuration = configuration;
+            _this.feedback = { type: 'success', message: 'Save was successful!' };
+            setTimeout(function () {
+                _this.router.navigate(['/home/configurations']);
+            }, 1000);
+        }, function (err) {
+            _this.feedback = { type: 'warning', message: 'Error saving' };
+        });
+    };
+    ConfigurationEditComponent.prototype.cancel = function () {
+        this.router.navigate(['/home/configurations']);
+    };
+    ConfigurationEditComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _configuration_service__WEBPACK_IMPORTED_MODULE_2__["ConfigurationService"] }
+    ]; };
+    ConfigurationEditComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-configuration-edit',
+            template: __importDefault(__webpack_require__(/*! raw-loader!./configuration-edit.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/configuration/configuration-edit/configuration-edit.component.html")).default
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _configuration_service__WEBPACK_IMPORTED_MODULE_2__["ConfigurationService"]])
+    ], ConfigurationEditComponent);
+    return ConfigurationEditComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/configuration/configuration-filter.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/configuration/configuration-filter.ts ***!
+  \*******************************************************/
+/*! exports provided: ConfigurationFilter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigurationFilter", function() { return ConfigurationFilter; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var ConfigurationFilter = /** @class */ (function () {
+    function ConfigurationFilter() {
+    }
+    return ConfigurationFilter;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/configuration/configuration-list/configuration-list.component.ts":
+/*!**********************************************************************************!*\
+  !*** ./src/app/configuration/configuration-list/configuration-list.component.ts ***!
+  \**********************************************************************************/
+/*! exports provided: ConfigurationListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigurationListComponent", function() { return ConfigurationListComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _configuration_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../configuration-filter */ "./src/app/configuration/configuration-filter.ts");
+/* harmony import */ var _configuration_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../configuration.service */ "./src/app/configuration/configuration.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+var ConfigurationListComponent = /** @class */ (function () {
+    function ConfigurationListComponent(configurationService) {
+        this.configurationService = configurationService;
+        this.filter = new _configuration_filter__WEBPACK_IMPORTED_MODULE_1__["ConfigurationFilter"]();
+        this.feedback = {};
+    }
+    Object.defineProperty(ConfigurationListComponent.prototype, "configurationList", {
+        get: function () {
+            return this.configurationService.configurationList;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ConfigurationListComponent.prototype.ngOnInit = function () {
+        this.search();
+    };
+    ConfigurationListComponent.prototype.search = function () {
+        this.configurationService.load(this.filter);
+    };
+    ConfigurationListComponent.prototype.select = function (selected) {
+        this.selectedConfiguration = selected;
+    };
+    ConfigurationListComponent.prototype.delete = function (configuration) {
+        var _this = this;
+        if (confirm('Are you sure?')) {
+            this.configurationService.delete(configuration).subscribe(function () {
+                _this.feedback = { type: 'success', message: 'Delete was successful!' };
+                setTimeout(function () {
+                    _this.search();
+                }, 1000);
+            }, function (err) {
+                _this.feedback = { type: 'warning', message: 'Error deleting.' };
+            });
+        }
+    };
+    ConfigurationListComponent.ctorParameters = function () { return [
+        { type: _configuration_service__WEBPACK_IMPORTED_MODULE_2__["ConfigurationService"] }
+    ]; };
+    ConfigurationListComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-configuration',
+            template: __importDefault(__webpack_require__(/*! raw-loader!./configuration-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/configuration/configuration-list/configuration-list.component.html")).default
+        }),
+        __metadata("design:paramtypes", [_configuration_service__WEBPACK_IMPORTED_MODULE_2__["ConfigurationService"]])
+    ], ConfigurationListComponent);
+    return ConfigurationListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/configuration/configuration.module.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/configuration/configuration.module.ts ***!
+  \*******************************************************/
+/*! exports provided: ConfigurationModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigurationModule", function() { return ConfigurationModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _configuration_list_configuration_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./configuration-list/configuration-list.component */ "./src/app/configuration/configuration-list/configuration-list.component.ts");
+/* harmony import */ var _configuration_edit_configuration_edit_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./configuration-edit/configuration-edit.component */ "./src/app/configuration/configuration-edit/configuration-edit.component.ts");
+/* harmony import */ var _configuration_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./configuration.service */ "./src/app/configuration/configuration.service.ts");
+/* harmony import */ var _configuration_routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./configuration.routes */ "./src/app/configuration/configuration.routes.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+
+
+
+
+var ConfigurationModule = /** @class */ (function () {
+    function ConfigurationModule() {
+    }
+    ConfigurationModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forChild(_configuration_routes__WEBPACK_IMPORTED_MODULE_7__["CONFIGURATION_ROUTES"])
+            ],
+            declarations: [
+                _configuration_list_configuration_list_component__WEBPACK_IMPORTED_MODULE_4__["ConfigurationListComponent"],
+                _configuration_edit_configuration_edit_component__WEBPACK_IMPORTED_MODULE_5__["ConfigurationEditComponent"]
+            ],
+            providers: [_configuration_service__WEBPACK_IMPORTED_MODULE_6__["ConfigurationService"]],
+            exports: []
+        })
+    ], ConfigurationModule);
+    return ConfigurationModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/configuration/configuration.routes.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/configuration/configuration.routes.ts ***!
+  \*******************************************************/
+/*! exports provided: CONFIGURATION_ROUTES */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CONFIGURATION_ROUTES", function() { return CONFIGURATION_ROUTES; });
+/* harmony import */ var _configuration_list_configuration_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./configuration-list/configuration-list.component */ "./src/app/configuration/configuration-list/configuration-list.component.ts");
+/* harmony import */ var _configuration_edit_configuration_edit_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./configuration-edit/configuration-edit.component */ "./src/app/configuration/configuration-edit/configuration-edit.component.ts");
+/* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+var CONFIGURATION_ROUTES = [
+    {
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'configurations',
+                component: _configuration_list_configuration_list_component__WEBPACK_IMPORTED_MODULE_0__["ConfigurationListComponent"]
+            }
+        ]
+    },
+    {
+        path: 'home',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
+        children: [
+            {
+                path: 'configurations/:id',
+                component: _configuration_edit_configuration_edit_component__WEBPACK_IMPORTED_MODULE_1__["ConfigurationEditComponent"]
+            }
+        ]
+    }
+];
+
+
+/***/ }),
+
+/***/ "./src/app/configuration/configuration.service.ts":
+/*!********************************************************!*\
+  !*** ./src/app/configuration/configuration.service.ts ***!
+  \********************************************************/
+/*! exports provided: ConfigurationService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigurationService", function() { return ConfigurationService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Accept', 'application/json');
+var ConfigurationService = /** @class */ (function () {
+    function ConfigurationService(http) {
+        this.http = http;
+        this.configurationList = [];
+        this.api = 'http://127.0.0.1:3000/configurations';
+    }
+    ConfigurationService.prototype.findById = function (id) {
+        var url = this.api + "/" + id;
+        var params = { id: id };
+        return this.http.get(url, { params: params, headers: headers });
+    };
+    ConfigurationService.prototype.load = function (filter) {
+        var _this = this;
+        this.find(filter).subscribe(function (result) {
+            _this.configurationList = result;
+        }, function (err) {
+            console.error('error loading', err);
+        });
+    };
+    ConfigurationService.prototype.find = function (filter) {
+        var params = {};
+        return this.http.get(this.api, { params: params, headers: headers });
+    };
+    ConfigurationService.prototype.save = function (entity) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        if (entity.id) {
+            url = this.api + "/" + entity.id.toString();
+            params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
+            return this.http.put(url, entity, { headers: headers, params: params });
+        }
+        else {
+            url = "" + this.api;
+            return this.http.post(url, entity, { headers: headers, params: params });
+        }
+    };
+    ConfigurationService.prototype.delete = function (entity) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        if (entity.id) {
+            url = this.api + "/" + entity.id.toString();
+            params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
+            return this.http.delete(url, { headers: headers, params: params });
+        }
+        return null;
+    };
+    ConfigurationService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
+    ConfigurationService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], ConfigurationService);
+    return ConfigurationService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/configuration/configuration.ts":
+/*!************************************************!*\
+  !*** ./src/app/configuration/configuration.ts ***!
+  \************************************************/
+/*! exports provided: Configuration */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Configuration", function() { return Configuration; });
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var Configuration = /** @class */ (function () {
+    function Configuration() {
+    }
+    return Configuration;
+}());
+
 
 
 /***/ }),
@@ -1584,7 +2027,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var CustomerService = /** @class */ (function () {
     function CustomerService(http) {
         this.http = http;
-        this.baseUrl = "/customers";
+        this.baseUrl = "http://127.0.0.1:3000/customers";
         this.customerList = [];
     }
     CustomerService.prototype.findById = function (id) {
@@ -2022,7 +2465,7 @@ var CustomerfeedbackService = /** @class */ (function () {
     function CustomerfeedbackService(http) {
         this.http = http;
         this.customerfeedbackList = [];
-        this.api = '/feedbacks';
+        this.api = 'http://127.0.0.1:3000/feedbacks';
     }
     CustomerfeedbackService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -2327,7 +2770,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var DashboardService = /** @class */ (function () {
     function DashboardService(http) {
         this.http = http;
-        this.baseUrl = "/dashboards";
+        this.baseUrl = "http://127.0.0.1:3000/dashboards";
         this.dashboardList = [];
     }
     DashboardService.prototype.findById = function (id) {
@@ -3584,7 +4027,7 @@ var LoginService = /** @class */ (function () {
     function LoginService(http) {
         this.http = http;
         this.loginList = [];
-        this.api = '/users/login';
+        this.api = 'http://127.0.0.1:3000/users/login';
     }
     // oldlogin(username: string, password: string) {
     //     return this.http.post<any>(`/users/authenticate`, { username: username, password: password })
@@ -4337,7 +4780,7 @@ var OrderratingService = /** @class */ (function () {
     function OrderratingService(http) {
         this.http = http;
         this.orderratingList = [];
-        this.api = '/order-ratings';
+        this.api = 'http://127.0.0.1:3000/order-ratings';
     }
     OrderratingService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -4468,6 +4911,7 @@ var OrdersEditComponent = /** @class */ (function () {
         this.router = router;
         this.ordersService = ordersService;
         this.feedback = {};
+        this.locationUrl = 'https://www.google.com/maps/dir';
     }
     OrdersEditComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -4483,6 +4927,9 @@ var OrdersEditComponent = /** @class */ (function () {
             .subscribe(function (orders) {
             _this.orders = orders;
             _this.feedback = {};
+            if (_this.orders.location && _this.orders.location.coordinates) {
+                _this.locationUrl = _this.locationUrl + "/" + _this.orders.location.coordinates[1] + "," + _this.orders.location.coordinates[0];
+            }
         }, function (err) {
             _this.feedback = { type: 'warning', message: 'Error loading' };
         });
@@ -4622,9 +5069,8 @@ var OrdersListComponent = /** @class */ (function () {
         if (confirm('Are you sure?')) {
             this.ordersService.delete(orders).subscribe(function () {
                 _this.feedback = { type: 'success', message: 'Delete was successful!' };
-                setTimeout(function () {
-                    _this.search();
-                }, 1000);
+                orders.isDeleted = true;
+                orders.orderStatus = 'Deleted';
             }, function (err) {
                 _this.feedback = { type: 'warning', message: 'Error deleting.' };
             });
@@ -4786,7 +5232,7 @@ var OrdersService = /** @class */ (function () {
     function OrdersService(http) {
         this.http = http;
         this.ordersList = [];
-        this.api = '/orders';
+        this.api = 'http://127.0.0.1:3000/orders';
     }
     OrdersService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -4823,8 +5269,9 @@ var OrdersService = /** @class */ (function () {
     OrdersService.prototype.delete = function (entity) {
         var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
         var url = '';
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (entity.id) {
-            url = this.api + "/" + entity.id.toString();
+            url = this.api + "/" + entity.id.toString() + "/users/" + currentUser.id;
             params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]().set('ID', entity.id.toString());
             return this.http.delete(url, { headers: headers, params: params });
         }
@@ -5216,7 +5663,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var PartnerService = /** @class */ (function () {
     function PartnerService(http) {
         this.http = http;
-        this.baseUrl = "/partners";
+        this.baseUrl = "http://127.0.0.1:3000/partners";
         this.partnerList = [];
     }
     PartnerService.prototype.findById = function (id) {
@@ -5668,7 +6115,7 @@ var PriceplanService = /** @class */ (function () {
     function PriceplanService(http) {
         this.http = http;
         this.priceplanList = [];
-        this.api = '/price-plans';
+        this.api = 'http://127.0.0.1:3000/price-plans';
     }
     PriceplanService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -5825,7 +6272,7 @@ var ProductEditComponent = /** @class */ (function () {
             _this.errors = err;
         });
         this.producttypesId_list = [{ id: 1, typeName: "Vegitables" }, { id: 2, typeName: "Fruites" }];
-        this.unitsId_list = [{ id: 1, unitDisplayName: "kg" }, { id: 2, unitDisplayName: "dozen" }, { id: 3, unitDisplayName: "250 GM" }];
+        this.unitsId_list = [{ id: 1, unitDisplayName: "kg" }, { id: 2, unitDisplayName: "dozen" }, { id: 3, unitDisplayName: "250 GM" }, { id: 4, unitDisplayName: "Bundle" }];
     };
     ProductEditComponent.prototype.save = function () {
         var _this = this;
@@ -6123,7 +6570,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var ProductService = /** @class */ (function () {
     function ProductService(http) {
         this.http = http;
-        this.baseUrl = "/products";
+        this.baseUrl = "http://127.0.0.1:3000/products";
         this.productList = [];
     }
     ProductService.prototype.findById = function (id) {
@@ -6582,7 +7029,7 @@ var PromotionService = /** @class */ (function () {
     function PromotionService(http) {
         this.http = http;
         this.promotionList = [];
-        this.api = '/promotions';
+        this.api = 'http://127.0.0.1:3000/promotions';
     }
     PromotionService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -6999,7 +7446,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var RateplanService = /** @class */ (function () {
     function RateplanService(http) {
         this.http = http;
-        this.baseUrl = "/rateplans";
+        this.baseUrl = "http://127.0.0.1:3000/rateplans";
         this.rateplanList = [];
     }
     RateplanService.prototype.findById = function (id) {
@@ -7520,7 +7967,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var SupplyService = /** @class */ (function () {
     function SupplyService(http) {
         this.http = http;
-        this.baseUrl = "/supplies";
+        this.baseUrl = "http://127.0.0.1:3000/supplies";
         this.supplyList = [];
     }
     SupplyService.prototype.findById = function (id) {

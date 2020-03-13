@@ -49,6 +49,10 @@ let OrdersController = class OrdersController {
                 filter = {};
                 filter.order = ['orderTime Desc'];
             }
+            //filter.include = [{relation:'customers'}]
+            filter.include = [{ "relation": 'customers',
+                    scope: { fields: { "id": true, "name": true, "phone": true } } }
+            ];
             return this.ordersRepository.find(filter);
         });
     }
