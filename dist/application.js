@@ -18,7 +18,15 @@ class Kello extends boot_1.BootMixin(service_proxy_1.ServiceMixin(repository_1.R
         // Set up the custom sequence
         this.sequence(sequence_1.MySequence);
         // Set up default home page
-        this.static('/', path_1.default.join(__dirname, '../public/admin_client'));
+        this.static('/', path_1.default.join(__dirname, '../public'));
+        this.static('/app', path_1.default.join(__dirname, '../public/admin_client'));
+        this.static('/assets', path_1.default.join(__dirname, '../public/admin_client/assets'));
+        this.static('/runtime.js', path_1.default.join(__dirname, '../public/admin_client/runtime.js'));
+        this.static('/polyfills.js', path_1.default.join(__dirname, '../public/admin_client/polyfills.js'));
+        this.static('/styles.js', path_1.default.join(__dirname, '../public/admin_client/styles.js'));
+        this.static('/vendor.js', path_1.default.join(__dirname, '../public/admin_client/vendor.js'));
+        this.static('/vendor.js', path_1.default.join(__dirname, '../public/admin_client/vendor.js'));
+        this.static('/main.js', path_1.default.join(__dirname, '../public/admin_client/main.js'));
         this.static('/products/images', path_1.default.join(__dirname, '../public/products/images'));
         this.static('/promotions/images', path_1.default.join(__dirname, '../public/promotions/images'));
         // Customize @loopback/rest-explorer configuration here
