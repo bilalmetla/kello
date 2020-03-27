@@ -27,6 +27,7 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const constants_1 = require("../constants");
 const auth_1 = require("../auth");
+const logger_1 = require("../logger");
 let SupplyController = class SupplyController {
     constructor(supplyRepository, productsRepository) {
         this.supplyRepository = supplyRepository;
@@ -82,7 +83,7 @@ let SupplyController = class SupplyController {
                 supply.isArrived = true;
                 let productId = supply.productsId;
                 yield this.supplyRepository.updateById(id, supply);
-                console.log("productId: ", productId);
+                logger_1.winstonLogger.debug("productId: ", productId);
                 let product = yield this.productsRepository.findById(productId);
                 if (product) {
                     product.quentityOnHand = product.quentityOnHand ? product.quentityOnHand + supply.quentity : supply.quentity;

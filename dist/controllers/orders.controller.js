@@ -112,7 +112,7 @@ let OrdersController = class OrdersController {
     //       "completionTime": new Date(),
     //   };
     //   await this.ordersRepository.updateById(id, orders);
-    //   //console.log("orderUpdated: ", orderUpdated);
+    //   //logger.debug("orderUpdated: ", orderUpdated);
     //  // orders.id = id;
     //   return {id: id, isDelivered: orders.isDelivered, orderStatus: orders.orderStatus};
     // }

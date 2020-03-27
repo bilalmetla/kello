@@ -1,3 +1,4 @@
 import * as winston from "winston";
 declare const winstonLogger: winston.Logger;
-export { winstonLogger };
+declare const GenerateRequestId: () => any;
+export { winstonLogger, GenerateRequestId };

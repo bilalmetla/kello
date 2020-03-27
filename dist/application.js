@@ -12,9 +12,16 @@ const path_1 = __importDefault(require("path"));
 const sequence_1 = require("./sequence");
 const authentication_1 = require("@loopback/authentication");
 const auth_1 = require("./auth");
+const logger_1 = require("./logger");
 class Kello extends boot_1.BootMixin(service_proxy_1.ServiceMixin(repository_1.RepositoryMixin(rest_1.RestApplication))) {
     constructor(options = {}) {
         super(options);
+        process.env.requests = '0';
+        process.env.successResponses = '0';
+        process.env.errorResponses = '0';
+        process.env.lastResponseTime = '0';
+        process.env.avgResponseTime = '0';
+        process.env.kelloConfigs = '';
         // Set up the custom sequence
         this.sequence(sequence_1.MySequence);
         // Set up default home page
@@ -51,7 +58,31 @@ class Kello extends boot_1.BootMixin(service_proxy_1.ServiceMixin(repository_1.R
                 nested: true,
             },
         };
+        //@repository(ConfigurationsRepository)
+        // let configurationsRepository : ConfigurationsRepository;
+        //   async ()=>{
+        //     const configurations = await configurationsRepository.find();
+        //     let configuration = JSON.stringify(configurations[0])
+        //     logger.debug(`configuration loaded .. ${configuration} `);
+        //     process.env.kelloConfigs = configuration;
+        //   }
     }
 }
 exports.Kello = Kello;
+setInterval(() => {
+    console.log(`
+  total requests: ${process.env.requests}
+  total success responses: ${process.env.successResponses}
+  total error responses: ${process.env.errorResponses}
+  last response time: ${process.env.lastResponseTime} ms
+  avg response time: ${process.env.avgResponseTime} ms
+  `);
+    logger_1.winstonLogger.info(`
+  total requests: ${process.env.requests}
+  total success responses: ${process.env.successResponses}
+  total error responses: ${process.env.errorResponses}
+  last response time: ${process.env.lastResponseTime} ms
+  avg response time: ${process.env.avgResponseTime} ms
+  `);
+}, 1000 * 5);
 //# sourceMappingURL=application.js.map

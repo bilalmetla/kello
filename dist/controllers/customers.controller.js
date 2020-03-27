@@ -32,6 +32,7 @@ const util_1 = require("util");
 const { sign } = require('jsonwebtoken');
 const signAsync = util_1.promisify(sign);
 const sendpk_1 = require("../sms/sendpk");
+const logger_1 = require("../logger");
 let CustomersController = class CustomersController {
     constructor(customersRepository, activationsRepository, userRepository) {
         this.customersRepository = customersRepository;
@@ -71,7 +72,7 @@ let CustomersController = class CustomersController {
             // session.startTransaction();
             // const customers = this.customersRepository.find(filter, {session});
             // const commit = await session.commitTransaction();
-            // console.log('transaction commit', commit);
+            // logger.debug('transaction commit', commit);
             // session.endSession();
             //  return customers;
             return this.customersRepository.findById(id, filter);
@@ -104,7 +105,7 @@ let CustomersController = class CustomersController {
                 "where": { phone },
             };
             let foundCust = yield this.customersRepository.find(filter);
-            console.log(foundCust);
+            logger_1.winstonLogger.debug(foundCust);
             if (foundCust && foundCust.length === 0) {
                 customers.phone = phone;
                 const tokenObject = { username: phone };
@@ -154,8 +155,8 @@ let CustomersController = class CustomersController {
             let deviceToken = activations.deviceToken;
             let smsCode = activations.smsCode;
             let actRecord = yield this.activationsRepository.findOne({ "where": { and: [{ phone }, { smsCode }] } });
-            console.log(actRecord);
             if (actRecord) {
+                logger_1.winstonLogger.debug(JSON.stringify(actRecord));
                 let customer = { isActivated: true, deviceId: deviceId, deviceToken: deviceToken };
                 yield this.customersRepository.updateAll(customer, { phone });
                 yield this.activationsRepository.deleteAll({ phone });
@@ -172,9 +173,9 @@ let CustomersController = class CustomersController {
         return __awaiter(this, void 0, void 0, function* () {
             const sendPk = new sendpk_1.SendPk();
             const customerInfo = yield this.customersRepository.findById(id);
-            console.log('customerInfo record', JSON.stringify(customerInfo));
+            logger_1.winstonLogger.debug('customerInfo record', JSON.stringify(customerInfo));
             let actRecord = yield this.activationsRepository.findOne({ "where": { phone: customerInfo.phone } });
-            console.log('Activation record', JSON.stringify(actRecord));
+            logger_1.winstonLogger.debug('Activation record', JSON.stringify(actRecord));
             if (actRecord) {
                 sendPk.sendOTP(actRecord.smsCode, actRecord.phone);
                 return constants_1.CONSTANTS.ACTIVATION_RESENT;
@@ -213,7 +214,7 @@ let CustomersController = class CustomersController {
             // Download the helper library from https://www.twilio.com/docs/node/install
             // Your Account Sid and Auth Token from twilio.com/console
             // DANGER! This is insecure. See http://twil.io/secure
-            // console.log('sending sms via twilio..');
+            // logger.debug('sending sms via twilio..');
             // const accountSid = 'ACeccf074eced9ed0be6a11fba3295228d';
             // const authToken = 'e6b969ab8a142a69f2ee6569c4240725';
             // const client = require('twilio')(accountSid, authToken);
@@ -224,10 +225,10 @@ let CustomersController = class CustomersController {
             //      to:   '+923136604801'
             //    })
             //   .then( (message: any) => { 
-            //     console.log(message.sid);
+            //     logger.debug(message.sid);
             //     return message;
             //   })
-            //   .catch( (error: any) => console.log(error))
+            //   .catch( (error: any) => logger.debug(error))
             //   }
         });
     }

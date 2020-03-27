@@ -31,6 +31,7 @@ const repository_1 = require("@loopback/repository");
 const passport_jwt_1 = require("passport-jwt");
 exports.JWT_STRATEGY_NAME = 'jwt';
 exports.BEARER_STRATEGY_NAME = 'bearer';
+const logger_1 = require("./logger");
 // the decorator function, every required param has its own default
 // so we can supply empty param when calling this decorartor.
 // we will use 'secured' to match Spring Security annotation.
@@ -126,7 +127,7 @@ let MyAuthAuthenticationStrategyProvider = class MyAuthAuthenticationStrategyPro
     verifyToken(payload, done) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log('auth payload' + JSON.stringify(payload));
+                logger_1.winstonLogger.silly(`auth payload' ${JSON.stringify(payload)} `);
                 const { username } = payload;
                 const user = yield this.userRepository.findOne({ "where": { username: username } }); //await this.userRepository.findById(username);
                 if (!user)
@@ -136,7 +137,7 @@ let MyAuthAuthenticationStrategyProvider = class MyAuthAuthenticationStrategyPro
                     done(null, { phone: user.username, [security_1.securityId]: username });
             }
             catch (err) {
-                console.log('auth error: ', err);
+                logger_1.winstonLogger.error('auth error: ', err);
                 if (err.name === 'UnauthorizedError') {
                     done(err, false);
                 }

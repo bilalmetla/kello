@@ -34,6 +34,7 @@ const writeFilePromise = util_1.default.promisify(fs_1.default.writeFile);
 const path_1 = __importDefault(require("path"));
 const auth_1 = require("../auth");
 const constants_1 = require("../constants");
+const logger_1 = require("../logger");
 let PromotionController = class PromotionController {
     constructor(promotionRepository, productsRepository) {
         this.promotionRepository = promotionRepository;
@@ -118,11 +119,11 @@ let PromotionController = class PromotionController {
             //   retailPrice: true,
             //   } 
             });
-            console.log('all products', JSON.stringify(allproducts));
+            logger_1.winstonLogger.debug('all products', JSON.stringify(allproducts));
             for (let p of allproducts) {
                 p.salePrice = Math.round(promo.isPromotionValueFixed ? p.retailPrice ? ((p.retailPrice / 100) * promo.promotionValue) : 0 : p.retailPrice ? p.retailPrice - promo.promotionValue : 0);
                 const p_updated = yield this.productsRepository.updateAll(p, undefined, { session });
-                console.log('promotion updatedProducts', JSON.stringify(p_updated));
+                logger_1.winstonLogger.debug('promotion updatedProducts', JSON.stringify(p_updated));
                 if (!p_updated.count) {
                     yield session.abortTransaction();
                     session.endSession();
@@ -131,10 +132,10 @@ let PromotionController = class PromotionController {
             }
             promo.isActive = true;
             let updatedPricePlan = yield this.promotionRepository.updateAll(promo, undefined, { session });
-            console.log('price paln updatedPricePlan', JSON.stringify(updatedPricePlan));
+            logger_1.winstonLogger.debug('price paln updatedPricePlan', JSON.stringify(updatedPricePlan));
             const se_resp = yield session.commitTransaction();
             session.endSession();
-            console.log(`session response ${se_resp}`);
+            logger_1.winstonLogger.debug(`session response ${se_resp}`);
             return { id };
         });
     }
@@ -149,11 +150,11 @@ let PromotionController = class PromotionController {
             //   retailPrice: true,
             //   } 
             });
-            console.log('all products', JSON.stringify(allproducts));
+            logger_1.winstonLogger.debug('all products', JSON.stringify(allproducts));
             for (let p of allproducts) {
                 p.salePrice = 0;
                 const p_updated = yield this.productsRepository.updateAll(p, undefined, { session });
-                console.log('promotion updatedProducts', JSON.stringify(p_updated));
+                logger_1.winstonLogger.debug('promotion updatedProducts', JSON.stringify(p_updated));
                 if (!p_updated.count) {
                     yield session.abortTransaction();
                     session.endSession();

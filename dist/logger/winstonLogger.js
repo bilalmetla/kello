@@ -10,6 +10,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const appRoot = __importStar(require("app-root-path"));
 const winston = __importStar(require("winston"));
 const DailyRotateFile = require("winston-daily-rotate-file");
+const uuid = require("uuid");
+let requestId = uuid.v4();
+const logConfig = {
+    filename: `${appRoot}/logs/debug.log`,
+    datePattern: "YYYY-MM-DD-HH",
+    zippedArchive: true,
+    maxSize: "2g",
+    maxFiles: "14d",
+    level: "silly",
+    json: true,
+    colorize: false,
+};
 /**
  * Winston Logging Levels:
  *
@@ -28,48 +40,69 @@ const infoWarnFilter = winston.format((info, opts) => {
 const debugWarnFilter = winston.format((info, opts) => {
     return info.level === "debug" ? info : false;
 });
+const sillyWarnFilter = winston.format((info, opts) => {
+    return info.level === "silly" ? info : false;
+});
 const errorFilter = winston.format((info, opts) => {
     return info.level === "error" ? info : false;
 });
 const options = {
     infoLog: {
         name: "Info Logs",
-        filename: `${appRoot}/logs/debug.log`,
-        datePattern: "YYYY-MM-DD-HH",
-        zippedArchive: true,
-        maxSize: "2g",
-        maxFiles: "14d",
-        level: "info",
-        json: true,
+        filename: logConfig.filename,
+        datePattern: logConfig.datePattern,
+        zippedArchive: logConfig.zippedArchive,
+        maxSize: logConfig.maxSize,
+        maxFiles: logConfig.maxFiles,
+        level: logConfig.level,
+        json: logConfig.json,
         colorize: false,
-        format: winston.format.combine(infoWarnFilter(), winston.format.timestamp(), logFormat)
+        format: winston.format.combine(infoWarnFilter(), winston.format.timestamp(), 
+        //winston.format.label({ label: requestId }),
+        logFormat)
     },
     debugLog: {
         name: "Debug Logs",
-        filename: `${appRoot}/logs/debug.log`,
-        datePattern: "YYYY-MM-DD-HH",
-        zippedArchive: true,
-        maxSize: "2g",
-        maxFiles: "14d",
-        level: "debug",
-        json: true,
+        filename: logConfig.filename,
+        datePattern: logConfig.datePattern,
+        zippedArchive: logConfig.zippedArchive,
+        maxSize: logConfig.maxSize,
+        maxFiles: logConfig.maxFiles,
+        level: logConfig.level,
+        json: logConfig.json,
         colorize: false,
-        format: winston.format.combine(debugWarnFilter(), winston.format.timestamp(), logFormat)
+        format: winston.format.combine(debugWarnFilter(), winston.format.timestamp(), 
+        //winston.format.label({ label: requestId }),
+        logFormat)
+    },
+    sillyLog: {
+        name: "Silly Logs",
+        filename: logConfig.filename,
+        datePattern: logConfig.datePattern,
+        zippedArchive: logConfig.zippedArchive,
+        maxSize: logConfig.maxSize,
+        maxFiles: logConfig.maxFiles,
+        level: logConfig.level,
+        json: logConfig.json,
+        colorize: false,
+        format: winston.format.combine(sillyWarnFilter(), winston.format.timestamp(), 
+        ////winston.format.label({ label: requestId }),
+        logFormat)
     },
     errorLog: {
         name: "Error Logs",
-        filename: `${appRoot}/logs/error.log`,
-        datePattern: "YYYY-MM-DD-HH",
-        zippedArchive: false,
-        maxSize: "2g",
-        maxFiles: "14d",
-        level: "warn",
-        json: true,
+        filename: logConfig.filename,
+        datePattern: logConfig.datePattern,
+        zippedArchive: logConfig.zippedArchive,
+        maxSize: logConfig.maxSize,
+        maxFiles: logConfig.maxFiles,
+        level: logConfig.level,
+        json: logConfig.json,
         colorize: false,
         format: winston.format.combine(errorFilter(), winston.format.splat(), winston.format.simple(), logFormat)
     },
     console: {
-        level: "debug",
+        level: "error",
         handleExceptions: true,
         json: true,
         colorize: true
@@ -78,6 +111,7 @@ const options = {
 const transports = [
     new DailyRotateFile(options.infoLog),
     new DailyRotateFile(options.debugLog),
+    new DailyRotateFile(options.sillyLog),
     new DailyRotateFile(options.errorLog),
     new winston.transports.Console(options.console)
 ];
@@ -100,4 +134,18 @@ const winstonLogger = winston.createLogger({
     format: winston.format.combine(winston.format.timestamp(), logFormat)
 });
 exports.winstonLogger = winstonLogger;
+const GenerateRequestId = function () {
+    return requestId = uuid.v4();
+};
+exports.GenerateRequestId = GenerateRequestId;
+// export class WinstonLogger {
+//   private _instance : any;
+//   private constructor() {
+//      this._instance = new winstonLogger();
+//   }
+//    get instance() {
+//     return this._instance;
+//   }
+// }
+// export const logger = WinstonLogger.instance;
 //# sourceMappingURL=winstonLogger.js.map

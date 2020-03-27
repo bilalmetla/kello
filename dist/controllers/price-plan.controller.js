@@ -27,6 +27,7 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const auth_1 = require("../auth");
 const constants_1 = require("../constants");
+const logger_1 = require("../logger");
 let PricePlanController = class PricePlanController {
     constructor(pricePlanRepository, productsRepository) {
         this.pricePlanRepository = pricePlanRepository;
@@ -92,11 +93,11 @@ let PricePlanController = class PricePlanController {
             //   retailPrice: true,
             //   } 
             });
-            console.log('all products', JSON.stringify(allproducts));
+            logger_1.winstonLogger.debug('all products', JSON.stringify(allproducts));
             for (let p of allproducts) {
                 p.retailPrice = Math.round(((p.totalCost || 0) / (100 - markUpPercentage) * 100));
                 const p_updated = yield this.productsRepository.updateAll(p, undefined, { session });
-                console.log('price paln updatedProducts', JSON.stringify(p_updated));
+                logger_1.winstonLogger.debug('price paln updatedProducts', JSON.stringify(p_updated));
                 if (!p_updated.count) {
                     yield session.abortTransaction();
                     session.endSession();
@@ -105,10 +106,10 @@ let PricePlanController = class PricePlanController {
             }
             rateplan.isApplied = true;
             let updatedPricePlan = yield this.pricePlanRepository.updateAll(rateplan, undefined, { session });
-            console.log('price paln updatedPricePlan', JSON.stringify(updatedPricePlan));
+            logger_1.winstonLogger.debug('price paln updatedPricePlan', JSON.stringify(updatedPricePlan));
             const se_resp = yield session.commitTransaction();
             session.endSession();
-            console.log(`session response ${se_resp}`);
+            logger_1.winstonLogger.debug(`session response ${se_resp}`);
             return { id };
         });
     }
@@ -123,11 +124,11 @@ let PricePlanController = class PricePlanController {
             //   retailPrice: true,
             //   } 
             });
-            console.log('all products', JSON.stringify(allproducts));
+            logger_1.winstonLogger.debug('all products', JSON.stringify(allproducts));
             for (let p of allproducts) {
                 p.retailPrice = 0;
                 const p_updated = yield this.productsRepository.updateAll(p, undefined, { session });
-                console.log('price paln updatedProducts', JSON.stringify(p_updated));
+                logger_1.winstonLogger.debug('price paln updatedProducts', JSON.stringify(p_updated));
                 if (!p_updated.count) {
                     yield session.abortTransaction();
                     session.endSession();

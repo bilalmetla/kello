@@ -31,6 +31,7 @@ const auth_1 = require("../auth");
 const util_1 = require("util");
 const { sign } = require('jsonwebtoken');
 const signAsync = util_1.promisify(sign);
+const logger_1 = require("../logger");
 let PartnersController = class PartnersController {
     constructor(partnersRepository, activationsRepository, userRepository) {
         this.partnersRepository = partnersRepository;
@@ -90,7 +91,7 @@ let PartnersController = class PartnersController {
                 }
             };
             let foundCust = yield this.partnersRepository.find(filter);
-            console.log(foundCust);
+            logger_1.winstonLogger.debug(foundCust);
             if (foundCust && foundCust.length === 0) {
                 const tokenObject = { username: phone };
                 let token = yield signAsync(tokenObject, auth_1.JWT_SECRET);
@@ -122,8 +123,8 @@ let PartnersController = class PartnersController {
             let phone = activations.phone;
             let smsCode = activations.smsCode;
             let actRecord = yield this.activationsRepository.findOne({ "where": { phone, smsCode } });
-            console.log(actRecord);
             if (actRecord) {
+                logger_1.winstonLogger.debug(JSON.stringify(actRecord));
                 let customer = { phone, isActivated: true };
                 yield this.partnersRepository.updateAll(customer, { phone });
                 yield this.activationsRepository.deleteAll({ phone });

@@ -33,6 +33,7 @@ const { sign, verify, decode } = require('jsonwebtoken');
 const signAsync = util_1.promisify(sign);
 const verifyAsync = util_1.promisify(verify);
 const auth_2 = require("../auth");
+const logger_1 = require("../logger");
 let UserController = class UserController {
     constructor(userRepository) {
         this.userRepository = userRepository;
@@ -88,7 +89,7 @@ let UserController = class UserController {
                 //const userInfo = this.userRepository.findOne({"where":{phone}});
                 const userInfo = yield this.userRepository.findOne({ "where": { username: user.username } });
                 let pwd = yield signAsync(user.password, auth_1.JWT_SECRET);
-                //console.log("jwt signed password: ", pwd);
+                //logger.debug("jwt signed password: ", pwd);
                 let dbPassword = yield verifyAsync((_a = userInfo) === null || _a === void 0 ? void 0 : _a.password, auth_1.JWT_SECRET);
                 if (!userInfo) {
                     return constants_1.CONSTANTS.AUTHNETICATION_FAILED;
@@ -101,7 +102,7 @@ let UserController = class UserController {
                 }
             }
             catch (ex) {
-                console.log(ex);
+                logger_1.winstonLogger.debug(ex);
                 return constants_1.CONSTANTS.AUTHNETICATION_FAILED;
             }
         });

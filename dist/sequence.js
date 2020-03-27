@@ -26,6 +26,7 @@ const rest_1 = require("@loopback/rest");
 const authentication_1 = require("@loopback/authentication");
 const SequenceActions = rest_1.RestBindings.SequenceActions;
 const logger_1 = require("./logger");
+const uuid = require("uuid");
 let MySequence = class MySequence {
     constructor(findRoute, parseParams, invoke, send, reject, authenticateRequest) {
         this.findRoute = findRoute;
@@ -37,38 +38,45 @@ let MySequence = class MySequence {
     }
     handle(context) {
         return __awaiter(this, void 0, void 0, function* () {
+            let startTime = process.hrtime();
+            let requestId = uuid.v4();
             try {
+                if (process.env.requests) {
+                    process.env.requests = (parseInt(process.env.requests) + 1).toString();
+                }
                 logger_1.winstonLogger.info('-----------------------request-------------------------------');
-                logger_1.winstonLogger.info(`route:  ${context.request.path}`);
-                //console.log('-----------------------request-------------------------------');
-                //console.log(`route:  ${context.request.path}`) ;
+                logger_1.winstonLogger.info(`requestId: ${requestId} | api:  ${context.request.path}`);
+                logger_1.winstonLogger.debug(`requestId: ${requestId} | header:  ${JSON.stringify(context.request.headers)}`);
                 const { request, response } = context;
                 const route = this.findRoute(request);
                 const args = yield this.parseParams(request, route);
-                //console.log(`route ${route} | request:  ${JSON.stringify(args) }`) ;
-                logger_1.winstonLogger.debug(`route ${route} | request:  ${JSON.stringify(args)}`);
+                logger_1.winstonLogger.debug(`requestId: ${requestId} | request:  ${JSON.stringify(args)} | route ${route}`);
                 //call authentication action
                 yield this.authenticateRequest(request);
                 const result = yield this.invoke(route, args);
-                //console.log(`route ${route} | response:  ${JSON.stringify(result) }`) ;
-                logger_1.winstonLogger.debug(`route ${route} | response:  ${JSON.stringify(result)}`);
+                logger_1.winstonLogger.debug(`requestId: ${requestId} | response:  ${JSON.stringify(result)} | route ${route}`);
+                if (process.env.successResponses) {
+                    process.env.successResponses = (parseInt(process.env.successResponses) + 1).toString();
+                }
+                calculateResponseTime(startTime);
                 this.send(response, result);
             }
             catch (err) {
-                // console.error(`error:  ${JSON.stringify(err) }`) ;
-                logger_1.winstonLogger.error(`error:  ${JSON.stringify(err)}`);
+                if (process.env.errorResponses) {
+                    process.env.errorResponses = (parseInt(process.env.errorResponses) + 1).toString();
+                }
+                logger_1.winstonLogger.error(`requestId: ${requestId} | error:  ${JSON.stringify(err)}`);
                 if (err.code === 'AUTHENTICATION_STRATEGY_NOT_FOUND' ||
                     err.code === 'USER_PROFILE_NOT_FOUND') {
-                    //console.error(`err.code:  ${JSON.stringify(err) }`) ;
-                    logger_1.winstonLogger.error(`err.code:  ${JSON.stringify(err)}`);
+                    logger_1.winstonLogger.error(`requestId: ${requestId} | err.code:  ${JSON.stringify(err)}`);
                     Object.assign(err, { statusCode: 401 /* Unauthorized */ });
                 }
-                console.error(`reject err:  ${JSON.stringify(err)}`);
+                logger_1.winstonLogger.error(`requestId: ${requestId} | reject err:  ${JSON.stringify(err)}`);
                 if (err.message && typeof err.message === 'object') {
                     err.message = "Valid Access Token Required!";
                 }
-                //console.error(`sending final err:  ${JSON.stringify(err) }`) ;
-                logger_1.winstonLogger.error(`sending final err:  ${JSON.stringify(err)}`);
+                logger_1.winstonLogger.error(`requestId: ${requestId} | sending final err:  ${JSON.stringify(err)}`);
+                calculateResponseTime(startTime);
                 this.reject(context, err);
             }
         });
@@ -84,4 +92,14 @@ MySequence = __decorate([
     __metadata("design:paramtypes", [Function, Function, Function, Function, Function, Function])
 ], MySequence);
 exports.MySequence = MySequence;
+function calculateResponseTime(startTime) {
+    if (startTime && startTime.length > 1) {
+        var dx = process.hrtime(startTime);
+        var time = (dx[0] * 1000) + (dx[1] / 1000000); // converting time to milli seconds
+        process.env.lastResponseTime = time.toString();
+        if (process.env.avgResponseTime && process.env.requests) {
+            process.env.avgResponseTime = ((parseInt(process.env.avgResponseTime + time) / parseInt(process.env.requests)).toFixed(2)).toString();
+        }
+    }
+}
 //# sourceMappingURL=sequence.js.map

@@ -28,6 +28,7 @@ const repositories_1 = require("../repositories");
 const constants_1 = require("../constants");
 const auth_1 = require("../auth");
 const firebase_1 = require("../firebase");
+const logger_1 = require("../logger");
 let CustomersOrdersController = class CustomersOrdersController {
     constructor(customersRepository, partnersRepository, productsRepository, orderdetailsRepository, ordersRepository) {
         this.customersRepository = customersRepository;
@@ -88,8 +89,8 @@ let CustomersOrdersController = class CustomersOrdersController {
                 return constants_1.CONSTANTS.HAWKER_NOT_AVAILABLE;
             }
             nearestPartner = nearestPartner[0];
-            console.log('nearestPartner ..');
-            console.log(JSON.stringify(nearestPartner));
+            logger_1.winstonLogger.debug('nearestPartner ..');
+            logger_1.winstonLogger.debug(JSON.stringify(nearestPartner));
             //start a transaction 
             //const session = (this.customersRepository.dataSource.connector as any).client.startSession();
             //session.startTransaction();
@@ -112,12 +113,12 @@ let CustomersOrdersController = class CustomersOrdersController {
             let productIds = items.map((it) => {
                 return { id: it.productId };
             });
-            console.log('productids ', JSON.stringify(productIds));
+            logger_1.winstonLogger.debug('productids ', JSON.stringify(productIds));
             let products = yield this.productsRepository.find({
                 where: { or: productIds },
             });
-            console.log('products for order ');
-            console.log(JSON.stringify(products));
+            logger_1.winstonLogger.debug('products for order ');
+            logger_1.winstonLogger.debug(JSON.stringify(products));
             if (!products) {
                 //await session.abortTransaction();
                 //session.endSession();
@@ -139,12 +140,12 @@ let CustomersOrdersController = class CustomersOrdersController {
                 orderdetail.salePriceUnitsId = pro.salePriceUnitsId;
                 orderdetailList.push(orderdetail);
             });
-            console.log('orderdetailList ');
-            console.log(JSON.stringify(orderdetailList));
+            logger_1.winstonLogger.debug('orderdetailList ');
+            logger_1.winstonLogger.debug(JSON.stringify(orderdetailList));
             // orderdetailList = asd;
             if (orderdetailList.length > 0) {
                 let orderDetailCreated = yield this.orderdetailsRepository.createAll(orderdetailList);
-                console.log('orderDetailCreated ', JSON.stringify(orderDetailCreated));
+                logger_1.winstonLogger.debug('orderDetailCreated ', JSON.stringify(orderDetailCreated));
                 if (!orderDetailCreated) {
                     //await session.abortTransaction();
                     //session.endSession();
@@ -205,11 +206,11 @@ let CustomersOrdersController = class CustomersOrdersController {
             //await this.ordersRepository.updateById(id, orders);
             yield this.customersRepository.orders(customerId).patch(orders, { id: id });
             const customerInfo = yield this.customersRepository.findById(customerId);
-            //console.log("orderUpdated: ", orderUpdated);
+            //logger.debug("orderUpdated: ", orderUpdated);
             // orders.id = id;
             const response = { id: id, isDelivered: orders.isDelivered, orderStatus: orders.orderStatus,
                 customerId: customerId };
-            console.log('sending notification to device token ', customerInfo.deviceToken);
+            logger_1.winstonLogger.debug('sending notification to device token ', customerInfo.deviceToken);
             if (customerInfo.deviceToken) {
                 const firebase = new firebase_1.Firebase();
                 const payload = {

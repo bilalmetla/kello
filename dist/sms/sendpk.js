@@ -8,7 +8,7 @@ class SendPk {
             let username = 923136604801;
             let password = 'sendpk@1991';
             let mobile = parseInt(receiverMobile);
-            let message = 'Your Kello Store Activation OTP Code: ' + OTP;
+            let message = 'Your Kellostore Activation OTP Code: ' + OTP;
             let url = `https://sendpk.com/api/sms.php?username=${username}&password=${password}&sender=BrandName&mobile=${mobile}&message=${message}`;
             https.get(url, function (response) {
                 response.setEncoding('utf8');

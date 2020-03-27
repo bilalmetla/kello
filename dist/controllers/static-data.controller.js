@@ -24,6 +24,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const repositories_1 = require("../repositories");
+const logger_1 = require("../logger");
 let StaticDataController = class StaticDataController {
     constructor(ratingReasonsRepository, customersRepository, ordersRepository, configurationsRepository) {
         this.ratingReasonsRepository = ratingReasonsRepository;
@@ -53,7 +54,7 @@ let StaticDataController = class StaticDataController {
             }
             //end for order rating things
             const configurations = yield this.configurationsRepository.find();
-            console.log("Found configurations ..", configurations);
+            logger_1.winstonLogger.debug("Found configurations ..", configurations);
             if (configurations && configurations.length > 0) {
                 arr_resp.androidAppVersion = configurations[0].androidAppVersion;
             }
