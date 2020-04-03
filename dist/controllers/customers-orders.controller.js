@@ -157,6 +157,19 @@ let CustomersOrdersController = class CustomersOrdersController {
             //let partnerInfo =  {id: nearestPartner.id, name: nearestPartner.name, location: nearestPartner.location, phone: nearestPartner.phone }
             //return { orderId: createdOrder.id, partner: partnerInfo  };
             delete createdOrder.items;
+            //send a notification to hawker. currently send it to kellostore default hawker.
+            logger_1.winstonLogger.debug('sending notification to device token ', nearestPartner.deviceToken);
+            if (nearestPartner.deviceToken) {
+                const firebase = new firebase_1.Firebase();
+                const payload = {
+                    // data: {"orderId": id, "customerId": nearestPartner.id},
+                    notification: {
+                        title: 'Kellostore',
+                        body: 'There is a new order at your store. Deliver it quicly.'
+                    }
+                };
+                firebase.sendNotification(nearestPartner.deviceToken, payload);
+            }
             return { order: createdOrder, partner: nearestPartner };
         });
     }

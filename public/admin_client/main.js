@@ -48,7 +48,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Configurations</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Configurations Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"configuration\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{configuration.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"androidAppVersion\">Android App Version</label>\n        <input [(ngModel)]=\"configuration.androidAppVersion\" id=\"androidAppVersion\" name=\"androidAppVersion\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"sms_username\">SMS Username</label>\n        <input [(ngModel)]=\"configuration.sms_username\" id=\"sms_username\" name=\"sms_username\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"sms_password\">SMS Password</label>\n        <input [(ngModel)]=\"configuration.sms_password\" id=\"sms_password\" name=\"sms_password\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"isProductionInstance\">Is Production Instance</label>\n        <input type=\"checkbox\" [(ngModel)]=\"configuration.isProductionInstance\" id=\"isProductionInstance\" name=\"isProductionInstance\" class=\"form-control\">\n      </div>\n    \n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Configurations</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Configurations Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"configuration\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{configuration.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"androidAppVersion\">Android App Version</label>\n        <input [(ngModel)]=\"configuration.androidAppVersion\" id=\"androidAppVersion\" name=\"androidAppVersion\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"sms_username\">SMS Username</label>\n        <input [(ngModel)]=\"configuration.sms_username\" id=\"sms_username\" name=\"sms_username\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"sms_password\">SMS Password</label>\n        <input type=\"password\" [(ngModel)]=\"configuration.sms_password\" id=\"sms_password\" name=\"sms_password\" class=\"form-control\">\n      </div>\n    \n      <div class=\"form-group\">\n        <label for=\"sms_password\">Store Device Token</label>\n        <input type=\"text\" [(ngModel)]=\"configuration.storeDeviceToken\" id=\"storeDeviceToken\" name=\"storeDeviceToken\" class=\"form-control\">\n      </div>\n\n\n      <div class=\"form-group\">\n        <label for=\"isProductionInstance\">Is Production Instance</label>\n        <input type=\"checkbox\" [(ngModel)]=\"configuration.isProductionInstance\" id=\"isProductionInstance\" name=\"isProductionInstance\" class=\"form-control\">\n      </div>\n    \n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancel</button>\n    </form>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -61,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Configurations</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Configurations List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../configurations', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"configurationList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Android App Version</th>\n          <th class=\"border-top-0\" scope=\"col\">SMS Username</th>\n          <th class=\"border-top-0\" scope=\"col\">SMS Password</th>\n          <th class=\"border-top-0\" scope=\"col\">Is Production Instance</th>\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of configurationList\" [class.active]=\"item === selectedConfiguration\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.androidAppVersion}}</td>\n          <td>{{item.sms_username}}</td>\n          <td>{{item.sms_password}}</td>\n          <td>{{item.isProductionInstance}}</td>\n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../configurations', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n            <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Configurations</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Configurations List</h2>\n  </div>\n  <div class=\"content\">\n    <form #f=\"ngForm\">\n      \n      <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n      <a [routerLink]=\"['../configurations', 'new' ]\" class=\"btn btn-default\">New</a>\n    </form>\n  </div>\n</div>\n<div class=\"card\" *ngIf=\"configurationList.length > 0\">\n  <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n  <div class=\"table-responsive\">\n    <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n      <thead>\n        <tr>\n          <th class=\"border-top-0\" scope=\"col\">Id</th>\n          <th class=\"border-top-0\" scope=\"col\">Android App Version</th>\n          <th class=\"border-top-0\" scope=\"col\">SMS Username</th>\n          <!-- <th class=\"border-top-0\" scope=\"col\">SMS Password</th> -->\n          <th class=\"border-top-0\" scope=\"col\">Is Production Instance</th>\n          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of configurationList\" [class.active]=\"item === selectedConfiguration\">\n        \n          <td>{{item.id}}</td>\n          <td>{{item.androidAppVersion}}</td>\n          <td>{{item.sms_username}}</td>\n          <!-- <td>{{item.sms_password}}</td> -->\n          <td>{{item.isProductionInstance}}</td>\n          <td style=\"white-space: nowrap\">\n            <a [routerLink]=\"['../configurations', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n            <!-- <button (click)=\"delete(item)\" class=\"btn btn-danger\">Delete</button> -->\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -204,7 +204,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Login</a></li>\n    <li class=\"breadcrumb-item active\">Login</li>\n  </ol> -->\n  <!-- <div class=\"card \">\n    <div class=\"header\">\n      <h2 class=\"title\">Login</h2>\n    </div>\n    <div class=\"content\">\n      <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n      <form #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n      \n      \n        <div class=\"form-group\">\n          <label for=\"phone\">Username</label>\n          <input [(ngModel)]=\"login.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n        </div>\n      \n        <div class=\"form-group\">\n          <label for=\"password\">Password</label>\n          <input [(ngModel)]=\"login.password\" id=\"password\" name=\"password\" class=\"form-control\">\n        </div>\n      \n      \n        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Login</button>\n        \n      </form>\n    </div>\n  </div> -->\n \n\n  <div class=\"container login-container\" style=\"padding-left:25%\">\n    <div class=\"logo\" style=\"padding-left: 115px;\">\n            \n      <a class=\"simple-text\">\n                \n          <div class=\"logo-img\">\n                      <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\" style=\"width: 150px;\n                      height: 200px;\n                      padding-top: 50px;\">      \n          </div>\n                    \n      </a>\n        \n  </div>\n    <div class=\"row\">\n        <div class=\"col-md-6 login-form-1\">\n            <!-- <h3>Kello </h3> -->\n            <form #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n                <div class=\"form-group\">\n                  <label for=\"phone\">Username</label>\n                    <input type=\"text\" [(ngModel)]=\"login.username\" id=\"username\" name=\"username\"  class=\"form-control\" placeholder=\" Username *\" value=\"\" />\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"password\">Password</label>\n                    <input type=\"password\" [(ngModel)]=\"login.password\" id=\"password\" name=\"password\" class=\"form-control\" placeholder=\"Your Password *\" value=\"\" />\n                </div>\n                \n                <div class=\"form-group\">\n                  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Login</button>  \n                    \n                </div>\n                <!-- <div class=\"form-group\">\n                    <a href=\"#\" class=\"ForgetPwd\">Forget Password?</a>\n                </div> -->\n            </form>\n        </div>\n       \n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Login</a></li>\n    <li class=\"breadcrumb-item active\">Login</li>\n  </ol> -->\n  <!-- <div class=\"card \">\n    <div class=\"header\">\n      <h2 class=\"title\">Login</h2>\n    </div>\n    <div class=\"content\">\n      <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n      <form #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n      \n      \n        <div class=\"form-group\">\n          <label for=\"phone\">Username</label>\n          <input [(ngModel)]=\"login.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n        </div>\n      \n        <div class=\"form-group\">\n          <label for=\"password\">Password</label>\n          <input [(ngModel)]=\"login.password\" id=\"password\" name=\"password\" class=\"form-control\">\n        </div>\n      \n      \n        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Login</button>\n        \n      </form>\n    </div>\n  </div> -->\n \n\n  <div class=\"container login-container\" style=\"padding-left:25%\">\n    <div class=\"logo\" style=\"padding-left: 115px;\">\n            \n      <a class=\"simple-text\">\n                \n          <div class=\"logo-img\">\n                      <img src=\"../../assets/img/Kello_title_logo.png\" alt=\"\" style=\"width: 150px;\n                      height: 200px;\n                      padding-top: 50px;\">      \n          </div>\n                    \n      </a>\n        \n  </div>\n    <div class=\"row\">\n        <div class=\"col-md-6 login-form-1\">\n            <!-- <h3>Kello </h3> -->\n            <form #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n                <div class=\"form-group\">\n                  <label for=\"phone\">Username</label>\n                    <input type=\"text\" [(ngModel)]=\"login.username\" id=\"username\" name=\"username\"  class=\"form-control\" placeholder=\" Username *\" value=\"\" />\n                </div>\n                <div class=\"form-group\">\n                  <label for=\"password\">Password</label>\n                    <input type=\"password\" [(ngModel)]=\"login.password\" id=\"password\" name=\"password\" class=\"form-control\" placeholder=\"Your Password *\" value=\"\" />\n                </div>\n                \n                <div class=\"form-group\">\n                  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Login</button>  \n                  \n                    \n                </div>\n                <!-- <div class=\"form-group\">\n                    <a href=\"#\" class=\"ForgetPwd\">Forget Password?</a>\n                </div> -->\n            </form>\n        </div>\n       \n    </div>\n</div>");
 
 /***/ }),
 
@@ -282,7 +282,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n\n<div class=\"page-title-box\">\n        \n    <ol class=\"breadcrumb float-right\">\n                \n        <li class=\"breadcrumb-item\">\n            <a href=\"javascript:void(0);\">Project</a>\n        </li>\n                <li class=\"breadcrumb-item active\">Partners</li>\n            \n    </ol>\n        <h4 class=\"page-title\">Partners Detail</h4>\n    \n</div>\n<!-- End page title box -->\n\n<div class=\"row\">\n        \n    <div class=\"col-xl-12\">\n                \n        <div class=\"card-box\">\n                        <p *ngIf=\"errors\">{{ errors }}</p>\n                        \n            <form #partnerForm=\"ngForm\" *ngIf=\"partner\" class=\"form-horizontal\">\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{partner.id || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"name\">\n                                                    Name <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"string\" required [(ngModel)]=\"partner.name\" name=\"name\" #name=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"phone\">\n                                                    Phone <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"tel\" required [(ngModel)]=\"partner.phone\" name=\"phone\" #phone=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"accessToken\">                                    AccessToken                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{partner.accessToken || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"isActivated\">                                    Is Activated                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{partner.isActivated || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"pin\">                                    Pin                                </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                                                                                            <input type=\"number\" [(ngModel)]=\"partner.pin\" name=\"pin\" class=\"form-control\">                                                                                                                \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"lastActive\">                                    Last Active                                </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                                                                                            <input type=\"Date\" [(ngModel)]=\"partner.lastActive\" name=\"lastActive\" class=\"form-control\">                                                                                                                \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"creationDate\">                                    CreationDate                                </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                                                                                            <input type=\"Date\" [(ngModel)]=\"partner.creationDate\" name=\"creationDate\" class=\"form-control\">                                                                                                                \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"partnertypesId\">\n                                                    Partner Type <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select required [(ngModel)]=\"partner.partnertypesId\" name=\"partnertypesId\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of partnertypesId_list\" value=\"{{ c.id }}\">{{ c.typeName }}</option>\n                                                                 \n                        </select>\n                                                                                                                                                                                             \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"offersId\">                                    Offer                                </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                                                                                            \n                        <select [(ngModel)]=\"partner.offersId\" name=\"offersId\" class=\"form-control\">\n                                                                            <option *ngFor=\"let c of offersId_list\" value=\"{{ c.id }} \">{{ c.offerName }}</option>\n                                                                         \n                        </select>\n                                                                                                                                \n                    </div>\n                                        \n                </div>\n                                                \n                <div class=\"row\">\n                                        \n                    <div class=\"col-sm-6 text-left\">\n                        <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"partnerForm.invalid\">Save</button>\n                    </div>\n                                        \n                    <div class=\"col-sm-6 text-right\">\n                        <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n                    </div>\n                                    \n                </div>\n                            \n            </form>\n                    \n        </div>\n        <!-- end card-->\n            \n    </div>\n    <!-- end col -->\n    \n</div>\n<!-- end row -->\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n\n<div class=\"page-title-box\">\n        \n    <ol class=\"breadcrumb float-right\">\n                \n        <li class=\"breadcrumb-item\">\n            <a href=\"javascript:void(0);\">Project</a>\n        </li>\n                <li class=\"breadcrumb-item active\">Partners</li>\n            \n    </ol>\n        <h4 class=\"page-title\">Partners Detail</h4>\n    \n</div>\n<!-- End page title box -->\n\n<div class=\"row\">\n        \n    <div class=\"col-xl-12\">\n                \n        <div class=\"card-box\">\n                        <p *ngIf=\"errors\">{{ errors }}</p>\n                        \n            <form #partnerForm=\"ngForm\" *ngIf=\"partner\" class=\"form-horizontal\">\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{partner.id || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"name\">\n                                                    Name <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"string\" required [(ngModel)]=\"partner.name\" name=\"name\" #name=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"phone\">\n                                                    Phone <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                        <input type=\"tel\" required [(ngModel)]=\"partner.phone\" name=\"phone\" #phone=\"ngModel\" class=\"form-control\">                                                                                                            \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"accessToken\">                                    AccessToken                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{partner.accessToken || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"isActivated\">                                    Is Activated                                </label>\n                                                                                                                           <div class=\"col-sm-10\">                            {{partner.isActivated || 'n/a'}}                                                                                                        </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                 <label class=\"col-sm-2 col-form-label\" for=\"pin\">    Pin  </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                     <input type=\"number\" [(ngModel)]=\"partner.pin\" name=\"pin\" class=\"form-control\">                                                                                                                \n                    </div>                  \n                </div>\n\n                <div class=\"form-group row\">\n                    <label class=\"col-sm-2 col-form-label\" for=\"deviceId\">    Device Id  </label>                                                                                                                              \n                       <div class=\"col-sm-10\">\n                        <input type=\"text\" [(ngModel)]=\"partner.deviceId\" name=\"deviceId\" class=\"form-control\">                                                                                                                \n                       </div>                  \n                </div>\n\n                <div class=\"form-group row\">\n                    <label class=\"col-sm-2 col-form-label\" for=\"deviceToken\">   Device Token  </label>                                                                                                              \n                       <div class=\"col-sm-10\">\n                        <input type=\"text\" [(ngModel)]=\"partner.deviceToken\" name=\"deviceToken\" class=\"form-control\">                                                                                                                \n                       </div>                  \n                </div>\n\n                   \n                <div class=\"form-group row\">\n                     <label class=\"col-sm-2 col-form-label\" for=\"lastActive\">                                    Last Active                                </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                                                                                            <input type=\"Date\" [(ngModel)]=\"partner.lastActive\" name=\"lastActive\" class=\"form-control\">                                                                                                                \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                            <label class=\"col-sm-2 col-form-label\" for=\"creationDate\">                                    CreationDate                                </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                                                                                            <input type=\"Date\" [(ngModel)]=\"partner.creationDate\" name=\"creationDate\" class=\"form-control\">                                                                                                                \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                                                                        \n                    <label class=\"col-sm-2 col-form-label\" for=\"partnertypesId\">\n                                                    Partner Type <span style=\"color:red\">*</span>\n                                                \n                    </label>\n                                                                                                                   \n                    <div class=\"col-sm-10\">\n                                                                                    \n                        <select required [(ngModel)]=\"partner.partnertypesId\" name=\"partnertypesId\" class=\"form-control\">\n                                                                    <option *ngFor=\"let c of partnertypesId_list\" value=\"{{ c.id }}\">{{ c.typeName }}</option>\n                                                                 \n                        </select>\n                                                                                                                                                                                             \n                    </div>\n                                        \n                </div>\n                                                                           \n                <div class=\"form-group row\">\n                 <label class=\"col-sm-2 col-form-label\" for=\"offersId\">                                    Offer                                </label>\n                                                                                                                           \n                    <div class=\"col-sm-10\">\n                                                                                            \n                        <select [(ngModel)]=\"partner.offersId\" name=\"offersId\" class=\"form-control\">\n                         <option *ngFor=\"let c of offersId_list\" value=\"{{ c.id }} \">{{ c.offerName }}</option>                                                 \n                        </select>\n                                                                                                                                \n                    </div>\n                                        \n                </div>\n                                                \n                <div class=\"row\">\n                                        \n                    <div class=\"col-sm-6 text-left\">\n                        <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"partnerForm.invalid\">Save</button>\n                    </div>\n                                        \n                    <div class=\"col-sm-6 text-right\">\n                        <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n                    </div>\n                                    \n                </div>\n                            \n            </form>\n                    \n        </div>\n        <!-- end card-->\n            \n    </div>\n    <!-- end col -->\n    \n</div>\n<!-- end row -->\n\n");
 
 /***/ }),
 
@@ -295,7 +295,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Partners</li>\n  </ol>\n  <div class=\"card\">\n    <div class=\"header\">\n      <h2 class=\"title\">Partners List</h2>\n    </div>\n    <div class=\"content\">\n      <form #f=\"ngForm\">\n        \n        <div class=\"form-group\">\n          <label for=\"phone\">Phone:</label>\n          <input [(ngModel)]=\"filter.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n        </div>\n        \n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n        <a [routerLink]=\"['../partner', 'new' ]\" class=\"btn btn-default\">New</a>\n      </form>\n    </div>\n  </div>\n  \n  <div class=\"card\" *ngIf=\"partnerList.length > 0\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"table-responsive\">\n      <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n        <thead>\n          <tr>\n            <th class=\"border-top-0\" scope=\"col\">Id</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Name</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Phone</th>\n                                          <th class=\"border-top-0\" scope=\"col\">AccessToken</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Is Activated</th>\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Pin</th> -->\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Last Active</th> -->\n                                          <th class=\"border-top-0\" scope=\"col\">CreationDate</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Partner Type</th>\n                                          \n                                          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of partnerList\" [class.active]=\"item === selectedPartner\">\n          \n            <td>{{item.id}}</td>\n                                    <td>{{item.name}}</td>\n                                    <td>{{item.phone}}</td>\n                                    <td>{{item.accessToken}}</td>\n                                    <td>{{item.isActivated}}</td>\n                                    <!-- <td>{{item.pin}}</td>\n                                    <td>{{item.lastActive}}</td> -->\n                                    <td>{{item.creationDate}}</td>\n                                    <td>{{item.partnertypesId}}</td>\n                                    \n            \n            <td style=\"white-space: nowrap\">\n              <a [routerLink]=\"['../partner', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n              <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  ");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Partners</li>\n  </ol>\n  <div class=\"card\">\n    <div class=\"header\">\n      <h2 class=\"title\">Partners List</h2>\n    </div>\n    <div class=\"content\">\n      <form #f=\"ngForm\">\n        \n        <div class=\"form-group\">\n          <label for=\"phone\">Phone:</label>\n          <input [(ngModel)]=\"filter.phone\" id=\"phone\" name=\"phone\" class=\"form-control\">\n        </div>\n        \n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n        <a [routerLink]=\"['../partner', 'new' ]\" class=\"btn btn-default\">New</a>\n      </form>\n    </div>\n  </div>\n  \n  <div class=\"card\" *ngIf=\"partnerList.length > 0\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"table-responsive\">\n      <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n        <thead>\n          <tr>\n            <th class=\"border-top-0\" scope=\"col\">Id</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Name</th>\n                                          <th class=\"border-top-0\" scope=\"col\">Phone</th>\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">AccessToken</th> -->\n                                          <th class=\"border-top-0\" scope=\"col\">Is Activated</th>\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Pin</th> -->\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Last Active</th> -->\n                                          <th class=\"border-top-0\" scope=\"col\">Device Token</th>\n                                          <!-- <th class=\"border-top-0\" scope=\"col\">Partner Type</th> -->\n                                          \n                                          <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of partnerList\" [class.active]=\"item === selectedPartner\">\n          \n            <td>{{item.id}}</td>\n                                    <td>{{item.name}}</td>\n                                    <td>{{item.phone}}</td>\n                                    <!-- <td>{{item.accessToken}}</td> -->\n                                    <td>{{item.isActivated}}</td>\n                                    <!-- <td>{{item.pin}}</td>\n                                    <td>{{item.lastActive}}</td> -->\n                                    <td>{{item.deviceToken}}</td>\n                                    <!-- <td>{{item.partnertypesId}}</td> -->\n                                    \n            \n            <td style=\"white-space: nowrap\">\n              <a [routerLink]=\"['../partner', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n              <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  ");
 
 /***/ }),
 
@@ -334,7 +334,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n   <ol class=\"breadcrumb float-right\">\n      <li class=\"breadcrumb-item\">\n         <a href=\"javascript:void(0);\">Project</a>\n      </li>\n      <li class=\"breadcrumb-item active\">Products</li>\n   </ol>\n   <h4 class=\"page-title\">Products Detail</h4>\n</div>\n<!-- End page title box -->\n<div class=\"row\">\n   <div class=\"col-xl-12\">\n      <div class=\"card-box\">\n         <p *ngIf=\"errors\">{{ errors }}</p>\n         <form #productForm=\"ngForm\" *ngIf=\"product\" class=\"form-horizontal\">\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n               <div class=\"col-sm-10\">                            {{product.id || 'n/a'}}                                                                                                        </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"eng_title\">\n               Eng Title <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"string\" required [(ngModel)]=\"product.eng_title\" name=\"eng_title\" #eng_title=\"ngModel\" class=\"form-control\">                                                                                                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"urdu_title\">\n               Urdu Title <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"string\" required [(ngModel)]=\"product.urdu_title\" name=\"urdu_title\" #urdu_title=\"ngModel\" class=\"form-control\">                                                                                                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"quentityOnHand\">                            Quentity On Hand                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" readonly [(ngModel)]=\"product.quentityOnHand\" name=\"quentityOnHand\" #quentityOnHand=\"ngModel\" class=\"form-control\">                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Buying Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.buyingPriceUnitsId\" name=\"buyingPriceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"buyingPrice\">                            Buying Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.buyingPrice\" name=\"buyingPrice\" #buyingPrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Sale Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.salePriceUnitsId\" name=\"salePriceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"salePrice\">                            Sale Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.salePrice\" name=\"salePrice\" #salePrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Retail Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.retailPiceUnitsId\" name=\"retailPiceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"retailPrice\">                            Retail Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.retailPrice\" name=\"retailPrice\" #retailPrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"producttypesId\">\n               Product Type <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <select required [(ngModel)]=\"product.producttypesId\" name=\"producttypesId\" class=\"form-control\">\n                  <option *ngFor=\"let c of producttypesId_list\" value=\"{{ c.id }}\">{{ c.typeName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n                <label class=\"col-sm-2 col-form-label\" for=\"description\">        \n                                       Description                         </label>\n                <div class=\"col-sm-10\">\n                   <textarea [(ngModel)]=\"product.description\" name=\"description\" #description=\"ngModel\" class=\"form-control\"> \n                       </textarea>                                                                                       \n                </div>\n             </div>\n\n             <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"isAvailable\">        \n                  Is Available      </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"checkbox\" [(ngModel)]=\"product.isAvailable\" name=\"isAvailable\" #isAvailable=\"ngModel\" class=\"form-control\" /> \n                                                                                                         \n               </div>\n            </div>\n\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"displayingPeriority\">\n                  Displaying Periority <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <select required [(ngModel)]=\"product.displayingPeriority\" name=\"displayingPeriority\" class=\"form-control\">\n                  <option *ngFor=\"let c of displayingPeriority_list\" value=\"{{ c.value }}\">{{ c.id }}</option>\n                  </select>\n               </div>\n            </div>\n\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"image\">\n               Image <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"file\" required accept=\"image/*\" (change)=\"changeImageListener($event)\">\n                  <img [src]=\"product.imageUrl\" style=\"width:100px; height:100px\"/>                                                                        \n               </div>\n            </div>\n            <div class=\"row\">\n               <div class=\"col-sm-6 text-left\">\n                  <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"productForm.invalid\">Save</button>\n               </div>\n               <div class=\"col-sm-6 text-right\">\n                  <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n               </div>\n            </div>\n         </form>\n      </div>\n      <!-- end card-->\n   </div>\n   <!-- end col -->\n</div>\n<!-- end row -->");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n   <ol class=\"breadcrumb float-right\">\n      <li class=\"breadcrumb-item\">\n         <a href=\"javascript:void(0);\">Project</a>\n      </li>\n      <li class=\"breadcrumb-item active\">Products</li>\n   </ol>\n   <h4 class=\"page-title\">Products Detail</h4>\n</div>\n<!-- End page title box -->\n<div class=\"row\">\n   <div class=\"col-xl-12\">\n      <div class=\"card-box\">\n         <p *ngIf=\"errors\">{{ errors }}</p>\n         <form #productForm=\"ngForm\" *ngIf=\"product\" class=\"form-horizontal\">\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n               <div class=\"col-sm-10\">                            {{product.id || 'n/a'}}                                                                                                        </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"eng_title\">\n               Eng Title <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"string\" required [(ngModel)]=\"product.eng_title\" name=\"eng_title\" #eng_title=\"ngModel\" class=\"form-control\">                                                                                                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"urdu_title\">\n               Urdu Title <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"string\" required [(ngModel)]=\"product.urdu_title\" name=\"urdu_title\" #urdu_title=\"ngModel\" class=\"form-control\">                                                                                                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"quentityOnHand\">                            Quentity On Hand                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" readonly [(ngModel)]=\"product.quentityOnHand\" name=\"quentityOnHand\" #quentityOnHand=\"ngModel\" class=\"form-control\">                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Buying Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.buyingPriceUnitsId\" name=\"buyingPriceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"buyingPrice\">                            Buying Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.buyingPrice\" name=\"buyingPrice\" #buyingPrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Sale Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.salePriceUnitsId\" name=\"salePriceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"salePrice\">                            Sale Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.salePrice\" name=\"buyingPrice\" #salePrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Retail Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.retailPiceUnitsId\" name=\"retailPiceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"retailPrice\">                            Retail Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.retailPrice\" name=\"buyingPrice\" #retailPrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"producttypesId\">\n               Product Type <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <select required [(ngModel)]=\"product.producttypesId\" name=\"producttypesId\" class=\"form-control\">\n                  <option *ngFor=\"let c of producttypesId_list\" value=\"{{ c.id }}\">{{ c.typeName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n                <label class=\"col-sm-2 col-form-label\" for=\"description\">        \n                                       Description                         </label>\n                <div class=\"col-sm-10\">\n                   <textarea [(ngModel)]=\"product.description\" name=\"description\" #description=\"ngModel\" class=\"form-control\"> \n                       </textarea>                                                                                       \n                </div>\n             </div>\n\n             <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"isAvailable\">        \n                  Is Available      </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"checkbox\" [(ngModel)]=\"product.isAvailable\" name=\"isAvailable\" #isAvailable=\"ngModel\" class=\"form-control\" /> \n                                                                                                         \n               </div>\n            </div>\n\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"displayingPeriority\">\n                  Displaying Periority <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <select required [(ngModel)]=\"product.displayingPeriority\" name=\"displayingPeriority\" class=\"form-control\">\n                  <option *ngFor=\"let c of displayingPeriority_list\" value=\"{{ c.value }}\">{{ c.id }}</option>\n                  </select>\n               </div>\n            </div>\n\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"image\">\n               Image <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"file\" required accept=\"image/*\" (change)=\"changeImageListener($event)\">\n                  <img [src]=\"product.image\" style=\"width:100px; height:100px\"/>                                                                        \n               </div>\n            </div>\n            <div class=\"row\">\n               <div class=\"col-sm-6 text-left\">\n                  <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"productForm.invalid\">Save</button>\n               </div>\n               <div class=\"col-sm-6 text-right\">\n                  <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n               </div>\n            </div>\n         </form>\n      </div>\n      <!-- end card-->\n   </div>\n   <!-- end col -->\n</div>\n<!-- end row -->");
 
 /***/ }),
 
@@ -400,6 +400,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Rateplans</li>\n  </ol>\n  <div class=\"card\">\n    <div class=\"header\">\n      <h2 class=\"title\">Rateplans List</h2>\n    </div>\n    <div class=\"content\">\n      <form #f=\"ngForm\">\n        \n        <div class=\"form-group\">\n          <label for=\"ratePlanTitle\">Rate Plan Title:</label>\n          <input [(ngModel)]=\"filter.ratePlanTitle\" id=\"ratePlanTitle\" name=\"ratePlanTitle\" class=\"form-control\">\n        </div>\n        \n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n        <a [routerLink]=\"['../rateplan', 'new' ]\" class=\"btn btn-default\">New</a>\n      </form>\n    </div>\n  </div>\n  \n  <div class=\"card\" *ngIf=\"rateplanList.length > 0\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"table-responsive\">\n      <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n        <thead>\n          <tr>\n            <th class=\"border-top-0\" scope=\"col\">Id</th>\n            <th class=\"border-top-0\" scope=\"col\">Rate Plan Title</th>\n            <th class=\"border-top-0\" scope=\"col\">Created Date</th>\n            <th class=\"border-top-0\" scope=\"col\">Sale Markup</th>\n            <th class=\"border-top-0\" scope=\"col\">Retail Markup</th>\n            <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of rateplanList\" [class.active]=\"item === selectedRateplan\">\n          \n            <td>{{item.id}}</td>\n            <td>{{item.ratePlanTitle}}</td>\n            <td>{{item.createdDate | date}}</td>\n            <td>{{item.saleMarkup}}</td>\n            <td>{{item.retailMarkup}}</td>\n            \n            <td style=\"white-space: nowrap\">\n              <a [routerLink]=\"['../rateplan', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n              <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  ");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/shopping/shopping.component.html":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/shopping/shopping.component.html ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- <ol class=\"breadcrumb float-right\">\n    <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n    <li class=\"breadcrumb-item active\">Products</li>\n  </ol> -->\n  <div class=\"card\">\n    <div class=\"header\">\n      <!-- <h2 class=\"title\"> Fruits</h2> -->\n      <input type=\"radio\" (click)=\"getProductByType(2)\" checked=\"true\" id=\"fruits\" name=\"productType\" value=\"2\">\n      <label style=\"margin: 10px;\" for=\"fruits\" class=\"title\">Fruits</label>\n      <input type=\"radio\" (click)=\"getProductByType(1)\" id=\"vegetables\" name=\"productType\" value=\"1\">\n      <label style=\"margin: 10px;\" for=\"vegetables\" class=\"title\">Vegetables</label>\n\n    </div>\n    <!-- <div class=\"content\">\n      <form #f=\"ngForm\">\n        \n        <div class=\"form-group\">\n          <label for=\"eng_title\">Eng Title:</label>\n          <input [(ngModel)]=\"filter.eng_title\" id=\"eng_title\" name=\"eng_title\" class=\"form-control\">\n        </div>\n        \n        <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-primary\">Search</button>\n        <a [routerLink]=\"['../product', 'new' ]\" class=\"btn btn-default\">New</a>\n      </form>\n    </div> -->\n  </div>\n  \n  <div class=\"card\" *ngIf=\" productList != undefined && productList.length > 0\">\n    <p *ngIf=\"errors\">{{ errors }}</p>\n    <div class=\"table-responsive\">\n      <table class=\"table table-centered table-hover mb-0\" id=\"datatable\">\n        <thead>\n          <tr>\n            <th class=\"border-top-0\" scope=\"col\">Product</th>\n            <!-- <th class=\"border-top-0\" scope=\"col\">Name</th> -->\n            <th class=\"border-top-0\" scope=\"col\">Price</th> \n                                          \n            <th class=\"border-top-0\" scope=\"col\" style=\"width:120px\"></th>\n\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of productList | paginate: { itemsPerPage: 10, currentPage: p, totalItems: productList.length } \" [class.active]=\"item === selectedProduct\">\n          \n            <td>\n              <img src=\"{{item.imageUrl}}\" required style=\"width:50px; height:50px\"/>\n              {{item.displayName}} \n          </td>\n           <!-- <td>{{item.displayName}}</td>   -->                     \n            <td>{{item.retailPrice}} / {{unitsId_list[item.retailPiceUnitsId]}} </td> \n                                   \n            \n            <!-- <td style=\"white-space: nowrap\">\n              <a [routerLink]=\"['../product', item.id ]\" class=\"btn btn-secondary\">Edit</a>&nbsp;\n              <button (click)=\"delete(item)\"  class=\"btn btn-danger\">Delete</button>\n            </td> -->\n          </tr>\n        </tbody>\n      </table>\n\n      <pagination-controls class=\"pagination-controls\" (pageChange)=\"p = $event\"></pagination-controls>  \n\n    </div>\n  </div>\n  ");
 
 /***/ }),
 
@@ -906,7 +919,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var ActivationService = /** @class */ (function () {
     function ActivationService(http) {
         this.http = http;
-        this.baseUrl = "/activations";
+        this.baseUrl = "http://www.kellostore.com/activations";
         this.activationList = [];
     }
     ActivationService.prototype.findById = function (id) {
@@ -1069,26 +1082,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
 /* harmony import */ var _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./layouts/login-layout.component */ "./src/app/layouts/login-layout.component.ts");
-/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
-/* harmony import */ var _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./sidebar/sidebar.component */ "./src/app/sidebar/sidebar.component.ts");
-/* harmony import */ var _orders_orders_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./orders/orders.module */ "./src/app/orders/orders.module.ts");
-/* harmony import */ var _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./hotel/hotel.module */ "./src/app/hotel/hotel.module.ts");
-/* harmony import */ var _activation_activation_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./activation/activation.module */ "./src/app/activation/activation.module.ts");
-/* harmony import */ var _customer_customer_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./customer/customer.module */ "./src/app/customer/customer.module.ts");
-/* harmony import */ var _partner_partner_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./partner/partner.module */ "./src/app/partner/partner.module.ts");
-/* harmony import */ var _product_product_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./product/product.module */ "./src/app/product/product.module.ts");
-/* harmony import */ var _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./rateplan/rateplan.module */ "./src/app/rateplan/rateplan.module.ts");
-/* harmony import */ var _supply_supply_module__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./supply/supply.module */ "./src/app/supply/supply.module.ts");
-/* harmony import */ var _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./customerfeedback/customerfeedback.module */ "./src/app/customerfeedback/customerfeedback.module.ts");
-/* harmony import */ var _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./orderrating/orderrating.module */ "./src/app/orderrating/orderrating.module.ts");
-/* harmony import */ var _login_login_module__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./login/login.module */ "./src/app/login/login.module.ts");
-/* harmony import */ var _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./promotion/promotion.module */ "./src/app/promotion/promotion.module.ts");
-/* harmony import */ var _priceplan_priceplan_module__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./priceplan/priceplan.module */ "./src/app/priceplan/priceplan.module.ts");
-/* harmony import */ var _dashboard_dashboard_module__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./dashboard/dashboard.module */ "./src/app/dashboard/dashboard.module.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
-/* harmony import */ var _modals_message_dialog_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./modals/message-dialog.component */ "./src/app/modals/message-dialog.component.ts");
-/* harmony import */ var ngx_pagination__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ngx-pagination */ "./node_modules/ngx-pagination/dist/ngx-pagination.js");
-/* harmony import */ var _configuration_configuration_module__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./configuration/configuration.module */ "./src/app/configuration/configuration.module.ts");
+/* harmony import */ var _layouts_shopping_layout_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./layouts/shopping-layout.component */ "./src/app/layouts/shopping-layout.component.ts");
+/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
+/* harmony import */ var _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./sidebar/sidebar.component */ "./src/app/sidebar/sidebar.component.ts");
+/* harmony import */ var _orders_orders_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./orders/orders.module */ "./src/app/orders/orders.module.ts");
+/* harmony import */ var _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./hotel/hotel.module */ "./src/app/hotel/hotel.module.ts");
+/* harmony import */ var _activation_activation_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./activation/activation.module */ "./src/app/activation/activation.module.ts");
+/* harmony import */ var _customer_customer_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./customer/customer.module */ "./src/app/customer/customer.module.ts");
+/* harmony import */ var _partner_partner_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./partner/partner.module */ "./src/app/partner/partner.module.ts");
+/* harmony import */ var _product_product_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./product/product.module */ "./src/app/product/product.module.ts");
+/* harmony import */ var _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./rateplan/rateplan.module */ "./src/app/rateplan/rateplan.module.ts");
+/* harmony import */ var _supply_supply_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./supply/supply.module */ "./src/app/supply/supply.module.ts");
+/* harmony import */ var _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./customerfeedback/customerfeedback.module */ "./src/app/customerfeedback/customerfeedback.module.ts");
+/* harmony import */ var _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./orderrating/orderrating.module */ "./src/app/orderrating/orderrating.module.ts");
+/* harmony import */ var _login_login_module__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./login/login.module */ "./src/app/login/login.module.ts");
+/* harmony import */ var _shopping_shopping_module__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./shopping/shopping.module */ "./src/app/shopping/shopping.module.ts");
+/* harmony import */ var _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./promotion/promotion.module */ "./src/app/promotion/promotion.module.ts");
+/* harmony import */ var _priceplan_priceplan_module__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./priceplan/priceplan.module */ "./src/app/priceplan/priceplan.module.ts");
+/* harmony import */ var _dashboard_dashboard_module__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./dashboard/dashboard.module */ "./src/app/dashboard/dashboard.module.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var _modals_message_dialog_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./modals/message-dialog.component */ "./src/app/modals/message-dialog.component.ts");
+/* harmony import */ var ngx_pagination__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ngx-pagination */ "./node_modules/ngx-pagination/dist/ngx-pagination.js");
+/* harmony import */ var _configuration_configuration_module__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./configuration/configuration.module */ "./src/app/configuration/configuration.module.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -1138,6 +1153,8 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+
+
 //import { CustomDialogComponent} from './modal/custom-dialog.component';
 //import {ConfirmDialogComponent} from './modals/confirm-dialog.component';
 //import { InputDialogComponent} from './modals/input-dialog.component';
@@ -1153,39 +1170,41 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
                 ng_http_loader__WEBPACK_IMPORTED_MODULE_3__["NgHttpLoaderModule"].forRoot(),
-                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_28__["NgbModule"].forRoot(),
-                ngx_pagination__WEBPACK_IMPORTED_MODULE_30__["NgxPaginationModule"],
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_30__["NgbModule"].forRoot(),
+                ngx_pagination__WEBPACK_IMPORTED_MODULE_32__["NgxPaginationModule"],
                 _flight_flight_module__WEBPACK_IMPORTED_MODULE_0__["FlightModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_8__["APP_ROUTES"].slice(), __assign({}, _app_routes__WEBPACK_IMPORTED_MODULE_8__["APP_EXTRA_OPTIONS"])),
-                _orders_orders_module__WEBPACK_IMPORTED_MODULE_14__["OrdersModule"],
-                _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_15__["HotelModule"],
-                _activation_activation_module__WEBPACK_IMPORTED_MODULE_16__["ActivationModule"],
-                _customer_customer_module__WEBPACK_IMPORTED_MODULE_17__["CustomerModule"],
-                _partner_partner_module__WEBPACK_IMPORTED_MODULE_18__["PartnerModule"],
-                _product_product_module__WEBPACK_IMPORTED_MODULE_19__["ProductModule"],
-                _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_20__["RateplanModule"],
-                _supply_supply_module__WEBPACK_IMPORTED_MODULE_21__["SupplyModule"],
-                _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_22__["CustomerfeedbackModule"],
-                _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_23__["OrderratingModule"],
-                _login_login_module__WEBPACK_IMPORTED_MODULE_24__["LoginModule"],
-                _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_25__["PromotionModule"],
-                _priceplan_priceplan_module__WEBPACK_IMPORTED_MODULE_26__["PriceplanModule"],
-                _dashboard_dashboard_module__WEBPACK_IMPORTED_MODULE_27__["DashboardModule"],
-                _configuration_configuration_module__WEBPACK_IMPORTED_MODULE_31__["ConfigurationModule"],
+                _orders_orders_module__WEBPACK_IMPORTED_MODULE_15__["OrdersModule"],
+                _hotel_hotel_module__WEBPACK_IMPORTED_MODULE_16__["HotelModule"],
+                _activation_activation_module__WEBPACK_IMPORTED_MODULE_17__["ActivationModule"],
+                _customer_customer_module__WEBPACK_IMPORTED_MODULE_18__["CustomerModule"],
+                _partner_partner_module__WEBPACK_IMPORTED_MODULE_19__["PartnerModule"],
+                _product_product_module__WEBPACK_IMPORTED_MODULE_20__["ProductModule"],
+                _rateplan_rateplan_module__WEBPACK_IMPORTED_MODULE_21__["RateplanModule"],
+                _supply_supply_module__WEBPACK_IMPORTED_MODULE_22__["SupplyModule"],
+                _customerfeedback_customerfeedback_module__WEBPACK_IMPORTED_MODULE_23__["CustomerfeedbackModule"],
+                _orderrating_orderrating_module__WEBPACK_IMPORTED_MODULE_24__["OrderratingModule"],
+                _login_login_module__WEBPACK_IMPORTED_MODULE_25__["LoginModule"],
+                _shopping_shopping_module__WEBPACK_IMPORTED_MODULE_26__["ShoppingModule"],
+                _promotion_promotion_module__WEBPACK_IMPORTED_MODULE_27__["PromotionModule"],
+                _priceplan_priceplan_module__WEBPACK_IMPORTED_MODULE_28__["PriceplanModule"],
+                _dashboard_dashboard_module__WEBPACK_IMPORTED_MODULE_29__["DashboardModule"],
+                _configuration_configuration_module__WEBPACK_IMPORTED_MODULE_33__["ConfigurationModule"],
             ],
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
-                _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_13__["SidebarComponent"],
-                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_12__["NavbarComponent"],
+                _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_14__["SidebarComponent"],
+                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_13__["NavbarComponent"],
                 _home_home_component__WEBPACK_IMPORTED_MODULE_9__["HomeComponent"],
                 _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_11__["LoginLayoutComponent"],
                 _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_10__["HomeLayoutComponent"],
-                _modals_message_dialog_component__WEBPACK_IMPORTED_MODULE_29__["MessageDialogComponent"],
+                _layouts_shopping_layout_component__WEBPACK_IMPORTED_MODULE_12__["ShoppingLayoutComponent"],
+                _modals_message_dialog_component__WEBPACK_IMPORTED_MODULE_31__["MessageDialogComponent"],
             ],
             entryComponents: [
                 //ConfirmDialogComponent,
                 //InputDialogComponent,
-                _modals_message_dialog_component__WEBPACK_IMPORTED_MODULE_29__["MessageDialogComponent"],
+                _modals_message_dialog_component__WEBPACK_IMPORTED_MODULE_31__["MessageDialogComponent"],
             ],
             providers: [
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HTTP_INTERCEPTORS"], useClass: _AuthInterceptor_AuthInterceptor__WEBPACK_IMPORTED_MODULE_2__["AuthInterceptor"], multi: true },
@@ -1216,10 +1235,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./layouts/home-layout.component */ "./src/app/layouts/home-layout.component.ts");
 /* harmony import */ var _layouts_login_layout_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./layouts/login-layout.component */ "./src/app/layouts/login-layout.component.ts");
-/* harmony import */ var _dashboard_dashboard_list_dashboard_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dashboard/dashboard-list/dashboard-list.component */ "./src/app/dashboard/dashboard-list/dashboard-list.component.ts");
+/* harmony import */ var _layouts_shopping_layout_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./layouts/shopping-layout.component */ "./src/app/layouts/shopping-layout.component.ts");
+/* harmony import */ var _shopping_shopping_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shopping/shopping.component */ "./src/app/shopping/shopping.component.ts");
+/* harmony import */ var _dashboard_dashboard_list_dashboard_list_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dashboard/dashboard-list/dashboard-list.component */ "./src/app/dashboard/dashboard-list/dashboard-list.component.ts");
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+
+
 
 
 
@@ -1237,7 +1260,7 @@ var APP_ROUTES = [
         children: [
             {
                 path: 'dashboard',
-                component: _dashboard_dashboard_list_dashboard_list_component__WEBPACK_IMPORTED_MODULE_4__["DashboardListComponent"]
+                component: _dashboard_dashboard_list_dashboard_list_component__WEBPACK_IMPORTED_MODULE_6__["DashboardListComponent"]
             }
         ]
     },
@@ -1249,6 +1272,16 @@ var APP_ROUTES = [
             {
                 path: 'login',
                 component: _login_login_component__WEBPACK_IMPORTED_MODULE_1__["LoginComponent"]
+            }
+        ]
+    },
+    {
+        path: 'shopping',
+        component: _layouts_shopping_layout_component__WEBPACK_IMPORTED_MODULE_4__["ShoppingLayoutComponent"],
+        children: [
+            {
+                path: 'shopping',
+                component: _shopping_shopping_component__WEBPACK_IMPORTED_MODULE_5__["ShoppingComponent"]
             }
         ]
     },
@@ -1599,7 +1632,7 @@ var ConfigurationService = /** @class */ (function () {
     function ConfigurationService(http) {
         this.http = http;
         this.configurationList = [];
-        this.api = '/configurations';
+        this.api = 'http://www.kellostore.com/configurations';
     }
     ConfigurationService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -2027,7 +2060,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var CustomerService = /** @class */ (function () {
     function CustomerService(http) {
         this.http = http;
-        this.baseUrl = "/customers";
+        this.baseUrl = "http://www.kellostore.com/customers";
         this.customerList = [];
     }
     CustomerService.prototype.findById = function (id) {
@@ -2465,7 +2498,7 @@ var CustomerfeedbackService = /** @class */ (function () {
     function CustomerfeedbackService(http) {
         this.http = http;
         this.customerfeedbackList = [];
-        this.api = '/feedbacks';
+        this.api = 'http://www.kellostore.com/feedbacks';
     }
     CustomerfeedbackService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -2770,7 +2803,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var DashboardService = /** @class */ (function () {
     function DashboardService(http) {
         this.http = http;
-        this.baseUrl = "/dashboards";
+        this.baseUrl = "http://www.kellostore.com/dashboards";
         this.dashboardList = [];
     }
     DashboardService.prototype.findById = function (id) {
@@ -3756,6 +3789,7 @@ var HomeLayoutComponent = /** @class */ (function () {
         //  this.router.navigate([this.loginService.getCurrentUser() || '/home'])
         var url = this.loginService.getCurrentUser();
         console.log('HomeLayoutComponent url', url);
+        console.log('HomeLayoutComponent router url', this.router.url);
         if (url === '/login') {
             this.router.navigate(['/login']);
             return;
@@ -3821,6 +3855,43 @@ var LoginLayoutComponent = /** @class */ (function () {
         })
     ], LoginLayoutComponent);
     return LoginLayoutComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/layouts/shopping-layout.component.ts":
+/*!******************************************************!*\
+  !*** ./src/app/layouts/shopping-layout.component.ts ***!
+  \******************************************************/
+/*! exports provided: ShoppingLayoutComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShoppingLayoutComponent", function() { return ShoppingLayoutComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+var ShoppingLayoutComponent = /** @class */ (function () {
+    function ShoppingLayoutComponent() {
+    }
+    ShoppingLayoutComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-shopping-layout',
+            template: "\n    <router-outlet></router-outlet>\n  "
+        })
+    ], ShoppingLayoutComponent);
+    return ShoppingLayoutComponent;
 }());
 
 
@@ -4027,7 +4098,7 @@ var LoginService = /** @class */ (function () {
     function LoginService(http) {
         this.http = http;
         this.loginList = [];
-        this.api = '/users/login';
+        this.api = 'http://www.kellostore.com/users/login';
     }
     // oldlogin(username: string, password: string) {
     //     return this.http.post<any>(`/users/authenticate`, { username: username, password: password })
@@ -4780,7 +4851,7 @@ var OrderratingService = /** @class */ (function () {
     function OrderratingService(http) {
         this.http = http;
         this.orderratingList = [];
-        this.api = '/order-ratings';
+        this.api = 'http://www.kellostore.com/order-ratings';
     }
     OrderratingService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -5232,7 +5303,7 @@ var OrdersService = /** @class */ (function () {
     function OrdersService(http) {
         this.http = http;
         this.ordersList = [];
-        this.api = '/orders';
+        this.api = 'http://www.kellostore.com/orders';
     }
     OrdersService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -5663,7 +5734,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var PartnerService = /** @class */ (function () {
     function PartnerService(http) {
         this.http = http;
-        this.baseUrl = "/partners";
+        this.baseUrl = "http://www.kellostore.com/partners";
         this.partnerList = [];
     }
     PartnerService.prototype.findById = function (id) {
@@ -6115,7 +6186,7 @@ var PriceplanService = /** @class */ (function () {
     function PriceplanService(http) {
         this.http = http;
         this.priceplanList = [];
-        this.api = '/price-plans';
+        this.api = 'http://www.kellostore.com/price-plans';
     }
     PriceplanService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -6267,7 +6338,6 @@ var ProductEditComponent = /** @class */ (function () {
         }))
             .subscribe(function (product) {
             _this.product = product;
-            console.log(product);
             _this.errors = '';
         }, function (err) {
             _this.errors = err;
@@ -6536,6 +6606,10 @@ var PRODUCT_ROUTES = [
                 component: _product_edit_product_edit_component__WEBPACK_IMPORTED_MODULE_1__["ProductEditComponent"]
             }
         ]
+    },
+    {
+        path: 'products',
+        component: _layouts_home_layout_component__WEBPACK_IMPORTED_MODULE_2__["HomeLayoutComponent"],
     }
 ];
 
@@ -6571,7 +6645,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var ProductService = /** @class */ (function () {
     function ProductService(http) {
         this.http = http;
-        this.baseUrl = "/products";
+        this.baseUrl = "http://www.kellostore.com/products";
         this.productList = [];
     }
     ProductService.prototype.findById = function (id) {
@@ -7030,7 +7104,7 @@ var PromotionService = /** @class */ (function () {
     function PromotionService(http) {
         this.http = http;
         this.promotionList = [];
-        this.api = '/promotions';
+        this.api = 'http://www.kellostore.com/promotions';
     }
     PromotionService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -7447,7 +7521,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var RateplanService = /** @class */ (function () {
     function RateplanService(http) {
         this.http = http;
-        this.baseUrl = "/rateplans";
+        this.baseUrl = "http://www.kellostore.com/rateplans";
         this.rateplanList = [];
     }
     RateplanService.prototype.findById = function (id) {
@@ -7530,6 +7604,219 @@ var Rateplan = /** @class */ (function () {
     function Rateplan() {
     }
     return Rateplan;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shopping/shopping.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/shopping/shopping.component.ts ***!
+  \************************************************/
+/*! exports provided: ShoppingComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShoppingComponent", function() { return ShoppingComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _shopping_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shopping.service */ "./src/app/shopping/shopping.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+//import {AlertService} from '../services'
+var ShoppingComponent = /** @class */ (function () {
+    function ShoppingComponent(route, router, shoppingService) {
+        this.route = route;
+        this.router = router;
+        this.shoppingService = shoppingService;
+        this.loading = false;
+        this.submitted = false;
+        this.feedback = {};
+    }
+    ShoppingComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.producttypesId_list = [{ id: 1, typeName: "Vegitables" }, { id: 2, typeName: "Fruites" }];
+        this.unitsId_list = { 1: "kg", 2: "dozen", 3: "250 GM", 4: "Bundle" };
+        this.shoppingService.productsByType('2').subscribe(function (products) {
+            _this.productList = products;
+        });
+    };
+    ShoppingComponent.prototype.getProductByType = function (type) {
+        var _this = this;
+        this.shoppingService.productsByType(type).subscribe(function (products) {
+            _this.p = 1;
+            _this.productList = products;
+        });
+    };
+    ShoppingComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+        { type: _shopping_service__WEBPACK_IMPORTED_MODULE_2__["ShoppingService"] }
+    ]; };
+    ShoppingComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({ template: __importDefault(__webpack_require__(/*! raw-loader!./shopping.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/shopping/shopping.component.html")).default }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _shopping_service__WEBPACK_IMPORTED_MODULE_2__["ShoppingService"]])
+    ], ShoppingComponent);
+    return ShoppingComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shopping/shopping.module.ts":
+/*!*********************************************!*\
+  !*** ./src/app/shopping/shopping.module.ts ***!
+  \*********************************************/
+/*! exports provided: ShoppingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShoppingModule", function() { return ShoppingModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _shopping_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shopping.component */ "./src/app/shopping/shopping.component.ts");
+/* harmony import */ var _shopping_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shopping.service */ "./src/app/shopping/shopping.service.ts");
+/* harmony import */ var _shopping_routes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./shopping.routes */ "./src/app/shopping/shopping.routes.ts");
+/* harmony import */ var ngx_pagination__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-pagination */ "./node_modules/ngx-pagination/dist/ngx-pagination.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+
+
+
+
+var ShoppingModule = /** @class */ (function () {
+    function ShoppingModule() {
+    }
+    ShoppingModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forChild(_shopping_routes__WEBPACK_IMPORTED_MODULE_6__["Shopping_ROUTES"]),
+                ngx_pagination__WEBPACK_IMPORTED_MODULE_7__["NgxPaginationModule"]
+            ],
+            declarations: [
+                _shopping_component__WEBPACK_IMPORTED_MODULE_4__["ShoppingComponent"]
+            ],
+            providers: [_shopping_service__WEBPACK_IMPORTED_MODULE_5__["ShoppingService"]],
+            exports: []
+        })
+    ], ShoppingModule);
+    return ShoppingModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shopping/shopping.routes.ts":
+/*!*********************************************!*\
+  !*** ./src/app/shopping/shopping.routes.ts ***!
+  \*********************************************/
+/*! exports provided: Shopping_ROUTES */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Shopping_ROUTES", function() { return Shopping_ROUTES; });
+/* harmony import */ var _shopping_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shopping.component */ "./src/app/shopping/shopping.component.ts");
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+var Shopping_ROUTES = [
+    {
+        path: 'shopping',
+        component: _shopping_component__WEBPACK_IMPORTED_MODULE_0__["ShoppingComponent"]
+    }
+];
+
+
+/***/ }),
+
+/***/ "./src/app/shopping/shopping.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/shopping/shopping.service.ts ***!
+  \**********************************************/
+/*! exports provided: ShoppingService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShoppingService", function() { return ShoppingService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Accept', 'application/json');
+var ShoppingService = /** @class */ (function () {
+    function ShoppingService(http) {
+        this.http = http;
+        this.productList = [];
+        this.api = 'http://www.kellostore.com/shopping/protucts';
+    }
+    ShoppingService.prototype.productsByType = function (productType) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        var url = '';
+        url = this.api + "/type/" + productType;
+        return this.http.get(url, { params: params, headers: headers });
+    };
+    ShoppingService.prototype.logout = function () {
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+    };
+    ShoppingService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
+    ShoppingService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], ShoppingService);
+    return ShoppingService;
 }());
 
 
@@ -7968,7 +8255,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var SupplyService = /** @class */ (function () {
     function SupplyService(http) {
         this.http = http;
-        this.baseUrl = "/supplies";
+        this.baseUrl = "http://www.kellostore.com/supplies";
         this.supplyList = [];
     }
     SupplyService.prototype.findById = function (id) {

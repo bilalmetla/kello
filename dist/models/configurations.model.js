@@ -48,6 +48,12 @@ __decorate([
     }),
     __metadata("design:type", Boolean)
 ], Configurations.prototype, "isProductionInstance", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Configurations.prototype, "storeDeviceToken", void 0);
 Configurations = __decorate([
     repository_1.model(),
     __metadata("design:paramtypes", [Object])

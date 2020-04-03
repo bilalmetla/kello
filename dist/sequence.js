@@ -46,6 +46,12 @@ let MySequence = class MySequence {
                 }
                 logger_1.winstonLogger.info('-----------------------request-------------------------------');
                 logger_1.winstonLogger.info(`requestId: ${requestId} | api:  ${context.request.path}`);
+                if (context.request.path == '/' && process.env.homePage) {
+                    process.env.homePage = (parseInt(process.env.homePage) + 1).toString();
+                }
+                if (context.request.path == '/wordpress/index.html%3Fp=226.html' && process.env.productPage) {
+                    process.env.productPage = (parseInt(process.env.productPage) + 1).toString();
+                }
                 logger_1.winstonLogger.debug(`requestId: ${requestId} | header:  ${JSON.stringify(context.request.headers)}`);
                 const { request, response } = context;
                 const route = this.findRoute(request);
@@ -62,6 +68,7 @@ let MySequence = class MySequence {
                 this.send(response, result);
             }
             catch (err) {
+                logger_1.winstonLogger.error(` ${JSON.stringify(err.stack)}`);
                 if (process.env.errorResponses) {
                     process.env.errorResponses = (parseInt(process.env.errorResponses) + 1).toString();
                 }

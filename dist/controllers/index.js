@@ -53,4 +53,5 @@ __export(require("./dashboards.controller"));
 __export(require("./static-data.controller"));
 __export(require("./orders-user.controller"));
 __export(require("./configurations.controller"));
+__export(require("./shopping.controller"));
 //# sourceMappingURL=index.js.map

@@ -5,6 +5,7 @@ export declare class Configurations extends Entity {
     sms_username?: string;
     sms_password?: string;
     isProductionInstance?: boolean;
+    storeDeviceToken?: string;
     constructor(data?: Partial<Configurations>);
 }
 export interface ConfigurationsRelations {

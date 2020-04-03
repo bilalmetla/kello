@@ -74,17 +74,25 @@ __decorate([
 ], Partners.prototype, "location", void 0);
 __decorate([
     repository_1.property({
+        type: 'string',
+        required: false
+    }),
+    __metadata("design:type", String)
+], Partners.prototype, "deviceId", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+        required: false
+    }),
+    __metadata("design:type", String)
+], Partners.prototype, "deviceToken", void 0);
+__decorate([
+    repository_1.property({
         type: 'date',
         default: new Date()
     }),
     __metadata("design:type", String)
 ], Partners.prototype, "creationDate", void 0);
-__decorate([
-    repository_1.property({
-        type: 'string',
-    }),
-    __metadata("design:type", String)
-], Partners.prototype, "deviceId", void 0);
 __decorate([
     repository_1.belongsTo(() => partnertypes_model_1.Partnertypes),
     __metadata("design:type", String)

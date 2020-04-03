@@ -17,16 +17,18 @@ class Kello extends boot_1.BootMixin(service_proxy_1.ServiceMixin(repository_1.R
     constructor(options = {}) {
         super(options);
         process.env.requests = '0';
+        process.env.homePage = '0';
+        process.env.productPage = '0'; //
         process.env.successResponses = '0';
         process.env.errorResponses = '0';
         process.env.lastResponseTime = '0';
         process.env.avgResponseTime = '0';
-        process.env.kelloConfigs = '';
         // Set up the custom sequence
         this.sequence(sequence_1.MySequence);
         // Set up default home page
         this.static('/', path_1.default.join(__dirname, '../public'));
         this.static('/app', path_1.default.join(__dirname, '../public/admin_client'));
+        this.static('/shopping', path_1.default.join(__dirname, '../public/customer_client'));
         this.static('/assets', path_1.default.join(__dirname, '../public/admin_client/assets'));
         this.static('/runtime.js', path_1.default.join(__dirname, '../public/admin_client/runtime.js'));
         this.static('/polyfills.js', path_1.default.join(__dirname, '../public/admin_client/polyfills.js'));
@@ -58,14 +60,6 @@ class Kello extends boot_1.BootMixin(service_proxy_1.ServiceMixin(repository_1.R
                 nested: true,
             },
         };
-        //@repository(ConfigurationsRepository)
-        // let configurationsRepository : ConfigurationsRepository;
-        //   async ()=>{
-        //     const configurations = await configurationsRepository.find();
-        //     let configuration = JSON.stringify(configurations[0])
-        //     logger.debug(`configuration loaded .. ${configuration} `);
-        //     process.env.kelloConfigs = configuration;
-        //   }
     }
 }
 exports.Kello = Kello;
@@ -76,6 +70,8 @@ setInterval(() => {
   total error responses: ${process.env.errorResponses}
   last response time: ${process.env.lastResponseTime} ms
   avg response time: ${process.env.avgResponseTime} ms
+  total home page: ${process.env.homePage}
+  total product page: ${process.env.productPage}
   `);
     logger_1.winstonLogger.info(`
   total requests: ${process.env.requests}
@@ -83,6 +79,8 @@ setInterval(() => {
   total error responses: ${process.env.errorResponses}
   last response time: ${process.env.lastResponseTime} ms
   avg response time: ${process.env.avgResponseTime} ms
+  total home page: ${process.env.homePage}
+  total product page: ${process.env.productPage}
   `);
-}, 1000 * 5);
+}, 1000 * 10);
 //# sourceMappingURL=application.js.map

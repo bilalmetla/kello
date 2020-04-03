@@ -9,10 +9,10 @@
 <channel>
 	<title>
 	Comments for Kellostore	</title>
-	<atom:link href="http://localhost/wordpress/?feed=comments-rss2" rel="self" type="application/rss+xml" />
-	<link>http://localhost/wordpress</link>
+	<atom:link href="http://www.kellostore.com/wordpress/?feed=comments-rss2" rel="self" type="application/rss+xml" />
+	<link>http://www.kellostore.com/wordpress</link>
 	<description>Fresh Fruits And Vegetables</description>
-	<lastBuildDate>Fri, 20 Mar 2020 16:06:03 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 03 Apr 2020 01:29:25 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>

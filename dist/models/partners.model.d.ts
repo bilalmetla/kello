@@ -12,8 +12,9 @@ export declare class Partners extends Entity {
     lastActive?: string;
     isActivated?: boolean;
     location?: any;
-    creationDate?: string;
     deviceId?: string;
+    deviceToken?: string;
+    creationDate?: string;
     partnertypesId: string;
     orders: Orders[];
     [prop: string]: any;

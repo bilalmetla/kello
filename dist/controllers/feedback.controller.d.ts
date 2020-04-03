@@ -13,4 +13,5 @@ export declare class FeedbackController {
     replaceById(id: string, feedback: Feedback): Promise<void>;
     deleteById(id: string): Promise<void>;
     convertbase64image(imagename: string, image: string): Promise<string>;
+    contactUs(feedback: Feedback): Promise<Feedback>;
 }

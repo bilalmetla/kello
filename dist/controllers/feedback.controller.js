@@ -108,6 +108,13 @@ let FeedbackController = class FeedbackController {
             return imageUrl;
         });
     }
+    //wordpress/index.php?rest_route=/contact-form-7/v1/contact-forms/76/feedback
+    //@secured(SecuredType.IS_AUTHENTICATED)
+    contactUs(feedback) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.feedbackRepository.create(feedback);
+        });
+    }
 };
 __decorate([
     auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
@@ -262,6 +269,19 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], FeedbackController.prototype, "deleteById", null);
+__decorate([
+    rest_1.post('/web/contact-us', {
+        responses: {
+            '204': {
+                description: 'Feedback DELETE success',
+            },
+        },
+    }),
+    __param(0, rest_1.requestBody()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [models_1.Feedback]),
+    __metadata("design:returntype", Promise)
+], FeedbackController.prototype, "contactUs", null);
 FeedbackController = __decorate([
     __param(0, repository_1.repository(repositories_1.FeedbackRepository)),
     __metadata("design:paramtypes", [repositories_1.FeedbackRepository])

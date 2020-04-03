@@ -48,3 +48,4 @@ export * from './dashboards.controller';
 export * from './static-data.controller';
 export * from './orders-user.controller';
 export * from './configurations.controller';
+export * from './shopping.controller';
