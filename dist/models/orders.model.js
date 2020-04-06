@@ -134,6 +134,35 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Orders.prototype, "isDeleted", void 0);
 __decorate([
+    repository_1.property({
+        type: 'number',
+        required: false,
+    }),
+    __metadata("design:type", Number)
+], Orders.prototype, "street", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        required: false,
+    }),
+    __metadata("design:type", Number)
+], Orders.prototype, "house", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+        required: false,
+    }),
+    __metadata("design:type", String)
+], Orders.prototype, "address", void 0);
+__decorate([
+    repository_1.property({
+        type: 'boolean',
+        required: false,
+        default: false,
+    }),
+    __metadata("design:type", Boolean)
+], Orders.prototype, "isFromWeb", void 0);
+__decorate([
     repository_1.belongsTo(() => orderstatuses_model_1.Orderstatuses),
     __metadata("design:type", String)
 ], Orders.prototype, "orderstatusesId", void 0);

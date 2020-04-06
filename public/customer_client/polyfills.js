@@ -8286,10 +8286,10 @@ Zone.__load_patch('PromiseRejectionEvent', function (global, Zone) {
 
 /***/ }),
 
-/***/ "./src/polyfills.ts":
-/*!**************************!*\
-  !*** ./src/polyfills.ts ***!
-  \**************************/
+/***/ "./src/customer_client/polyfills.ts":
+/*!******************************************!*\
+  !*** ./src/customer_client/polyfills.ts ***!
+  \******************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8372,13 +8372,13 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 /***/ }),
 
 /***/ 2:
-/*!***************************************************************************************************************************!*\
-  !*** multi ./src/polyfills.ts ./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js ***!
-  \***************************************************************************************************************************/
+/*!*******************************************************************************************************************************************!*\
+  !*** multi ./src/customer_client/polyfills.ts ./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js ***!
+  \*******************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/bilalmetla/work/gitlab/code/kilo/dev_customer_portal/src/polyfills.ts */"./src/polyfills.ts");
+__webpack_require__(/*! /home/bilalmetla/work/gitlab/code/kilo/dev_customer_portal/src/customer_client/polyfills.ts */"./src/customer_client/polyfills.ts");
 module.exports = __webpack_require__(/*! /home/bilalmetla/work/gitlab/code/kilo/dev_customer_portal/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
 
 

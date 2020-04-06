@@ -41,6 +41,7 @@ let CustomersController = class CustomersController {
     }
     create(customers) {
         return __awaiter(this, void 0, void 0, function* () {
+            customers.createdDate = new Date();
             return this.customersRepository.create(customers);
         });
     }

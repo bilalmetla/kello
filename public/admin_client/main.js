@@ -334,7 +334,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n   <ol class=\"breadcrumb float-right\">\n      <li class=\"breadcrumb-item\">\n         <a href=\"javascript:void(0);\">Project</a>\n      </li>\n      <li class=\"breadcrumb-item active\">Products</li>\n   </ol>\n   <h4 class=\"page-title\">Products Detail</h4>\n</div>\n<!-- End page title box -->\n<div class=\"row\">\n   <div class=\"col-xl-12\">\n      <div class=\"card-box\">\n         <p *ngIf=\"errors\">{{ errors }}</p>\n         <form #productForm=\"ngForm\" *ngIf=\"product\" class=\"form-horizontal\">\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n               <div class=\"col-sm-10\">                            {{product.id || 'n/a'}}                                                                                                        </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"eng_title\">\n               Eng Title <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"string\" required [(ngModel)]=\"product.eng_title\" name=\"eng_title\" #eng_title=\"ngModel\" class=\"form-control\">                                                                                                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"urdu_title\">\n               Urdu Title <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"string\" required [(ngModel)]=\"product.urdu_title\" name=\"urdu_title\" #urdu_title=\"ngModel\" class=\"form-control\">                                                                                                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"quentityOnHand\">                            Quentity On Hand                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" readonly [(ngModel)]=\"product.quentityOnHand\" name=\"quentityOnHand\" #quentityOnHand=\"ngModel\" class=\"form-control\">                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Buying Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.buyingPriceUnitsId\" name=\"buyingPriceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"buyingPrice\">                            Buying Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.buyingPrice\" name=\"buyingPrice\" #buyingPrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Sale Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.salePriceUnitsId\" name=\"salePriceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"salePrice\">                            Sale Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.salePrice\" name=\"buyingPrice\" #salePrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"unitsId\">                            Retail Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.retailPiceUnitsId\" name=\"retailPiceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"retailPrice\">                            Retail Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.retailPrice\" name=\"buyingPrice\" #retailPrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"producttypesId\">\n               Product Type <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <select required [(ngModel)]=\"product.producttypesId\" name=\"producttypesId\" class=\"form-control\">\n                  <option *ngFor=\"let c of producttypesId_list\" value=\"{{ c.id }}\">{{ c.typeName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n                <label class=\"col-sm-2 col-form-label\" for=\"description\">        \n                                       Description                         </label>\n                <div class=\"col-sm-10\">\n                   <textarea [(ngModel)]=\"product.description\" name=\"description\" #description=\"ngModel\" class=\"form-control\"> \n                       </textarea>                                                                                       \n                </div>\n             </div>\n\n             <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"isAvailable\">        \n                  Is Available      </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"checkbox\" [(ngModel)]=\"product.isAvailable\" name=\"isAvailable\" #isAvailable=\"ngModel\" class=\"form-control\" /> \n                                                                                                         \n               </div>\n            </div>\n\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"displayingPeriority\">\n                  Displaying Periority <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <select required [(ngModel)]=\"product.displayingPeriority\" name=\"displayingPeriority\" class=\"form-control\">\n                  <option *ngFor=\"let c of displayingPeriority_list\" value=\"{{ c.value }}\">{{ c.id }}</option>\n                  </select>\n               </div>\n            </div>\n\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"image\">\n               Image <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"file\" required accept=\"image/*\" (change)=\"changeImageListener($event)\">\n                  <img [src]=\"product.image\" style=\"width:100px; height:100px\"/>                                                                        \n               </div>\n            </div>\n            <div class=\"row\">\n               <div class=\"col-sm-6 text-left\">\n                  <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"productForm.invalid\">Save</button>\n               </div>\n               <div class=\"col-sm-6 text-right\">\n                  <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n               </div>\n            </div>\n         </form>\n      </div>\n      <!-- end card-->\n   </div>\n   <!-- end col -->\n</div>\n<!-- end row -->");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- Page title box -->\n<div class=\"page-title-alt-bg\"></div>\n<div class=\"page-title-box\">\n   <ol class=\"breadcrumb float-right\">\n      <li class=\"breadcrumb-item\">\n         <a href=\"javascript:void(0);\">Project</a>\n      </li>\n      <li class=\"breadcrumb-item active\">Products</li>\n   </ol>\n   <h4 class=\"page-title\">Products Detail</h4>\n</div>\n<!-- End page title box -->\n<div class=\"row\">\n   <div class=\"col-xl-12\">\n      <div class=\"card-box\">\n         <p *ngIf=\"errors\">{{ errors }}</p>\n         <form #productForm=\"ngForm\" *ngIf=\"product\" class=\"form-horizontal\">\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"id\">                                    Id                                </label>\n               <div class=\"col-sm-10\">                            {{product.id || 'n/a'}}                                                                                                        </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"eng_title\">\n               Eng Title <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"string\" required [(ngModel)]=\"product.eng_title\" name=\"eng_title\" #eng_title=\"ngModel\" class=\"form-control\">                                                                                                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"urdu_title\">\n               Urdu Title <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"string\" required [(ngModel)]=\"product.urdu_title\" name=\"urdu_title\" #urdu_title=\"ngModel\" class=\"form-control\">                                                                                                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"quentityOnHand\">                            Quentity On Hand                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" readonly [(ngModel)]=\"product.quentityOnHand\" name=\"quentityOnHand\" #quentityOnHand=\"ngModel\" class=\"form-control\">                            \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"buyingPriceUnitsId\">                            Buying Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.buyingPriceUnitsId\" name=\"buyingPriceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"buyingPrice\">                            Buying Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.buyingPrice\" name=\"buyingPrice\" #buyingPrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"salePriceUnitsId\">                            Sale Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.salePriceUnitsId\" name=\"salePriceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"salePrice\">                            Sale Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.salePrice\" name=\"salePrice\" #salePrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"retailPiceUnitsId\">                            Retail Price Unit                         </label>\n               <div class=\"col-sm-10\">\n                  <select [(ngModel)]=\"product.retailPiceUnitsId\" name=\"retailPiceUnitsId\" class=\"form-control\">\n                  <option *ngFor=\"let c of unitsId_list\" value=\"{{ c.id }}\">{{ c.unitDisplayName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"retailPrice\">                            Retail Price                         </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"number\" [(ngModel)]=\"product.retailPrice\" name=\"retailPrice\" #retailPrice=\"ngModel\" class=\"form-control\">                                                                                        \n               </div>\n            </div>\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"producttypesId\">\n               Product Type <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <select required [(ngModel)]=\"product.producttypesId\" name=\"producttypesId\" class=\"form-control\">\n                  <option *ngFor=\"let c of producttypesId_list\" value=\"{{ c.id }}\">{{ c.typeName }}</option>\n                  </select>\n               </div>\n            </div>\n            <div class=\"form-group row\">\n                <label class=\"col-sm-2 col-form-label\" for=\"description\">        \n                                       Description                         </label>\n                <div class=\"col-sm-10\">\n                   <textarea [(ngModel)]=\"product.description\" name=\"description\" #description=\"ngModel\" class=\"form-control\"> \n                       </textarea>                                                                                       \n                </div>\n             </div>\n\n             <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"isAvailable\">        \n                  Is Available      </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"checkbox\" [(ngModel)]=\"product.isAvailable\" name=\"isAvailable\" #isAvailable=\"ngModel\" class=\"form-control\" /> \n                                                                                                         \n               </div>\n            </div>\n\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"displayingPeriority\">\n                  Displaying Periority <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <select required [(ngModel)]=\"product.displayingPeriority\" name=\"displayingPeriority\" class=\"form-control\">\n                  <option *ngFor=\"let c of displayingPeriority_list\" value=\"{{ c.value }}\">{{ c.id }}</option>\n                  </select>\n               </div>\n            </div>\n\n            <div class=\"form-group row\">\n               <label class=\"col-sm-2 col-form-label\" for=\"image\">\n               Image <span style=\"color:red\">*</span>\n               </label>\n               <div class=\"col-sm-10\">\n                  <input type=\"file\" required accept=\"image/*\" (change)=\"changeImageListener($event)\">\n                  <img [src]=\"product.image\" style=\"width:100px; height:100px\"/>                                                                        \n               </div>\n            </div>\n            <div class=\"row\">\n               <div class=\"col-sm-6 text-left\">\n                  <button type=\"button\" class=\"btn btn-success w-md\"  (click)=\"save()\" [disabled]=\"productForm.invalid\">Save</button>\n               </div>\n               <div class=\"col-sm-6 text-right\">\n                  <button type=\"button\" class=\"btn btn-secondary w-md\"  (click)=\"cancel()\">Cancel</button>\n               </div>\n            </div>\n         </form>\n      </div>\n      <!-- end card-->\n   </div>\n   <!-- end col -->\n</div>\n<!-- end row -->");
 
 /***/ }),
 
@@ -919,7 +919,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var ActivationService = /** @class */ (function () {
     function ActivationService(http) {
         this.http = http;
-        this.baseUrl = "http://www.kellostore.com/activations";
+        this.baseUrl = "http:///activations";
         this.activationList = [];
     }
     ActivationService.prototype.findById = function (id) {
@@ -1632,7 +1632,7 @@ var ConfigurationService = /** @class */ (function () {
     function ConfigurationService(http) {
         this.http = http;
         this.configurationList = [];
-        this.api = 'http://www.kellostore.com/configurations';
+        this.api = 'http:///configurations';
     }
     ConfigurationService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -2060,7 +2060,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var CustomerService = /** @class */ (function () {
     function CustomerService(http) {
         this.http = http;
-        this.baseUrl = "http://www.kellostore.com/customers";
+        this.baseUrl = "http:///customers";
         this.customerList = [];
     }
     CustomerService.prototype.findById = function (id) {
@@ -2498,7 +2498,7 @@ var CustomerfeedbackService = /** @class */ (function () {
     function CustomerfeedbackService(http) {
         this.http = http;
         this.customerfeedbackList = [];
-        this.api = 'http://www.kellostore.com/feedbacks';
+        this.api = 'http:///feedbacks';
     }
     CustomerfeedbackService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -2803,7 +2803,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var DashboardService = /** @class */ (function () {
     function DashboardService(http) {
         this.http = http;
-        this.baseUrl = "http://www.kellostore.com/dashboards";
+        this.baseUrl = "http:///dashboards";
         this.dashboardList = [];
     }
     DashboardService.prototype.findById = function (id) {
@@ -4098,7 +4098,7 @@ var LoginService = /** @class */ (function () {
     function LoginService(http) {
         this.http = http;
         this.loginList = [];
-        this.api = 'http://www.kellostore.com/users/login';
+        this.api = 'http:///users/login';
     }
     // oldlogin(username: string, password: string) {
     //     return this.http.post<any>(`/users/authenticate`, { username: username, password: password })
@@ -4851,7 +4851,7 @@ var OrderratingService = /** @class */ (function () {
     function OrderratingService(http) {
         this.http = http;
         this.orderratingList = [];
-        this.api = 'http://www.kellostore.com/order-ratings';
+        this.api = 'http:///order-ratings';
     }
     OrderratingService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -5303,7 +5303,7 @@ var OrdersService = /** @class */ (function () {
     function OrdersService(http) {
         this.http = http;
         this.ordersList = [];
-        this.api = 'http://www.kellostore.com/orders';
+        this.api = 'http:///orders';
     }
     OrdersService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -5734,7 +5734,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var PartnerService = /** @class */ (function () {
     function PartnerService(http) {
         this.http = http;
-        this.baseUrl = "http://www.kellostore.com/partners";
+        this.baseUrl = "http:///partners";
         this.partnerList = [];
     }
     PartnerService.prototype.findById = function (id) {
@@ -6186,7 +6186,7 @@ var PriceplanService = /** @class */ (function () {
     function PriceplanService(http) {
         this.http = http;
         this.priceplanList = [];
-        this.api = 'http://www.kellostore.com/price-plans';
+        this.api = 'http:///price-plans';
     }
     PriceplanService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -6645,7 +6645,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var ProductService = /** @class */ (function () {
     function ProductService(http) {
         this.http = http;
-        this.baseUrl = "http://www.kellostore.com/products";
+        this.baseUrl = "http:///products";
         this.productList = [];
     }
     ProductService.prototype.findById = function (id) {
@@ -7104,7 +7104,7 @@ var PromotionService = /** @class */ (function () {
     function PromotionService(http) {
         this.http = http;
         this.promotionList = [];
-        this.api = 'http://www.kellostore.com/promotions';
+        this.api = 'http:///promotions';
     }
     PromotionService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -7521,7 +7521,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var RateplanService = /** @class */ (function () {
     function RateplanService(http) {
         this.http = http;
-        this.baseUrl = "http://www.kellostore.com/rateplans";
+        this.baseUrl = "http:///rateplans";
         this.rateplanList = [];
     }
     RateplanService.prototype.findById = function (id) {
@@ -7797,7 +7797,7 @@ var ShoppingService = /** @class */ (function () {
     function ShoppingService(http) {
         this.http = http;
         this.productList = [];
-        this.api = 'http://www.kellostore.com/shopping/protucts';
+        this.api = 'http:///shopping/protucts';
     }
     ShoppingService.prototype.productsByType = function (productType) {
         var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
@@ -8255,7 +8255,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var SupplyService = /** @class */ (function () {
     function SupplyService(http) {
         this.http = http;
-        this.baseUrl = "http://www.kellostore.com/supplies";
+        this.baseUrl = "http:///supplies";
         this.supplyList = [];
     }
     SupplyService.prototype.findById = function (id) {

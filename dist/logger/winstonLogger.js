@@ -15,7 +15,7 @@ let requestId = uuid.v4();
 const logConfig = {
     filename: `${appRoot}/logs/debug.log`,
     datePattern: "YYYY-MM-DD-HH",
-    zippedArchive: true,
+    zippedArchive: false,
     maxSize: "2g",
     maxFiles: "14d",
     level: "silly",
@@ -91,12 +91,12 @@ const options = {
     },
     errorLog: {
         name: "Error Logs",
-        filename: logConfig.filename,
+        filename: `${appRoot}/logs/error.log`,
         datePattern: logConfig.datePattern,
         zippedArchive: logConfig.zippedArchive,
         maxSize: logConfig.maxSize,
         maxFiles: logConfig.maxFiles,
-        level: logConfig.level,
+        level: 'error',
         json: logConfig.json,
         colorize: false,
         format: winston.format.combine(errorFilter(), winston.format.splat(), winston.format.simple(), logFormat)

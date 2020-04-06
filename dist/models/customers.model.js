@@ -58,7 +58,6 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'date',
-        default: new Date(),
     }),
     __metadata("design:type", Date)
 ], Customers.prototype, "createdDate", void 0);
@@ -80,6 +79,13 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Customers.prototype, "deviceToken", void 0);
+__decorate([
+    repository_1.property({
+        type: 'boolean',
+        default: false
+    }),
+    __metadata("design:type", Boolean)
+], Customers.prototype, "isWebRegistered", void 0);
 __decorate([
     repository_1.hasMany(() => orders_model_1.Orders),
     __metadata("design:type", Array)

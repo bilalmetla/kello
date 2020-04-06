@@ -15685,10 +15685,10 @@ Zone.__load_patch('PromiseRejectionEvent', function (global, Zone) {
 
 /***/ }),
 
-/***/ "./src/polyfills.ts":
-/*!**************************!*\
-  !*** ./src/polyfills.ts ***!
-  \**************************/
+/***/ "./src/customer_client/polyfills.ts":
+/*!******************************************!*\
+  !*** ./src/customer_client/polyfills.ts ***!
+  \******************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -15771,15 +15771,15 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 /***/ }),
 
 /***/ 1:
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js ./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-jit-polyfills.js ./src/polyfills.ts ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js ./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-jit-polyfills.js ./src/customer_client/polyfills.ts ***!
+  \******************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /home/bilalmetla/work/gitlab/code/kilo/dev_customer_portal/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js");
 __webpack_require__(/*! /home/bilalmetla/work/gitlab/code/kilo/dev_customer_portal/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-jit-polyfills.js");
-module.exports = __webpack_require__(/*! /home/bilalmetla/work/gitlab/code/kilo/dev_customer_portal/src/polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /home/bilalmetla/work/gitlab/code/kilo/dev_customer_portal/src/customer_client/polyfills.ts */"./src/customer_client/polyfills.ts");
 
 
 /***/ })

@@ -32,9 +32,17 @@ const fs_1 = __importDefault(require("fs"));
 const util_1 = __importDefault(require("util"));
 const writeFilePromise = util_1.default.promisify(fs_1.default.writeFile);
 const auth_1 = require("../auth");
+const constants_1 = require("../constants");
+const logger_1 = require("../logger");
+const firebase_1 = require("../firebase");
 let ShoppingController = class ShoppingController {
-    constructor(productsRepository) {
+    constructor(productsRepository, ordersRepository, customersRepository, producttypesRepository, partnersRepository, orderdetailsRepository) {
         this.productsRepository = productsRepository;
+        this.ordersRepository = ordersRepository;
+        this.customersRepository = customersRepository;
+        this.producttypesRepository = producttypesRepository;
+        this.partnersRepository = partnersRepository;
+        this.orderdetailsRepository = orderdetailsRepository;
     }
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -64,6 +72,103 @@ let ShoppingController = class ShoppingController {
             filter.order = ['displayingPeriority Asc'];
             filter.fields = { id: true, displayName: true, producttypesId: true, imageUrl: true, retailPrice: true, retailPiceUnitsId: true };
             return this.productsRepository.find(filter);
+        });
+    }
+    // @secured(SecuredType.IS_AUTHENTICATED)
+    create(reqData) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (reqData.web_customer) {
+                let customer = new models_1.Customers();
+                customer.name = reqData.web_customer.name;
+                customer.phone = reqData.web_customer.phone;
+                customer.createdDate = new Date();
+                customer.isWebRegistered = true;
+                let ex_customer = yield this.customersRepository.findOne({ where: { phone: reqData.web_customer.phone } });
+                logger_1.winstonLogger.info('customer found for web order.');
+                if (!ex_customer || !ex_customer.id) {
+                    logger_1.winstonLogger.info('creating new customer for web order.');
+                    ex_customer = yield this.customersRepository.create(customer);
+                }
+                let hawker = yield this.partnersRepository.findOne({ where: { phone: '923067625445' } });
+                let hawkerId = '';
+                let h_location = { coordinates: [] };
+                if (hawker != null && hawker.id != undefined) {
+                    hawkerId = hawker.id;
+                    h_location = hawker.location;
+                }
+                let order = new models_1.Orders();
+                order.customersId = ex_customer.id;
+                order.orderStatus = 'Pending';
+                order.orderCategory = 'CUSTOMERS';
+                order.items = reqData.items;
+                order.totalBillAmount = reqData.totalBillAmount;
+                order.deliveredById = hawkerId;
+                order.isFromWeb = true;
+                order.location = h_location;
+                order.orderTime = new Date();
+                let orderId = '';
+                let items = JSON.parse(JSON.stringify(order.items));
+                let createdOrder = yield this.customersRepository.orders(ex_customer.id).create(order);
+                if (!createdOrder) {
+                    return constants_1.CONSTANTS.ORDER_NOT_PLACED;
+                }
+                if (createdOrder.id) {
+                    orderId = createdOrder.id.toString();
+                }
+                let productIds = items.map((it) => {
+                    return { id: it.productId };
+                });
+                logger_1.winstonLogger.debug('productids ', JSON.stringify(productIds));
+                let products = yield this.productsRepository.find({
+                    where: { or: productIds },
+                });
+                logger_1.winstonLogger.debug('products for order ');
+                logger_1.winstonLogger.debug(JSON.stringify(products));
+                if (!products) {
+                    return constants_1.CONSTANTS.PRODUCT_NOT_FOUND;
+                }
+                let orderdetailList;
+                orderdetailList = [];
+                products.forEach((pro, index) => {
+                    let orderdetail = new models_1.Orderdetails();
+                    orderdetail.ordersId = orderId;
+                    orderdetail.quantity = items[index].quantity;
+                    orderdetail.productsId = items[index].productId;
+                    orderdetail.retailPrice = pro.retailPrice;
+                    orderdetail.salePrice = pro.salePrice;
+                    orderdetail.purchasePrice = pro.buyingPrice;
+                    orderdetail.retailPriceUnitsId = pro.retailPiceUnitsId;
+                    orderdetail.purchasePriceUnitsId = pro.buyingPriceUnitsId;
+                    orderdetail.salePriceUnitsId = pro.salePriceUnitsId;
+                    orderdetailList.push(orderdetail);
+                });
+                logger_1.winstonLogger.debug('orderdetailList');
+                logger_1.winstonLogger.debug(JSON.stringify(orderdetailList));
+                if (orderdetailList.length > 0) {
+                    let orderDetailCreated = yield this.orderdetailsRepository.createAll(orderdetailList);
+                    logger_1.winstonLogger.debug('orderDetailCreated ', JSON.stringify(orderDetailCreated));
+                    if (!orderDetailCreated) {
+                        return constants_1.CONSTANTS.ORDER_DETAILS_NOT_CREATED;
+                    }
+                }
+                logger_1.winstonLogger.debug('sending notification to Hawker!');
+                if (hawker && hawker.deviceToken) {
+                    const firebase = new firebase_1.Firebase();
+                    const payload = {
+                        // data: {"orderId": id, "customerId": nearestPartner.id},
+                        notification: {
+                            title: 'Kellostore',
+                            body: 'There is a new order at your store. Deliver it quicly.'
+                        }
+                    };
+                    firebase.sendNotification(hawker.deviceToken, payload);
+                }
+                delete createdOrder.items;
+                return { order: createdOrder };
+            }
+            else {
+                return constants_1.CONSTANTS.ORDER_NOT_PLACED;
+            }
         });
     }
 };
@@ -110,9 +215,33 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ShoppingController.prototype, "findByProductTypeId", null);
+__decorate([
+    rest_1.post('/shopping/order', {
+        responses: {
+            '200': {
+                description: 'Orders model instance',
+                content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Orders) } },
+            },
+        },
+    }),
+    __param(0, rest_1.requestBody()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ShoppingController.prototype, "create", null);
 ShoppingController = __decorate([
     __param(0, repository_1.repository(repositories_1.ProductsRepository)),
-    __metadata("design:paramtypes", [repositories_1.ProductsRepository])
+    __param(1, repository_1.repository(repositories_1.OrdersRepository)),
+    __param(2, repository_1.repository(repositories_1.CustomersRepository)),
+    __param(3, repository_1.repository(repositories_1.ProducttypesRepository)),
+    __param(4, repository_1.repository(repositories_1.PartnersRepository)),
+    __param(5, repository_1.repository(repositories_1.OrderdetailsRepository)),
+    __metadata("design:paramtypes", [repositories_1.ProductsRepository,
+        repositories_1.OrdersRepository,
+        repositories_1.CustomersRepository,
+        repositories_1.ProducttypesRepository,
+        repositories_1.PartnersRepository,
+        repositories_1.OrderdetailsRepository])
 ], ShoppingController);
 exports.ShoppingController = ShoppingController;
 //# sourceMappingURL=shopping.controller.js.map

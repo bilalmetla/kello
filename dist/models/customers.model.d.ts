@@ -10,6 +10,7 @@ export declare class Customers extends Entity {
     updatedDate?: Date;
     deviceId?: string;
     deviceToken?: string;
+    isWebRegistered?: boolean;
     orders: Orders[];
     constructor(data?: Partial<Customers>);
 }
