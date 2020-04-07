@@ -42,7 +42,6 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'date',
-        default: new Date(),
     }),
     __metadata("design:type", Date)
 ], OrderRatings.prototype, "createdDate", void 0);

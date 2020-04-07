@@ -35,18 +35,9 @@ let OrderRatingsController = class OrderRatingsController {
         return __awaiter(this, void 0, void 0, function* () {
             //let orderIds: any = [];
             orderRatings.forEach(item => this.ordersRepository.updateById(item.ordersId, { isOrderRatingDone: true }));
-            //const up_orders = await this.ordersRepository.update({id:{$in:orderIds}})
-            //this.ordersRepository.updateAll({isOrderRatingDone: true}, {id: {$in:orderIds}});
-            // if (!this.ordersRepository.dataSource.connected) {
-            //   await this.ordersRepository.dataSource.connect();         
-            // }
-            // const ordersCollection = (this.ordersRepository.dataSource.connector as any).collection("Orders");
-            // this.ordersRepository.update({id:{in:orderIds }},
-            //   { $set: {isOrderRatingDone: true} })
-            // const up_orders = await ordersCollection.update(
-            //   {_id:{$in:orderIds }},
-            //   { $set: {isOrderRatingDone: true} }
-            //   );
+            orderRatings.forEach((or, index) => {
+                orderRatings[index].createdDate = new Date();
+            });
             return this.orderRatingsRepository.createAll(orderRatings);
         });
     }

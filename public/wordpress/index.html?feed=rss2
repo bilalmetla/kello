@@ -10,8 +10,8 @@
 
 <channel>
 	<title>Kellostore</title>
-	<atom:link href="http://kello-dev.herokuapp.com/wordpress/?feed=rss2" rel="self" type="application/rss+xml" />
-	<link>http://kello-dev.herokuapp.com/wordpress</link>
+	<atom:link href="http://localhost/wordpress/?feed=rss2" rel="self" type="application/rss+xml" />
+	<link>http://localhost/wordpress</link>
 	<description>Fresh Fruits And Vegetables</description>
 	<lastBuildDate>Mon, 06 Apr 2020 15:08:38 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -22,9 +22,9 @@
 	<generator>https://wordpress.org/?v=5.3.2</generator>
 
 <image>
-	<url>http://kello-dev.herokuapp.com/wordpress/wp-content/uploads/2020/03/Kello_favicon.png</url>
+	<url>http://localhost/wordpress/wp-content/uploads/2020/03/Kello_favicon.png</url>
 	<title>Kellostore</title>
-	<link>http://kello-dev.herokuapp.com/wordpress</link>
+	<link>http://localhost/wordpress</link>
 	<width>32</width>
 	<height>32</height>
 </image> 

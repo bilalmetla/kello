@@ -12,4 +12,5 @@ export declare class ShoppingController {
     find(filter?: Filter<Products>): Promise<Products[]>;
     findByProductTypeId(producttypesId: string): Promise<Products[]>;
     create(reqData: any): Promise<any>;
+    validatePhone(phone: string): string;
 }

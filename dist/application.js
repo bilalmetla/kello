@@ -29,6 +29,12 @@ class Kello extends boot_1.BootMixin(service_proxy_1.ServiceMixin(repository_1.R
         this.static('/', path_1.default.join(__dirname, '../public'));
         this.static('/shopping', path_1.default.join(__dirname, '../public/customer_client'));
         this.static('/customer_client/assets', path_1.default.join(__dirname, '../public/customer_client/customer_client/assets'));
+        this.static('/customer_client/runtime.js', path_1.default.join(__dirname, '../public/customer_client/runtime.js'));
+        this.static('/customer_client/polyfills.js', path_1.default.join(__dirname, '../public/customer_client/polyfills.js'));
+        this.static('/customer_client/styles.js', path_1.default.join(__dirname, '../public/customer_client/styles.js'));
+        this.static('/customer_client/vendor.js', path_1.default.join(__dirname, '../public/customer_client/vendor.js'));
+        this.static('/customer_client/vendor.js', path_1.default.join(__dirname, '../public/admin_client/vendor.js'));
+        this.static('/customer_client/main.js', path_1.default.join(__dirname, '../public/customer_client/main.js'));
         this.static('/app', path_1.default.join(__dirname, '../public/admin_client'));
         this.static('/assets', path_1.default.join(__dirname, '../public/admin_client/assets'));
         this.static('/runtime.js', path_1.default.join(__dirname, '../public/admin_client/runtime.js'));

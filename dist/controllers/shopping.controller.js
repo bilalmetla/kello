@@ -74,102 +74,121 @@ let ShoppingController = class ShoppingController {
             return this.productsRepository.find(filter);
         });
     }
-    // @secured(SecuredType.IS_AUTHENTICATED)
+    //@secured(SecuredType.IS_AUTHENTICATED)
     create(reqData) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (reqData.web_customer) {
-                let customer = new models_1.Customers();
-                customer.name = reqData.web_customer.name;
-                customer.phone = reqData.web_customer.phone;
-                customer.createdDate = new Date();
-                customer.isWebRegistered = true;
-                let ex_customer = yield this.customersRepository.findOne({ where: { phone: reqData.web_customer.phone } });
-                logger_1.winstonLogger.info('customer found for web order.');
-                if (!ex_customer || !ex_customer.id) {
-                    logger_1.winstonLogger.info('creating new customer for web order.');
-                    ex_customer = yield this.customersRepository.create(customer);
-                }
-                let hawker = yield this.partnersRepository.findOne({ where: { phone: '923067625445' } });
-                let hawkerId = '';
-                let h_location = { coordinates: [] };
-                if (hawker != null && hawker.id != undefined) {
-                    hawkerId = hawker.id;
-                    h_location = hawker.location;
-                }
-                let order = new models_1.Orders();
-                order.customersId = ex_customer.id;
-                order.orderStatus = 'Pending';
-                order.orderCategory = 'CUSTOMERS';
-                order.items = reqData.items;
-                order.totalBillAmount = reqData.totalBillAmount;
-                order.deliveredById = hawkerId;
-                order.isFromWeb = true;
-                order.location = h_location;
-                order.orderTime = new Date();
-                let orderId = '';
-                let items = JSON.parse(JSON.stringify(order.items));
-                let createdOrder = yield this.customersRepository.orders(ex_customer.id).create(order);
-                if (!createdOrder) {
-                    return constants_1.CONSTANTS.ORDER_NOT_PLACED;
-                }
-                if (createdOrder.id) {
-                    orderId = createdOrder.id.toString();
-                }
-                let productIds = items.map((it) => {
-                    return { id: it.productId };
-                });
-                logger_1.winstonLogger.debug('productids ', JSON.stringify(productIds));
-                let products = yield this.productsRepository.find({
-                    where: { or: productIds },
-                });
-                logger_1.winstonLogger.debug('products for order ');
-                logger_1.winstonLogger.debug(JSON.stringify(products));
-                if (!products) {
-                    return constants_1.CONSTANTS.PRODUCT_NOT_FOUND;
-                }
-                let orderdetailList;
-                orderdetailList = [];
-                products.forEach((pro, index) => {
-                    let orderdetail = new models_1.Orderdetails();
-                    orderdetail.ordersId = orderId;
-                    orderdetail.quantity = items[index].quantity;
-                    orderdetail.productsId = items[index].productId;
-                    orderdetail.retailPrice = pro.retailPrice;
-                    orderdetail.salePrice = pro.salePrice;
-                    orderdetail.purchasePrice = pro.buyingPrice;
-                    orderdetail.retailPriceUnitsId = pro.retailPiceUnitsId;
-                    orderdetail.purchasePriceUnitsId = pro.buyingPriceUnitsId;
-                    orderdetail.salePriceUnitsId = pro.salePriceUnitsId;
-                    orderdetailList.push(orderdetail);
-                });
-                logger_1.winstonLogger.debug('orderdetailList');
-                logger_1.winstonLogger.debug(JSON.stringify(orderdetailList));
-                if (orderdetailList.length > 0) {
-                    let orderDetailCreated = yield this.orderdetailsRepository.createAll(orderdetailList);
-                    logger_1.winstonLogger.debug('orderDetailCreated ', JSON.stringify(orderDetailCreated));
-                    if (!orderDetailCreated) {
-                        return constants_1.CONSTANTS.ORDER_DETAILS_NOT_CREATED;
-                    }
-                }
-                logger_1.winstonLogger.debug('sending notification to Hawker!');
-                if (hawker && hawker.deviceToken) {
-                    const firebase = new firebase_1.Firebase();
-                    const payload = {
-                        // data: {"orderId": id, "customerId": nearestPartner.id},
-                        notification: {
-                            title: 'Kellostore',
-                            body: 'There is a new order at your store. Deliver it quicly.'
-                        }
-                    };
-                    firebase.sendNotification(hawker.deviceToken, payload);
-                }
-                delete createdOrder.items;
-                return { order: createdOrder };
+            if (!reqData.web_customer || !reqData.web_customer.phone) {
+                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
             }
-            else {
+            let phone = this.validatePhone(reqData.web_customer.phone);
+            if (!phone) {
+                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
+            }
+            let customer = new models_1.Customers();
+            customer.name = reqData.web_customer.name;
+            customer.phone = phone;
+            customer.createdDate = new Date();
+            customer.isWebRegistered = true;
+            let ex_customer = yield this.customersRepository.findOne({ where: { phone: phone } });
+            logger_1.winstonLogger.info('customer found for web order.');
+            if (!ex_customer || !ex_customer.id) {
+                logger_1.winstonLogger.info('creating new customer for web order.');
+                ex_customer = yield this.customersRepository.create(customer);
+            }
+            let hawker = yield this.partnersRepository.findOne({ where: { phone: '923067625445' } });
+            let hawkerId = '';
+            let h_location = { coordinates: [] };
+            if (hawker != null && hawker.id != undefined) {
+                hawkerId = hawker.id;
+                h_location = hawker.location;
+            }
+            let order = new models_1.Orders();
+            order.customersId = ex_customer.id;
+            order.orderStatus = 'Pending';
+            order.orderCategory = 'CUSTOMERS';
+            order.items = reqData.items;
+            order.totalBillAmount = reqData.totalBillAmount;
+            order.deliveredById = hawkerId;
+            order.isFromWeb = true;
+            order.location = h_location;
+            order.orderTime = new Date();
+            let orderId = '';
+            let items = JSON.parse(JSON.stringify(order.items));
+            let createdOrder = yield this.customersRepository.orders(ex_customer.id).create(order);
+            if (!createdOrder) {
                 return constants_1.CONSTANTS.ORDER_NOT_PLACED;
             }
+            if (createdOrder.id) {
+                orderId = createdOrder.id.toString();
+            }
+            let productIds = items.map((it) => {
+                return { id: it.productId };
+            });
+            logger_1.winstonLogger.debug('productids ', JSON.stringify(productIds));
+            let products = yield this.productsRepository.find({
+                where: { or: productIds },
+            });
+            logger_1.winstonLogger.debug('products for order ');
+            logger_1.winstonLogger.debug(JSON.stringify(products));
+            if (!products) {
+                return constants_1.CONSTANTS.PRODUCT_NOT_FOUND;
+            }
+            let orderdetailList;
+            orderdetailList = [];
+            products.forEach((pro, index) => {
+                let orderdetail = new models_1.Orderdetails();
+                orderdetail.ordersId = orderId;
+                orderdetail.quantity = items[index].quantity;
+                orderdetail.productsId = items[index].productId;
+                orderdetail.retailPrice = pro.retailPrice;
+                orderdetail.salePrice = pro.salePrice;
+                orderdetail.purchasePrice = pro.buyingPrice;
+                orderdetail.retailPriceUnitsId = pro.retailPiceUnitsId;
+                orderdetail.purchasePriceUnitsId = pro.buyingPriceUnitsId;
+                orderdetail.salePriceUnitsId = pro.salePriceUnitsId;
+                orderdetailList.push(orderdetail);
+            });
+            logger_1.winstonLogger.debug('orderdetailList');
+            logger_1.winstonLogger.debug(JSON.stringify(orderdetailList));
+            if (orderdetailList.length > 0) {
+                let orderDetailCreated = yield this.orderdetailsRepository.createAll(orderdetailList);
+                logger_1.winstonLogger.debug('orderDetailCreated ', JSON.stringify(orderDetailCreated));
+                if (!orderDetailCreated) {
+                    return constants_1.CONSTANTS.ORDER_DETAILS_NOT_CREATED;
+                }
+            }
+            logger_1.winstonLogger.debug('sending notification to Hawker!');
+            if (hawker && hawker.deviceToken) {
+                const firebase = new firebase_1.Firebase();
+                const payload = {
+                    // data: {"orderId": id, "customerId": nearestPartner.id},
+                    notification: {
+                        title: 'Kellostore',
+                        body: 'There is a new order at your store. Deliver it quicly.'
+                    }
+                };
+                firebase.sendNotification(hawker.deviceToken, payload);
+            }
+            delete createdOrder.items;
+            return { order: createdOrder };
         });
+    }
+    //validating customer mobile and making it like its requried.
+    validatePhone(phone) {
+        phone = parseInt(phone, 10).toString();
+        if (phone.length < 10) {
+            return '';
+        }
+        if (phone.length === 10) {
+            phone = "92" + phone;
+        }
+        if (phone.length !== 12) {
+            return '';
+        }
+        if (phone.length === 12 && phone.substring(0, 2) != "92") {
+            return '';
+        }
+        return phone;
     }
 };
 __decorate([

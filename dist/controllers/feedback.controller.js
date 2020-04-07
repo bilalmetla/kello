@@ -51,6 +51,7 @@ let FeedbackController = class FeedbackController {
             if (feedback.image4) {
                 feedback.image4 = yield this.convertbase64image(feedback.fullname, feedback.image4);
             }
+            feedback.createdDate = new Date();
             //delete feedback.image;
             return this.feedbackRepository.create(feedback);
         });

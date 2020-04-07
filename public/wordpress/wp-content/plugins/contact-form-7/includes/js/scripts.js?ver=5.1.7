@@ -53,7 +53,6 @@
 			}
 
 			if ( typeof window.FormData === 'function' ) {
-				console.log($form);
 				wpcf7.submit( $form );
 				event.preventDefault();
 			}
@@ -208,9 +207,8 @@
 			inputs: [],
 			formData: formData
 		};
-	var dataArr = {};
+
 		$.each( $form.serializeArray(), function( i, field ) {
-			console.log('field', field)
 			if ( '_wpcf7' == field.name ) {
 				detail.contactFormId = field.value;
 			} else if ( '_wpcf7_version' == field.name ) {
@@ -227,7 +225,6 @@
 					name: owner + '-free-text',
 					value: field.value
 				} );
-				//dataArr[field.name] = field.value;
 			} else if ( field.name.match( /^_/ ) ) {
 				// do nothing
 			} else {
@@ -341,34 +338,20 @@
 			} );
 		};
 
-		if(detail.inputs && detail.inputs.length > 0){
-			dataArr.email = detail.inputs[0].value;
-			dataArr.phone = detail.inputs[0].value; 
-			dataArr.fullname = detail.inputs[1].value; 
-			
-			dataArr.message = detail.inputs[2].value
-		}
-console.log('dataArr', dataArr);
 		$.ajax( {
 			type: 'POST',
-			url: '/web/contact-us',
-			data: JSON.stringify(dataArr),
+			url: wpcf7.apiSettings.getRoute(
+				'/contact-forms/' + wpcf7.getId( $form ) + '/feedback' ),
+			data: formData,
 			dataType: 'json',
 			processData: false,
-			contentType: "application/json"
+			contentType: false
 		} ).done( function( data, status, xhr ) {
+			ajaxSuccess( data, status, xhr, $form );
 			$( '.ajax-loader', $form ).removeClass( 'is-active' );
-			$form.each( function() {
-					this.reset();
-				} );
-			alert('Thank You!\n We Will Contact You Soon');
-			//ajaxSuccess( data, status, xhr, $form );
-			//
 		} ).fail( function( xhr, status, error ) {
-		//	var $e = $( '<div class="ajax-error"></div>' ).text( error.message );
-		//	$form.after( $e );
-			$( '.ajax-loader', $form ).removeClass( 'is-active' );
-			alert('Kellostore\nUnable to serve your request!');
+			var $e = $( '<div class="ajax-error"></div>' ).text( error.message );
+			$form.after( $e );
 		} );
 	};
 
