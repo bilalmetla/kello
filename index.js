@@ -1,6 +1,6 @@
 const application = require('./dist');
 
-module.exports = application;
+module.exports = application; 
 
 if (require.main === module) {
   // Run the application
