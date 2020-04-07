@@ -119,10 +119,8 @@ const transports = [
 const exceptionHandlers = [
     new DailyRotateFile({
         filename: `${appRoot}/logs/exceptions.log`,
-        datePattern: "YYYY-MM-DD",
+        //datePattern: "YYYY-MM-DD",
         zippedArchive: false,
-        maxSize: "2g",
-        maxFiles: "14d"
     })
 ];
 // instantiate the logger with custom options above.

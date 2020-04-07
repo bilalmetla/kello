@@ -59,6 +59,7 @@ let CustomersController = class CustomersController {
                 filter = {};
                 filter.order = ['createdDate Desc'];
             }
+            filter.fields = { id: true, name: true, phone: true, isActivated: true, isWebRegistered: true, deviceToken: true };
             return this.customersRepository.find(filter);
         });
     }
@@ -76,6 +77,10 @@ let CustomersController = class CustomersController {
             // logger.debug('transaction commit', commit);
             // session.endSession();
             //  return customers;
+            if (!filter) {
+                filter = {};
+            }
+            filter.fields = { id: true, name: true, phone: true, isActivated: true, isWebRegistered: true, deviceToken: true };
             return this.customersRepository.findById(id, filter);
         });
     }

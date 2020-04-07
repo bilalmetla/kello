@@ -23,6 +23,7 @@ class Kello extends boot_1.BootMixin(service_proxy_1.ServiceMixin(repository_1.R
         process.env.errorResponses = '0';
         process.env.lastResponseTime = '0';
         process.env.avgResponseTime = '0';
+        process.env.kelloConfigs = '';
         // Set up the custom sequence
         this.sequence(sequence_1.MySequence);
         // Set up default home page
@@ -67,6 +68,14 @@ class Kello extends boot_1.BootMixin(service_proxy_1.ServiceMixin(repository_1.R
                 nested: true,
             },
         };
+        //@repository(ConfigurationsRepository)
+        // let configurationsRepository : ConfigurationsRepository;
+        //   async ()=>{
+        //     const configurations = await configurationsRepository.find();
+        //     let configuration = JSON.stringify(configurations[0])
+        //     logger.debug(`configuration loaded .. ${configuration} `);
+        //     process.env.kelloConfigs = configuration;
+        //   }
     }
 }
 exports.Kello = Kello;
