@@ -3,13 +3,13 @@
 	<service>
 		<engineName>WordPress</engineName>
 		<engineLink>https://wordpress.org/</engineLink>
-		<homePageLink>http://kello-dev.herokuapp.com/wordpress</homePageLink>
+		<homePageLink>http://www.kellostore.com/wordpress</homePageLink>
 		<apis>
-			<api name="WordPress" blogID="1" preferred="true" apiLink="http://kello-dev.herokuapp.com/wordpress/xmlrpc.php" />
-			<api name="Movable Type" blogID="1" preferred="false" apiLink="http://kello-dev.herokuapp.com/wordpress/xmlrpc.php" />
-			<api name="MetaWeblog" blogID="1" preferred="false" apiLink="http://kello-dev.herokuapp.com/wordpress/xmlrpc.php" />
-			<api name="Blogger" blogID="1" preferred="false" apiLink="http://kello-dev.herokuapp.com/wordpress/xmlrpc.php" />
-				<api name="WP-API" blogID="1" preferred="false" apiLink="http://kello-dev.herokuapp.com/wordpress/index.php?rest_route=/" />
+			<api name="WordPress" blogID="1" preferred="true" apiLink="http://www.kellostore.com/wordpress/xmlrpc.php" />
+			<api name="Movable Type" blogID="1" preferred="false" apiLink="http://www.kellostore.com/wordpress/xmlrpc.php" />
+			<api name="MetaWeblog" blogID="1" preferred="false" apiLink="http://www.kellostore.com/wordpress/xmlrpc.php" />
+			<api name="Blogger" blogID="1" preferred="false" apiLink="http://www.kellostore.com/wordpress/xmlrpc.php" />
+				<api name="WP-API" blogID="1" preferred="false" apiLink="http://www.kellostore.com/wordpress/index.php?rest_route=/" />
 			</apis>
 	</service>
 </rsd>
