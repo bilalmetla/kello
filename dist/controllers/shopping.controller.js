@@ -96,11 +96,18 @@ let ShoppingController = class ShoppingController {
                 ex_customer = yield this.customersRepository.create(customer);
             }
             let hawker = yield this.partnersRepository.findOne({ where: { phone: '923067625445' } });
+            if (!hawker) {
+                return constants_1.CONSTANTS.HAWKER_NOT_AVAILABLE;
+            }
             let hawkerId = '';
-            let h_location = { coordinates: [] };
+            let h_location = {};
             if (hawker != null && hawker.id != undefined) {
                 hawkerId = hawker.id;
                 h_location = hawker.location;
+                let l0 = hawker.location.coordinates[0];
+                let l1 = hawker.location.coordinates[1] + 0.02;
+                h_location.coordinates.push(l0);
+                h_location.coordinates.push(l1);
             }
             let order = new models_1.Orders();
             order.customersId = ex_customer.id;
