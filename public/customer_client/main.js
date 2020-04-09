@@ -786,7 +786,7 @@ var ShoppingComponent = /** @class */ (function () {
                 productId: this.selectedProduct[pid].id,
                 productTitle: this.selectedProduct[pid].displayName,
                 quantity: this.selectedProduct[pid].product_quality,
-                quentityUnit: this.selectedProduct[pid].retailPiceUnitsId,
+                quentityUnit: this.unitsId_list[this.selectedProduct[pid].retailPiceUnitsId],
             });
         }
         // console.log('confirmOrder', this.order);
