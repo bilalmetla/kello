@@ -165,7 +165,8 @@ let CustomersOrdersController = class CustomersOrdersController {
                     // data: {"orderId": id, "customerId": nearestPartner.id},
                     notification: {
                         title: 'Kellostore',
-                        body: 'There is a new order at your store. Deliver it quicly.'
+                        body: 'There is a new order at your store. Deliver it quicly.',
+                        sound: "default",
                     }
                 };
                 firebase.sendNotification(nearestPartner.deviceToken, payload);
@@ -191,6 +192,19 @@ let CustomersOrdersController = class CustomersOrdersController {
                 "startProgressTime": new Date()
             };
             yield this.customersRepository.orders(customerId).patch(orders, { id: orderId });
+            let customerInfo = yield this.customersRepository.findById(customerId);
+            if (customerInfo.deviceToken) {
+                const firebase = new firebase_1.Firebase();
+                const payload = {
+                    data: { "orderId": orderId, "customerId": customerId },
+                    notification: {
+                        title: 'Kellostore',
+                        body: 'Your order is in progress now. Thanks',
+                        sound: "default",
+                    }
+                };
+                firebase.sendNotification(customerInfo.deviceToken, payload);
+            }
             return { id: orderId, orderStatus: orders.orderStatus, startProgressTime: orders.startProgressTime };
         });
     }
@@ -230,7 +244,8 @@ let CustomersOrdersController = class CustomersOrdersController {
                     data: { "orderId": id, "customerId": customerId },
                     notification: {
                         title: 'Kellostore',
-                        body: 'Thank you for your order at kello. We provide best quality fruits & vegetalbes'
+                        body: 'Thank you for your order at kellostore.com. Rate your order.',
+                        sound: "default",
                     }
                 };
                 firebase.sendNotification(customerInfo.deviceToken, payload);

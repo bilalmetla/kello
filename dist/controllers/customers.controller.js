@@ -59,6 +59,8 @@ let CustomersController = class CustomersController {
                 filter = {};
                 filter.order = ['createdDate Desc'];
             }
+            //filter.limit = 5;
+            //filter.skip = 0;
             filter.fields = { id: true, name: true, phone: true, isActivated: true, isWebRegistered: true, deviceToken: true };
             return this.customersRepository.find(filter);
         });
@@ -135,6 +137,9 @@ let CustomersController = class CustomersController {
                 //throw new HttpErrors.Unauthorized('Please Activate via SMS CODE');    
             }
             else {
+                if (foundCust[0].isActivated === true) {
+                    return foundCust[0];
+                }
                 let today = new Date();
                 let tomorrow = new Date();
                 tomorrow.setDate(today.getDate() + 1);
@@ -143,7 +148,6 @@ let CustomersController = class CustomersController {
                 yield this.activationsRepository.create({ phone, smsCode: smsCode, expiry: tomorrow.toString() });
                 foundCust[0].isActivated = false;
                 yield this.customersRepository.updateAll(foundCust[0], { phone });
-                //this.sendSMS(smsCode,foundCust[0].phone);
                 sendPk.sendOTP(smsCode, foundCust[0].phone);
                 delete foundCust[0].access_token;
                 return foundCust[0];

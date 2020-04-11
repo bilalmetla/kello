@@ -186,7 +186,8 @@ let ShoppingController = class ShoppingController {
                     // data: {"orderId": id, "customerId": nearestPartner.id},
                     notification: {
                         title: 'Kellostore',
-                        body: 'There is a new order at your store. Deliver it quicly.'
+                        body: 'There is a new order at your store. Deliver it quicly.',
+                        sound: "default",
                     }
                 };
                 firebase.sendNotification(hawker.deviceToken, payload);
