@@ -39,13 +39,14 @@ const util_2 = require("util");
 const { sign } = require('jsonwebtoken');
 const signAsync = util_2.promisify(sign);
 let ShoppingController = class ShoppingController {
-    constructor(productsRepository, ordersRepository, customersRepository, producttypesRepository, partnersRepository, orderdetailsRepository) {
+    constructor(productsRepository, ordersRepository, customersRepository, producttypesRepository, partnersRepository, orderdetailsRepository, userRepository) {
         this.productsRepository = productsRepository;
         this.ordersRepository = ordersRepository;
         this.customersRepository = customersRepository;
         this.producttypesRepository = producttypesRepository;
         this.partnersRepository = partnersRepository;
         this.orderdetailsRepository = orderdetailsRepository;
+        this.userRepository = userRepository;
     }
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -74,9 +75,9 @@ let ShoppingController = class ShoppingController {
             filter.where = { and: [{ producttypesId }, { isAvailable: true }] };
             filter.order = ['displayingPeriority Asc'];
             filter.fields = { id: true, displayName: true, producttypesId: true, imageUrl: true, retailPrice: true, retailPiceUnitsId: true };
-            const tokenObject = { username: "923356666761" };
-            let token = yield signAsync(tokenObject, auth_1.JWT_SECRET);
-            console.log("Access token of 923356666761", token);
+            // const tokenObject = {username: "923356666761"};
+            // let token = await signAsync(tokenObject, JWT_SECRET);
+            // console.log("Access token of 923356666761", token);
             return this.productsRepository.find(filter);
         });
     }
@@ -104,6 +105,7 @@ let ShoppingController = class ShoppingController {
                 let token = yield signAsync(tokenObject, auth_1.JWT_SECRET);
                 customer.access_token = token;
                 ex_customer = yield this.customersRepository.create(customer);
+                let user = yield this.userRepository.create({ username: phone });
             }
             let hawker = yield this.partnersRepository.findOne({ where: { phone: '923067625445' } });
             if (!hawker) {
@@ -275,12 +277,14 @@ ShoppingController = __decorate([
     __param(3, repository_1.repository(repositories_1.ProducttypesRepository)),
     __param(4, repository_1.repository(repositories_1.PartnersRepository)),
     __param(5, repository_1.repository(repositories_1.OrderdetailsRepository)),
+    __param(6, repository_1.repository(repositories_1.UserRepository)),
     __metadata("design:paramtypes", [repositories_1.ProductsRepository,
         repositories_1.OrdersRepository,
         repositories_1.CustomersRepository,
         repositories_1.ProducttypesRepository,
         repositories_1.PartnersRepository,
-        repositories_1.OrderdetailsRepository])
+        repositories_1.OrderdetailsRepository,
+        repositories_1.UserRepository])
 ], ShoppingController);
 exports.ShoppingController = ShoppingController;
 //# sourceMappingURL=shopping.controller.js.map

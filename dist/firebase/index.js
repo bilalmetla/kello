@@ -58,6 +58,7 @@ class Firebase {
         const options = {
             priority: 'normal',
             timeToLive: 60 * 60 * 24,
+            sound: "default",
         };
         firebase
             .messaging()
