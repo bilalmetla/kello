@@ -119,6 +119,7 @@ let CustomersController = class CustomersController {
                 customers.access_token = token;
                 //customers.access_token = uuid.v4();
                 customers.isActivated = false;
+                customers.createdDate = new Date();
                 let today = new Date();
                 let tomorrow = new Date();
                 tomorrow.setDate(today.getDate() + 1);
