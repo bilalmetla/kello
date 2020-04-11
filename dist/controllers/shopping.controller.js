@@ -31,10 +31,13 @@ const repositories_1 = require("../repositories");
 const fs_1 = __importDefault(require("fs"));
 const util_1 = __importDefault(require("util"));
 const writeFilePromise = util_1.default.promisify(fs_1.default.writeFile);
-const auth_1 = require("../auth");
 const constants_1 = require("../constants");
 const logger_1 = require("../logger");
 const firebase_1 = require("../firebase");
+const auth_1 = require("../auth");
+const util_2 = require("util");
+const { sign } = require('jsonwebtoken');
+const signAsync = util_2.promisify(sign);
 let ShoppingController = class ShoppingController {
     constructor(productsRepository, ordersRepository, customersRepository, producttypesRepository, partnersRepository, orderdetailsRepository) {
         this.productsRepository = productsRepository;
@@ -71,6 +74,9 @@ let ShoppingController = class ShoppingController {
             filter.where = { and: [{ producttypesId }, { isAvailable: true }] };
             filter.order = ['displayingPeriority Asc'];
             filter.fields = { id: true, displayName: true, producttypesId: true, imageUrl: true, retailPrice: true, retailPiceUnitsId: true };
+            const tokenObject = { username: "923356666761" };
+            let token = yield signAsync(tokenObject, auth_1.JWT_SECRET);
+            console.log("Access token of 923356666761", token);
             return this.productsRepository.find(filter);
         });
     }
@@ -89,10 +95,14 @@ let ShoppingController = class ShoppingController {
             customer.phone = phone;
             customer.createdDate = new Date();
             customer.isWebRegistered = true;
+            customer.isActivated = false;
             let ex_customer = yield this.customersRepository.findOne({ where: { phone: phone } });
             logger_1.winstonLogger.info('customer found for web order.');
             if (!ex_customer || !ex_customer.id) {
                 logger_1.winstonLogger.info('creating new customer for web order.');
+                const tokenObject = { username: phone };
+                let token = yield signAsync(tokenObject, auth_1.JWT_SECRET);
+                customer.access_token = token;
                 ex_customer = yield this.customersRepository.create(customer);
             }
             let hawker = yield this.partnersRepository.findOne({ where: { phone: '923067625445' } });
