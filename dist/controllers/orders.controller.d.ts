@@ -13,4 +13,6 @@ export declare class OrdersController {
     replaceById(id: string, orders: Orders): Promise<void>;
     deleteById(id: string): Promise<void>;
     orderHistory(customersId: string): Promise<Orders[]>;
+    partnerOrderPending(id: string, filter: Filter<Orders>): Promise<Orders[]>;
+    partnerOrderHistory(id: string, filter: Filter<Orders>): Promise<Orders[]>;
 }

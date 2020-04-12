@@ -59,7 +59,7 @@ let CustomersController = class CustomersController {
                 filter = {};
                 filter.order = ['createdDate Desc'];
             }
-            //filter.limit = 5;
+            filter.limit = 20;
             //filter.skip = 0;
             filter.fields = { id: true, name: true, phone: true, isActivated: true, isWebRegistered: true, deviceToken: true };
             return this.customersRepository.find(filter);
@@ -121,6 +121,8 @@ let CustomersController = class CustomersController {
                 customers.access_token = token;
                 //customers.access_token = uuid.v4();
                 customers.isActivated = false;
+                //deviceToken is coming in the request.
+                //customers.deviceToken = activations.deviceToken;
                 customers.createdDate = new Date();
                 let today = new Date();
                 let tomorrow = new Date();
@@ -130,13 +132,11 @@ let CustomersController = class CustomersController {
                 const createdCustomer = yield this.customersRepository.create(customers);
                 let user = yield this.userRepository.create({ username: phone });
                 delete createdCustomer.access_token;
-                //this.sendSMS();
                 sendPk.sendOTP(smsCode, createdCustomer.phone);
                 return createdCustomer;
-                //return customer;
-                //throw new HttpErrors.Unauthorized('Please Activate via SMS CODE');    
             }
             else {
+                //if customer already exist then deviceToken update at other api /update/device/token
                 if (foundCust[0].isActivated === true) {
                     return foundCust[0];
                 }

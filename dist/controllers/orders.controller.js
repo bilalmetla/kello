@@ -49,6 +49,7 @@ let OrdersController = class OrdersController {
                 filter = {};
                 filter.order = ['orderTime Desc'];
             }
+            filter.limit = 20;
             //filter.include = [{relation:'customers'}]
             filter.include = [{ "relation": 'customers',
                     scope: { fields: { "id": true, "name": true, "phone": true } } }
@@ -170,6 +171,25 @@ let OrdersController = class OrdersController {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.ordersRepository.find({ where: { customersId: customersId } });
             //return {id: id, orderStatus: orders.orderStatus, isCancelled: orders.isCancelled};
+        });
+    }
+    //@secured(SecuredType.IS_AUTHENTICATED)
+    partnerOrderPending(id, filter) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!filter) {
+                filter = {};
+            }
+            filter.limit = 20;
+            return yield this.ordersRepository.find({ where: { and: [{ or: [{ orderStatus: 'Pending' }, { orderStatus: 'InProgress' }] }, { deliveredById: id }] } }, filter);
+        });
+    }
+    partnerOrderHistory(id, filter) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!filter) {
+                filter = {};
+            }
+            filter.limit = 20;
+            return yield this.ordersRepository.find({ where: { and: [{ orderStatus: 'Completed' }, { deliveredById: id }] } }, filter);
         });
     }
 };
@@ -345,6 +365,44 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "orderHistory", null);
+__decorate([
+    rest_1.get('/partners/{id}/orders/pending', {
+        responses: {
+            '200': {
+                description: 'Order History',
+                content: {
+                    'application/json': {
+                        schema: { type: 'object', properties: { id: { type: "string" } } },
+                    },
+                },
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __param(1, rest_1.param.query.object('filter', rest_1.getFilterSchemaFor(models_1.Orders))),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], OrdersController.prototype, "partnerOrderPending", null);
+__decorate([
+    rest_1.get('/partners/{id}/orders/history', {
+        responses: {
+            '200': {
+                description: 'Partner Order History',
+                content: {
+                    'application/json': {
+                        schema: { type: 'object', properties: { id: { type: "string" } } },
+                    },
+                },
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __param(1, rest_1.param.query.object('filter', rest_1.getFilterSchemaFor(models_1.Orders))),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], OrdersController.prototype, "partnerOrderHistory", null);
 OrdersController = __decorate([
     __param(0, repository_1.repository(repositories_1.OrdersRepository)),
     __metadata("design:paramtypes", [repositories_1.OrdersRepository])
