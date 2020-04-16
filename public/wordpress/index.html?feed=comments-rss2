@@ -10,7 +10,7 @@
 	<title>
 	Comments for Kellostore	</title>
 	<atom:link href="http://kello-dev.herokuapp.com/wordpress/?feed=comments-rss2" rel="self" type="application/rss+xml" />
-	<link>http://kello-dev.herokuapp.com.herokuapp.com/wordpress</link>
+	<link>http://kello-dev.herokuapp.com.herokuapp.com.herokuapp.com/wordpress</link>
 	<description>Fresh Fruits And Vegetables</description>
 	<lastBuildDate>Mon, 06 Apr 2020 15:08:38 +0000</lastBuildDate>
 	<sy:updatePeriod>
