@@ -28,6 +28,8 @@ let OrdersRepository = class OrdersRepository extends repository_1.DefaultCrudRe
         this.registerInclusionResolver('customers', this.customers.inclusionResolver);
         this.user = this.createBelongsToAccessorFor('deletedBy', userRepositoryGetter);
         this.registerInclusionResolver('user', this.user.inclusionResolver);
+        this.user = this.createBelongsToAccessorFor('canceledByAdmin', userRepositoryGetter);
+        this.registerInclusionResolver('user', this.user.inclusionResolver);
         this.partners = this.createBelongsToAccessorFor('deliveredBy', partnersRepositoryGetter);
         this.registerInclusionResolver('partners', this.partners.inclusionResolver);
         this.orderdetails = this.createHasManyRepositoryFactoryFor('orderdetails', orderdetailsRepositoryGetter);

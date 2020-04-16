@@ -28,6 +28,7 @@ export declare class Orders extends Entity {
     partnersId?: string;
     deliveredById: string;
     deletedById: string;
+    canceledByAdminId: string;
     customersId?: string;
     constructor(data?: Partial<Orders>);
 }

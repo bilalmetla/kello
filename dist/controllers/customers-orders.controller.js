@@ -217,8 +217,23 @@ let CustomersOrdersController = class CustomersOrdersController {
                 cancelTime: new Date()
             };
             //await this.ordersRepository.updateAll({where: {and:[{id:id}, {customersId: customersId}]} }, orders)
-            //await this.ordersRepository.updateById(id, orders);
-            yield this.customersRepository.orders(customersId).patch(orders, { id: id });
+            yield this.ordersRepository.updateById(id, orders);
+            //  await this.customersRepository.orders(customersId).patch(orders, {id:id});
+            return { id: id, orderStatus: orders.orderStatus, isCancelled: orders.isCancelled };
+        });
+    }
+    adminOrderCancellation(id, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let orders;
+            orders = {
+                "orderStatus": "Cancelled",
+                "isCancelled": true,
+                canceledByAdminId: userId,
+                cancelTime: new Date()
+            };
+            //await this.ordersRepository.updateAll({where: {and:[{id:id}, {customersId: customersId}]} }, orders)
+            yield this.ordersRepository.updateById(id, orders);
+            //  await this.customersRepository.orders(customersId).patch(orders, {id:id});
             return { id: id, orderStatus: orders.orderStatus, isCancelled: orders.isCancelled };
         });
     }
@@ -259,6 +274,50 @@ let CustomersOrdersController = class CustomersOrdersController {
             let isDeleted = true;
             yield this.ordersRepository.updateById(id, { isDeleted, orderStatus, deletedById: userId });
             return { id, orderStatus, isDeleted };
+        });
+    }
+    //  @secured(SecuredType.IS_AUTHENTICATED)
+    todaySale() {
+        return __awaiter(this, void 0, void 0, function* () {
+            var previousday = new Date();
+            previousday.setDate(previousday.getDate() - 1);
+            let orders = yield this.ordersRepository.find({
+                where: {
+                    and: [{
+                            orderTime: {
+                                gte: previousday
+                                //lt: new Date()
+                            }
+                        },
+                        {
+                            orderStatus: 'Completed'
+                        }
+                    ]
+                }
+            });
+            let totalsale = 0;
+            if (orders.length > 0)
+                orders.forEach(or => {
+                    totalsale = totalsale + or.totalBillAmount;
+                });
+            return { sale: totalsale };
+        });
+    }
+    totalSale() {
+        return __awaiter(this, void 0, void 0, function* () {
+            //var previousday = new Date();
+            //previousday.setDate(previousday.getDate() - 1);
+            let orders = yield this.ordersRepository.find({
+                where: {
+                    orderStatus: 'Completed'
+                }
+            });
+            let totalsale = 0;
+            if (orders.length > 0)
+                orders.forEach(or => {
+                    totalsale = totalsale + or.totalBillAmount;
+                });
+            return { sale: totalsale };
         });
     }
 };
@@ -385,6 +444,26 @@ __decorate([
 ], CustomersOrdersController.prototype, "orderCancellation", null);
 __decorate([
     auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
+    rest_1.patch('/orders/{id}/users/{userId}/cancel', {
+        responses: {
+            '200': {
+                description: 'Order Cancelled',
+                content: {
+                    'application/json': {
+                        schema: { type: 'object', properties: { id: { type: "string" } } },
+                    },
+                },
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __param(1, rest_1.param.path.string('userId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], CustomersOrdersController.prototype, "adminOrderCancellation", null);
+__decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.patch('/orders/{id}/customers/{customerId}/delevered', {
         responses: {
             '200': {
@@ -423,6 +502,40 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], CustomersOrdersController.prototype, "orderDeletion", null);
+__decorate([
+    rest_1.get('/orders/sale/today', {
+        responses: {
+            '200': {
+                description: '',
+                content: {
+                    'application/json': {
+                        schema: { type: 'object', properties: { id: { type: "string" } } },
+                    },
+                },
+            },
+        },
+    }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], CustomersOrdersController.prototype, "todaySale", null);
+__decorate([
+    rest_1.get('/orders/sale', {
+        responses: {
+            '200': {
+                description: '',
+                content: {
+                    'application/json': {
+                        schema: { type: 'object', properties: { id: { type: "string" } } },
+                    },
+                },
+            },
+        },
+    }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], CustomersOrdersController.prototype, "totalSale", null);
 CustomersOrdersController = __decorate([
     __param(0, repository_1.repository(repositories_1.CustomersRepository)),
     __param(1, repository_1.repository(repositories_1.PartnersRepository)),

@@ -38,7 +38,10 @@ let DashboardsController = class DashboardsController {
             const users = yield this.customersRepository.count();
             const feedbacks = yield this.feedbackRepository.count();
             const orders = yield this.ordersRepository.count();
-            return { users, feedbacks, orders };
+            const ordersPending = yield this.ordersRepository.count({ orderStatus: 'Pending' });
+            const ordersCompleted = yield this.ordersRepository.count({ orderStatus: 'Completed' });
+            const ordersCancelled = yield this.ordersRepository.count({ orderStatus: 'Cancelled' });
+            return { users, feedbacks, orders, ordersPending, ordersCompleted, ordersCancelled };
         });
     }
 };

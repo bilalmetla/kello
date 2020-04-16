@@ -47,9 +47,9 @@ class Kello extends boot_1.BootMixin(service_proxy_1.ServiceMixin(repository_1.R
         this.static('/products/images', path_1.default.join(__dirname, '../public/products/images'));
         this.static('/promotions/images', path_1.default.join(__dirname, '../public/promotions/images'));
         // Customize @loopback/rest-explorer configuration here
-        this.bind(rest_explorer_1.RestExplorerBindings.CONFIG).to({
-            path: '/explorer',
-        });
+        // this.bind(RestExplorerBindings.CONFIG).to({
+        //   path: '/explorer',
+        // });
         // this.configure(RestExplorerBindings.COMPONENT).to({
         //   path: '/explorer',
         // });

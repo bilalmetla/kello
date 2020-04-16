@@ -87,6 +87,27 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Customers.prototype, "isWebRegistered", void 0);
 __decorate([
+    repository_1.property({
+        type: 'number',
+        required: false,
+    }),
+    __metadata("design:type", Number)
+], Customers.prototype, "street", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        required: false,
+    }),
+    __metadata("design:type", Number)
+], Customers.prototype, "house", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+        required: false,
+    }),
+    __metadata("design:type", String)
+], Customers.prototype, "address", void 0);
+__decorate([
     repository_1.hasMany(() => orders_model_1.Orders),
     __metadata("design:type", Array)
 ], Customers.prototype, "orders", void 0);

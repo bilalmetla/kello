@@ -185,6 +185,10 @@ __decorate([
     __metadata("design:type", String)
 ], Orders.prototype, "deletedById", void 0);
 __decorate([
+    repository_1.belongsTo(() => user_model_1.User),
+    __metadata("design:type", String)
+], Orders.prototype, "canceledByAdminId", void 0);
+__decorate([
     repository_1.belongsTo(() => customers_model_1.Customers),
     __metadata("design:type", String)
 ], Orders.prototype, "customersId", void 0);

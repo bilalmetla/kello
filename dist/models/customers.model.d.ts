@@ -11,6 +11,9 @@ export declare class Customers extends Entity {
     deviceId?: string;
     deviceToken?: string;
     isWebRegistered?: boolean;
+    street?: number;
+    house?: number;
+    address?: string;
     orders: Orders[];
     constructor(data?: Partial<Customers>);
 }

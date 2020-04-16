@@ -14,7 +14,8 @@ export declare class PartnersController {
     updateById(id: string, partners: Partners): Promise<void>;
     replaceById(id: string, partners: Partners): Promise<void>;
     deleteById(id: string): Promise<void>;
-    authenticate(partners: Omit<Partners, 'id'>): Promise<User | Partners>;
+    authenticate(partners: Omit<Partners, 'id'>): Promise<User | Partners | any>;
     activation(activations: Activations): Promise<Partners | any>;
     updatePartnerLocation(id: string, long: string, lat: string): Promise<object>;
+    validatePhone(phone: string): string;
 }

@@ -32,6 +32,7 @@ const util_1 = require("util");
 const { sign } = require('jsonwebtoken');
 const signAsync = util_1.promisify(sign);
 const logger_1 = require("../logger");
+const sendpk_1 = require("../sms/sendpk");
 let PartnersController = class PartnersController {
     constructor(partnersRepository, activationsRepository, userRepository) {
         this.partnersRepository = partnersRepository;
@@ -80,19 +81,20 @@ let PartnersController = class PartnersController {
     }
     authenticate(partners) {
         return __awaiter(this, void 0, void 0, function* () {
-            let phone = partners.phone;
+            const sendPk = new sendpk_1.SendPk();
+            let phone = this.validatePhone(partners.phone);
+            if (!phone) {
+                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
+            }
+            //let phone = partners.phone;
             // let filter = getFilterSchemaFor(Customers);
             let filter = {
                 "where": { phone },
-                "fields": {
-                    "id": true,
-                    "name": true,
-                    "phone": true,
-                }
             };
             let foundCust = yield this.partnersRepository.find(filter);
             logger_1.winstonLogger.debug(foundCust);
             if (foundCust && foundCust.length === 0) {
+                partners.phone = phone;
                 const tokenObject = { username: phone };
                 let token = yield signAsync(tokenObject, auth_1.JWT_SECRET);
                 partners.access_token = token;
@@ -100,20 +102,30 @@ let PartnersController = class PartnersController {
                 let today = new Date();
                 let tomorrow = new Date();
                 tomorrow.setDate(today.getDate() + 1);
-                yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
+                let smsCode = Math.floor(Math.random() * 899999 + 100000);
+                yield this.activationsRepository.create({ phone, smsCode: smsCode });
                 yield this.partnersRepository.create(partners);
                 let user = yield this.userRepository.create({ username: phone });
-                // delete createdPartner.access_token;
+                logger_1.winstonLogger.debug('sending authentication otp to partner');
+                sendPk.sendOTP(smsCode, partners.phone);
                 return user;
             }
             else {
+                //if partner already exist then deviceToken update at other api /update/device/token
+                if (foundCust[0].isActivated === true) {
+                    return foundCust[0];
+                }
                 let today = new Date();
                 let tomorrow = new Date();
                 tomorrow.setDate(today.getDate() + 1);
-                yield this.activationsRepository.create({ phone, smsCode: Math.floor(Math.random() * 899999 + 100000), expiry: tomorrow.toString() });
+                let smsCode = Math.floor(Math.random() * 899999 + 100000);
+                yield this.activationsRepository.deleteAll({ phone });
+                yield this.activationsRepository.create({ phone, smsCode: smsCode });
                 foundCust[0].isActivated = false;
                 // foundCust[0].access_token = uuid.v4();
                 yield this.partnersRepository.updateAll(foundCust[0], { phone });
+                sendPk.sendOTP(smsCode, foundCust[0].phone);
+                delete foundCust[0].access_token;
                 return foundCust[0];
             }
         });
@@ -145,6 +157,22 @@ let PartnersController = class PartnersController {
             yield this.partnersRepository.updateById(id, { location: location });
             return { id };
         });
+    }
+    validatePhone(phone) {
+        phone = parseInt(phone, 10).toString();
+        if (phone.length < 10) {
+            return '';
+        }
+        if (phone.length === 10) {
+            phone = "92" + phone;
+        }
+        if (phone.length !== 12) {
+            return '';
+        }
+        if (phone.length === 12 && phone.substring(0, 2) != "92") {
+            return '';
+        }
+        return phone;
     }
 };
 __decorate([
