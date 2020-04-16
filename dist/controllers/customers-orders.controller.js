@@ -199,7 +199,7 @@ let CustomersOrdersController = class CustomersOrdersController {
                     data: { "orderId": orderId, "customerId": customerId },
                     notification: {
                         title: 'Kellostore',
-                        body: 'Your order is in progress now. Thanks',
+                        body: 'Your order is in processing now. Thanks',
                         sound: "default",
                     }
                 };
@@ -259,7 +259,7 @@ let CustomersOrdersController = class CustomersOrdersController {
                     data: { "orderId": id, "customerId": customerId },
                     notification: {
                         title: 'Kellostore',
-                        body: 'Thank you for your order at kellostore.com. Rate your order.',
+                        body: 'Thank you for your order at kellostore. Rate your order.',
                         sound: "default",
                     }
                 };
