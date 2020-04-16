@@ -945,7 +945,7 @@ var ShoppingService = /** @class */ (function () {
     function ShoppingService(http) {
         this.http = http;
         this.productList = [];
-        this.api = '/shopping';
+        this.api = 'http://127.0.0.1:3000/shopping';
     }
     ShoppingService.prototype.productsByType = function (productType) {
         var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
