@@ -79,6 +79,7 @@ let PartnersController = class PartnersController {
             yield this.partnersRepository.deleteById(id);
         });
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     authenticate(partners) {
         return __awaiter(this, void 0, void 0, function* () {
             const sendPk = new sendpk_1.SendPk();
@@ -130,6 +131,7 @@ let PartnersController = class PartnersController {
             }
         });
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     activation(activations) {
         return __awaiter(this, void 0, void 0, function* () {
             let phone = activations.phone;
@@ -329,7 +331,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PartnersController.prototype, "deleteById", null);
 __decorate([
-    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/partners/authenticate', {
         responses: {
             '200': {
@@ -353,7 +354,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PartnersController.prototype, "authenticate", null);
 __decorate([
-    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.post('/partners/activate', {
         responses: {
             '200': {
