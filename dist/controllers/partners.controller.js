@@ -104,12 +104,14 @@ let PartnersController = class PartnersController {
                 let tomorrow = new Date();
                 tomorrow.setDate(today.getDate() + 1);
                 let smsCode = Math.floor(Math.random() * 899999 + 100000);
-                yield this.activationsRepository.create({ phone, smsCode: smsCode });
-                yield this.partnersRepository.create(partners);
+                yield this.activationsRepository.create({ phone, smsCode: smsCode, createdTime: new Date() });
+                partners.createdTime = new Date();
+                let created_partner = yield this.partnersRepository.create(partners);
                 let user = yield this.userRepository.create({ username: phone });
                 logger_1.winstonLogger.debug('sending authentication otp to partner');
                 sendPk.sendOTP(smsCode, partners.phone);
-                return user;
+                delete created_partner.access_token;
+                return created_partner;
             }
             else {
                 //if partner already exist then deviceToken update at other api /update/device/token
@@ -121,7 +123,7 @@ let PartnersController = class PartnersController {
                 tomorrow.setDate(today.getDate() + 1);
                 let smsCode = Math.floor(Math.random() * 899999 + 100000);
                 yield this.activationsRepository.deleteAll({ phone });
-                yield this.activationsRepository.create({ phone, smsCode: smsCode });
+                yield this.activationsRepository.create({ phone, smsCode: smsCode, createdTime: new Date() });
                 foundCust[0].isActivated = false;
                 // foundCust[0].access_token = uuid.v4();
                 yield this.partnersRepository.updateAll(foundCust[0], { phone });

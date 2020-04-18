@@ -35,6 +35,7 @@ let SupplyController = class SupplyController {
     }
     create(supply) {
         return __awaiter(this, void 0, void 0, function* () {
+            supply.supplyDate = new Date();
             return this.supplyRepository.create(supply);
         });
     }
