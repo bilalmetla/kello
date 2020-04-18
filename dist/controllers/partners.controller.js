@@ -135,12 +135,16 @@ let PartnersController = class PartnersController {
     activation(activations) {
         return __awaiter(this, void 0, void 0, function* () {
             let phone = activations.phone;
+            phone = this.validatePhone(phone);
+            if (!phone) {
+                return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
+            }
             let smsCode = activations.smsCode;
             let actRecord = yield this.activationsRepository.findOne({ "where": { phone, smsCode } });
             if (actRecord) {
                 logger_1.winstonLogger.debug(JSON.stringify(actRecord));
-                let customer = { phone, isActivated: true };
-                yield this.partnersRepository.updateAll(customer, { phone });
+                let info = { isActivated: true };
+                yield this.partnersRepository.updateAll(info, { phone });
                 yield this.activationsRepository.deleteAll({ phone });
                 return yield this.partnersRepository.findOne({ "where": { phone } });
             }
@@ -362,16 +366,7 @@ __decorate([
             },
         },
     }),
-    __param(0, rest_1.requestBody({
-        content: {
-            'application/json': {
-                schema: rest_1.getModelSchemaRef(models_1.Activations, {
-                    title: 'Activate Partner',
-                    exclude: ['id'],
-                }),
-            },
-        },
-    })),
+    __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [models_1.Activations]),
     __metadata("design:returntype", Promise)
