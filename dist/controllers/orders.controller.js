@@ -49,7 +49,7 @@ let OrdersController = class OrdersController {
                 filter = {};
                 filter.order = ['orderTime Desc'];
             }
-            filter.limit = 20;
+            filter.limit = 30;
             //filter.include = [{relation:'customers'}]
             filter.include = [{ "relation": 'customers',
                     scope: { fields: { "id": true, "name": true, "phone": true } } }
@@ -179,8 +179,11 @@ let OrdersController = class OrdersController {
             if (!filter) {
                 filter = {};
             }
-            filter.limit = 20;
-            return yield this.ordersRepository.find({ where: { and: [{ or: [{ orderStatus: 'Pending' }, { orderStatus: 'InProgress' }] }, { deliveredById: id }] } }, filter);
+            filter.where = { and: [{ or: [{ orderStatus: 'Pending' }, { orderStatus: 'InProgress' }] }, { deliveredById: id }] };
+            filter.limit = 30;
+            filter.include = [{ "relation": 'customers',
+                    scope: { fields: { "id": true, "name": true, "phone": true } } }];
+            return yield this.ordersRepository.find(filter);
         });
     }
     partnerOrderHistory(id, filter) {
@@ -188,8 +191,11 @@ let OrdersController = class OrdersController {
             if (!filter) {
                 filter = {};
             }
-            filter.limit = 20;
-            return yield this.ordersRepository.find({ where: { and: [{ orderStatus: 'Completed' }, { deliveredById: id }] } }, filter);
+            filter.where = { and: [{ orderStatus: 'Completed' }, { deliveredById: id }] };
+            filter.limit = 25;
+            filter.include = [{ "relation": 'customers',
+                    scope: { fields: { "id": true, "name": true, "phone": true } } }];
+            return yield this.ordersRepository.find(filter);
         });
     }
 };
