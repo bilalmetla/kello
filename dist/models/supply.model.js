@@ -32,13 +32,6 @@ __decorate([
         required: true,
     }),
     __metadata("design:type", String)
-], Supply.prototype, "referenceNo", void 0);
-__decorate([
-    repository_1.property({
-        type: 'string',
-        required: true,
-    }),
-    __metadata("design:type", String)
 ], Supply.prototype, "productTitle", void 0);
 __decorate([
     repository_1.property({

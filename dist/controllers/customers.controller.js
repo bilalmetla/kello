@@ -105,6 +105,7 @@ let CustomersController = class CustomersController {
     authenticate(customers) {
         return __awaiter(this, void 0, void 0, function* () {
             const sendPk = new sendpk_1.SendPk();
+            let appVersion = customers.versionCode;
             let phone = this.validatePhone(customers.phone);
             if (!phone) {
                 return constants_1.CONSTANTS.INVALID_PHONE_NUMBER;
@@ -138,6 +139,12 @@ let CustomersController = class CustomersController {
             else {
                 //if customer already exist then deviceToken update at other api /update/device/token
                 if (foundCust[0].isActivated === true) {
+                    if (!appVersion || appVersion != 9) {
+                        let smsCode = Math.floor(Math.random() * 899999 + 100000);
+                        yield this.activationsRepository.create({ phone, smsCode: smsCode });
+                        sendPk.sendOTP(smsCode, phone);
+                        delete foundCust[0].access_token;
+                    }
                     return foundCust[0];
                 }
                 let today = new Date();

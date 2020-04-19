@@ -59,6 +59,12 @@ __decorate([
     __metadata("design:type", Object)
 ], Orderdetails.prototype, "ordersId", void 0);
 __decorate([
+    repository_1.property({
+        type: 'date',
+    }),
+    __metadata("design:type", Date)
+], Orderdetails.prototype, "orderTime", void 0);
+__decorate([
     repository_1.belongsTo(() => units_model_1.Units),
     __metadata("design:type", String)
 ], Orderdetails.prototype, "retailPriceUnitsId", void 0);

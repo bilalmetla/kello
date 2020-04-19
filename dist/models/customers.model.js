@@ -108,6 +108,13 @@ __decorate([
     __metadata("design:type", String)
 ], Customers.prototype, "address", void 0);
 __decorate([
+    repository_1.property({
+        type: 'number',
+        required: false,
+    }),
+    __metadata("design:type", Number)
+], Customers.prototype, "versionCode", void 0);
+__decorate([
     repository_1.hasMany(() => orders_model_1.Orders),
     __metadata("design:type", Array)
 ], Customers.prototype, "orders", void 0);

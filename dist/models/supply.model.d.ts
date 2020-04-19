@@ -1,7 +1,6 @@
 import { Entity } from '@loopback/repository';
 export declare class Supply extends Entity {
     id?: string;
-    referenceNo: string;
     productTitle: string;
     supplierName: string;
     quentity: number;

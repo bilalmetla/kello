@@ -104,6 +104,24 @@ let SupplyController = class SupplyController {
             }
         });
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
+    supplyDemand(startDate, endDate) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var fromday = new Date(startDate);
+            var tillday = new Date(endDate);
+            fromday.setDate(fromday.getDate() - 1);
+            let filter = {
+                "where": { supplyDate: { gte: fromday, lt: tillday } },
+                "fields": {
+                    productsId: true,
+                    "productTitle": true,
+                    "quentity": true,
+                    quentityUnitsId: true
+                }
+            };
+            return yield this.supplyRepository.find(filter);
+        });
+    }
 };
 __decorate([
     auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
@@ -272,6 +290,20 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], SupplyController.prototype, "supplyArrived", null);
+__decorate([
+    rest_1.get('/supplies/demand/{startDate}/{endDate}', {
+        responses: {
+            '204': {
+                description: 'Supply Demand success',
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('startDate')),
+    __param(1, rest_1.param.path.string('endDate')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], SupplyController.prototype, "supplyDemand", null);
 SupplyController = __decorate([
     __param(0, repository_1.repository(repositories_1.SupplyRepository)),
     __param(1, repository_1.repository(repositories_1.ProductsRepository)),

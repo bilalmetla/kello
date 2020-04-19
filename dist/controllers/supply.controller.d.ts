@@ -14,4 +14,5 @@ export declare class SupplyController {
     replaceById(id: string, supply: Supply): Promise<void>;
     deleteById(id: string): Promise<void>;
     supplyArrived(id: string): Promise<object>;
+    supplyDemand(startDate: string, endDate: string): Promise<object>;
 }

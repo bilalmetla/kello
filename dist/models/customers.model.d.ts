@@ -14,6 +14,7 @@ export declare class Customers extends Entity {
     street?: number;
     house?: number;
     address?: string;
+    versionCode?: number;
     orders: Orders[];
     constructor(data?: Partial<Customers>);
 }

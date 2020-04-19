@@ -138,6 +138,7 @@ let CustomersOrdersController = class CustomersOrdersController {
                 orderdetail.retailPriceUnitsId = pro.retailPiceUnitsId;
                 orderdetail.purchasePriceUnitsId = pro.buyingPriceUnitsId;
                 orderdetail.salePriceUnitsId = pro.salePriceUnitsId;
+                orderdetail.orderTime = new Date();
                 orderdetailList.push(orderdetail);
             });
             logger_1.winstonLogger.debug('orderdetailList ');

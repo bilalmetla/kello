@@ -6,6 +6,7 @@ export declare class Orderdetails extends Entity {
     salePrice: number | undefined;
     purchasePrice: number | undefined;
     ordersId?: string | undefined;
+    orderTime?: Date;
     retailPriceUnitsId: string;
     purchasePriceUnitsId: string;
     salePriceUnitsId: string;
