@@ -139,7 +139,7 @@ let CustomersController = class CustomersController {
             else {
                 //if customer already exist then deviceToken update at other api /update/device/token
                 if (foundCust[0].isActivated === true) {
-                    if (!appVersion || appVersion != 9) {
+                    if (!appVersion) {
                         let smsCode = Math.floor(Math.random() * 899999 + 100000);
                         yield this.activationsRepository.create({ phone, smsCode: smsCode });
                         sendPk.sendOTP(smsCode, phone);
