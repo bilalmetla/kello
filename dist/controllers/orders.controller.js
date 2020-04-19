@@ -173,7 +173,6 @@ let OrdersController = class OrdersController {
             //return {id: id, orderStatus: orders.orderStatus, isCancelled: orders.isCancelled};
         });
     }
-    //@secured(SecuredType.IS_AUTHENTICATED)
     partnerOrderPending(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!filter) {
@@ -372,6 +371,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "orderHistory", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/partners/{id}/orders/pending', {
         responses: {
             '200': {
@@ -391,6 +391,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "partnerOrderPending", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/partners/{id}/orders/history', {
         responses: {
             '200': {
