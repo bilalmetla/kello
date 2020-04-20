@@ -1602,7 +1602,7 @@ var ConfigurationService = /** @class */ (function () {
     function ConfigurationService(http) {
         this.http = http;
         this.configurationList = [];
-        this.api = '/configurations';
+        this.api = '
     }
     ConfigurationService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -2033,7 +2033,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var CustomerService = /** @class */ (function () {
     function CustomerService(http) {
         this.http = http;
-        this.baseUrl = "/customers";
+        this.baseUrl = "
         this.customerList = [];
     }
     CustomerService.prototype.findById = function (id) {
@@ -2483,7 +2483,7 @@ var CustomerfeedbackService = /** @class */ (function () {
     function CustomerfeedbackService(http) {
         this.http = http;
         this.customerfeedbackList = [];
-        this.api = '/feedbacks';
+        this.api = '
     }
     CustomerfeedbackService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -2788,7 +2788,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var DashboardService = /** @class */ (function () {
     function DashboardService(http) {
         this.http = http;
-        this.baseUrl = "/dashboards";
+        this.baseUrl = "
         this.dashboardList = [];
     }
     DashboardService.prototype.findById = function (id) {
@@ -4046,7 +4046,7 @@ var LoginService = /** @class */ (function () {
     function LoginService(http) {
         this.http = http;
         this.loginList = [];
-        this.api = '/users/login';
+        this.api = '
     }
     // oldlogin(username: string, password: string) {
     //     return this.http.post<any>(`/users/authenticate`, { username: username, password: password })
@@ -4799,7 +4799,7 @@ var OrderratingService = /** @class */ (function () {
     function OrderratingService(http) {
         this.http = http;
         this.orderratingList = [];
-        this.api = '/order-ratings';
+        this.api = '
     }
     OrderratingService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -5265,7 +5265,7 @@ var OrdersService = /** @class */ (function () {
     function OrdersService(http) {
         this.http = http;
         this.ordersList = [];
-        this.api = '/orders';
+        this.api = '
     }
     OrdersService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -5724,7 +5724,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var PartnerService = /** @class */ (function () {
     function PartnerService(http) {
         this.http = http;
-        this.baseUrl = "/partners";
+        this.baseUrl = "
         this.partnerList = [];
     }
     PartnerService.prototype.findById = function (id) {
@@ -6176,7 +6176,7 @@ var PriceplanService = /** @class */ (function () {
     function PriceplanService(http) {
         this.http = http;
         this.priceplanList = [];
-        this.api = '/price-plans';
+        this.api = '
     }
     PriceplanService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -6636,7 +6636,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var ProductService = /** @class */ (function () {
     function ProductService(http) {
         this.http = http;
-        this.baseUrl = "/products";
+        this.baseUrl = "
         this.productList = [];
     }
     ProductService.prototype.findById = function (id) {
@@ -7095,7 +7095,7 @@ var PromotionService = /** @class */ (function () {
     function PromotionService(http) {
         this.http = http;
         this.promotionList = [];
-        this.api = '/promotions';
+        this.api = '
     }
     PromotionService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
@@ -7512,7 +7512,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var RateplanService = /** @class */ (function () {
     function RateplanService(http) {
         this.http = http;
-        this.baseUrl = "/rateplans";
+        this.baseUrl = "
         this.rateplanList = [];
     }
     RateplanService.prototype.findById = function (id) {
@@ -8033,7 +8033,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var SupplyService = /** @class */ (function () {
     function SupplyService(http) {
         this.http = http;
-        this.baseUrl = "/supplies";
+        this.baseUrl = "
         this.supplyList = [];
     }
     SupplyService.prototype.findById = function (id) {
