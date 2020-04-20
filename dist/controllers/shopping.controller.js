@@ -107,7 +107,7 @@ let ShoppingController = class ShoppingController {
                 ex_customer = yield this.customersRepository.create(customer);
                 let user = yield this.userRepository.create({ username: phone });
             }
-            let hawker = yield this.partnersRepository.findOne({ where: { phone: '923067625445' } });
+            let hawker = yield this.partnersRepository.findOne({ where: { phone: '923134814436' } });
             if (!hawker) {
                 return constants_1.CONSTANTS.HAWKER_NOT_AVAILABLE;
             }
