@@ -194,18 +194,18 @@ let CustomersOrdersController = class CustomersOrdersController {
             };
             yield this.customersRepository.orders(customerId).patch(orders, { id: orderId });
             let customerInfo = yield this.customersRepository.findById(customerId);
-            if (customerInfo.deviceToken) {
-                const firebase = new firebase_1.Firebase();
-                const payload = {
-                    data: { "orderId": orderId, "customerId": customerId },
-                    notification: {
-                        title: 'Kellostore',
-                        body: 'Your order is in processing now. Thanks',
-                        sound: "default",
-                    }
-                };
-                firebase.sendNotification(customerInfo.deviceToken, payload);
-            }
+            // if(customerInfo.deviceToken){
+            //   const firebase = new Firebase();
+            //   const payload = {
+            //     data: {"orderId": orderId, "customerId": customerId},
+            //     notification: {
+            //       title: 'Kellostore',
+            //       body: 'Your order is in processing now. Thanks',
+            //       sound: "default",
+            //     }
+            //   };
+            //   firebase.sendNotification(customerInfo.deviceToken, payload);
+            //  }
             return { id: orderId, orderStatus: orders.orderStatus, startProgressTime: orders.startProgressTime };
         });
     }
