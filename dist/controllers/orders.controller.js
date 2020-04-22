@@ -173,25 +173,31 @@ let OrdersController = class OrdersController {
             //return {id: id, orderStatus: orders.orderStatus, isCancelled: orders.isCancelled};
         });
     }
+    //@secured(SecuredType.IS_AUTHENTICATED)
     partnerOrderPending(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
+            var previousday = new Date();
+            previousday.setDate(previousday.getDate() - 1);
             if (!filter) {
                 filter = {};
             }
-            filter.where = { and: [{ or: [{ orderStatus: 'Pending' }, { orderStatus: 'InProgress' }] }, { deliveredById: id }] };
-            filter.limit = 30;
+            filter.where = { and: [{ or: [{ orderStatus: 'Pending' }, { orderStatus: 'InProgress' }] }, { orderTime: { gte: previousday } }, { deliveredById: id }] };
+            filter.limit = 20;
             filter.include = [{ "relation": 'customers',
                     scope: { fields: { "id": true, "name": true, "phone": true } } }];
             return yield this.ordersRepository.find(filter);
         });
     }
+    //  @secured(SecuredType.IS_AUTHENTICATED)
     partnerOrderHistory(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
+            var previousday = new Date();
+            previousday.setDate(previousday.getDate() - 1);
             if (!filter) {
                 filter = {};
             }
-            filter.where = { and: [{ orderStatus: 'Completed' }, { deliveredById: id }] };
-            filter.limit = 25;
+            filter.where = { and: [{ orderStatus: 'Completed' }, { orderTime: { gte: previousday } }, { deliveredById: id }] };
+            filter.limit = 10;
             filter.include = [{ "relation": 'customers',
                     scope: { fields: { "id": true, "name": true, "phone": true } } }];
             return yield this.ordersRepository.find(filter);
@@ -371,7 +377,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "orderHistory", null);
 __decorate([
-    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/partners/{id}/orders/pending', {
         responses: {
             '200': {
@@ -391,7 +396,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "partnerOrderPending", null);
 __decorate([
-    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/partners/{id}/orders/history', {
         responses: {
             '200': {

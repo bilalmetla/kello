@@ -46,6 +46,10 @@ let SupplyController = class SupplyController {
     }
     find(filter) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!filter) {
+                filter = {};
+            }
+            filter.limit = 60;
             return this.supplyRepository.find(filter);
         });
     }
