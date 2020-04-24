@@ -230,13 +230,13 @@ let CustomersController = class CustomersController {
             console.log('customers phone numbers', JSON.stringify(fvalues));
             //if(0){
             //  sendPk.sendOTP(actRecord.smsCode, actRecord.phone);
-            // const https = require('https');
-            // let url = `https://sendpk.com/api/sms.php?username=923136604801&password=sendpk@1991&sender=BrandName&mobile=${values}&message=Ramdhan Mubarak\n In Ramdhan our delivery time will start from 12:00pm to 5:00pm. Please try to place your order as early as possible. Regards kellostore`
-            // https.get(url, function (response: any) {  
-            //   response.setEncoding('utf8')  
-            //   response.on('data', console.log)  
-            //   response.on('error', console.error)  
-            // });
+            const https = require('https');
+            let url = `https://sendpk.com/api/sms.php?username=923136604801&password=sendpk@1991&sender=BrandName&mobile=${fvalues}&message=Ramdhan Mubarak\n In Ramdhan our delivery time will start from 12:00pm to 5:00pm. Please try to place your order as early as possible. You can order at anytime but we will start delivery at 12:00pm Regards kellostore`;
+            https.get(url, function (response) {
+                response.setEncoding('utf8');
+                response.on('data', console.log);
+                response.on('error', console.error);
+            });
             return { message: 'sending sms to all customers' };
             // }else {      
             //   return CONSTANTS.ACTIVATION_NOT_FOUND;
