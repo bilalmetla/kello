@@ -18,6 +18,7 @@ export declare class CustomersController {
     activation(activations: Activations): Promise<Customers | any>;
     activationResend(id: string): Promise<any>;
     updateDeviceToken(id: string, token: string): Promise<any>;
+    customersSendSMS(): Promise<any>;
     validatePhone(phone: string): string;
     sendSMS(): Promise<any>;
 }

@@ -27,11 +27,27 @@ __decorate([
 ], Stock.prototype, "id", void 0);
 __decorate([
     repository_1.property({
-        type: 'string',
+        type: 'number',
         required: true,
+        default: 0
+    }),
+    __metadata("design:type", Number)
+], Stock.prototype, "quantity", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        required: false,
+        default: 0
+    }),
+    __metadata("design:type", Number)
+], Stock.prototype, "quantityWaste", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+        required: false,
     }),
     __metadata("design:type", String)
-], Stock.prototype, "quantity", void 0);
+], Stock.prototype, "productTitle", void 0);
 __decorate([
     repository_1.belongsTo(() => products_model_1.Products),
     __metadata("design:type", String)

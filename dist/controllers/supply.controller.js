@@ -29,13 +29,26 @@ const constants_1 = require("../constants");
 const auth_1 = require("../auth");
 const logger_1 = require("../logger");
 let SupplyController = class SupplyController {
-    constructor(supplyRepository, productsRepository) {
+    constructor(supplyRepository, productsRepository, stockRepository) {
         this.supplyRepository = supplyRepository;
         this.productsRepository = productsRepository;
+        this.stockRepository = stockRepository;
     }
     create(supply) {
         return __awaiter(this, void 0, void 0, function* () {
             supply.supplyDate = new Date();
+            let ex_st = yield this.stockRepository.findOne({ where: { productsId: supply.productsId } });
+            if (ex_st) {
+                ex_st.quantity = ex_st.quantity + supply.quentity;
+                yield this.stockRepository.updateById(ex_st.id, ex_st);
+            }
+            else {
+                let st = new models_1.Stock();
+                st.productsId = supply.productsId;
+                st.quantity = supply.quentity;
+                st.productTitle = supply.productTitle;
+                yield this.stockRepository.create(st);
+            }
             return this.supplyRepository.create(supply);
         });
     }
@@ -311,8 +324,10 @@ __decorate([
 SupplyController = __decorate([
     __param(0, repository_1.repository(repositories_1.SupplyRepository)),
     __param(1, repository_1.repository(repositories_1.ProductsRepository)),
+    __param(2, repository_1.repository(repositories_1.StockRepository)),
     __metadata("design:paramtypes", [repositories_1.SupplyRepository,
-        repositories_1.ProductsRepository])
+        repositories_1.ProductsRepository,
+        repositories_1.StockRepository])
 ], SupplyController);
 exports.SupplyController = SupplyController;
 //# sourceMappingURL=supply.controller.js.map

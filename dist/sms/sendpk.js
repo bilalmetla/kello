@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const https = require('https');
 class SendPk {
     constructor() { }
+    //https://sendpk.com/api/sms.php?username=923136604801&password=sendpk@1991&sender=BrandName&mobile=923136604801,923015339780&message=Ramdhan Mubarak\n In Ramdhan our delivery time will start from 12:00pm to 5:00pm. Please try to place your order as early as possible. Regards kellostore
     sendOTP(OTP, receiverMobile) {
         try {
             let username = 923136604801;

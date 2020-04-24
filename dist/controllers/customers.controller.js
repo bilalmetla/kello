@@ -211,6 +211,38 @@ let CustomersController = class CustomersController {
             yield this.customersRepository.updateById(id, { deviceToken: token });
         });
     }
+    customersSendSMS() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const sendPk = new sendpk_1.SendPk();
+            let filter = {
+                where: {},
+                "fields": {
+                    "phone": true,
+                }
+            };
+            const cellNumbers = yield this.customersRepository.find(filter);
+            let values = cellNumbers.map(c => c.phone);
+            values.push('923136604801');
+            let fvalues = values.join();
+            //let values = Object.values(cellNumbers[0])
+            // values = "923136604801,923015339780"
+            console.log('customers phone numbers', JSON.stringify(cellNumbers));
+            console.log('customers phone numbers', JSON.stringify(fvalues));
+            //if(0){
+            //  sendPk.sendOTP(actRecord.smsCode, actRecord.phone);
+            // const https = require('https');
+            // let url = `https://sendpk.com/api/sms.php?username=923136604801&password=sendpk@1991&sender=BrandName&mobile=${values}&message=Ramdhan Mubarak\n In Ramdhan our delivery time will start from 12:00pm to 5:00pm. Please try to place your order as early as possible. Regards kellostore`
+            // https.get(url, function (response: any) {  
+            //   response.setEncoding('utf8')  
+            //   response.on('data', console.log)  
+            //   response.on('error', console.error)  
+            // });
+            return { message: 'sending sms to all customers' };
+            // }else {      
+            //   return CONSTANTS.ACTIVATION_NOT_FOUND;
+            // }
+        });
+    }
     validatePhone(phone) {
         phone = parseInt(phone, 10).toString();
         if (phone.length < 10) {
@@ -468,6 +500,18 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "updateDeviceToken", null);
+__decorate([
+    rest_1.get('/customers/send/sms', {
+        responses: {
+            '200': {
+                description: 'Customers model instance',
+            },
+        },
+    }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], CustomersController.prototype, "customersSendSMS", null);
 CustomersController = __decorate([
     __param(0, repository_1.repository(repositories_1.CustomersRepository)),
     __param(1, repository_1.repository(repositories_1.ActivationsRepository)),
