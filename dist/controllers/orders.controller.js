@@ -181,6 +181,7 @@ let OrdersController = class OrdersController {
             if (!filter) {
                 filter = {};
             }
+            filter.order = ['orderTime Desc'];
             filter.where = { and: [{ or: [{ orderStatus: 'Pending' }, { orderStatus: 'InProgress' }] }, { orderTime: { gte: previousday } }, { deliveredById: id }] };
             filter.limit = 20;
             filter.include = [{ "relation": 'customers',
@@ -196,7 +197,8 @@ let OrdersController = class OrdersController {
             if (!filter) {
                 filter = {};
             }
-            filter.where = { and: [{ orderStatus: 'Completed' }, { orderTime: { gte: previousday } }, { deliveredById: id }] };
+            filter.order = ['completionTime Desc'];
+            filter.where = { and: [{ orderStatus: 'Completed' }, { completionTime: { gte: previousday } }, { deliveredById: id }] };
             filter.limit = 10;
             filter.include = [{ "relation": 'customers',
                     scope: { fields: { "id": true, "name": true, "phone": true } } }];

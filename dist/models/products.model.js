@@ -129,6 +129,13 @@ __decorate([
     __metadata("design:type", Number)
 ], Products.prototype, "displayingPeriority", void 0);
 __decorate([
+    repository_1.property({
+        type: 'number',
+        default: 0,
+    }),
+    __metadata("design:type", Number)
+], Products.prototype, "retailPriceA", void 0);
+__decorate([
     repository_1.belongsTo(() => units_model_1.Units),
     __metadata("design:type", String)
 ], Products.prototype, "buyingPriceUnitsId", void 0);

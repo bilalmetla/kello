@@ -1,7 +1,9 @@
 import { Entity } from '@loopback/repository';
 export declare class Stock extends Entity {
     id?: string;
-    quantity: string;
+    quantity: number;
+    quantityWaste?: number;
+    productTitle?: string;
     productsId: string;
     unitsId: string;
     [prop: string]: any;

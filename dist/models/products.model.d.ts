@@ -16,6 +16,7 @@ export declare class Products extends Entity {
     description?: string;
     isAvailable?: boolean;
     displayingPeriority?: number;
+    retailPriceA?: number;
     buyingPriceUnitsId: string;
     salePriceUnitsId: string;
     retailPiceUnitsId: string;
