@@ -212,24 +212,33 @@ let OrdersController = class OrdersController {
             let order = yield this.ordersRepository.findById(id);
             let pro;
             let index;
-            let price = 0;
-            let oldQty = 0;
+            // let price : number = 0;
+            //let oldQty :number = 0;
             order.items.forEach((p, index) => {
                 if (p.productId === productId) {
-                    oldQty = p.quantity;
+                    //oldQty = p.quantity;
                     p.quantity = quantity;
                     pro = p;
                     index = index;
-                    price = p.price;
+                    //  price = p.price;
                     //order.items[index] = p;
                 }
             });
-            let oldPrice = oldQty * price;
-            let newPrice = quantity * price;
-            order.totalBillAmount = order.totalBillAmount - oldPrice;
-            order.totalBillAmount = order.totalBillAmount + newPrice;
+            //let oldPrice = oldQty * price;
+            //let newPrice = quantity * price;
+            //order.totalBillAmount = order.totalBillAmount-oldPrice;
+            //order.totalBillAmount = order.totalBillAmount+ newPrice;
             order.items[index] = pro;
+            console.log('order.totalBillAmount:', order.totalBillAmount);
             console.log(JSON.stringify(order.items));
+            orders.items.forEach((element, index) => {
+                if (index === 0) {
+                    order.totalBillAmount = element.quantity * element.price;
+                }
+                else {
+                    orders.totalBillAmount = orders.totalBillAmount + (element.quantity * element.price);
+                }
+            });
             yield this.ordersRepository.updateById(id, order);
             return { message: "updated product quantity", productId, orderId: id };
         });
