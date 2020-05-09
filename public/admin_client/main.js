@@ -5318,7 +5318,7 @@ var OrdersService = /** @class */ (function () {
     function OrdersService(http) {
         this.http = http;
         this.ordersList = [];
-        this.api = 'http://192.168.10.9:3000/orders';
+        this.api = '/orders';
     }
     OrdersService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
