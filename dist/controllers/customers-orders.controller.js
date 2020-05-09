@@ -94,22 +94,8 @@ let CustomersOrdersController = class CustomersOrdersController {
             //start a transaction 
             //const session = (this.customersRepository.dataSource.connector as any).client.startSession();
             //session.startTransaction();
-            orders.customersId = id;
-            orders.orderStatus = 'Pending';
-            orders.orderCategory = 'CUSTOMERS';
-            orders.deliveredById = nearestPartner._id || nearestPartner.id;
-            orders.orderTime = new Date();
+            //find related products
             let items = JSON.parse(JSON.stringify(orders.items));
-            const createdOrder = yield this.customersRepository.orders(id).create(orders);
-            let orderId;
-            if (!createdOrder) {
-                //await session.abortTransaction();
-                //session.endSession();
-                return constants_1.CONSTANTS.ORDER_NOT_PLACED;
-            }
-            if (createdOrder.id) {
-                orderId = createdOrder.id.toString();
-            }
             let productIds = items.map((it) => {
                 return { id: it.productId };
             });
@@ -124,6 +110,38 @@ let CustomersOrdersController = class CustomersOrdersController {
                 //session.endSession();
                 return constants_1.CONSTANTS.PRODUCT_NOT_FOUND;
             }
+            let orderItems;
+            orderItems = [];
+            // let orderdetailList =  Orderdetails;
+            products.forEach((pro, index) => {
+                let od = {};
+                od.quantity = items[index].quantity;
+                od.quentityUnit = items[index].quentityUnit;
+                od.productId = pro.id;
+                od.price = pro.salePrice || pro.retailPrice;
+                //od.retailPrice = pro.retailPrice;
+                //od.salePrice = pro.salePrice;
+                od.productTitle = pro.displayName;
+                orderItems.push(od);
+            });
+            logger_1.winstonLogger.debug('orderItems ');
+            logger_1.winstonLogger.debug(JSON.stringify(orderItems));
+            orders.items = orderItems;
+            orders.customersId = id;
+            orders.orderStatus = 'Pending';
+            orders.orderCategory = 'CUSTOMERS';
+            orders.deliveredById = nearestPartner._id || nearestPartner.id;
+            orders.orderTime = new Date();
+            const createdOrder = yield this.customersRepository.orders(id).create(orders);
+            let orderId;
+            if (!createdOrder) {
+                //await session.abortTransaction();
+                //session.endSession();
+                return constants_1.CONSTANTS.ORDER_NOT_PLACED;
+            }
+            if (createdOrder.id) {
+                orderId = createdOrder.id.toString();
+            }
             let orderdetailList;
             orderdetailList = [];
             // let orderdetailList =  Orderdetails;
@@ -132,6 +150,7 @@ let CustomersOrdersController = class CustomersOrdersController {
                 orderdetail.ordersId = orderId;
                 orderdetail.quantity = items[index].quantity;
                 orderdetail.productsId = items[index].productId;
+                orderdetail.productTitle = pro.displayName;
                 orderdetail.retailPrice = pro.retailPrice;
                 orderdetail.salePrice = pro.salePrice;
                 orderdetail.purchasePrice = pro.buyingPrice;

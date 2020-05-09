@@ -15,4 +15,5 @@ export declare class OrdersController {
     orderHistory(customersId: string): Promise<Orders[]>;
     partnerOrderPending(id: string, filter: Filter<Orders>): Promise<Orders[]>;
     partnerOrderHistory(id: string, filter: Filter<Orders>): Promise<Orders[]>;
+    updateQuantity(id: string, productId: string, quantity: number, orders: Orders): Promise<any>;
 }

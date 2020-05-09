@@ -121,28 +121,7 @@ let ShoppingController = class ShoppingController {
                 h_location.coordinates.push(l0);
                 h_location.coordinates.push(l1);
             }
-            let order = new models_1.Orders();
-            order.customersId = ex_customer.id;
-            order.orderStatus = 'Pending';
-            order.orderCategory = 'CUSTOMERS';
-            order.items = reqData.items;
-            order.totalBillAmount = reqData.totalBillAmount;
-            order.deliveredById = hawkerId;
-            order.isFromWeb = true;
-            order.location = h_location;
-            order.house = reqData.house;
-            order.street = reqData.street;
-            order.address = reqData.address;
-            order.orderTime = new Date();
-            let orderId = '';
-            let items = JSON.parse(JSON.stringify(order.items));
-            let createdOrder = yield this.customersRepository.orders(ex_customer.id).create(order);
-            if (!createdOrder) {
-                return constants_1.CONSTANTS.ORDER_NOT_PLACED;
-            }
-            if (createdOrder.id) {
-                orderId = createdOrder.id.toString();
-            }
+            let items = JSON.parse(JSON.stringify(reqData.items));
             let productIds = items.map((it) => {
                 return { id: it.productId };
             });
@@ -154,6 +133,42 @@ let ShoppingController = class ShoppingController {
             logger_1.winstonLogger.debug(JSON.stringify(products));
             if (!products) {
                 return constants_1.CONSTANTS.PRODUCT_NOT_FOUND;
+            }
+            let orderItems;
+            orderItems = [];
+            // let orderdetailList =  Orderdetails;
+            products.forEach((pro, index) => {
+                let od = {};
+                od.quantity = items[index].quantity;
+                od.quentityUnit = items[index].quentityUnit;
+                od.productId = pro.id;
+                od.price = pro.salePrice || pro.retailPrice;
+                //od.salePrice = pro.salePrice;
+                od.productTitle = pro.displayName;
+                orderItems.push(od);
+            });
+            logger_1.winstonLogger.debug('orderItems ');
+            logger_1.winstonLogger.debug(JSON.stringify(orderItems));
+            let order = new models_1.Orders();
+            order.customersId = ex_customer.id;
+            order.orderStatus = 'Pending';
+            order.orderCategory = 'CUSTOMERS';
+            order.items = orderItems;
+            order.totalBillAmount = reqData.totalBillAmount;
+            order.deliveredById = hawkerId;
+            order.isFromWeb = true;
+            order.location = h_location;
+            order.house = reqData.house;
+            order.street = reqData.street;
+            order.address = reqData.address;
+            order.orderTime = new Date();
+            let orderId = '';
+            let createdOrder = yield this.customersRepository.orders(ex_customer.id).create(order);
+            if (!createdOrder) {
+                return constants_1.CONSTANTS.ORDER_NOT_PLACED;
+            }
+            if (createdOrder.id) {
+                orderId = createdOrder.id.toString();
             }
             let orderdetailList;
             orderdetailList = [];

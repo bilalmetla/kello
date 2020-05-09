@@ -64,13 +64,18 @@ let OrdersController = class OrdersController {
     }
     findById(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (filter) {
-                filter.include = [{ "relation": 'partners' }];
-            }
-            else {
+            // if(filter){
+            //   filter.include = [{"relation": 'partners'}];
+            // }else{
+            //   filter = {};
+            //   filter.include = [{"relation": 'partners'}];
+            // }
+            if (!filter) {
                 filter = {};
-                filter.include = [{ "relation": 'partners' }];
             }
+            filter.include = [{ "relation": 'partners' },
+                { "relation": 'customers', scope: { fields: { "id": true, "name": true, "phone": true } } }
+            ];
             return this.ordersRepository.findById(id, filter);
         });
     }
@@ -170,10 +175,8 @@ let OrdersController = class OrdersController {
     orderHistory(customersId) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.ordersRepository.find({ where: { customersId: customersId } });
-            //return {id: id, orderStatus: orders.orderStatus, isCancelled: orders.isCancelled};
         });
     }
-    //@secured(SecuredType.IS_AUTHENTICATED)
     partnerOrderPending(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
             var previousday = new Date();
@@ -189,7 +192,6 @@ let OrdersController = class OrdersController {
             return yield this.ordersRepository.find(filter);
         });
     }
-    //  @secured(SecuredType.IS_AUTHENTICATED)
     partnerOrderHistory(id, filter) {
         return __awaiter(this, void 0, void 0, function* () {
             var previousday = new Date();
@@ -199,10 +201,37 @@ let OrdersController = class OrdersController {
             }
             filter.order = ['completionTime Desc'];
             filter.where = { and: [{ orderStatus: 'Completed' }, { completionTime: { gte: previousday } }, { deliveredById: id }] };
-            filter.limit = 10;
+            filter.limit = 20;
             filter.include = [{ "relation": 'customers',
                     scope: { fields: { "id": true, "name": true, "phone": true } } }];
             return yield this.ordersRepository.find(filter);
+        });
+    }
+    updateQuantity(id, productId, quantity, orders) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let order = yield this.ordersRepository.findById(id);
+            let pro;
+            let index;
+            let price = 0;
+            let oldQty = 0;
+            order.items.forEach((p, index) => {
+                if (p.productId === productId) {
+                    oldQty = p.quantity;
+                    p.quantity = quantity;
+                    pro = p;
+                    index = index;
+                    price = p.price;
+                    //order.items[index] = p;
+                }
+            });
+            let oldPrice = oldQty * price;
+            let newPrice = quantity * price;
+            order.totalBillAmount = order.totalBillAmount - oldPrice;
+            order.totalBillAmount = order.totalBillAmount + newPrice;
+            order.items[index] = pro;
+            console.log(JSON.stringify(order.items));
+            yield this.ordersRepository.updateById(id, order);
+            return { message: "updated product quantity", productId, orderId: id };
         });
     }
 };
@@ -379,6 +408,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "orderHistory", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/partners/{id}/orders/pending', {
         responses: {
             '200': {
@@ -398,6 +428,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "partnerOrderPending", null);
 __decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
     rest_1.get('/partners/{id}/orders/history', {
         responses: {
             '200': {
@@ -416,6 +447,29 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "partnerOrderHistory", null);
+__decorate([
+    auth_1.secured(auth_1.SecuredType.IS_AUTHENTICATED),
+    rest_1.patch('/orders/{id}/products/{productId}/{quantity}', {
+        responses: {
+            '200': {
+                description: 'Orders PATCH success',
+            },
+        },
+    }),
+    __param(0, rest_1.param.path.string('id')),
+    __param(1, rest_1.param.path.string('productId')),
+    __param(2, rest_1.param.path.string('quantity')),
+    __param(3, rest_1.requestBody({
+        content: {
+            'application/json': {
+                schema: rest_1.getModelSchemaRef(models_1.Orders, { partial: true }),
+            },
+        },
+    })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, Number, models_1.Orders]),
+    __metadata("design:returntype", Promise)
+], OrdersController.prototype, "updateQuantity", null);
 OrdersController = __decorate([
     __param(0, repository_1.repository(repositories_1.OrdersRepository)),
     __metadata("design:paramtypes", [repositories_1.OrdersRepository])
