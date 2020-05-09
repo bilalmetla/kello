@@ -231,12 +231,12 @@ let OrdersController = class OrdersController {
             order.items[index] = pro;
             console.log('order.totalBillAmount:', order.totalBillAmount);
             console.log(JSON.stringify(order.items));
-            orders.items.forEach((element, index) => {
+            order.items.forEach((element, index) => {
                 if (index === 0) {
                     order.totalBillAmount = element.quantity * element.price;
                 }
                 else {
-                    orders.totalBillAmount = orders.totalBillAmount + (element.quantity * element.price);
+                    order.totalBillAmount = orders.totalBillAmount + (element.quantity * element.price);
                 }
             });
             yield this.ordersRepository.updateById(id, order);
