@@ -126,6 +126,14 @@ let CustomersOrdersController = class CustomersOrdersController {
             });
             logger_1.winstonLogger.debug('orderItems ');
             logger_1.winstonLogger.debug(JSON.stringify(orderItems));
+            orders.items.forEach((element, i) => {
+                if (i == 0) {
+                    orders.totalBillAmount = element.quantity * element.price;
+                }
+                else {
+                    orders.totalBillAmount = orders.totalBillAmount + (element.quantity * element.price);
+                }
+            });
             orders.items = orderItems;
             orders.customersId = id;
             orders.orderStatus = 'Pending';

@@ -154,7 +154,7 @@ let ShoppingController = class ShoppingController {
             order.orderStatus = 'Pending';
             order.orderCategory = 'CUSTOMERS';
             order.items = orderItems;
-            order.totalBillAmount = reqData.totalBillAmount;
+            //order.totalBillAmount = reqData.totalBillAmount;
             order.deliveredById = hawkerId;
             order.isFromWeb = true;
             order.location = h_location;
@@ -162,6 +162,14 @@ let ShoppingController = class ShoppingController {
             order.street = reqData.street;
             order.address = reqData.address;
             order.orderTime = new Date();
+            order.items.forEach((element, i) => {
+                if (i == 0) {
+                    order.totalBillAmount = element.quantity * element.price;
+                }
+                else {
+                    order.totalBillAmount = order.totalBillAmount + (element.quantity * element.price);
+                }
+            });
             let orderId = '';
             let createdOrder = yield this.customersRepository.orders(ex_customer.id).create(order);
             if (!createdOrder) {
