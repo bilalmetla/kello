@@ -115,13 +115,12 @@ let CustomersOrdersController = class CustomersOrdersController {
             // let orderdetailList =  Orderdetails;
             products.forEach((pro, index) => {
                 let od = {};
-                od.quantity = items[index].quantity;
-                od.quentityUnit = items[index].quentityUnit;
                 od.productId = pro.id;
                 od.price = pro.salePrice || pro.retailPrice;
-                //od.retailPrice = pro.retailPrice;
-                //od.salePrice = pro.salePrice;
                 od.productTitle = pro.displayName;
+                let itp = items.filter((p) => { return p.productId == pro.id; })[0];
+                od.quantity = itp.quantity; //items[index].quantity;
+                od.quentityUnit = itp.quentityUnit; //items[index].quentityUnit;
                 orderItems.push(od);
             });
             logger_1.winstonLogger.debug('orderItems ');
