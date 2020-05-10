@@ -256,7 +256,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Orders</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Orders Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"orders\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label>Id</label>\n        {{orders.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Order Time</label>\n        {{orders.orderTime || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.startProgressTime\" class=\"form-group\">\n        <label>Start Progress Time</label>\n        {{orders.startProgressTime || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.completionTime\" class=\"form-group\">\n        <label>Completion Time</label>\n        {{orders.completionTime || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.cancelTime\" class=\"form-group\">\n        <label>Cancel Time</label>\n        {{orders.cancelTime || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Order Status</label>\n        {{orders.orderStatus || 'n/a'}} \n      </div>\n    \n          \n      <div class=\"form-group\">\n        <label>Is Delivered</label>\n        {{orders.isDelivered || false}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Is Cancelled</label>\n        {{orders.isCancelled || false}} \n      </div>\n\n      <div *ngIf=\"orders.isCancelled\" class=\"form-group\">\n        <label>Canceled By Admin</label>\n        {{orders.canceledByAdminId || false}} \n      </div>\n\n      <div *ngIf=\"orders.isDeleted\" class=\"form-group\">\n        <label>Is Deleted</label>\n        {{orders.isDeleted || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.deletedById\" class=\"form-group\">\n        <label>Deleted By</label>\n        {{orders.deletedById || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Is Rating Done</label>\n        {{orders.isOrderRatingDone || false}} \n      </div>\n\n\n      <div class=\"form-group\">\n        <label>Ordered By</label>\n        {{orders.orderCategory || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Customer Id</label>\n        {{orders.customersId || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Delivered By</label>\n        {{orders.deliveredById || 'n/a'}} \n      </div>\n    \n      <div *ngIf=\"orders.partnersId\" class=\"form-group\">\n        <label>Partner Id</label>\n        {{orders.partnersId || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Special Notes</label>\n        {{orders.specialNotes || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.isFromWeb != true\" class=\"form-group\">\n        <label>Order Location</label>\n        <a  href=\"{{locationUrl}}\" target=\"_blank\"> <b> View Location </b></a> \n      </div>\n\n      <div class=\"form-group\">\n        <label>customer Name</label>\n        {{orders.customers.name || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>customer Phone</label>\n        {{orders.customers.phone || 'n/a'}} \n      </div>\n\n      \n\n      <div *ngIf=\"orders.isFromWeb === true\" class=\"form-group\">\n        <label>Street No</label>\n        {{orders.street || 'n/a'}} \n      </div>\n      \n      <div *ngIf=\"orders.isFromWeb === true\" class=\"form-group\">\n        <label>House No</label>\n        {{orders.house || 'n/a'}} \n      </div>\n      \n      <div *ngIf=\"orders.isFromWeb === true\" class=\"form-group\">\n        <label>Address</label>\n        {{orders.address || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Total Bill Amount</label>\n        {{orders.totalBillAmount || 'n/a'}} \n      </div>\n    \n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0 col-xl-10\" id=\"datatable\">\n          <thead>\n            <tr>\n              <th class=\"border-top-0\" scope=\"col\">#</th>\n              <th class=\"border-top-0\" scope=\"col\">Product</th>\n              <th class=\"border-top-0\" scope=\"col\">Price</th>\n              <th class=\"border-top-0\" scope=\"col\">Qty</th>\n              <th class=\"border-top-0\" scope=\"col\">Amount</th>\n              \n              \n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let product of orders.items let i = index\" [class.active]=\"product === selectedOrders\">\n              <td>{{i+1}}</td>\n              <td>{{product.productTitle}}</td>\n              <td >{{product.price}}/{{product.quentityUnit}}</td>\n              <td><input style=\"width: 80px;\" type=\"number\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"product.quantity\"  (keyup.enter)= \"updateQuantity(product.productId, product.quantity)\" >\n                <!-- <button type=\"button\" style=\"width: 80px;\" class=\"btn btn-secondary\" (click)=\"updateQuantity()\" >Change</button> -->\n              </td>                \n              <td>{{product.quantity * product.price}}</td>\n              \n              \n            </tr>\n          </tbody>\n        </table>\n      </div>\n      <!--  -->\n\n      <!-- <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button> -->\n      <button *ngIf=\"orders.orderStatus=='Pending'\" type=\"button\" class=\"btn btn-secondary\" (click)=\"orderStartProgress()\">Start Progress</button>\n      <button *ngIf=\"orders.orderStatus=='InProgress'\" type=\"button\" class=\"btn btn-secondary\" (click)=\"orderDelivered()\">Order Delivered</button>\n      <button *ngIf=\"orders.orderStatus=='InProgress' || orders.orderStatus=='Pending' \" type=\"button\" class=\"btn btn-success w-md\"  (click)=\"cancelOrder()\" >Cancel Order</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Go Back</button>\n      \n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"print()\" >Print Me</button>\n\n    </form>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ol class=\"breadcrumb float-right\">\n  <li class=\"breadcrumb-item\"><a routerLink=\"/\">Home</a></li>\n  <li class=\"breadcrumb-item active\">Orders</li>\n</ol>\n<div class=\"card\">\n  <div class=\"header\">\n    <h2 class=\"title\">Orders Detail</h2>\n  </div>\n  <div class=\"content\">\n    <div *ngIf=\"feedback\" class=\"alert alert-{{feedback.type}}\">{{ feedback.message }}</div>\n    <form *ngIf=\"orders\" #editForm=\"ngForm\" (ngSubmit)=\"save()\">\n    \n      <div class=\"form-group\">\n        <label id=\"orderId\">Id</label>\n        {{orders.id || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label id=\"orderTime\">Order Time</label>\n        {{orders.orderTime || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.startProgressTime\" class=\"form-group\">\n        <label>Start Progress Time</label>\n        {{orders.startProgressTime || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.completionTime\" class=\"form-group\">\n        <label>Completion Time</label>\n        {{orders.completionTime || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.cancelTime\" class=\"form-group\">\n        <label>Cancel Time</label>\n        {{orders.cancelTime || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Order Status</label>\n        {{orders.orderStatus || 'n/a'}} \n      </div>\n    \n          \n      <div class=\"form-group\">\n        <label>Is Delivered</label>\n        {{orders.isDelivered || false}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Is Cancelled</label>\n        {{orders.isCancelled || false}} \n      </div>\n\n      <div *ngIf=\"orders.isCancelled\" class=\"form-group\">\n        <label>Canceled By Admin</label>\n        {{orders.canceledByAdminId || false}} \n      </div>\n\n      <div *ngIf=\"orders.isDeleted\" class=\"form-group\">\n        <label>Is Deleted</label>\n        {{orders.isDeleted || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.deletedById\" class=\"form-group\">\n        <label>Deleted By</label>\n        {{orders.deletedById || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Is Rating Done</label>\n        {{orders.isOrderRatingDone || false}} \n      </div>\n\n\n      <div class=\"form-group\">\n        <label>Ordered By</label>\n        {{orders.orderCategory || 'n/a'}} \n      </div>\n    \n      <div class=\"form-group\">\n        <label>Customer Id</label>\n        {{orders.customersId || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Delivered By</label>\n        {{orders.deliveredById || 'n/a'}} \n      </div>\n    \n      <div *ngIf=\"orders.partnersId\" class=\"form-group\">\n        <label>Partner Id</label>\n        {{orders.partnersId || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Special Notes</label>\n        {{orders.specialNotes || 'n/a'}} \n      </div>\n\n      <div *ngIf=\"orders.isFromWeb != true\" class=\"form-group\">\n        <label>Order Location</label>\n        <a  href=\"{{locationUrl}}\" target=\"_blank\"> <b> View Location </b></a> \n      </div>\n\n      <div class=\"form-group\">\n        <label id=\"customerName\">Customer Name</label>\n        {{orders.customers.name || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label>Customer Phone</label>\n        {{orders.customers.phone || 'n/a'}} \n      </div>\n\n      \n\n      <div *ngIf=\"orders.isFromWeb === true\" class=\"form-group\">\n        <label>Street No</label>\n        {{orders.street || 'n/a'}} \n      </div>\n      \n      <div *ngIf=\"orders.isFromWeb === true\" class=\"form-group\">\n        <label>House No</label>\n        {{orders.house || 'n/a'}} \n      </div>\n      \n      <div *ngIf=\"orders.isFromWeb === true\" class=\"form-group\">\n        <label>Address</label>\n        {{orders.address || 'n/a'}} \n      </div>\n\n      <div class=\"form-group\">\n        <label id=\"totalBillAmount\">Total Bill Amount</label>\n        {{orders.totalBillAmount || 'n/a'}} \n      </div>\n    \n      <div class=\"table-responsive\">\n        <table class=\"table table-centered table-hover mb-0 col-xl-10\" id=\"datatable\">\n          <thead>\n            <tr>\n              <th class=\"border-top-0\" scope=\"col\">#</th>\n              <th class=\"border-top-0\" scope=\"col\">Product</th>\n              <th class=\"border-top-0\" scope=\"col\">Price</th>\n              <th class=\"border-top-0\" scope=\"col\">Qty</th>\n              <th class=\"border-top-0\" scope=\"col\">Amount</th>\n              \n              \n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let product of orders.items let i = index\" [class.active]=\"product === selectedOrders\">\n              <td>{{i+1}}</td>\n              <td>{{product.productTitle}}</td>\n              <td >{{product.price}}/{{product.quentityUnit}}</td>\n              <td *ngIf=\"isPrinting === true\" >{{product.quantity}}</td>\n              <td *ngIf=\"isPrinting === false\">\n                <input style=\"width: 50px; border: 0px;\" type=\"tel\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"product.quantity\"  (keyup.enter)= \"updateQuantity(product.productId, product.quantity)\" >\n                <!-- <button type=\"button\" style=\"width: 80px;\" class=\"btn btn-secondary\" (click)=\"updateQuantity()\" >Change</button> -->\n              </td>                \n              <td>{{product.quantity * product.price}}</td>\n              \n              \n            </tr>\n          </tbody>\n        </table>\n      </div>\n      <!--  -->\n\n      <!-- <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!editForm.form.valid\">Save</button> -->\n      <button *ngIf=\"orders.orderStatus=='Pending'\" type=\"button\" class=\"btn btn-secondary\" (click)=\"orderStartProgress()\">Start Progress</button>\n      <button *ngIf=\"orders.orderStatus=='InProgress'\" type=\"button\" class=\"btn btn-secondary\" (click)=\"orderDelivered()\">Order Delivered</button>\n      <button *ngIf=\"orders.orderStatus=='InProgress' || orders.orderStatus=='Pending' \" type=\"button\" class=\"btn btn-success w-md\"  (click)=\"cancelOrder()\" >Cancel Order</button>\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Go Back</button>\n      \n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"printReceipt()\" >Print Receipt</button>\n\n    </form>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -4960,6 +4960,7 @@ var OrdersEditComponent = /** @class */ (function () {
         this.ordersService = ordersService;
         this.feedback = {};
         this.locationUrl = 'https://www.google.com/maps/dir';
+        this.isPrinting = false;
     }
     OrdersEditComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -5053,11 +5054,64 @@ var OrdersEditComponent = /** @class */ (function () {
             }
         });
     };
+    OrdersEditComponent.prototype.printReceipt = function () {
+        this.isPrinting = true;
+        setTimeout(function () {
+            var html = "<html>";
+            html += '<h1>kellostore</h1>';
+            html += '<p>Store No: G11 Markaz, Algafar Plaza Basement Shop No: 08</p>';
+            html += '<p>Phone: 923015339780</p>';
+            html += '<p>Order Id: ';
+            html += document.getElementById("orderId").nextSibling.textContent;
+            html += '</p>';
+            html += '<p>Date: ';
+            html += document.getElementById("orderTime").nextSibling.textContent;
+            html += '</p>';
+            html += '<p>Customer: ';
+            html += document.getElementById("customerName").nextSibling.textContent;
+            html += '</p>';
+            html += '<hr />';
+            html += '<p>Detail: </p>';
+            html += document.getElementsByClassName('table-responsive')[0].innerHTML;
+            html += '<hr />';
+            html += '<p>Total bill: ';
+            html += document.getElementById("totalBillAmount").nextSibling.textContent;
+            html += '</p>';
+            html += '<hr />';
+            html += "</html>";
+            var printWin = window.open('', '', 'left=50,top=10,width=100,height=100,toolbar=0,scrollbars=0,status  =0');
+            printWin.document.write(html);
+            printWin.document.close();
+            printWin.focus();
+            printWin.print();
+            printWin.close();
+        }, 100);
+    };
+    OrdersEditComponent.prototype.onFocus = function (event) {
+        this.isPrinting = false;
+        // Do something      
+    };
+    OrdersEditComponent.prototype.onBlur = function (event) {
+        this.isPrinting = false;
+        // Do something
+    };
     OrdersEditComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
         { type: _orders_service__WEBPACK_IMPORTED_MODULE_2__["OrdersService"] }
     ]; };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"])('window:focus', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [FocusEvent]),
+        __metadata("design:returntype", void 0)
+    ], OrdersEditComponent.prototype, "onFocus", null);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"])('window:blur', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [FocusEvent]),
+        __metadata("design:returntype", void 0)
+    ], OrdersEditComponent.prototype, "onBlur", null);
     OrdersEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-orders-edit',
@@ -5318,7 +5372,7 @@ var OrdersService = /** @class */ (function () {
     function OrdersService(http) {
         this.http = http;
         this.ordersList = [];
-        this.api = '/orders';
+        this.api = 'http://192.168.10.9:3000/orders';
     }
     OrdersService.prototype.findById = function (id) {
         var url = this.api + "/" + id;
