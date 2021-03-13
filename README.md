@@ -1,4 +1,9 @@
-# kello
+# kellostore
+
+## Introduction
+Its a complete solution of Ecommerece. Which is designed to sale online of grocery and fruits and vegetable.
+
+## Installation
 Goto directory & Follow these command in sequence.
 ```
 npm install
